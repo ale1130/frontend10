@@ -14,9 +14,6 @@ class App extends Component{
           <Navbar
               svggift={<GiftIcon />}
               svgsettings={<SettingsIcon />}
-          /><Navbar
-              svggift={<GiftIcon />}
-              svgsettings={<SettingsIcon />}
           />
             <BodyContent />
             <Footer />
