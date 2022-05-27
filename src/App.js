@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component,useState} from "react";
 
 import {Navbar} from './components/navbar';
 import {GameSection} from './components/navbar';
@@ -8,23 +8,20 @@ import {PhoneIcon} from './components/icons';
 import {GiftIcon} from './components/icons';
 import {SettingsIcon} from './components/icons';
 import {SelectLanguages} from './components/languagesselector';
-import {LabelLanguage} from './components/languagesselector';
 import {Logo} from './components/logo';
 
-class App extends Component{
-    render(){
-      return (
-        <>
-          <Navbar
-              svggift={<GiftIcon />}
-              svgsettings={<SettingsIcon />}
-              gamesection={<GameSection />}
-          />
-            <BodyContent />
-            <Footer />
-        </>
-      );
-    }
+function App(){
+  return (
+    <>
+      <Navbar
+          svggift={<GiftIcon />}
+          svgsettings={<SettingsIcon>  </SettingsIcon>}
+          children={<SelectLanguages svgphone={<PhoneIcon/>} />}
+          gamesection={<GameSection />}
+      />
+        <Footer />
+    </>
+  );
 }
 
 export default App;

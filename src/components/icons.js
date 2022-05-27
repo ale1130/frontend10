@@ -51,7 +51,7 @@ function GiftIcon(){
 
 function SettingsIcon(){
     return(
-        <svg viewBox="0 0 1024 1024" className="icon"  x="0px" y="0px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 1024 1024" className="icon"  x="0px" y="0px"  xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M600.704 64a32 32 0 0130.464 22.208l35.2 109.376c14.784 7.232 28.928 15.36 42.432 24.512l112.384-24.192a32 32 0 0134.432
                 15.36L944.32 364.8a32 32 0 01-4.032 37.504l-77.12 85.12a357.12 357.12 0 010 49.024l77.12 85.248a32 32 0 014.032 37.504l-88.704
