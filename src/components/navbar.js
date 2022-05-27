@@ -3,6 +3,20 @@ import React, { Component } from "react";
 import '../styles/headerv1.css';
 
 class Navbar extends Component {
+
+    state = {
+        gamecategory:[
+            {id:0, nome:"Sport", immagine:""},
+            {id:1, nome:"Sport-Live", immagine:""},
+            {id:2, nome:"Casino", immagine:""},
+            {id:3, nome:"Casino-Live", immagine:""},
+            {id:4, nome:"Poker", immagine:""},
+            {id:5, nome:"Virtual", immagine:""},
+            {id:6, nome:"Bingo", immagine:""}
+        ],
+    }
+
+
     render() {
         return (
             <>
@@ -18,39 +32,13 @@ class Navbar extends Component {
                             </h1>
                             <nav className="nav-menu">
                                 <ul>
-                                    {this.props.gamessection}
-
-                                    <li class="">
-                                        <a href="/sport/prematch/">
-                                            <span>Sport</span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="/sport/live/">
-                                            <span>Sport Live</span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="/casino/">
-                                            <span>Casino</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="">
-                                        <a href="/turbogames/">
-                                            <span>Aviator</span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="/casino-live/">
-                                            <span>Live Casino</span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="/virtual/">
-                                            <span>Virtual</span>
-                                        </a>
-                                    </li>
+                                    {this.state.gamecategory.map(category =>
+                                        <li className="" key={category.id}>
+                                            <a href="">
+                                                <span>{category.nome}</span>
+                                            </a>
+                                        </li>
+                                    )}
                                 </ul>
                             </nav>
                         </div>
@@ -76,18 +64,4 @@ class Navbar extends Component {
     }
 }
 
-class GameSection extends Component {
-    render() {
-        return (
-            <li className="">
-                <a href="">
-                    <span>{this.props.gamename}</span>
-                </a>
-            </li>
-        );
-    }
-}
-
 export { Navbar };
-
-export { GameSection };
