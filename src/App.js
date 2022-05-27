@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 
 import {Navbar} from './components/navbar';
-import {GameSection} from './components/navbar';
 import Footer from './components/footer';
 import BodyContent from './components/body';
 import {PhoneIcon} from './components/icons';
