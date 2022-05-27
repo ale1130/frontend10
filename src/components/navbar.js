@@ -12,48 +12,13 @@ class Navbar extends Component{
                             <a href="" className="menu-mobile-pul hide-desktop" data-toggle="modal" data-target="#ModalMenu"><i className="fa fa-bars"></i></a>
                             <h1 className="logo">
                                 <a href="">
+                                    {this.props.logo}
                                     <img src="https://media.betzonelab.com/skins/logo/10.png?v=704" />
                                 </a>
                             </h1>
                             <nav className="nav-menu d-none d-lg-block">
                                 <ul>
-                                    <li className="">
-                                        <a href="">
-
-                                            <span>Sport</span>
-                                        </a>
-                                    </li>
-                                    <li className="">
-                                        <a href="">
-
-                                            <span>Sport Live</span>
-                                        </a>
-                                    </li>
-                                    <li className="">
-                                        <a href="">
-
-                                            <span>Casino</span>
-                                        </a>
-                                    </li>
-
-                                    <li className="">
-                                        <a href="">
-
-                                            <span>Aviator</span>
-                                        </a>
-                                    </li>
-                                    <li className="">
-                                        <a href="">
-
-                                            <span>Live Casino</span>
-                                        </a>
-                                    </li>
-                                    <li className="">
-                                        <a href="">
-
-                                            <span>Virtual</span>
-                                        </a>
-                                    </li>
+                                    {this.props.gamessection}
                                 </ul>
                             </nav>
                         </div>
@@ -77,4 +42,18 @@ class Navbar extends Component{
     }
 }
 
-export default Navbar;
+class GameSection extends Component{
+    render(){
+        return(
+            <li className="">
+                <a href="">
+                    <span>{this.props.gamename}</span>
+                </a>
+            </li>
+        );
+    }
+}
+
+export {Navbar};
+
+export {GameSection};
