@@ -4,19 +4,6 @@ import '../styles/headerv1.css';
 
 class Navbar extends Component {
 
-    state = {
-        gamecategory:[
-            {id:0, nome:"Sport", immagine:""},
-            {id:1, nome:"Sport-Live", immagine:""},
-            {id:2, nome:"Casino", immagine:""},
-            {id:3, nome:"Casino-Live", immagine:""},
-            {id:4, nome:"Poker", immagine:""},
-            {id:5, nome:"Virtual", immagine:""},
-            {id:6, nome:"Bingo", immagine:""}
-        ],
-    }
-
-
     render() {
         return (
             <>
@@ -32,13 +19,7 @@ class Navbar extends Component {
                             </h1>
                             <nav className="nav-menu">
                                 <ul>
-                                    {this.state.gamecategory.map(category =>
-                                        <li className="" key={category.id}>
-                                            <a href="">
-                                                <span>{category.nome}</span>
-                                            </a>
-                                        </li>
-                                    )}
+                                    {this.props.gamesection}
                                 </ul>
                             </nav>
                         </div>
@@ -64,4 +45,33 @@ class Navbar extends Component {
     }
 }
 
+class GameSection extends Component{
+
+    state = {
+        gamecategory:[
+            {id:0, nome:"Sport", immagine:""},
+            {id:1, nome:"Sport-Live", immagine:""},
+            {id:2, nome:"Casino", immagine:""},
+            {id:3, nome:"Casino-Live", immagine:""},
+            {id:4, nome:"Poker", immagine:""},
+            {id:5, nome:"Virtual", immagine:""},
+            {id:6, nome:"Bingo", immagine:""}
+        ],
+    }
+
+    render(){
+        return(
+            this.state.gamecategory.map(category =>
+                <li className="" key={category.id}>
+                    <a href="">
+                        <span>{category.nome}</span>
+                    </a>
+                </li>
+            )
+        );
+    }
+}
+
 export { Navbar };
+
+export { GameSection };
