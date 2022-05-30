@@ -1,5 +1,5 @@
 import React, {Component, useState} from "react";
-import Dropdown from 'react-dropdown';
+import DropdownItem from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 import '../styles/headerv1.css';
@@ -8,7 +8,7 @@ class SelectLanguages extends Component{
 
     state = {
         languages:[
-            {id:0, nome:"Italiano", immagine:""},
+            {id:0, nome:"Italiano", immagine:"https://rabitcasino.com/static-media/flags/Italy.png?v=100"},
             {id:1, nome:"English", immagine:""},
             {id:2, nome:"Deutsche", immagine:""},
             {id:3, nome:"Turkçe", immagine:""},
@@ -25,26 +25,26 @@ class SelectLanguages extends Component{
 
     render(){
         return(
-            <div className="dropdown">
-                <div className="header-drop-down">
-                    <p>Select language</p>
+            <div className="dropdown-menu of-header dropdown-menu-right show" aria-labelledby="info2" >
 
-                    <div className="language-lists">
-                        <div className="form-check-p">
+                    <div className="header-drop-down">
+                        <p>Select language</p>
+                        <div className="language-lists">
+
                             {this.state.languages.map(language =>
                                 <>
-                                    <label htmlFor={language.id}><img src="" />{language.nome}</label>
-                                    <input name="language_header" type="radio" id={language.id} />
+                                    <div className="form-check-p">
+                                        <label htmlFor={language.id}><img src={language.immagine} />{language.nome}</label>
+                                        <input name="inputLanguage" type="radio" id={language.id} key={language.id}/>
+                                    </div>
                                 </>
                             )}
                         </div>
                     </div>
 
-                </div>
-
-                <div className="footer-drop-down d-d-footer">
-                    <p><a href="mailto:support@rabitcasino.com">{this.props.svgphone}Send email</a></p>
-                </div>
+                    <div className="footer-drop-down d-d-footer" style={{display:"block", borderRadius:"3px"}}>
+                        <p><a href="mailto:support@rabitcasino.com">{this.props.svgphone}Send email</a></p>
+                    </div>
             </div>
         );
     }

@@ -139,3 +139,117 @@
     background: #b80642 !important;
     text-decoration: none;
 }
+
+div.of-header {
+    background: #161429;
+}
+
+.dropdown-menu-right {
+    right: 0;
+    left: auto;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 0.25rem;
+}
+
+.show {
+    position: absolute;
+    transform: translate3d(-240px, 43px, 0px);
+    top: 0px;
+    left: 0px;
+    will-change: transform;
+    width: 280px;
+}
+
+.header-drop-down {
+    margin: 0px 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: column;
+    align-items: flex-start;
+}
+
+.header-drop-down > p {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    margin: 5px 0px;
+    line-height: 1.1em;
+}
+
+
+
+.language-lists {
+    min-width: 260px;
+    margin: 20px 0px 10px;
+}
+
+.form-check-p {
+    position: relative;
+    padding: 0px 10px;
+    border-bottom: 1px solid #ffffff0d;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-check-p > label {
+    font-size: 14px;
+    padding: 10px 0px;
+    width: 100%;
+    color: #fff;
+    margin: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.form-check-p > label > img {
+    width: 20px;
+    margin: 0px 8px 0px 0px;
+}
+
+.d-d-footer {
+    display: block;
+    border-radius: 3px;
+    display: flex;
+    /*background: var(--color3);*/
+    background: #282649;
+    -webkit-box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 75%);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 75%);
+}
+
+.d-d-footer > p {
+    color: #fff;
+    font-size: 15px;
+    padding: 20px 10px 20px;
+    border-bottom: 1px solid rgb(255 255 255 / 20%);
+    margin-bottom: 0px;
+}
+.d-d-footer > p > a {
+    color: #fff;
+    display: block;
+}
+
+.d-d-footer > p > a > svg {
+    fill: #fff;
+    width: 18px;
+    margin-right: 8px;
+}
