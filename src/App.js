@@ -3,12 +3,13 @@ import React, {Component,useState} from "react";
 import {Navbar} from './components/navbar';
 import {GameSection} from './components/navbar';
 import Footer from './components/footer';
-import {BodyContent} from './components/body';
 import {PhoneIcon} from './components/icons';
 import {GiftIcon} from './components/icons';
 import {SettingsIcon} from './components/icons';
 import {SelectLanguages} from './components/languagesselector';
 import {Logo} from './components/logo';
+import {ImageSlider} from "./components/contentPage";
+import {SliderData} from "./components/contentPage";
 
 function App(){
   return (
@@ -19,7 +20,10 @@ function App(){
           children={<SelectLanguages svgphone={<PhoneIcon/>} />}
           gamesection={<GameSection />}
       />
-        <BodyContent />
+        <ImageSlider 
+          slides={SliderData}
+        />
+        <Footer />
     </>
   );
 }
