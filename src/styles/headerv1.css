@@ -1,3 +1,4 @@
+
 .header-top {
     padding: 0px 0 0px;
     position: sticky;
@@ -170,7 +171,7 @@ div.of-header {
 
 .show {
     position: absolute;
-    transform: translate3d(-240px, 43px, 0px);
+    transform: translate3d(-240px, 55px, 0px);
     top: 0px;
     left: 0px;
     will-change: transform;
@@ -228,9 +229,9 @@ div.of-header {
 .d-d-footer {
     display: block;
     border-radius: 3px;
-    display: flex;
     /*background: var(--color3);*/
     background: #282649;
+    margin: 10px;
     -webkit-box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 75%);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 75%);
@@ -240,7 +241,6 @@ div.of-header {
     color: #fff;
     font-size: 15px;
     padding: 20px 10px 20px;
-    border-bottom: 1px solid rgb(255 255 255 / 20%);
     margin-bottom: 0px;
 }
 .d-d-footer > p > a {

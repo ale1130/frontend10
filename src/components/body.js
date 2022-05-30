@@ -77,18 +77,7 @@ class BodyContent extends Component{
                                         </div>
                                     </div>
                             </div>
-                            <div className="carousel-item block">
-                                <img src="https://media.betzonelab.com/slideshow/img6_623c487160578.jpeg" alt="" />
 
-                                    <div className="carousel-caption d-md-block  slide-adv">
-                                        <div className="content-adv">
-                                            <div className="button-adv">
-                                                <a href="javascript:void(0)" onClick="openSignIn()"
-                                                   className="botton-adv-1">Log in</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
                         </div>
 
                         <a className="carousel-control-prev" href="#slideshow" data-slide="prev">
@@ -105,4 +94,45 @@ class BodyContent extends Component{
     }
 }
 
-export default BodyContent;
+const SliderImages =[
+    {
+        imageUrl:'https://media.betzonelab.com/slideshow/img1_6239edd791841.jpeg'
+    },
+    {
+        imageUrl:'https://media.betzonelab.com/slideshow/img1_6239edd791841.jpeg'
+    },
+    {
+        imageUrl:'https://media.betzonelab.com/slideshow/img1_6239edd791841.jpeg'
+    },
+    {
+        imageUrl:'https://media.betzonelab.com/slideshow/img1_6239edd791841.jpeg'
+    },
+    {
+        imageUrl:'https://media.betzonelab.com/slideshow/img1_6239edd791841.jpeg'
+    },
+    {
+        imageUrl:'https://media.betzonelab.com/slideshow/img6_623c487160578.jpeg'
+    }
+]
+
+class ImagesSlider extends Component(){
+    render(){
+        return(
+            <div className="carousel-item block">
+                <img src="https://media.betzonelab.com/slideshow/img6_623c487160578.jpeg" alt="" />
+
+                <div className="carousel-caption d-md-block  slide-adv">
+                    <div className="content-adv">
+                        <div className="button-adv">
+                            <a href="javascript:void(0)" onClick="openSignIn()"
+                               className="botton-adv-1">Log in</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export {BodyContent};
+export {SliderImages};
