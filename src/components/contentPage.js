@@ -22,7 +22,7 @@ const SliderData =[
     }
 ]
 
-const ImageSlider = (slides) => {
+function ImageSlider (slides){
     const [current, setCurrentImage] =useState(0);
     const length = slides.slides.length;
     
@@ -40,15 +40,15 @@ const ImageSlider = (slides) => {
 
   return (
     <>
-    <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
-    <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
-        {SliderData.map((slide,index)=>{
-            return(
-                <div className={index === current ? 'slide-active' : 'slide'} key={index}>
-                    {index === current && (<img src={slide.imageUrl} alt="immagine1" className="image"/>)}
-                </div>
-            )
-        })}
+        <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
+        <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
+            {SliderData.map((slide,index)=>{
+                return(
+                    <div className={index === current ? 'slide-active' : 'slide'} key={index}>
+                        {index === current && (<img src={slide.imageUrl} alt="immagine1" className="image"/>)}
+                    </div>
+                )
+            })}
     </>
   )
 }

@@ -1,5 +1,4 @@
 import React, {Component, useState} from "react";
-import DropdownItem from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 import '../styles/headerv1.css';

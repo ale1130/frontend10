@@ -29,14 +29,16 @@ function Navbar(props){
                             {props.svggift}
                         </a>
 
-                        <a href="" onClick="" className="button-header login-pul">Log in</a>
+                        <a href="#" onClick={props.childModalButton} className="button-header login-pul">Log in</a>
+
+                            {props.childModal}
 
                         <div className="btn-group">
                             <a href="#" className="button-header" onClick={() => setOpen(!open)}>
                                 {props.svgsettings}
                             </a>
 
-                            {open && props.children}
+                            {open && props.childLanguage}
                         </div>
                     </div>
                 </div>

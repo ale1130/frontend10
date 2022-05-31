@@ -3,12 +3,17 @@
 
  body {
      font-family: 'Roboto', sans-serif;
+     /*background: var(--color5);*/
+     background: #292649;
 }
+
 
 a {
     color: #007bff;
     text-decoration: none;
 }
+
+/* slideshow */
 
 .slider {   
     position: relative;
@@ -57,4 +62,108 @@ a {
     transform: scale(1.08);
   }
 
+  /* Footer */
+
+
+  #footer {
+      /*background: var(--color7);*/
+      background: #34315a;
+      padding: 15px 0 10px;
+      color: #ccc;
+      font-size: 14px;
+      text-align: center;
+  }
+
+  .box-link-footer {
+    margin-bottom: 30px;
+    padding-bottom: 0px;
+    border-bottom: 1px solid #ffffff3d;
+  }
+
+  .box-link-footer > ul {
+    list-style: none;
+    display: block;
+    justify-content: center;
+    padding: 0px;
+  }
+
+  .box-link-footer > ul > li {
+    border-right: 0.5px solid rgb(255 255 255 / 18%);
+    font-size: 11px;
+    padding: 1px 15px;
+    display: inline-block;
+  }
+
+  .box-link-footer > ul > li:last-child {
+    border-right: 0px;
+  }
+
+  .box-link-footer > ul > li > a {
+    color: #ccc;
+  }
+
+  .logo-footer {
+    width: 100%;
+    max-width: 190px;
+    margin-bottom: 30px;
+}
+
+.section-footer-play {
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.icon-play {
+  width: 90%;
+  margin-bottom: 10px;
+}
+
+.copyright {
+  margin-bottom: 30px;
+  font-size: 13px;
+  line-height: 1.3em;
+  margin-top: 15px;
+}
+
+img.multiplatform {
+  width: 100%;
+  max-width: 340px;
+}
+
+.footer-bottom-bar {
+  padding-top: 1em;
+  border-top: 1px solid #ffffff59;
+}
+
+.loghi-pag {
+  text-align: center;
+}
+
+.loghi-pag img {
+  width: 60px;
+  height: auto;
+}
+
+.gioco-18 {
+  border: 0px solid #ffcc07;
+  color: #bbb;
+  font-size: 13px;
+  border-radius: 0;
+  padding: 10px 20px;
+  text-align: center;
+  margin: 0;
+  border-left: 1px solid #4c4b4b;
+  border-right: 1px solid #4c4b4b;
+}
   
+/*Modal*/
+
+.modal {
+  top: '35%';
+  left: '50%';
+  right: 'auto';
+  bottom: 'auto';
+  marginRight: '-50%';
+  width: '60%';
+  transform: 'translate(-40%, -10%)';
+}
