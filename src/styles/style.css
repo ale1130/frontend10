@@ -158,12 +158,148 @@ img.multiplatform {
   
 /*Modal*/
 
-.modal {
-  top: '35%';
-  left: '50%';
-  right: 'auto';
-  bottom: 'auto';
-  marginRight: '-50%';
-  width: '60%';
-  transform: 'translate(-40%, -10%)';
+.mymodal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border:1px solid rgb(51 51 51 / 50%);
+  /*background: var(--color5);*/
+  background: #292649;
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+}
+
+.myoverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.modal-style-1 {
+  padding: 20px;
+  /*background: var(--color5);*/
+  background: #292649;
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px 1px rgb(17 17 17);
+  border: 1px solid rgb(51 51 51 / 50%);
+}
+
+.title-modal-1 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.coolform .form-control {
+  display: block;
+  width: 100%;
+  height: calc(20px + 8px + 2px);
+  padding: 5px 0px 5px 10px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 13px;
+  color: #888;
+  background-color: transparent;
+  background-clip: padding-box;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  margin-top: 5px;
+}
+
+.loginButton {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.login {
+  font-size: 12px;
+  font-weight: 600;
+  /*background: var(--color1);*/
+  background: #ffcc06;
+  /*color: var(--color8);*/
+  border: 1px solid /*var(--color1)*/ #ffcc06;
+  padding: 5px 10px;
+  border-radius: 23px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.login:hover {
+  color: #fff;
+  /*background: var(--color1);*/
+  background: #ffcc06;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.labelforget {
+  color: #ddd;
+  text-decoration: underline;
+}
+
+
+.underbox {
+  text-align: center;
+  border-top: 1px solid rgb(255 255 255 / 16%);
+  padding: 15px 0px 5px;
+  color: #ddd;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.logoimglogin {
+  width: 150px;
+  margin-bottom: 10px;
+}
+
+.registration {
+  background: #464271 !important;
+  border: 1px solid #292649 !important;
+  color: #ffcc06 !important;
+  text-align: center;
+  font-size: 16px !important;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 7px;
+  font-weight: 700;
+  padding: 7px 25px;
+}
+
+button.close.new {
+  position: absolute;
+  right: 18px;
+  top: 10px;
+  color: #fff;
+}
+
+.close {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5;
 }

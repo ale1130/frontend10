@@ -12,23 +12,25 @@ import {SelectLanguages} from './components/languagesselector';
 import {Logo} from './components/logo';
 import {ImageSlider} from "./components/contentPage";
 import {SliderData} from "./components/contentPage";
-import {LoginModal} from "./components/loginmodal";
-
-
+import LoginModal from "./components/loginmodal";
 
 function App(){
 
-  const [openModal, setOpenModal] = useState(false);
+  const [show, setShow] = useState(false);
 
   return (
     <>
       <Navbar
-          svggift={<GiftIcon />}
-          svgsettings={<SettingsIcon />}
-          childLanguage={<SelectLanguages svgphone={<PhoneIcon/>} />}
-          childModalButton = {() => setOpenModal(!openModal)}
-          childModal={<LoginModal modalState={openModal} closeModal={() => setOpenModal(!openModal)}/>}
-          gamesection={<GameSection />}
+        svggift={<GiftIcon />}
+        svgsettings={<SettingsIcon />}
+        childLanguage={<SelectLanguages svgphone={<PhoneIcon/>} />}
+        childModalButton = {() => setShow(!show)}
+        gamesection={<GameSection />}
+      />
+
+      <LoginModal 
+        modalState={show} 
+        closeModal={() => setShow(false)}
       />
 
       <ImageSlider 
