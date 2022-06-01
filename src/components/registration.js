@@ -3,15 +3,13 @@ import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 
-
-
 function RegistrationModal(props) {
 
     const close = props.closeModal;
 
     return (
         <>
-            <Modal isOpen={props.modalState} onRequestClose={close} className="mymodal" overlayClassName="myoverlay">
+            <Modal isOpen={true} onRequestClose={close} className="mymodal" overlayClassName="myoverlay">
                 <button type="button" className="close new" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" onClick={close}>×</span>
                 </button>

@@ -11,6 +11,7 @@ import {SettingsIcon} from './components/icons';
 import {SelectLanguages} from './components/languagesselector';
 import {Logo} from './components/logo';
 import LoginModal from "./components/loginmodal";
+import RegistrationModal from "./components/registration";
 
 import ControlledCarousel from "./components/slider";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -42,6 +43,8 @@ function App(){
       <ControlledCarousel 
         openForm={() => setShow(!show)}
       />  
+
+      <RegistrationModal/>
 
       <Footer />
     </>
