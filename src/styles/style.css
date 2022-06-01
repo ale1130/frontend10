@@ -270,6 +270,8 @@ img.multiplatform {
   border-radius: 7px;
   font-weight: 700;
   padding: 7px 25px;
+  width: 100%;
+  display: block;
 }
 
 button.close.new {
