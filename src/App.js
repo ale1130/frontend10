@@ -15,12 +15,17 @@ import LoginModal from "./components/loginmodal";
 import ControlledCarousel from "./components/slider";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Getdataprova from "./server/getdatas";
+
 function App(){
 
   const [show, setShow] = useState(false);
 
   return (
     <>
+
+      {/*<Getdataprova />*/}
+
       <Navbar
         svggift={<GiftIcon />}
         svgsettings={<SettingsIcon />}
