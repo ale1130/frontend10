@@ -282,7 +282,8 @@ button.close.new {
   opacity: .5;
 }
 
-.labelforget {
+.rec-pass {
   color: #ddd;
   text-decoration: underline;
+  font-size: 13px;
 }
