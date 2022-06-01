@@ -14,9 +14,9 @@ class Footer extends Component{
                             <div className="box-link-footer">
                                 <ul>
                   
-                                    <li><a href="javascript:help_popup('/help/index.php?id=13')">Contacts</a></li>
+                                    <li><a href="">Contacts</a></li>
                 
-                                <li>   <a href="/affiliate/">Become an Affiliate</a></li>
+                                <li>   <a href="">Become an Affiliate</a></li>
 
            
                                     {this.props.footerlinks}

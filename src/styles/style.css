@@ -15,14 +15,6 @@ a {
 
 /* slideshow */
 
-.slider {   
-    position: relative;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .image {
     width: 2000px;
     height: 680px;
@@ -31,10 +23,10 @@ a {
   
   .right-arrow {
     position: absolute;
-    top: 50%;
+    top: 350px;
     right: 32px;
     font-size: 3rem;
-    color: #000;
+    color: #ffffff;
     z-index: 10;
     cursor: pointer;
     user-select: none;
@@ -45,25 +37,27 @@ a {
     top: 50%;
     left: 32px;
     font-size: 3rem;
-    color: #000;
+    color: #ffffff;
     z-index: 10;
     cursor: pointer;
     user-select: none;
   }
 
-  .slide {
-    opacity: 0;
-    transition-duration: 1s ease;
-  }
-
-  .slide.active {
-    opacity: 1;
-    transition-duration: 1s;
-    transform: scale(1.08);
+  a.botton-adv-1 {
+    background: #f8b226;
+    text-transform: uppercase;
+    color: #292649;
+    padding: 8px 30px;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 5px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 0px 6px -1px rgb(0 0 0 / 50%);
+    -moz-box-shadow: 0px 0px 6px -1px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 6px -1px rgb(0 0 0 / 50%);
   }
 
   /* Footer */
-
 
   #footer {
       /*background: var(--color7);*/
@@ -303,3 +297,6 @@ button.close.new {
   text-shadow: 0 1px 0 #fff;
   opacity: .5;
 }
+
+
+/*slider*/

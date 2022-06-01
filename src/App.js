@@ -1,4 +1,4 @@
-import React, {Component,useState} from "react";
+import React, {useState} from "react";
 
 import { GlobalStyle } from "./globalStyles";
 
@@ -10,9 +10,10 @@ import {GiftIcon} from './components/icons';
 import {SettingsIcon} from './components/icons';
 import {SelectLanguages} from './components/languagesselector';
 import {Logo} from './components/logo';
-import {ImageSlider} from "./components/contentPage";
-import {SliderData} from "./components/contentPage";
 import LoginModal from "./components/loginmodal";
+
+import ControlledCarousel from "./components/slider";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App(){
 
@@ -33,9 +34,9 @@ function App(){
         closeModal={() => setShow(false)}
       />
 
-      <ImageSlider 
-        slides={SliderData}
-      />
+      <ControlledCarousel 
+        openForm={() => setShow(!show)}
+      />  
 
       <Footer />
     </>
