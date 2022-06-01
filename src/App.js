@@ -22,6 +22,8 @@ function App(){
 
   const [show, setShow] = useState(false);
 
+  const [showReg, setShowReg] = useState(false);
+
   return (
     <>
 
@@ -38,13 +40,17 @@ function App(){
       <LoginModal 
         modalState={show} 
         closeModal={() => setShow(false)}
+        openModalReg={()=>setShowReg(!showReg)}
       />
 
       <ControlledCarousel 
         openForm={() => setShow(!show)}
       />  
 
-      <RegistrationModal/>
+      <RegistrationModal 
+        modalState={showReg} 
+        closeModal={() => setShowReg(false)}
+      />
 
       <Footer />
     </>

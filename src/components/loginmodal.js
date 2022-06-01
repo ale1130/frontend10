@@ -42,7 +42,7 @@ function LoginModal(props) {
                 <p className="underbox">
                     <img src="https://media.betzonelab.com/skins/logo/10.png" className="logoimglogin" />
                     <br />Do not have an account?</p>
-                <a href="javascript:void(0)" onClick={close} className="registration">Sign in</a>
+                <a href="javascript:void(0)" onClick={()=> {props.openModalReg(); close();}} className="registration">Sign in</a>
             </Modal>
         </>
     );

@@ -9,7 +9,7 @@ function RegistrationModal(props) {
 
     return (
         <>
-            <Modal isOpen={true} onRequestClose={close} className="mymodal" overlayClassName="myoverlay">
+            <Modal isOpen={props.modalState} onRequestClose={close} className="mymodal" overlayClassName="myoverlay">
                 <div className="row">
                     <div className="col-sm-4">
                         <h1 className="title-sport">
