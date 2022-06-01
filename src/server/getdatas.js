@@ -1,4 +1,4 @@
-import { Axios } from "axios";
+/*import { Axios } from "axios";
 
 function Getdataprova (){
     Axios.get('http://localhost3001/getdatas').then((response) => {
@@ -6,4 +6,4 @@ function Getdataprova (){
     });
 }
 
-export default Getdataprova;
+export default Getdataprova;*/

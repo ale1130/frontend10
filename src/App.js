@@ -16,7 +16,7 @@ import RegistrationModal from "./components/registration";
 import ControlledCarousel from "./components/slider";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Getdataprova from "./server/getdatas";
+//import Getdataprova from "./server/getdatas";
 
 function App(){
 
