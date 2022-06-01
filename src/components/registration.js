@@ -11,17 +11,7 @@ function RegistrationModal(props) {
         <>
             <Modal isOpen={true} onRequestClose={close} className="mymodal" overlayClassName="myoverlay">
                 <div className="row">
-                    <div className="col-sm-4">
-                        <h1 className="title-sport">
-                            Promotion</h1>
-                        <div className="card style-card">
-                            <img className="card-img-top" src="https://media.betzonelab.com/promotions/welcome-50_6218f82ca1eaa.jpeg" alt="WELCOME 50">
-                                <div className="card-body">
-                                    <h5>WELCOME 50</h5>
-                                    <p>Bonus di benvenuto 50% sul tuo primo deposito online fino a €200</p>
-                                </div>
-                        </div>
-                    </div>
+
                     <div className="col-sm-8">
                         <form id="signupForm" method="post" className="form-signUp clearForm">
 
