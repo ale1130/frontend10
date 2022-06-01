@@ -20,28 +20,6 @@ a {
     height: 680px;
     border-radius: 10px;
   }
-  
-  .right-arrow {
-    position: absolute;
-    top: 350px;
-    right: 32px;
-    font-size: 3rem;
-    color: #ffffff;
-    z-index: 10;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .left-arrow {
-    position: absolute;
-    top: 50%;
-    left: 32px;
-    font-size: 3rem;
-    color: #ffffff;
-    z-index: 10;
-    cursor: pointer;
-    user-select: none;
-  }
 
   a.botton-adv-1 {
     background: #f8b226;
@@ -297,6 +275,3 @@ button.close.new {
   text-shadow: 0 1px 0 #fff;
   opacity: .5;
 }
-
-
-/*slider*/
