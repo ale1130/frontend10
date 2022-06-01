@@ -222,7 +222,7 @@ function RegistrationModal(props) {
                                 <div className="col-sm-8 pd-l-2">
                                     <input className="form-check-input" type="checkbox" name="18years" id="18years">
                                         <label className="form-check-label" for="18years">
-                                            *&nbsp;<a href="">Terms and conditions</a> and <a href="">Privacy Policy</a> are accepted
+                                            * <a href="">Terms and conditions</a> and <a href="">Privacy Policy</a> are accepted
                                         </label>
                                 </div>
                             </div>
