@@ -222,12 +222,12 @@ function RegistrationModal(props) {
                                 <div className="col-sm-8 pd-l-2">
                                     <input className="form-check-input" type="checkbox" name="18years" id="18years">
                                         <label className="form-check-label" for="18years">
-                                            *&nbsp;<a href="javascript:help_popup('/help/index.php?id=2')">Terms and conditions</a> and <a href="javascript:help_popup('/help/index.php?id=1')">Privacy Policy</a> are accepted
+                                            *&nbsp;<a href="">Terms and conditions</a> and <a href="">Privacy Policy</a> are accepted
                                         </label>
                                 </div>
                             </div>
                             <button type="submit" className="login">Sign in </button>
-                            <p>Do you already have an account? <a onclick="openSignIn()" href="javascript:void(0)">Sign in now</a></p>
+                            <p>Do you already have an account? <a href="">Sign in now</a></p>
                         </form>
                     </div>
                 </div >
