@@ -1,4 +1,4 @@
-/*const express = require("express");
+const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 
@@ -10,20 +10,28 @@ app.use(cors());
 
 const db = mysql.createConnection({
     user:"gs_user",
-    host:"localhost",
+    host:"51.91.73.185",
     password:"Eh~rg741",
     database:"gamesolutions"
 });
 
-app.post('/getdatas',(req, res)=>{
+app.post('/getdataskin',(req, res)=>{
     db.query(
         "SELECT * FROM skins",
         (err, result) =>{
-            console.log(err);
+            if(err){
+                res.send({err:err});
+            }
+
+            if(result.length >0){
+                res.send(result);
+            }else{
+                res.send({message:"Error"});
+            }
         }
     );
 })
 
 app.listen(3001, ()=>{
     console.log("server running");
-});*/
+});

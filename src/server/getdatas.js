@@ -1,9 +1,9 @@
-/*import { Axios } from "axios";
+import Axios from "axios";
 
-function Getdataprova (){
-    Axios.get('http://localhost3001/getdatas').then((response) => {
-        console.log(response);
-    });
+function GetdataSkin(){
+    Axios.post('http://localhost:3001/getdataskin').then((response) => {
+        console.log(response.data);
+    })
 }
 
-export default Getdataprova;*/
+export default GetdataSkin;
