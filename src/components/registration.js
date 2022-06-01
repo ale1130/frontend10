@@ -11,7 +11,17 @@ function RegistrationModal(props) {
         <>
             <Modal isOpen={true} onRequestClose={close} className="mymodal" overlayClassName="myoverlay">
                 <div className="row">
-
+                    <div className="col-sm-4">
+                        <h1 className="title-sport">
+                            Promotion</h1>
+                        <div className="card style-card">
+                            <img className="card-img-top" src="https://media.betzonelab.com/promotions/welcome-50_6218f82ca1eaa.jpeg" alt="WELCOME 50" />
+                            <div className="card-body">
+                                <h5>WELCOME 50</h5>
+                                <p>Bonus di benvenuto 50% sul tuo primo deposito online fino a €200</p>
+                            </div>
+                        </div>
+                    </div>
                     <div className="col-sm-8">
                         <form id="signupForm" method="post" className="form-signUp clearForm">
 
@@ -19,19 +29,19 @@ function RegistrationModal(props) {
                             <div className="row">
                                 <div className="col-sm-6 pd-r-2">
                                     <label className="color-top" for="firstname">First name</label>
-                                    <input type="text" className="form-control margin-bottom-5" id="firstname" name="firstname" placeholder="*First name">
+                                    <input type="text" className="form-control margin-bottom-5" id="firstname" name="firstname" placeholder="*First name" />
                                 </div>
                                 <div className="col-sm-6 pd-l-2">
                                     <label className="color-top" for="lastname">Surname</label>
-                                    <input type="text" className="form-control margin-bottom-5" id="lastname" name="lastname" placeholder="*Surname">
+                                    <input type="text" className="form-control margin-bottom-5" id="lastname" name="lastname" placeholder="*Surname" />
                                 </div>
                                 <div className="col-sm-6 pd-r-2">
                                     <label className="color-top" for="email">E-mail</label>
-                                    <input type="email" className="form-control margin-bottom-5" id="email" name="email" placeholder="*E-mail">
+                                    <input type="email" className="form-control margin-bottom-5" id="email" name="email" placeholder="*E-mail" />
                                 </div>
                                 <div className="col-sm-6 pd-l-2">
                                     <label className="color-top" for="mobile">Mobile number</label>
-                                    <input type="text" value="" className="form-control margin-bottom-5" id="mobile" name="mobile" placeholder="*Mobile number">
+                                    <input type="text" value="" className="form-control margin-bottom-5" id="mobile" name="mobile" placeholder="*Mobile number" />
                                 </div>
                             </div>
                             <div className="row">
@@ -64,22 +74,22 @@ function RegistrationModal(props) {
 
                                 <div className="col-sm-6 pd-r-2 geo_residence_estero" id="div_province_residence_estera" >
                                     <label className="color-top" for="province_text_residence">Province of residence</label>
-                                    <input type="text" className="form-control margin-bottom-5" name="province_text_residence" autocomplete="off" value="" id="province_text_residence" placeholder="Province of residence">
+                                    <input type="text" className="form-control margin-bottom-5" name="province_text_residence" autocomplete="off" value="" id="province_text_residence" placeholder="Province of residence" />
                                 </div>
                                 <div className="col-sm-6 pd-l-2 geo_residence_estero" id="city_text_residence" >
                                     <label className="color-top" for="city_text_residence">City of residence</label>
-                                    <input type="text" className="form-control margin-bottom-5" name="city_text_residence" autocomplete="off" value="" id="cliente_city_residence_estera" placeholder="City of residence">
+                                    <input type="text" className="form-control margin-bottom-5" name="city_text_residence" autocomplete="off" value="" id="cliente_city_residence_estera" placeholder="City of residence" />
                                 </div>
 
                             </div>
                             <div className="row">
                                 <div className="col-sm-8 pd-r-2">
                                     <label className="color-top" for="address_residence">Residence address</label>
-                                    <input type="text" className="form-control margin-bottom-5" id="address_residence" name="address_residence" placeholder="*Residence address">
+                                    <input type="text" className="form-control margin-bottom-5" id="address_residence" name="address_residence" placeholder="*Residence address" />
                                 </div>
                                 <div className="col-sm-4 pd-l-2">
                                     <label className="color-top" for="zip_residence">Postal code of residence</label>
-                                    <input type="text" className="form-control margin-bottom-5" id="zip_residence" name="zip_residence" placeholder="*Postal code of residence">
+                                    <input type="text" className="form-control margin-bottom-5" id="zip_residence" name="zip_residence" placeholder="*Postal code of residence" />
                                 </div>
                             </div>
                             <div className="row">
@@ -115,11 +125,11 @@ function RegistrationModal(props) {
 
                             <div className="col-sm-6 pd-r-2 geo_estero" id="div_cliente_provincia_estera" >
                                 <label className="color-top" for="cliente_provincia_estera">Province of birth</label>
-                                <input type="text" className="form-control margin-bottom-5" name="province_text" autocomplete="off" value="" id="cliente_provincia_estera" placeholder="Province of birth">
+                                <input type="text" className="form-control margin-bottom-5" name="province_text" autocomplete="off" value="" id="cliente_provincia_estera" placeholder="Province of birth" />
                             </div>
                             <div className="col-sm-6 pd-l-2 geo_estero" id="div_cliente_citta_estera" >
                                 <label className="color-top" for="cliente_citta_estera">City of Birth</label>
-                                <input type="text" className="form-control margin-bottom-5" name="city_text" autocomplete="off" value="" id="cliente_citta_estera" placeholder="City of Birth">
+                                <input type="text" className="form-control margin-bottom-5" name="city_text" autocomplete="off" value="" id="cliente_citta_estera" placeholder="City of Birth" />
                             </div>
 
                     </div>
@@ -163,12 +173,12 @@ function RegistrationModal(props) {
                         <div className="col-sm-12" id="fiscal_code_area">
                             <label className="color-top" for="sesso">Fiscal Code</label>
                             <div className="input-group  margin-bottom-5">
-                                <input type="text" className="form-control" name="fiscal_code" id="fiscal_code" placeholder="*Fiscal Code" aria-label="Fiscal Code" aria-describedby="basic-addon1">
-                                    <div className="input-group-append">
-                                        <span className="input-group-text" id="basic-addon1">
-                                            <a href="javascript:void(0)" onclick="calcolaCodiceFiscale()"><span className="fa fa-calculator"></span></a>
-                                        </span>
-                                    </div>
+                                <input type="text" className="form-control" name="fiscal_code" id="fiscal_code" placeholder="*Fiscal Code" aria-label="Fiscal Code" aria-describedby="basic-addon1" />
+                                <div className="input-group-append">
+                                    <span className="input-group-text" id="basic-addon1">
+                                        <a href="javascript:void(0)" onclick="calcolaCodiceFiscale()"><span className="fa fa-calculator"></span></a>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -184,30 +194,30 @@ function RegistrationModal(props) {
                         </div>
                         <div className="col-sm-6 pd-l-2">
                             <label className="color-top" for="document_number">Document number</label>
-                            <input type="text" className="form-control margin-bottom-5" id="document_number" name="document_number" placeholder="*Document number">
+                            <input type="text" className="form-control margin-bottom-5" id="document_number" name="document_number" placeholder="*Document number" />
                         </div>
                     </div>
                     <div className="row margin-regulation2">
                         <div className="col-sm-12 pd-l-2 pd-r-2">
                             <label className="color-top" for="agent_id">Promoter code</label>
-                            <input type="text" value="" className="form-control margin-bottom-5" id="agent_id" name="agent_id" placeholder="Promoter code">
+                            <input type="text" value="" className="form-control margin-bottom-5" id="agent_id" name="agent_id" placeholder="Promoter code" />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-sm-6 pd-r-2">
                             <label className="color-top" for="username">Username</label>
-                            <input type="text" className="form-control margin-bottom-5" id="username" name="username" placeholder="*Username">
+                            <input type="text" className="form-control margin-bottom-5" id="username" name="username" placeholder="*Username" />
                         </div>
                         <div className="col-sm-6 pd-l-2">
                             <label className="color-top" for="password">Password</label>
-                            <input type="password" className="form-control margin-bottom-5" id="password" name="password" placeholder="*Password">
+                            <input type="password" className="form-control margin-bottom-5" id="password" name="password" placeholder="*Password" />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-sm-4 pd-r-2">
-                            <input className="form-check-input" type="checkbox" name="terms_conditions" id="terms_conditions">
-                                <label className="form-check-label" for="terms_conditions" >
-                                    * I have more than 18 years </label>
+                            <input className="form-check-input" type="checkbox" name="terms_conditions" id="terms_conditions" />
+                            <label className="form-check-label" for="terms_conditions" >
+                                * I have more than 18 years </label>
                         </div>
                         <div className="col-sm-8 pd-l-2">
                             <input className="form-check-input" type="checkbox" name="18years" id="18years">
