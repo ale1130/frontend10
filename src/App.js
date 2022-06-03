@@ -18,7 +18,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import GetdataSkin from "./server/getDatas";
 
+const skinId = (new URL(window.location.href)).searchParams.get('id');
+
 function App(){
+
+  const [datiSkin, setDatiSkin] = useState([]);
 
   const [show, setShow] = useState(false);
 
@@ -26,8 +30,10 @@ function App(){
 
   return (
     <>
-        <GetdataSkin />
+      <h1>{datiSkin}</h1>
+
       <Navbar
+        
         svggift={<GiftIcon />}
         svgsettings={<SettingsIcon />}
         childLanguage={<SelectLanguages svgphone={<PhoneIcon/>} />}

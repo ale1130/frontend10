@@ -2,7 +2,6 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 
-
 const app = express();
 
 app.use(express.json());
@@ -16,8 +15,12 @@ const db = mysql.createConnection({
 });
 
 app.post('/getdataskin',(req, res)=>{
+
+    const skinId = req.body.skinid;
+
     db.query(
-        "SELECT * FROM skins",
+        "SELECT * FROM skins WHERE id = ?",
+        [skinId],
         (err, result) =>{
             if(err){
                 res.send({err:err});

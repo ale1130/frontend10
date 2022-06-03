@@ -1,9 +1,10 @@
 import Axios from "axios";
 
-function GetdataSkin(){
-    Axios.post('http://localhost:3001/getdataskin').then((response) => {
-        console.log(response.data);
-    })
-}
+function GetdataSkin(props){
+
+    Axios.post('http://localhost:3001/getdataskin',{skinid : props.id}).then((response) => {
+        return (response.data[0]);
+    });
+};
 
 export default GetdataSkin;

@@ -15,7 +15,7 @@ function Navbar(props){
                         <h1 className="logo">
                             <a href="">
 
-                                <img src="https://media.betzonelab.com/skins/logo/10.png?v=704" />
+                                <img src={props.logo} />
                             </a>
                         </h1>
                         <nav className="nav-menu">
