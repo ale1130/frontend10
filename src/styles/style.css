@@ -141,10 +141,9 @@ img.multiplatform {
 /*Modal*/
 
 .mymodal {
-  position: fixed;
-  top: 50%;
+  position: absolute;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 10px);
   border: 1px solid rgb(51 51 51 / 50%);
   /* background: var(--color5); */
   background: #292649;
@@ -154,10 +153,12 @@ img.multiplatform {
   padding: 20px;
   min-width: 300px;
   max-width: 100%;
+  margin-bottom: 30px;
 }
 
 .myoverlay {
   position: fixed;
+  overflow-y: scroll;
   top: 0;
   left: 0;
   right: 0;
