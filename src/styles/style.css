@@ -305,13 +305,6 @@ button.close.new {
   font-size: 13px;
 }
 
-/*Prova */
-
-
-
-
-
-
 .modal-close-btn {
   cursor: pointer;
   top: 1.5rem;
@@ -319,4 +312,12 @@ button.close.new {
   position: absolute;
   width: 3rem;
   height: 3rem;
+}
+
+
+.color-top {
+  font-size: 10px;
+  color: #fff;
+  margin-top: 5px;
+  margin-bottom: -3px;
 }
