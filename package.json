@@ -17,6 +17,7 @@
     "react-modal": "^3.15.1",
     "react-scripts": "^5.0.1",
     "styled-components": "^5.3.5",
+    "use-search-params": "^1.0.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

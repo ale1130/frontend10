@@ -16,9 +16,13 @@ import RegistrationModal from "./components/registration";
 import ControlledCarousel from "./components/slider";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-//import Getdataprova from "./server/getdatas";
+import GetdataSkin from "./server/getDatas";
+
+const skinId = (new URL(window.location.href)).searchParams.get('id');
 
 function App(){
+
+  const [datiSkin, setDatiSkin] = useState([]);
 
   const [show, setShow] = useState(false);
 
@@ -26,10 +30,10 @@ function App(){
 
   return (
     <>
-
-      {/*<Getdataprova />*/}
+      <h1>{datiSkin}</h1>
 
       <Navbar
+        
         svggift={<GiftIcon />}
         svgsettings={<SettingsIcon />}
         childLanguage={<SelectLanguages svgphone={<PhoneIcon/>} />}
