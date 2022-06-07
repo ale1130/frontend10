@@ -94,18 +94,20 @@ function App(){
 
         var oggettoDati = [];
 
+        const objectArray = Object.entries(datiSkin);
+
         oggettoDati.keys(datiSkin);
 
         oggettoDati.values(datiSkin);
 
         oggettoDati.entries(datiSkin);
 
-        console.log(oggettoDati);
+        console.log(objectArray);
 
         setPagina(
         <>
 
-          {oggettoDati}
+          {objectArray[0].id}
 
           <Navbar
           //logo={dati}
