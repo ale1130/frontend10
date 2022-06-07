@@ -17,7 +17,7 @@ import RegistrationModal from "./components/registration";
 import ControlledCarousel from "./components/slider";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import GetdataSkin from "./server/getDatas";
+import GetdataSkin from "./server/getdatas";
 import Spinner from 'react-bootstrap/Spinner'
 
 const skinId = (new URL(window.location.href)).searchParams.get('id');
@@ -102,7 +102,7 @@ function App(){
 
   const [show, setShow] = useState(false);
 
-  /*return (
+  return (
     <>
 
       <Navbar
@@ -130,7 +130,7 @@ function App(){
 
       <Footer />
     </>
-  );*/
+  );
 
 }
 
