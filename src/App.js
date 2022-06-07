@@ -18,13 +18,6 @@ import RegistrationModal from "./components/registration";
 import ControlledCarousel from "./components/slider";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-//import GetdataSkin from "./server/getdatas";
-
-/*GetdataSkin(skinId,setValoreNuovoElemento).then(response => {
-  console.log(response)
-  
-});*/
-
 import Spinner from 'react-bootstrap/Spinner'
 
 const skinId = (new URL(window.location.href)).searchParams.get('id');
@@ -99,11 +92,20 @@ function App(){
         console.log(datiSkin);
         clearInterval(downloadTimer);
 
-        const dati = JSON.stringify(datiSkin);
+        var oggettoDati = [];
+
+        oggettoDati.keys(datiSkin);
+
+        oggettoDati.values(datiSkin);
+
+        oggettoDati.entries(datiSkin);
+
+        console.log(oggettoDati);
 
         setPagina(
         <>
-          <h1>{dati["id"]}</h1>
+
+          {oggettoDati}
 
           <Navbar
           //logo={dati}
