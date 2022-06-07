@@ -37,14 +37,13 @@ function App(){
 
   const [show, setShow] = useState(false);
 
-  const [pagina, setPagina]  = useState(<>
-
-      {datiSkin}
-
+  const [pagina, setPagina]  = useState(
+    <>
       <Spinner animation="border" role="status">
         <span className="visually-hidden">Loading...</span>
       </Spinner>
-    </>);
+    </>
+  );
 
   const [elements, setElements] = useState([
     {
@@ -66,8 +65,7 @@ function App(){
       .post('http://localhost:3001/getdataskin',{skinid : skinId})
       .then(response => {
         
-        console.log(response);
-        setDatiSkin({datiskin : response.data[0]});
+        setDatiSkin(response.data[0]);
         setValoreNuovoElemento(0);
       });
     }catch (e){
@@ -75,7 +73,6 @@ function App(){
       console.log(e);
     }
   };
-
 
   useEffect(() => {
     GetdataSkin();
@@ -102,13 +99,14 @@ function App(){
         console.log(datiSkin);
         clearInterval(downloadTimer);
 
+        const dati = JSON.stringify(datiSkin);
+
         setPagina(
         <>
-          {datiSkin.map(elemento =>
-            <div>{elemento}</div>
-          )}
+          <h1>{dati["id"]}</h1>
 
           <Navbar
+          //logo={dati}
             svggift={<GiftIcon />}
             svgsettings={<SettingsIcon />}
             childLanguage={<SelectLanguages svgphone={<PhoneIcon/>} />}
@@ -141,7 +139,7 @@ function App(){
 
     }, 1000);
 
-  },[]);
+  },[datiSkin]);
 
   return (
     pagina
