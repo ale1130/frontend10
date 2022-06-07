@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useEffect} from "react";
+import axios from "axios";
 
 import { GlobalStyle } from "./globalStyles";
 
@@ -17,47 +18,95 @@ import RegistrationModal from "./components/registration";
 import ControlledCarousel from "./components/slider";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import GetdataSkin from "./server/getdatas";
+//import GetdataSkin from "./server/getdatas";
+
+/*GetdataSkin(skinId,setValoreNuovoElemento).then(response => {
+  console.log(response)
+  
+});*/
+
 import Spinner from 'react-bootstrap/Spinner'
 
 const skinId = (new URL(window.location.href)).searchParams.get('id');
 
 function App(){
 
-  const [datiSkin, setDatiSkin] = useState();
+  const [datiSkin, setDatiSkin] = useState([]);
 
-  const elements = [];
+  const [showReg, setShowReg] = useState(false);
 
-  elements [0] = false;
+  const [show, setShow] = useState(false);
 
-  GetdataSkin(skinId).then(skinDatas=>{
-    elements[0]=true;
-    setDatiSkin(skinDatas);
-  })
+  const [pagina, setPagina]  = useState(<>
 
-  var total = elements.length;
-  var completed = 0;
+      {datiSkin}
 
-  var downloadTimer = setInterval(function(){
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    </>);
 
-    console.log(total);
+  const [elements, setElements] = useState([
+    {
+      valore :0, nome:'infoSkin'
+    },
+  ]);
 
-    for (let index = 0; index < elements.length; ++index) {
+  const setValoreNuovoElemento = (index) => {
+    let newArr = elements;
+    newArr [index].valore = 1;
+    setElements(newArr);
+  }
 
-      const element = elements[index];
+  const GetdataSkin = async () =>{
 
-      if(element==true){
-        completed++;
-      }
-      
+    try{
+
+        const data = await axios
+        .post('http://localhost:3001/getdataskin',{skinid : skinId})
+        .then(response => {
+          setValoreNuovoElemento(0)
+
+          setDatiSkin({datiskin : response.data[0]});
+        });
+    }catch (e){
+
+        console.log(e);
     }
+  };
 
-    if(completed>=total){
-      console.log("Caricato")
-      console.log(datiSkin);
-      clearInterval(downloadTimer);
-      /*return(
+
+  useEffect(() => {
+    GetdataSkin();
+  },[]);
+
+  var approvato = 0;
+  const nApprovazioni = elements.length;
+
+  useEffect(() => {
+
+    var downloadTimer = setInterval(function(){
+
+      elements.map(elemento =>
+        {
+          if(elemento.valore===1){
+            approvato++;
+          }
+        }
+      )
+    
+      if(approvato>=nApprovazioni){
+
+        console.log("Tutto pronto");
+        console.log(datiSkin);
+        clearInterval(downloadTimer);
+
+        setPagina(
         <>
+          {datiSkin.map(elemento =>
+            <div>{elemento}</div>
+          )}
+
           <Navbar
             svggift={<GiftIcon />}
             svgsettings={<SettingsIcon />}
@@ -82,93 +131,21 @@ function App(){
           />
 
           <Footer />
-        </>
-      );*/
-    
-    }else{
-      console.log("caricamento...")
-      /*return(
-        <>       
-          <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        </>
-      );*/
-    }
-  
-  }, 1);
+        </>);
 
-  const [showReg, setShowReg] = useState(false);
+      }else{
 
-  const [show, setShow] = useState(false);
+        console.log("Continua caricamento");
+      }
+
+    }, 1000);
+
+  },[]);
 
   return (
-    <>
-
-      <Navbar
-        svggift={<GiftIcon />}
-        svgsettings={<SettingsIcon />}
-        childLanguage={<SelectLanguages svgphone={<PhoneIcon/>} />}
-        childModalButton = {() => setShow(true)}
-        gamesection={<GameSection />}
-      />
-
-      <LoginModal 
-        modalState={show} 
-        closeModal={() => setShow(false)}
-        openModalReg={() => setShowReg(!showReg)}
-      />
-
-      <ControlledCarousel 
-        openForm={() => setShow(true)}
-      />  
-
-      <RegistrationModal 
-        modalState={showReg} 
-        closeModal={() => setShowReg(false)}
-      />
-
-      <Footer />
-    </>
+    pagina
   );
 
 }
-
-/*function ReturnContent(){
-
-  const [show, setShow] = useState(false);
-
-  const [showReg, setShowReg] = useState(false);
-
-  return (
-    <>
-
-      <Navbar
-        svggift={<GiftIcon />}
-        svgsettings={<SettingsIcon />}
-        childLanguage={<SelectLanguages svgphone={<PhoneIcon/>} />}
-        childModalButton = {() => setShow(!show)}
-        gamesection={<GameSection />}
-      />
-
-      <LoginModal 
-        modalState={show} 
-        closeModal={() => setShow(false)}
-        openModalReg={()=>setShowReg(!showReg)}
-      />
-
-      <ControlledCarousel 
-        openForm={() => setShow(!show)}
-      />  
-
-      <RegistrationModal 
-        modalState={showReg} 
-        closeModal={() => setShowReg(false)}
-      />
-
-      <Footer />
-    </>
-  );
-}*/
 
 export default App;

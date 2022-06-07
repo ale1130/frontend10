@@ -1,11 +1,23 @@
-import Axios from "axios";
+import axios from "axios";
 
-async function GetdataSkin (id){
+const GetdataSkin = async (id, setDatiSkin, setValoreControllo) =>{
 
-    Axios.post('http://localhost:3001/getdataskin',{skinid : id}).then(response => {
+    try{
 
-        return "ciao";
-    });
+        const data = await axios
+        .post('http://localhost:3001/getdataskin',{skinid : id})
+        .then(response => {
+            setDatiSkin({datiskin : response.data[0]});
+
+            setValoreControllo(0);
+
+            return response;
+        });
+    }catch (e){
+
+        console.log(e);
+    }
+    
 };
 
 export default GetdataSkin;
