@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {useEffect} from "react";
 
 import { GlobalStyle } from "./globalStyles";
 
@@ -17,12 +18,123 @@ import ControlledCarousel from "./components/slider";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import GetdataSkin from "./server/getDatas";
+import Spinner from 'react-bootstrap/Spinner'
 
 const skinId = (new URL(window.location.href)).searchParams.get('id');
 
 function App(){
 
-  const [datiSkin, setDatiSkin] = useState([]);
+  const [datiSkin, setDatiSkin] = useState();
+
+  const elements = [];
+
+  elements [0] = false;
+
+  GetdataSkin(skinId).then(skinDatas=>{
+    elements[0]=true;
+    setDatiSkin(skinDatas);
+  })
+
+  var total = elements.length;
+  var completed = 0;
+
+  var downloadTimer = setInterval(function(){
+
+    console.log(total);
+
+    for (let index = 0; index < elements.length; ++index) {
+
+      const element = elements[index];
+
+      if(element==true){
+        completed++;
+      }
+      
+    }
+
+    if(completed>=total){
+      console.log("Caricato")
+      console.log(datiSkin);
+      clearInterval(downloadTimer);
+      /*return(
+        <>
+          <Navbar
+            svggift={<GiftIcon />}
+            svgsettings={<SettingsIcon />}
+            childLanguage={<SelectLanguages svgphone={<PhoneIcon/>} />}
+            childModalButton = {() => setShow(true)}
+            gamesection={<GameSection />}
+          />
+
+          <LoginModal 
+            modalState={show} 
+            closeModal={() => setShow(false)}
+            openModalReg={() => setShowReg(!showReg)}
+          />
+
+          <ControlledCarousel 
+            openForm={() => setShow(true)}
+          />  
+
+          <RegistrationModal 
+            modalState={showReg} 
+            closeModal={() => setShowReg(false)}
+          />
+
+          <Footer />
+        </>
+      );*/
+    
+    }else{
+      console.log("caricamento...")
+      /*return(
+        <>       
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </>
+      );*/
+    }
+  
+  }, 1);
+
+  const [showReg, setShowReg] = useState(false);
+
+  const [show, setShow] = useState(false);
+
+  /*return (
+    <>
+
+      <Navbar
+        svggift={<GiftIcon />}
+        svgsettings={<SettingsIcon />}
+        childLanguage={<SelectLanguages svgphone={<PhoneIcon/>} />}
+        childModalButton = {() => setShow(true)}
+        gamesection={<GameSection />}
+      />
+
+      <LoginModal 
+        modalState={show} 
+        closeModal={() => setShow(false)}
+        openModalReg={() => setShowReg(!showReg)}
+      />
+
+      <ControlledCarousel 
+        openForm={() => setShow(true)}
+      />  
+
+      <RegistrationModal 
+        modalState={showReg} 
+        closeModal={() => setShowReg(false)}
+      />
+
+      <Footer />
+    </>
+  );*/
+
+}
+
+/*function ReturnContent(){
 
   const [show, setShow] = useState(false);
 
@@ -30,10 +142,8 @@ function App(){
 
   return (
     <>
-      <h1>{datiSkin}</h1>
 
       <Navbar
-        
         svggift={<GiftIcon />}
         svgsettings={<SettingsIcon />}
         childLanguage={<SelectLanguages svgphone={<PhoneIcon/>} />}
@@ -59,6 +169,6 @@ function App(){
       <Footer />
     </>
   );
-}
+}*/
 
 export default App;

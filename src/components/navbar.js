@@ -2,6 +2,12 @@ import React, {Component, useState} from "react";
 
 import '../styles/headerv1.css';
 
+function CallBackSetShow(value){
+    
+const [show, setShow] = useState(false);
+setShow(value);
+}
+
 function Navbar(props){
 
     const [open, setOpen] = useState(false);
@@ -15,7 +21,7 @@ function Navbar(props){
                         <h1 className="logo">
                             <a href="">
 
-                                <img src={props.logo} />
+                                <img src="https://media.betzonelab.com/skins/logo/10.png?v=704" />
                             </a>
                         </h1>
                         <nav className="nav-menu">
