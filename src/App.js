@@ -62,16 +62,17 @@ function App(){
 
     try{
 
-        const data = await axios
-        .post('http://localhost:3001/getdataskin',{skinid : skinId})
-        .then(response => {
-          setValoreNuovoElemento(0)
-
-          setDatiSkin({datiskin : response.data[0]});
-        });
+      const data = await axios
+      .post('http://localhost:3001/getdataskin',{skinid : skinId})
+      .then(response => {
+        
+        console.log(response);
+        setDatiSkin({datiskin : response.data[0]});
+        setValoreNuovoElemento(0);
+      });
     }catch (e){
 
-        console.log(e);
+      console.log(e);
     }
   };
 
