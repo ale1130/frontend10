@@ -32,9 +32,9 @@ class SelectLanguages extends Component{
 
                             {this.state.languages.map(language =>
                                 <>
-                                    <div className="form-check-p">
+                                    <div className="form-check-p" key={language.id}>
                                         <label htmlFor={language.id}><img src={language.immagine} />{language.nome}</label>
-                                        <input name="inputLanguage" type="radio" id={language.id} key={language.id}/>
+                                        <input name="inputLanguage" type="radio" id={language.id} />
                                     </div>
                                 </>
                             )}

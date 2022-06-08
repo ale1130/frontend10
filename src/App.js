@@ -24,6 +24,8 @@ const skinId = (new URL(window.location.href)).searchParams.get('id');
 
 function App(){
 
+  const logoDirectory = "https://media.betzonelab.com/skins/logo/";
+
   const [datiSkin, setDatiSkin] = useState([]);
 
   const [showReg, setShowReg] = useState(false);
@@ -88,29 +90,21 @@ function App(){
     
       if(approvato>=nApprovazioni){
 
-        console.log("Tutto pronto");
-        console.log(datiSkin);
         clearInterval(downloadTimer);
 
         var oggettoDati = [];
 
         const objectArray = Object.entries(datiSkin);
 
-        oggettoDati.keys(datiSkin);
-
-        oggettoDati.values(datiSkin);
-
-        oggettoDati.entries(datiSkin);
-
-        console.log(objectArray);
+        objectArray.forEach(([key, value]) => {
+          oggettoDati[key] = value;
+        });
 
         setPagina(
         <>
-
-          {objectArray[0].id}
-
+          
           <Navbar
-          //logo={dati}
+            logo={logoDirectory+oggettoDati["logo_img"]}
             svggift={<GiftIcon />}
             svgsettings={<SettingsIcon />}
             childLanguage={<SelectLanguages svgphone={<PhoneIcon/>} />}
@@ -135,10 +129,6 @@ function App(){
 
           <Footer />
         </>);
-
-      }else{
-
-        console.log("Continua caricamento");
       }
 
     }, 1000);
