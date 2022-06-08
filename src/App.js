@@ -127,7 +127,10 @@ function App(){
             closeModal={() => setShowReg(false)}
           />
 
-          <Footer />
+          <Footer
+            logo={logoDirectory+oggettoDati["logo_img"]}
+            footer_text={oggettoDati["footer_text"]}
+          />
         </>);
       }
 
