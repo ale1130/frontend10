@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useEffect} from "react";
-import axios from "axios";
+//import axios from "axios";
+import { GetdataSkin } from "./server/getDatas";
 import {Navbar} from './components/navbar';
 import {GameSection} from './components/navbar';
 import Footer from './components/footer';
@@ -12,10 +13,10 @@ import LoginModal from "./components/loginmodal";
 import RegistrationModal from "./components/registration";
 import ControlledCarousel from "./components/slider";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Spinner from 'react-bootstrap/Spinner'
+import Spinner from 'react-bootstrap/Spinner';
 
-import { createGlobalStyle } from 'styled-components';
-import { Megastile } from "./components/superStile";
+import {createGlobalStyle} from 'styled-components';
+import {Megastile} from "./components/superStile";
 
 const skinId = (new URL(window.location.href)).searchParams.get('id');
 const logoDirectory = "https://media.betzonelab.com/skins/logo/";
@@ -34,7 +35,7 @@ function App(){
 
   const [USER, setUSER] = useState([]);
 
-  const GetdataSkin = async () =>{
+  /*const GetdataSkin = async () =>{
 
     try{
 
@@ -50,10 +51,10 @@ function App(){
 
       console.log(e);
     }
-  };
+  };*/
 
   useEffect(() => {
-    GetdataSkin();
+    GetdataSkin(skinId, ()=> setDatiSkin, ()=> setLoader);
   },[]);
 
   useEffect(() => {
