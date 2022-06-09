@@ -35,6 +35,55 @@ app.post('/getdataskin',(req, res)=>{
     );
 })
 
+app.post('/getuserdata',(req, res)=>{
+
+    const username = req.body.username;
+    const password = req.body.password;
+    const skin_id = req.body.skin;
+
+    db.query(
+        "SELECT * FROM users WHERE username = ? AND realpass = ? AND skin_id = ?",
+        [username, password, skin_id],
+        (err, result) =>{
+            if(err){
+                res.send({err:err});
+            }
+
+            if(result.length >0){
+                res.send(result);
+            }else{
+                res.send({message:"Incorrect credential!"});
+            }
+        }
+    );
+})
+
+app.post('/getuserdatacookie',(req, res)=>{
+
+    const username = req.body.username;
+    const passhash = req.body.passhash;
+    const skin_id = req.body.skin;
+
+    db.query(
+        "SELECT * FROM users WHERE username = ? AND passhash = ? AND skin_id = ?",
+        [username, passhash, skin_id],
+        (err, result) =>{
+            if(err){
+
+                res.send({err:err});
+            }
+
+            if(result.length >0){
+                
+                res.send(result);
+            }else{
+
+                res.send({message:"No user found!"});
+            }
+        }
+    );
+})
+
 app.listen(3001, ()=>{
     console.log("server running");
 });

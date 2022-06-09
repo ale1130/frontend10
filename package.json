@@ -16,6 +16,7 @@
     "react-dropdown": "^1.10.0",
     "react-loader-spinner": "^5.1.5",
     "react-modal": "^3.15.1",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
     "styled-components": "^5.3.5",
     "use-search-params": "^1.0.4",

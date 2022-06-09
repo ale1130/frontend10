@@ -1,5 +1,7 @@
 import React, {Component, useState} from "react";
 
+import { useNavigate, useParams} from "react-router-dom";
+
 import '../styles/headerv1.css';
 
 function CallBackSetShow(value){
@@ -19,7 +21,7 @@ function Navbar(props){
                     <div className="navigation-bar">
                         <a href="" className="menu-mobile-pul hide-desktop" data-toggle="modal" data-target="#ModalMenu"><i className="fa fa-bars"></i></a>
                         <h1 className="logo">
-                            <a href="">
+                            <a href="/?id=3">
 
                                 <img src={props.logo}/>
                             </a>
@@ -31,13 +33,11 @@ function Navbar(props){
                         </nav>
                     </div>
                     <div className="login-links">
-                        <a href="" className="button-header hide-mobile">
+                        <a href="/promotions?id=3" className="button-header hide-mobile">
                             {props.svggift}
                         </a>
 
                         <a href="#" onClick={props.childModalButton} className="button-header login-pul">Log in</a>
-
-                            {props.childModal}
 
                         <div className="btn-group">
                             <a href="#" className="button-header" onClick={() => setOpen(!open)}>
@@ -59,13 +59,13 @@ class GameSection extends Component{
 
     state = {
         gamecategory:[
-            {id:0, nome:"Sport", immagine:""},
-            {id:1, nome:"Sport-Live", immagine:""},
-            {id:2, nome:"Casino", immagine:""},
-            {id:3, nome:"Casino-Live", immagine:""},
-            {id:4, nome:"Poker", immagine:""},
-            {id:5, nome:"Virtual", immagine:""},
-            {id:6, nome:"Bingo", immagine:""}
+            {id:0, nome:"Sport", link:"/sport", immagine:""},
+            {id:1, nome:"Sport-Live", link:"/sport-live", immagine:""},
+            {id:2, nome:"Casino", link:"/casino", immagine:""},
+            {id:3, nome:"Casino-Live", link:"/casino-live", immagine:""},
+            {id:4, nome:"Poker", link:"/poker", immagine:""},
+            {id:5, nome:"Virtual", link:"/virtual", immagine:""},
+            {id:6, nome:"Bingo", link:"/bingo", immagine:""}
         ],
     }
 
@@ -73,7 +73,7 @@ class GameSection extends Component{
         return(
             this.state.gamecategory.map(category =>
                 <li className="" key={category.id}>
-                    <a href="">
+                    <a href={category.link+"?id=3"}>
                         <span>{category.nome}</span>
                     </a>
                 </li>
