@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import {useEffect} from "react";
-//import axios from "axios";
-import { GetdataSkin } from "./server/getDatas";
-import {Navbar} from './components/navbar';
+import axios from "axios";
+/*import {Navbar} from './components/navbar';
 import {GameSection} from './components/navbar';
 import Footer from './components/footer';
 import {PhoneIcon} from './components/icons';
@@ -11,7 +10,10 @@ import {SettingsIcon} from './components/icons';
 import {SelectLanguages} from './components/languagesselector';
 import LoginModal from "./components/loginmodal";
 import RegistrationModal from "./components/registration";
-import ControlledCarousel from "./components/slider";
+import ControlledCarousel from "./components/slider";*/
+
+import Home from "./pages/home";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Spinner from 'react-bootstrap/Spinner';
 
@@ -35,7 +37,7 @@ function App(){
 
   const [USER, setUSER] = useState([]);
 
-  /*const GetdataSkin = async () =>{
+  const GetdataSkin = async () =>{
 
     try{
 
@@ -51,10 +53,10 @@ function App(){
 
       console.log(e);
     }
-  };*/
+  };
 
   useEffect(() => {
-    GetdataSkin(skinId, ()=> setDatiSkin, ()=> setLoader);
+    GetdataSkin();
   },[]);
 
   useEffect(() => {
@@ -87,7 +89,9 @@ function App(){
       :
       <>
         <Stile />
-        <Navbar
+
+        <Home />
+        {/*<Navbar
           logo={logoDirectory+SKIN["logo_img"]}
           svggift={<GiftIcon />}
           svgsettings={<SettingsIcon />}
@@ -114,7 +118,7 @@ function App(){
         <Footer
           logo={logoDirectory+SKIN["logo_img"]}
           footer_text={SKIN["footer_text"]}
-        />
+      />*/}
       </>
       }
       
