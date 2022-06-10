@@ -1,6 +1,11 @@
 import React, {Component, useState} from "react";
-
-import { useNavigate, useParams} from "react-router-dom";
+import {BoxUtente} from "./boxUtente";
+import {PhoneIcon} from './icons';
+import {GiftIcon} from './icons';
+import {CoinIcon} from "./icons";
+import {SettingsIcon} from './icons';
+import {PersonIcon} from "./icons";
+import {SelectLanguages} from './languagesselector';
 
 import '../styles/headerv1.css';
 
@@ -8,12 +13,7 @@ function Navbar(props){
 
     const [open, setOpen] = useState(false);
 
-    
-    const LogOut = () => {
-
-        localStorage.clear();
-        props.setLogin(false);
-    };
+    const [openProfile, setOpenProfile] = useState(false);
 
     return (
         <>
@@ -29,48 +29,44 @@ function Navbar(props){
                         </h1>
                         <nav className="nav-menu">
                             <ul>
-                                {props.gamesection}
+                                {<GameSection currentPage={props.currentPage}/>}
                             </ul>
                         </nav>
                     </div>
                     <div className="login-links">
                         <a href="/promotions?id=3" className="button-header hide-mobile">
-                            {props.svggift}
+                            {<GiftIcon />}
                         </a>
 
                         {!props.statoLogin && <><a href="#" onClick={props.childModalButton} className="button-header login-pul">Log in</a></>}
 
-                        {props.statoLogin && <>
-
-                            <div className="info-profile">
-                            <span id="reloadBalance" >
-                                <span className="currentBalance" style={{color:"white"}}>{ props.datiUtente["currency"]+" "+props.datiUtente["balance"] }</span> 
-                                <span>
-                                </span>
-                            </span>
-                            </div>
+                        {props.statoLogin && 
                         
-                        </>}
+                            <>
+                                <div className="info-profile">
+                                    <span id="reloadBalance" >
+                                        <span className="currentBalance" style={{color:"white"}}>{ props.datiUtente["currency"]+" "+props.datiUtente["balance"] }</span> 
+                                    </span>
+                                </div>
+                
+                                <a href="#" onClick={() => setOpenProfile(!openProfile)} className="button-header login-pul" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {<PersonIcon />}                          
+                                </a>
 
-                        {props.statoLogin && <>
-
-                        <button onClick={LogOut} style={{color:"white"}}>LOGOUT</button>
-
-                        </>}
-
-                        {props.statoLogin && <>
-
-                            <a href="/account?id=3" className="button-header login-pul" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                            </a>
-                        </>}
+                                {openProfile && <BoxUtente setLogin={props.setLogin} />}
+                    
+                                <a href="/account?id=3" className="button-header hide-mobile">
+                                    {<CoinIcon />}
+                                </a>
+                            </>
+                        }
 
                         <div className="btn-group">
                             <a href="#" className="button-header" onClick={() => setOpen(!open)}>
-                                {props.svgsettings}
+                                {<SettingsIcon />}
                             </a>
 
-                            {open && props.childLanguage}
+                            {open && <SelectLanguages svgphone={<PhoneIcon />} />}
                         </div>
                     </div>
                 </div>
@@ -96,9 +92,12 @@ class GameSection extends Component{
     }
 
     render(){
+        
+        const currentPage = this.props.currentPage;
+
         return(
             this.state.gamecategory.map(category =>
-                <li className="" key={category.id}>
+                <li className={currentPage==category.link ? "active" : ""} key={category.id}>
                     <a href={category.link+"?id=3"}>
                         <span>{category.nome}</span>
                     </a>

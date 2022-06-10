@@ -10,6 +10,8 @@ import {
 
 import axios from "axios";
 
+//Rotte
+
 import Home from "./pages/home";
 import Sport from "./pages/sport";
 import SportLive from "./pages/sport-live";
@@ -21,18 +23,18 @@ import Bingo from "./pages/bingo";
 import Account from "./pages/account";
 import Profile from "./pages/profile";
 
+//Components
+
 import LoginModal from "./components/loginmodal";
 import RegistrationModal from "./components/registration";
 import {Navbar} from './components/navbar';
-import {GameSection} from './components/navbar';
-import {PhoneIcon} from './components/icons';
-import {GiftIcon} from './components/icons';
-import {SettingsIcon} from './components/icons';
-import {SelectLanguages} from './components/languagesselector';
 import Footer from './components/footer';
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Spinner from 'react-bootstrap/Spinner';
+
+//Components per stile globale dopo caricamento informazioni skin
 
 import {createGlobalStyle} from 'styled-components';
 import {Megastile} from "./components/superStile";
@@ -43,19 +45,33 @@ const logoDirectory = "https://media.betzonelab.com/skins/logo/";
 
 function App(){
 
+  //Variabili per settaggio e raccoglimento dati skin
+
   const [datiSkin, setDatiSkin] = useState(["empty"]); 
 
   const [SKIN, setSKIN] = useState(["empty"]);
 
+  //Variabile di caricamento
+
   const [loader, setLoader] = useState(true);
+
+  //Usestate per componenti
 
   const [show, setShow] = useState(false);
 
   const [showReg, setShowReg] = useState(false);
 
+  //Variabili per informazioni utente
+
   const [USER, setUser] = useState([]);
 
   const [isLogged, setIsLogged] = useState(false);
+
+  //Pagina corrente
+
+  const [currentPage, setCurrentPage] = useState(window.location.pathname);
+
+  //Coneverte oggetti in array
 
   const ConvertObjectToArray = (object) =>{
 
@@ -70,6 +86,8 @@ function App(){
 
     return arrUtilizzo;
   }
+
+  //Estrazione dati skin
 
   const GetdataSkin = async () =>{
 
@@ -100,10 +118,14 @@ function App(){
     }
   },[datiSkin]);
 
+  //Stile globale skin
+
   const Stile = createGlobalStyle`
   ${Megastile(SKIN)}
   `;
   
+  //Verifica dati utente nel localStorage
+
   const VerifyDataUser = async (user, pass, idS) => {
 
     try{
@@ -131,8 +153,7 @@ function App(){
     }
   };
 
-  useEffect(() => {
-
+  /*const AggiornamentoDatiUtente = setInterval(function () {
     if(!loader){
 
       const loggedInUsername = localStorage.getItem("username");
@@ -146,7 +167,24 @@ function App(){
         setIsLogged(false);
       }
     }
-  }, [loader]);
+  }, 5000);*/
+
+  useEffect(() => {
+
+    //if(!loader){ E' necessario implementare una funzione che lo richiamo ogni tot secondi
+
+      const loggedInUsername = localStorage.getItem("username");
+      const loggedInPasshash = localStorage.getItem("passhash");
+      if (loggedInUsername && loggedInPasshash && skinId) {
+
+        VerifyDataUser(loggedInUsername, loggedInPasshash, skinId);
+      }else{
+
+        localStorage.clear();
+        setIsLogged(false);
+      }
+    //}
+  }, []);
 
   return (
     <>
@@ -166,11 +204,8 @@ function App(){
 
           <Navbar
             logo={logoDirectory+SKIN["logo_img"]}
-            svggift={<GiftIcon />}
-            svgsettings={<SettingsIcon />}
-            childLanguage={<SelectLanguages svgphone={<PhoneIcon/>} />}
+            currentPage={currentPage}
             childModalButton = {() => setShow(true)}
-            gamesection={<GameSection />}
             statoLogin={isLogged}
             setLogin={setIsLogged}
             datiUtente={USER}
@@ -200,7 +235,7 @@ function App(){
             <Route path="/virtual" element={<Virtual />}/>
             <Route path="/bingo" element={<Bingo />}/>
             <Route path="/profile" element={<Profile />}/>
-            <Route path="/account" element={<Account isLogged={isLogged} user={USER} openModalLogin={() => setShow(true)}/>}/>
+            <Route path="/account" element={<Account isLogged={isLogged} user={USER}/>}/>
           </Routes>
 
         </Router>
