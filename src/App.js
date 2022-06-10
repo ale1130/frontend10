@@ -18,6 +18,8 @@ import CasinoLive from "./pages/casino-live";
 import Poker from "./pages/poker";
 import Virtual from "./pages/virtual";
 import Bingo from "./pages/bingo";
+import Account from "./pages/account";
+import Profile from "./pages/profile";
 
 import LoginModal from "./components/loginmodal";
 import RegistrationModal from "./components/registration";
@@ -51,7 +53,9 @@ function App(){
 
   const [showReg, setShowReg] = useState(false);
 
-  const [USER, setUser] = useState();
+  const [USER, setUser] = useState([]);
+
+  const [isLogged, setIsLogged] = useState(false);
 
   const ConvertObjectToArray = (object) =>{
 
@@ -99,7 +103,6 @@ function App(){
   const Stile = createGlobalStyle`
   ${Megastile(SKIN)}
   `;
-
   
   const VerifyDataUser = async (user, pass, idS) => {
 
@@ -108,11 +111,19 @@ function App(){
     const data = await axios
     .post('http://localhost:3001/getuserdatacookie',{ username : user, passhash : pass, skin : idS })
     .then(response => {
-        
-      setUser(ConvertObjectToArray(response.data[0]));
 
-      localStorage.setItem('username', response.data[0].username);
-      localStorage.setItem('passhash', response.data[0].passhash);
+      if(!response.data.message){
+
+        setUser(ConvertObjectToArray(response.data[0]));
+        setIsLogged(true);
+        localStorage.setItem('username', response.data[0].username);
+        localStorage.setItem('passhash', response.data[0].passhash);
+      }else{
+
+        localStorage.clear();
+        setIsLogged(false);
+      }
+ 
     })
     }catch (e){
 
@@ -129,6 +140,10 @@ function App(){
       if (loggedInUsername && loggedInPasshash && skinId) {
 
         VerifyDataUser(loggedInUsername, loggedInPasshash, skinId);
+      }else{
+
+        localStorage.clear();
+        setIsLogged(false);
       }
     }
   }, [loader]);
@@ -148,7 +163,7 @@ function App(){
         <Stile />
 
         <Router>
-          
+
           <Navbar
             logo={logoDirectory+SKIN["logo_img"]}
             svggift={<GiftIcon />}
@@ -156,17 +171,19 @@ function App(){
             childLanguage={<SelectLanguages svgphone={<PhoneIcon/>} />}
             childModalButton = {() => setShow(true)}
             gamesection={<GameSection />}
+            statoLogin={isLogged}
+            setLogin={setIsLogged}
+            datiUtente={USER}
           />
 
           <LoginModal 
             modalState={show} 
             closeModal={() => setShow(false)}
             openModalReg={() => setShowReg(true)}
-            setUserC={() => setUser}
+            setUserC={setUser}
+            setLogin={setIsLogged}
             skin={SKIN["id"]}
           />
-
-          {USER ? <div>{USER["username"]} is loggged in</div> : <div>no logged in</div>}
 
           <RegistrationModal 
             modalState={showReg} 
@@ -174,7 +191,7 @@ function App(){
           />
 
           <Routes>
-            <Route path="/" element={<Home setShowC={()=>setShow(true)}/>}/>
+            <Route path="/" element={<Home setShowC={()=>setShow(true)} statoLogin={isLogged}/>}/>
             <Route path="/sport" element={<Sport />}/>
             <Route path="/sport-live" element={<SportLive />}/>
             <Route path="/casino" element={<Casino />}/>
@@ -182,6 +199,8 @@ function App(){
             <Route path="/poker" element={<Poker />}/>
             <Route path="/virtual" element={<Virtual />}/>
             <Route path="/bingo" element={<Bingo />}/>
+            <Route path="/profile" element={<Profile />}/>
+            <Route path="/account" element={<Account isLogged={isLogged} user={USER} openModalLogin={() => setShow(true)}/>}/>
           </Routes>
 
         </Router>

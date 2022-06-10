@@ -58,7 +58,7 @@ function ControlledCarousel(props) {
                     <div className="carousel-caption d-md-block  slide-adv">
                         <div className="content-adv">
                             <div className="button-adv">
-                                <a href="#" onClick={props.openForm} className="botton-adv-1">Log in</a>
+                                {!props.isLogged && <><a href="#" onClick={props.openForm} className="botton-adv-1">Log in</a></>}
                             </div>
                         </div>
                     </div>

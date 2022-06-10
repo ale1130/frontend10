@@ -4,15 +4,16 @@ import { useNavigate, useParams} from "react-router-dom";
 
 import '../styles/headerv1.css';
 
-function CallBackSetShow(value){
-    
-const [show, setShow] = useState(false);
-setShow(value);
-}
-
 function Navbar(props){
 
     const [open, setOpen] = useState(false);
+
+    
+    const LogOut = () => {
+
+        localStorage.clear();
+        props.setLogin(false);
+    };
 
     return (
         <>
@@ -37,7 +38,32 @@ function Navbar(props){
                             {props.svggift}
                         </a>
 
-                        <a href="#" onClick={props.childModalButton} className="button-header login-pul">Log in</a>
+                        {!props.statoLogin && <><a href="#" onClick={props.childModalButton} className="button-header login-pul">Log in</a></>}
+
+                        {props.statoLogin && <>
+
+                            <div className="info-profile">
+                            <span id="reloadBalance" >
+                                <span className="currentBalance" style={{color:"white"}}>{ props.datiUtente["currency"]+" "+props.datiUtente["balance"] }</span> 
+                                <span>
+                                </span>
+                            </span>
+                            </div>
+                        
+                        </>}
+
+                        {props.statoLogin && <>
+
+                        <button onClick={LogOut} style={{color:"white"}}>LOGOUT</button>
+
+                        </>}
+
+                        {props.statoLogin && <>
+
+                            <a href="/account?id=3" className="button-header login-pul" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            </a>
+                        </>}
 
                         <div className="btn-group">
                             <a href="#" className="button-header" onClick={() => setOpen(!open)}>
