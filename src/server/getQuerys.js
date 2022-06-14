@@ -84,6 +84,69 @@ app.post('/getuserdatacookie',(req, res)=>{
     );
 })
 
+app.post('/changepassword',(req, res)=>{
+
+    const newPassword = req.body.newP;
+
+    const user_id = req.body.id;
+
+    var md5 = require('md5');
+
+    const passhash = md5(newPassword);
+
+    db.query(
+        "UPDATE users SET realpass = ? , passhash = ? WHERE id = ? ",
+        [newPassword, passhash, user_id],
+        (err, result) =>{
+            if(err){
+                res.send({error:err});
+            }else{
+                res.send({message:"complimenti il cambio password è avvenuto con successo, al prossimo caricamento della pagina ti verrà chiesto di effettuare nuovamente il login"});
+            }  
+        }
+    );
+})
+
+app.post('/getdatapromo',(req, res)=>{
+
+    const id = req.body.id;
+    const skin_id = req.body.skin_id;
+
+    db.query(
+        "SELECT * FROM promotions WHERE id = ? AND skin_id = ?",
+        [id, skin_id],
+        (err, result) =>{
+            if(err){
+
+                res.send({err:err});
+            }
+
+            if(result.length >0){
+                
+                res.send(result);
+            }else{
+
+                res.send({message:"No promo found!"});
+            }
+        }
+    );
+})
+
+app.post('/createuser',(req, res)=>{
+
+    db.query(
+        "UPDATE users SET realpass = ? , passhash = ? WHERE id = ? ",
+        [newPassword, passhash, user_id],
+        (err, result) =>{
+            if(err){
+                res.send({error:err});
+            }else{
+                res.send({message:"complimenti il cambio password è avvenuto con successo, al prossimo caricamento della pagina ti verrà chiesto di effettuare nuovamente il login"});
+            }  
+        }
+    );
+})
+
 app.listen(3001, ()=>{
     console.log("server running");
 });

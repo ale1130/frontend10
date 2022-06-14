@@ -316,3 +316,9 @@ button.close.new {
   margin-top: 5px;
   margin-bottom: -3px;
 }
+
+/*Selezionato*/
+
+.selezionato{
+  color:red;
+}

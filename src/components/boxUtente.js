@@ -6,18 +6,24 @@ function BoxUtente(props){
 
     const LogOut = () => {
 
-        localStorage.clear();
-        props.setLogin(false);
+        if (window.confirm('Sicuro?')){
+            localStorage.clear();
+            window.location.href = '/?id=3';
+        }
     };
+
+    const USER = props.utente;
 
     return (
         <>
             <div className="dropdown-menu of-header show stile1" aria-labelledby="dropdownMenuLink" x-placement="bottom-start">
 
                     <div className="header-drop-down">
-                        <p>Benvenuto<br/><strong>ale1</strong></p>
+                        <p>Benvenuto<br/><strong>{USER["username"]}</strong></p>
                         <a className="button-header" href="/account?id=3">Versamento</a>
                     </div>
+
+                    <a style={{color:"white"}} onClick={props.closeModal}>X</a>
 
                     <div className="box-balance">
 

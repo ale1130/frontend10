@@ -15,6 +15,8 @@ function Navbar(props){
 
     const [openProfile, setOpenProfile] = useState(false);
 
+    //Forse dovrei controllare anche qua lo stato della variabile USER
+
     return (
         <>
             <header className="header-top">
@@ -53,7 +55,7 @@ function Navbar(props){
                                     {<PersonIcon />}                          
                                 </a>
 
-                                {openProfile && <BoxUtente setLogin={props.setLogin} />}
+                                {openProfile && <BoxUtente setLogin={props.setLogin} closeModal={()=>setOpenProfile(false)} utente={props.datiUtente}/>}
                     
                                 <a href="/account?id=3" className="button-header hide-mobile">
                                     {<CoinIcon />}

@@ -2,14 +2,18 @@ import React, {useState, useEffect} from "react";
 import Modal from "react-modal";
 import axios from "axios";
 
+import ErrorBox from '../components/errorBox.js'
+
 Modal.setAppElement("#root");
 
 function LoginModal(props) {
 
     const close = props.closeModal;
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [inputs, setInputs] = useState({});
+
+    const [modalError, setModalError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState([]);
 
     const skin_id = props.skin;
 
@@ -26,13 +30,42 @@ function LoginModal(props) {
     
         return arrUtilizzo;
     }
+
+    const handleChange = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      setInputs(values => ({...values,[name]: value}))
+    }
+
+    const error = (errors) =>{
+        
+        setErrorMessage(errors);
+        setModalError(true);
+    }
+
+    const handleSubmit = (event) => {
+
+        var errorMsg = [];
+
+        event.preventDefault();
+
+        if(!inputs.password || !inputs.username){
+            errorMsg [0] = "Immettere tutti i dati";
+        }
+        
+        if(errorMsg.length>0){
+            error(errorMsg);
+        }else{
+            GetDataUser();
+        }
+    }
         
     const GetDataUser = async () => {
 
         try{
 
             const data = await axios
-            .post('http://localhost:3001/getuserdata',{ username : username, password : password, skin : skin_id })
+            .post('http://localhost:3001/getuserdata',{ username : inputs.username, password : inputs.password, skin : skin_id })
             .then(response => {
 
                 if(!response.data.message){
@@ -41,15 +74,20 @@ function LoginModal(props) {
                     props.setLogin(true);
                     localStorage.setItem('username', response.data[0].username);
                     localStorage.setItem('passhash', response.data[0].passhash);
+
+                    close();
                 }else{
-        
-                    localStorage.clear();
-                    props.setLogin(false);
+                    
+                    var errorMsg = [];
+            
+                    errorMsg [0] = response.data.message;
+
+                    error(errorMsg);
                 }
             })
         }catch (e){
 
-            console.log(e);
+           alert("Errore tecnico, contattare l'assistenza");  console.log(e);
         }
     };
 
@@ -63,6 +101,10 @@ function LoginModal(props) {
 
                 <h3 className="title-modal-1">Log in</h3>
 
+                <form id="signinForm" onSubmit={handleSubmit} className="coolform">
+
+                    {modalError ? <ErrorBox message={errorMessage}/> : ""}
+
                     <div className="row">
                         <div className="col-12">
 
@@ -71,15 +113,17 @@ function LoginModal(props) {
 
                     <div className="form-group">
 
-                        <input type="text" className="form-control form-control-a" id="username" name="username" placeholder="Username" value={username} onChange={({ target }) => setUsername(target.value)}/>
-                        <input type="password" className="form-control form-control-a" id="password" name="password" placeholder="Password" value={password} onChange={({ target }) => setPassword(target.value)}/>
+                        <input type="text" className="form-control form-control-a" id="username" name="username" placeholder="Username" value={inputs.username || ""} onChange={handleChange}/>
+                        <input type="password" className="form-control form-control-a" id="password" name="password" placeholder="Password" value={inputs.password || ""} onChange={handleChange}/>
 
-                        <button onClick={() => {GetDataUser(); close();}} className="login loginButton">Log in</button>
+                        <input type="submit" className="login loginButton" value={"Log in"} />
 
                         <p className="text-center"><a href="#" onClick={close} className="labelforget rec-pass">Did you forget your password?</a>
 
                         </p>
                     </div>
+
+                </form>
 
                 <p className="underbox">
 
