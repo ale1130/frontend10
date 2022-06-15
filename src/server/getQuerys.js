@@ -35,6 +35,27 @@ app.post('/getdataskin',(req, res)=>{
     );
 })
 
+app.post('/getskinsettings',(req, res)=>{
+
+    const skinId = req.body.id;
+
+    db.query(
+        "SELECT * FROM skin_settings WHERE skinid = ?",
+        [skinId],
+        (err, result) =>{
+            if(err){
+                res.send({err:err});
+            }
+
+            if(result.length >0){
+                res.send(result);
+            }else{
+                res.send({message:"No settings found"});
+            }
+        }
+    );
+})
+
 app.post('/getuserdata',(req, res)=>{
 
     const username = req.body.username;
@@ -90,9 +111,7 @@ app.post('/changepassword',(req, res)=>{
 
     const user_id = req.body.id;
 
-    var md5 = require('md5');
-
-    const passhash = md5(newPassword);
+    const passhash = req.body.passhash;
 
     db.query(
         "UPDATE users SET realpass = ? , passhash = ? WHERE id = ? ",
@@ -132,17 +151,45 @@ app.post('/getdatapromo',(req, res)=>{
     );
 })
 
-app.post('/createuser',(req, res)=>{
+app.post('/getshop',(req, res)=>{
+
+    const shop_id = req.body.id;
+    const skin_id = req.body.skin;
+    const shop_level = req.body.shop_level;
 
     db.query(
-        "UPDATE users SET realpass = ? , passhash = ? WHERE id = ? ",
-        [newPassword, passhash, user_id],
+        "SELECT * FROM users WHERE promoter_code = ? AND skin_id = ? AND user_level = ?",
+        [shop_id, skin_id, shop_level],
         (err, result) =>{
             if(err){
-                res.send({error:err});
+                res.send({err:err});
+            }
+
+            if(result.length >0){
+                res.send(result);
             }else{
-                res.send({message:"complimenti il cambio password è avvenuto con successo, al prossimo caricamento della pagina ti verrà chiesto di effettuare nuovamente il login"});
-            }  
+                res.send({message:"Incorrect credential!"});
+            }
+        }
+    );
+})
+
+app.post('/createplayer',(req, res)=>{
+
+    console.log(req.body);
+
+    db.query(
+        "SELECT * FROM users",
+        (err, result) =>{
+            if(err){
+                res.send({err:err});
+            }
+
+            if(result.length >0){
+                res.send(result);
+            }else{
+                res.send({message:"Incorrect credential!"});
+            }
         }
     );
 })

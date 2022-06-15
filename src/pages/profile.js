@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+
+import { convertDate } from "../constants/global";
 
 function Profile (props){
 
@@ -7,20 +9,6 @@ function Profile (props){
     const currency = USER["currency"];
 
     const saldo_totale = USER["balance"]+USER["balance_withdrawable"]+USER["bonus"];
-
-    const convertDate = (timeStamp) =>{
-        var data = timeStamp*1000;
-        var a = new Date(data);
-        var year = a.getFullYear();
-        var month = a.getMonth();
-        var date = a.getDate();
-        var hour = a.getHours();
-        var min = a.getMinutes();
-        var sec = a.getSeconds();
-        var result = date + '/' + month + '/' + year + ' ' + hour + ':' + min;
-
-        return result;
-    }
 
     const LogOut = () => {
 

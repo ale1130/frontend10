@@ -12,7 +12,7 @@ function ErrorBox (props){
                             <div className="" id="saveProfileFormErroriLista">
                             
                                 {props.message.map(messaggio =>
-                                <><span>-{messaggio}</span><br /></>
+                                <><span key={messaggio}>-{messaggio}</span><br /></>
                                 )}
 
                             </div>

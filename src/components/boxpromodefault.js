@@ -33,11 +33,15 @@ function BoxPromo (props){
           const data = await axios
           .post('http://localhost:3001/getdatapromo',{id : promoId, skin_id: props.skin_id})
           .then(response => {
-            setDatiPromo(ConvertObjectToArray(response.data[0]));
+
+            if(!response.data.message){
+                setDatiPromo(ConvertObjectToArray(response.data[0]));
+            }
+            
           })
         }catch (e){
             
-         alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+         alert("Errore tecnico, contattare l'assistenza2");  console.log(e);
         }
     };
 
@@ -55,7 +59,7 @@ function BoxPromo (props){
                 
                 <>
                     <div className="col-sm-4">
-                        <h1 className="title-sport">
+                        <h1 className="title-sport white">
                             Promotion
                         </h1>
 
@@ -74,9 +78,7 @@ function BoxPromo (props){
                 :
 
                 <>
-                    <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </Spinner>
+
                 </>
             }
         </>

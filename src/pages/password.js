@@ -9,6 +9,8 @@ import SuccessBox from "../components/successBox";
 
 import axios from "axios";
 
+import { generateMd5 } from "../constants/global";
+
 function Password (props){
 
     const USER = props.datiUtente;
@@ -47,7 +49,7 @@ function Password (props){
         try{
 
             const data = await axios
-            .post('http://localhost:3001/changepassword',{ id : USER["id"], newP : inputs.newpassword })
+            .post('http://localhost:3001/changepassword',{ id : USER["id"], newP : inputs.newpassword, passhash : generateMd5(inputs.newpassword) })
             .then(response => {
 
                 if(!response.data.error){

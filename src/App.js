@@ -10,6 +10,10 @@ import {
 
 import axios from "axios";
 
+//global
+
+import { ConvertObjectToArray, skinId, logoDirectory } from "./constants/global";
+
 //Rotte
 
 import Home from "./pages/home";
@@ -21,12 +25,10 @@ import Poker from "./pages/poker";
 import Virtual from "./pages/virtual";
 import Bingo from "./pages/bingo";
 import Account from "./pages/account";
-
+import MyProfile from "./components/myprofile";
 import Info from "./pages/info";
 import Password from "./pages/password";
 import Messages from "./pages/messages";
-
-import MyProfile from "./components/myprofile";
 
 //Components
 
@@ -35,7 +37,6 @@ import RegistrationModal from "./components/registration";
 import {Navbar} from './components/navbar';
 import Footer from './components/footer';
 
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Spinner from 'react-bootstrap/Spinner';
 
@@ -43,10 +44,6 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import {createGlobalStyle} from 'styled-components';
 import {Megastile} from "./components/superStile";
-
-const skinId = (new URL(window.location.href)).searchParams.get('id');
-
-const logoDirectory = "https://media.betzonelab.com/skins/logo/";
 
 function App(){
 
@@ -72,31 +69,9 @@ function App(){
 
   const [isLogged, setIsLogged] = useState(false);
 
-  const [timer, setTimer] = useState(1);
-
   //Pagina corrente
 
   const [currentPage, setCurrentPage] = useState(window.location.pathname);
-
-  //Funzioni info sulla skin
-
-  const [confermaEmailObbligatoria, setConfermaEmailObbligatoria] = useState(true)
-
-  //Coneverte oggetti in array
-
-  const ConvertObjectToArray = (object) =>{
-
-    var objectArray = Object.entries(object);
-
-    var arrUtilizzo = [];
-
-    objectArray.forEach(([key, value]) => {
-
-      arrUtilizzo[key] = value;
-    });
-
-    return arrUtilizzo;
-  }
 
   //Estrazione dati skin
 
@@ -156,15 +131,7 @@ function App(){
           localStorage.clear();
           window.location.reload(false);
         }
-      })/*.then(function(){
-        
-        setInterval(function(){
-          if(isLogged){
-            setTimer(timer+1);
-          }
-        },5000)
-       
-      })*/
+      })
 
     }catch (e){
 
@@ -174,19 +141,17 @@ function App(){
 
   useEffect(() => {
 
-    // E' necessario implementare una funzione che lo richiami ogni tot secondi
+    const loggedInUsername = localStorage.getItem("username");
+    const loggedInPasshash = localStorage.getItem("passhash");
+    if (loggedInUsername && loggedInPasshash && skinId) {
 
-      const loggedInUsername = localStorage.getItem("username");
-      const loggedInPasshash = localStorage.getItem("passhash");
-      if (loggedInUsername && loggedInPasshash && skinId) {
+      VerifyDataUser(loggedInUsername, loggedInPasshash, skinId);
+    }else{
 
-        VerifyDataUser(loggedInUsername, loggedInPasshash, skinId);
-      }else{
-
-        localStorage.clear();
-        setIsLogged(false);
-      }
-  }, [/*timer*/]);
+      localStorage.clear();
+      setIsLogged(false);
+    }
+  }, []);
 
   return (
     <>

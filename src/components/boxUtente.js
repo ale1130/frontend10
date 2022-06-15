@@ -2,15 +2,9 @@ import React, {Component, useState} from "react";
 
 import '../styles/headerv1.css';
 
+import {LogOut} from '../constants/global'
+
 function BoxUtente(props){
-
-    const LogOut = () => {
-
-        if (window.confirm('Sicuro?')){
-            localStorage.clear();
-            window.location.href = '/?id=3';
-        }
-    };
 
     const USER = props.utente;
 
@@ -65,7 +59,7 @@ function BoxUtente(props){
                             Il tuo profilo 
                         </a>
 
-                        <a href="/account/transactions" className="button-header">
+                        <a href="/account/transactions?id=3" className="button-header">
                             Il tuo conto 
                         </a>
                     </div>

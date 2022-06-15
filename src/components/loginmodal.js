@@ -4,6 +4,8 @@ import axios from "axios";
 
 import ErrorBox from '../components/errorBox.js'
 
+import {ConvertObjectToArray} from '../constants/global'
+
 Modal.setAppElement("#root");
 
 function LoginModal(props) {
@@ -16,20 +18,6 @@ function LoginModal(props) {
     const [errorMessage, setErrorMessage] = useState([]);
 
     const skin_id = props.skin;
-
-    const ConvertObjectToArray = (object) =>{
-
-        var objectArray = Object.entries(object);
-    
-        var arrUtilizzo = [];
-    
-        objectArray.forEach(([key, value]) => {
-    
-          arrUtilizzo[key] = value;
-        });
-    
-        return arrUtilizzo;
-    }
 
     const handleChange = (event) => {
       const name = event.target.name;
