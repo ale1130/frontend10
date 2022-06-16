@@ -5,7 +5,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
 
 import axios from "axios";
@@ -49,8 +48,6 @@ function App(){
 
   //Variabili per settaggio e raccoglimento dati skin
 
-  const [datiSkin, setDatiSkin] = useState(["empty"]); 
-
   const [SKIN, setSKIN] = useState(["empty"]);
 
   //Variabile di caricamento
@@ -83,7 +80,7 @@ function App(){
       .post('http://localhost:3001/getdataskin',{skinid : skinId})
       .then(response => {
         
-        setDatiSkin(response.data[0]);
+        setSKIN(response.data[0]);
       })
     }catch (e){
 
@@ -97,19 +94,17 @@ function App(){
 
   useEffect(() => {
 
-    if(datiSkin!="empty"){
-
-      setSKIN(ConvertObjectToArray(datiSkin));
+    if(SKIN!="empty"){
       setLoader(false);
     }
-  },[datiSkin]);
+  },[SKIN]);
 
   //Stile globale skin
 
   const Stile = createGlobalStyle`
-  ${Megastile(SKIN)}
+    ${Megastile(SKIN)}
   `;
-  
+
   //Verifica dati utente nel localStorage
 
   const VerifyDataUser = async (user, pass, idS) => {
@@ -141,17 +136,19 @@ function App(){
 
   useEffect(() => {
 
-    const loggedInUsername = localStorage.getItem("username");
-    const loggedInPasshash = localStorage.getItem("passhash");
-    if (loggedInUsername && loggedInPasshash && skinId) {
+    if(!loader){
+      const loggedInUsername = localStorage.getItem("username");
+      const loggedInPasshash = localStorage.getItem("passhash");
+      if (loggedInUsername && loggedInPasshash && skinId) {
 
-      VerifyDataUser(loggedInUsername, loggedInPasshash, skinId);
-    }else{
+        VerifyDataUser(loggedInUsername, loggedInPasshash, skinId);
+      }else{
 
-      localStorage.clear();
-      setIsLogged(false);
+        localStorage.clear();
+        setIsLogged(false);
+      }
     }
-  }, []);
+  }, [loader]);
 
   return (
     <>
@@ -198,7 +195,7 @@ function App(){
             <Route path="/" element={<Home setShowC={()=>setShow(true)} statoLogin={isLogged}/>}/>
             <Route path="/sport" element={<Sport />}/>
             <Route path="/sport-live" element={<SportLive />}/>
-            <Route path="/casino" element={<Casino />}/>
+            <Route path="/casino" element={<Casino isLogged={isLogged} skin={SKIN}/>}/>
             <Route path="/casino-live" element={<CasinoLive />}/>
             <Route path="/poker" element={<Poker />}/>
             <Route path="/virtual" element={<Virtual />}/>

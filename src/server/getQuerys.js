@@ -168,7 +168,7 @@ app.post('/getshop',(req, res)=>{
             if(result.length >0){
                 res.send(result);
             }else{
-                res.send({message:"Incorrect credential!"});
+                res.send({message:"No promoter found"});
             }
         }
     );
@@ -176,10 +176,30 @@ app.post('/getshop',(req, res)=>{
 
 app.post('/createplayer',(req, res)=>{
 
-    console.log(req.body);
+    const query = req.body.query;
+
+    db.query(query, (err, result) =>
+    
+        {
+            if(err){
+                res.send({err:err});
+            }
+
+            if(result.length >0){
+                res.send(result);
+            }   
+        }
+    );
+})
+
+/*app.post('/getproviders', (req,res) =>{
+
+    const condition = req.body.stringa;
+    const skin = req.body.skin;
 
     db.query(
-        "SELECT * FROM users",
+        "SELECT providers.* FROM games LEFT JOIN providers ON providers.id = games.provider_id JOIN skins_providers ON skins_providers.provider_id = providers.id WHERE skins_providers.skin_id = ? AND providers.stato = 1 AND skins_providers.view = 1 AND games.enabled = 1 AND games.category_id = 1 AND providers.name <> 'EvolutionX' AND providers.name <> 'EvolutionY' AND providers.name <> 'EvolutionZ' AND providers.special_provider = 0 ? GROUP BY providers.id ORDER BY skins_providers.priority DESC, providers.name ASC",
+        [skin, condition],
         (err, result) =>{
             if(err){
                 res.send({err:err});
@@ -188,11 +208,11 @@ app.post('/createplayer',(req, res)=>{
             if(result.length >0){
                 res.send(result);
             }else{
-                res.send({message:"Incorrect credential!"});
+                res.send({message:"no providers found"});
             }
         }
     );
-})
+})*/
 
 app.listen(3001, ()=>{
     console.log("server running");

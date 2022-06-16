@@ -75,7 +75,8 @@ function LoginModal(props) {
             })
         }catch (e){
 
-           alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+           alert("Errore tecnico, contattare l'assistenza");
+            console.log(e);
         }
     };
 

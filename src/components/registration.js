@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 
-import { PLAYER_LEVEL, ConvertObjectToArraySettings, getAge, calcolaCodiceFiscale, format, generateMd5, generateUniqId, ckeckSkinSett, skinId, SHOP_LEVEL } from "../constants/global";
+import { PLAYER_LEVEL, ConvertObjectToArraySettings, getAge, format, generateMd5, generateUniqId, ckeckSkinSett, skinId, SHOP_LEVEL, ConvertObjectToArray, ConvertObjectToStringIndex, ConvertObjectToStringValues } from "../constants/global";
 
 import BoxPromo from './boxpromodefault'
 import ErrorBox from "../components/errorBox";
@@ -30,13 +30,10 @@ function RegistrationModal(props) {
     const [termini, setTermini] = useState(false);
     const [maggiorenne, setMaggiorenne] = useState(false);
 
-    const [getSkinSettings, setGetSkinSettings] = useState(["empty"]); 
-    const [skinSettings, setSkinSettings] = useState(["empty"]); 
+    const [skinSettings, setSkinSettings] = useState(["empty"]);
 
-    const [parent, setParent] = useState(["empty"]);
-
-    const [passhash, setPasshash] = useState("");
-    const [apikey, setApikey] = useState("");
+    const [invio, setInvio] = useState(false);
+    const [promoter, setPromoter] = useState(["empty"])
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -45,7 +42,7 @@ function RegistrationModal(props) {
         setInputs(inputs => ({...inputs,[name]: value}))
     }
 
-    const handleChange2 = (data) => {
+    const handleChangeData = (data) => {
         
         let date = JSON.stringify(data);
 
@@ -55,10 +52,15 @@ function RegistrationModal(props) {
     }
 
     const error = (message="Errore") =>{
-        setErrorMessage(message);
-        setModalError(true);
-    }
 
+        if(message.length>0){
+            setErrorMessage(message);
+            setModalError(true);
+        }else{
+            setModalError(false);
+            setErrorMessage([]);
+        }
+    }
     
     const Settings = async () =>{
         try{
@@ -69,7 +71,7 @@ function RegistrationModal(props) {
 
                 if(!response.data.error){
 
-                    setGetSkinSettings(response.data);
+                    setSkinSettings(ConvertObjectToArraySettings(response.data));
                 }else{
                     alert("Errore tecnico, contattare l'assistenza");
                 }
@@ -82,20 +84,101 @@ function RegistrationModal(props) {
     };
 
     const createPlayer = async () =>{
-        try{
+
+        const indici = ConvertObjectToStringIndex(inputs);
+        const valori = ConvertObjectToStringValues(inputs);
+
+        console.log(indici);
+        console.log(valori);
+
+        /*try{
 
             const data = await axios
-            .post('http://localhost:3001/createplayer',{ data : inputs })
+            .post('http://localhost:3001/createplayer',{ indici : indici, valori : valori })
             .then(response => {
 
-                if(!response.data.error){
+                if(!response.data.err){
 
-                    //successo
+                    console.log(response.data[0]);
                 }else{
-                    alert("Errore tecnico, contattare l'assistenza");
+
+                    console.log(response.data.err);
                 }
             })
 
+        }catch (e){
+
+            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+        }*/
+    }
+
+    const getUserid = async () =>{
+
+        /*try{
+
+            const data = await axios
+            .post('http://localhost:3001/adduserpath',{ skin_id: SKIN["id"], username : userData.username})
+            .then(response => {
+
+                if(!response.data.err){
+
+                    console.log(response.data[0]);
+                }else{
+
+                    console.log(response.data.err);
+                }
+            })
+
+        }catch (e){
+
+            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+        }*/
+    }
+
+    const AddUserPath = async () =>{
+
+        //const path = promoter.user_path+"/"+userData.id;
+
+        /*try{
+
+            const data = await axios
+            .post('http://localhost:3001/adduserpath',{ user : userData.id , user_path : path })
+            .then(response => {
+
+                if(!response.data.err){
+
+                    console.log(response.data[0]);
+                }else{
+
+                    console.log(response.data.err);
+                }
+            })
+
+        }catch (e){
+
+            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+        }*/
+    }
+
+    useEffect(() => {
+        Settings();
+    },[]);
+
+    const GetShop = async () =>{
+        try{
+
+            const data = await axios
+            .post('http://localhost:3001/getshop',{ id : inputs.promoter_code, skin : skinId, shop_level : SHOP_LEVEL })
+            .then(response => {
+    
+                if(!response.data.message){
+    
+                    setPromoter(response.data[0]);
+
+                }else{
+                    setPromoter(["empty"]);
+                }
+            })
         }catch (e){
 
             alert("Errore tecnico, contattare l'assistenza");  console.log(e);
@@ -103,25 +186,14 @@ function RegistrationModal(props) {
     }
 
     useEffect(() => {
-        Settings();
-    },[]);
+        GetShop();
+    },[inputs.promoter_code]);
 
-    useEffect(() => {
+    function generateApiKey(){
 
-        if(getSkinSettings!="empty"){
-    
-          setSkinSettings(ConvertObjectToArraySettings(getSkinSettings));
-        }
-        
-    },[getSkinSettings]);
-
-    useEffect(() => {
-
-        if(parent!="empty"){
-
-            setInputs(inputs => ({...inputs, "parent_id" : parent.id , currency : parent.currency}))
-        }
-    },[parent]);
+        var apiKey = generateMd5(generateUniqId());
+        return apiKey;
+    }  
 
     const handleSubmit = (event) => {
 
@@ -212,41 +284,34 @@ function RegistrationModal(props) {
         }
 
         if(!inputs.promoter_code){
-            
+
             if(ckeckSkinSett(skinSettings, "reg_free")){
 
-                setInputs(inputs => ({...inputs, "parent_id" : SKIN["online_shop_id"]}))
+                setInputs(inputs => ({...inputs, "parent_id" : SKIN["online_shop_id"], currency : SKIN["currency"]}))
             }else{
+
                 errorMsg [19] = "Inserisci il codice promotore";
             }
         }else{
 
-            try{
-    
-                const data =  axios
-                .post('http://localhost:3001/getshop',{ id : inputs.promoter_code, skin : skinId, shop_level : SHOP_LEVEL })
-                .then(response => {
-        
-                    if(!response.data.message){
-        
-                        setParent(response.data[0])
-                    }else{
-                        errorMsg[25]="Il codice promotore inserito risulta inesistente";
-                    }
-                })
-        
-            }catch (e){
-        
-                alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+            if(promoter != "empty"){
+                setInputs(inputs => ({...inputs, "parent_id" : promoter.id , currency : promoter.currency}))
+            }else{
+                errorMsg [25] = "Impossibile trovare un promotore associato a questo codice";
             }
         }
 
         if(!inputs.username){
             errorMsg [20] = "Inserisci il tuo username";
+        } else if(format.test(inputs.username)){
+            errorMsg [24] = "Impossibile creare un nome utente contenente caratteri speciali o spazi";
         }
 
-        if(!inputs.password){
+        if(!inputs.realpass){
             errorMsg [21] = "Inserisci la tua password";
+        }else{
+        
+           setInputs(inputs => ({...inputs,"passhash" : generateMd5(inputs.realpass)}));
         }
         
         if(!termini){
@@ -257,33 +322,21 @@ function RegistrationModal(props) {
             errorMsg [23] = "E' necessario confermare di aver raggiunto la maggiore età";
         }
 
-        if(errorMsg.length==0){
+        console.log();
 
-            if(format.test(inputs.username)){
-                errorMsg [24] = "Impossibile creare un nome utente contenente caratteri speciali o spazi";
-            }
-
-            setPasshash(generateMd5(inputs.password));
-
-            function generateApiKey(){
-                return generateMd5(generateUniqId());
-            }  
-            
-            setApikey(generateApiKey());
-        }
-
-        if(errorMsg.length>0){
-            error(errorMsg);
-        }else{
-
-            setInputs(inputs => ({...inputs,"fonte" : 1, "confirm_token" : generateUniqId(), "realpass" : inputs.password, "passhash" : passhash, "skin_id" : SKIN["id"], "api_key" : apikey, "user_level" : PLAYER_LEVEL, "primary_language" : SKIN["language"]}));
-
-            console.log(inputs)
-            setModalError(false)
-            createPlayer();
-        }
+        setInputs(inputs => ({...inputs,"fonte" : 1, "confirm_token" : generateUniqId(), "skin_id" : SKIN["id"], "api_key" : generateApiKey(), "user_level" : PLAYER_LEVEL, "primary_language" : SKIN["language"], "addedTime" : Math.floor(Date.now() / 1000), "last_login" : Math.floor(Date.now() / 1000)}));
+        
+        error(errorMsg);
+        
+        setInvio(!invio);
     }
 
+    useEffect(() => {
+        if (!modalError) {
+            createPlayer();
+        }
+    }, [invio]);
+    
 
     return (
         <>
@@ -395,7 +448,7 @@ function RegistrationModal(props) {
                             <div className="birthday_box">
                                 <div className="row">
                                     <div className="col-sm-6 pd-l-2">
-                                        <SelectDate value={inputs.birthday || ""} onchange={()=>handleChange2}/>
+                                        <SelectDate value={inputs.birthday || ""} onchange={()=>handleChangeData}/>
                                     </div>
                                     <div className="col-sm-6 pd-l-2">
                                         <label className="color-top" htmlFor="sesso">Sex</label>
@@ -465,7 +518,7 @@ function RegistrationModal(props) {
                                 </div>
                                 <div className="col-sm-6 pd-l-2">
                                     <label className="color-top" htmlFor="password">Password</label>
-                                    <input type="password" className="form-control margin-bottom-5" id="password" name="password" placeholder="*Password" value={inputs.password || ""} onChange={handleChange}/>
+                                    <input type="password" className="form-control margin-bottom-5" id="realpass" name="realpass" placeholder="*Password" value={inputs.realpass || ""} onChange={handleChange}/>
                                 </div>
                             </div>
                             <div className="row">

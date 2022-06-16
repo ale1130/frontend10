@@ -41,7 +41,7 @@ function BoxPromo (props){
           })
         }catch (e){
             
-         alert("Errore tecnico, contattare l'assistenza2");  console.log(e);
+         alert("Errore tecnico, contattare l'assistenza");  console.log(e);
         }
     };
 
