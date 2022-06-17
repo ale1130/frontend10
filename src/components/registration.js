@@ -17,23 +17,30 @@ import axios from "axios";
 
 Modal.setAppElement("#root");
 
+function generateApiKey(){
+
+    var apiKey = generateMd5(generateUniqId());
+    return apiKey;
+}  
+
 function RegistrationModal(props) {
 
     const close = props.closeModal;
     const SKIN = props.skin;
 
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState(["empty"]);
 
     const [modalError, setModalError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState([]);
 
     const [termini, setTermini] = useState(false);
     const [maggiorenne, setMaggiorenne] = useState(false);
 
     const [skinSettings, setSkinSettings] = useState(["empty"]);
 
-    const [invio, setInvio] = useState(false);
-    const [promoter, setPromoter] = useState(["empty"])
+    const [promoter, setPromoter] = useState(["empty"]);
+    const [errorDupUsername, setDopUsername] = useState(false);
+
+    const [errorMessages, setErrorMessages] = useState([]);
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -51,14 +58,15 @@ function RegistrationModal(props) {
         setInputs(inputs => ({...inputs,"birthday": dataFinale}))
     }
 
-    const error = (message="Errore") =>{
+    const error = (message) =>{
+
+        setErrorMessages(message);
 
         if(message.length>0){
-            setErrorMessage(message);
             setModalError(true);
         }else{
             setModalError(false);
-            setErrorMessage([]);
+            createPlayer();
         }
     }
     
@@ -69,11 +77,9 @@ function RegistrationModal(props) {
             .post('http://localhost:3001/getskinsettings',{ id : SKIN["id"] })
             .then(response => {
 
-                if(!response.data.error){
+                if(!response.data.err){
 
                     setSkinSettings(ConvertObjectToArraySettings(response.data));
-                }else{
-                    alert("Errore tecnico, contattare l'assistenza");
                 }
             })
 
@@ -88,13 +94,12 @@ function RegistrationModal(props) {
         const indici = ConvertObjectToStringIndex(inputs);
         const valori = ConvertObjectToStringValues(inputs);
 
-        console.log(indici);
-        console.log(valori);
+        const stringa = indici+" VALUES "+valori;
 
-        /*try{
+        try{
 
             const data = await axios
-            .post('http://localhost:3001/createplayer',{ indici : indici, valori : valori })
+            .post('http://localhost:3001/createplayer',{ query : stringa })
             .then(response => {
 
                 if(!response.data.err){
@@ -109,7 +114,7 @@ function RegistrationModal(props) {
         }catch (e){
 
             alert("Errore tecnico, contattare l'assistenza");  console.log(e);
-        }*/
+        }
     }
 
     const getUserid = async () =>{
@@ -160,9 +165,27 @@ function RegistrationModal(props) {
         }*/
     }
 
-    useEffect(() => {
-        Settings();
-    },[]);
+    const CheckIfUserExist = async () =>{
+
+        const query = "SELECT * FROM users WHERE username = '"+inputs.username+"'";
+        try{
+
+            const data = await axios
+            .post('http://localhost:3001/checkuniqplayer',{ query : query })
+            .then(response => {
+
+                if(response.data.message=="found"){
+                    setDopUsername(true);
+                }else{
+                    setDopUsername(false);
+                }
+            })
+
+        }catch (e){
+
+            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+        }
+    }
 
     const GetShop = async () =>{
         try{
@@ -173,9 +196,9 @@ function RegistrationModal(props) {
     
                 if(!response.data.message){
     
-                    setPromoter(response.data[0]);
-
+                    setPromoter(response.data[0])
                 }else{
+                   
                     setPromoter(["empty"]);
                 }
             })
@@ -185,21 +208,9 @@ function RegistrationModal(props) {
         }
     }
 
-    useEffect(() => {
-        GetShop();
-    },[inputs.promoter_code]);
+    const handleSubmit = () => {
 
-    function generateApiKey(){
-
-        var apiKey = generateMd5(generateUniqId());
-        return apiKey;
-    }  
-
-    const handleSubmit = (event) => {
-
-        event.preventDefault();
-        
-        var errorMsg= [];
+        var errorMsg = [];
 
         if(!inputs.firstname){
             errorMsg [0] = "Inserisci il tuo nome";
@@ -303,8 +314,13 @@ function RegistrationModal(props) {
 
         if(!inputs.username){
             errorMsg [20] = "Inserisci il tuo username";
-        } else if(format.test(inputs.username)){
+
+        }else if(format.test(inputs.username)){
             errorMsg [24] = "Impossibile creare un nome utente contenente caratteri speciali o spazi";
+        }
+        
+        if(errorDupUsername){
+            errorMsg [26] = "Ci dispiace ma il nome utente digitato risulta già utilizzato, si prega di sceglierne un altro";
         }
 
         if(!inputs.realpass){
@@ -322,21 +338,10 @@ function RegistrationModal(props) {
             errorMsg [23] = "E' necessario confermare di aver raggiunto la maggiore età";
         }
 
-        console.log();
+        setInputs(inputs => ({...inputs,"fonte" : 1, "confirm_token" : generateUniqId(), "skin_id" : SKIN["id"], "api_key" : generateApiKey(), "user_level" : PLAYER_LEVEL, "primary_language" : SKIN["language"], "addedTime" : Math.floor(Date.now() / 1000), "last_login" : Math.floor(Date.now() / 1000)})); 
 
-        setInputs(inputs => ({...inputs,"fonte" : 1, "confirm_token" : generateUniqId(), "skin_id" : SKIN["id"], "api_key" : generateApiKey(), "user_level" : PLAYER_LEVEL, "primary_language" : SKIN["language"], "addedTime" : Math.floor(Date.now() / 1000), "last_login" : Math.floor(Date.now() / 1000)}));
-        
         error(errorMsg);
-        
-        setInvio(!invio);
     }
-
-    useEffect(() => {
-        if (!modalError) {
-            createPlayer();
-        }
-    }, [invio]);
-    
 
     return (
         <>
@@ -346,9 +351,8 @@ function RegistrationModal(props) {
                  {<BoxPromo skindefaultpromo={SKIN["default_promo"]} skin_id={SKIN["id"]} />}
 
                     <div className="col-sm-8">
-                        <form onSubmit={handleSubmit} className="form-signUp clearForm">
 
-                        {modalError ? <ErrorBox message={errorMessage}/> : ""}
+                        {modalError ? <ErrorBox message={errorMessages}/> : ""}
 
                             <div className="row">
                                 <div className="col-sm-6 pd-r-2">
@@ -534,9 +538,10 @@ function RegistrationModal(props) {
                                     </label>
                                 </div>
                             </div>
-                            <input type="submit" className="login" value={"Sign in"} />
+
+                            <button type="submit" className="login" onClick={()=>{CheckIfUserExist(); GetShop();}}>Registrati</button>
+
                             <p className="white">Do you already have an account? <a href="#" onClick={()=>{props.openModalLogin(); close();}}>Login now</a></p>
-                        </form>
                     </div>
                 </div >
             </Modal >

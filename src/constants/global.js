@@ -26,8 +26,9 @@ export const ConvertObjectToStringIndex = (object) =>{
     var arrUtilizzo = "(";
 
     objectArray.forEach(([key , value]) => {
-
-      arrUtilizzo += key+", ";
+        if(value!='' && value!="empty"){
+            arrUtilizzo += key+", ";
+        }
     });
 
     arrUtilizzo = arrUtilizzo.slice(0, arrUtilizzo.length - 1);
@@ -46,10 +47,12 @@ export const ConvertObjectToStringValues = (object) =>{
 
     objectArray.forEach(([key , value]) => {
 
-        if(isNaN(value)){
-            arrUtilizzo += "'"+value+"', ";
-        }else{
-            arrUtilizzo += value+", ";
+        if(value!='' && value!="empty"){
+            if(isNaN(value)){
+                arrUtilizzo += "'"+value+"', ";
+            }else{
+                arrUtilizzo += value+", ";
+            }
         }
     });
 

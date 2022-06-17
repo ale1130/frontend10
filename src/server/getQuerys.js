@@ -178,7 +178,9 @@ app.post('/createplayer',(req, res)=>{
 
     const query = req.body.query;
 
-    db.query(query, (err, result) =>
+    const finalQuery = "INSERT INTO users "+query;
+
+    db.query(finalQuery, (err, result) =>
     
         {
             if(err){
@@ -188,6 +190,26 @@ app.post('/createplayer',(req, res)=>{
             if(result.length >0){
                 res.send(result);
             }   
+        }
+    );
+})
+
+app.post('/checkuniqplayer',(req, res)=>{
+
+    const query = req.body.query;
+    
+    db.query(query, (err, result) =>
+    
+        {
+            if(err){
+                res.send({err:err});
+            }
+
+            if(result.length >0){
+                res.send({message:"found"});
+            }else{
+                res.send({message:"notfound"});
+            } 
         }
     );
 })

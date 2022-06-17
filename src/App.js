@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useMemo} from "react";
 import {useEffect} from "react";
 
 import {
@@ -52,7 +52,8 @@ function App(){
 
   //Variabile di caricamento
 
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(0);
+  const [loader2, setLoader2] = useState(0);
 
   //Usestate per componenti
 
@@ -95,7 +96,7 @@ function App(){
   useEffect(() => {
 
     if(SKIN!="empty"){
-      setLoader(false);
+      setLoader(loader+1);
     }
   },[SKIN]);
 
@@ -119,12 +120,14 @@ function App(){
 
           setUser(ConvertObjectToArray(response.data[0]));
           setIsLogged(true);
+          setLoader2(loader2+1);
+
           localStorage.setItem('username', response.data[0].username);
           localStorage.setItem('passhash', response.data[0].passhash);
         }else{
 
           localStorage.clear();
-          window.location.reload(false);
+          setLoader2(loader2+1);
         }
       })
 
@@ -136,7 +139,7 @@ function App(){
 
   useEffect(() => {
 
-    if(!loader){
+    if(loader>0){
       const loggedInUsername = localStorage.getItem("username");
       const loggedInPasshash = localStorage.getItem("passhash");
       if (loggedInUsername && loggedInPasshash && skinId) {
@@ -144,6 +147,7 @@ function App(){
         VerifyDataUser(loggedInUsername, loggedInPasshash, skinId);
       }else{
 
+        setLoader2(loader2+1);
         localStorage.clear();
         setIsLogged(false);
       }
@@ -153,14 +157,8 @@ function App(){
   return (
     <>
 
-      {loader ? 
+      {loader2>0 ? 
 
-      <>
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      </>
-      :
       <>
         <Stile />
 
@@ -214,6 +212,15 @@ function App(){
           footer_text={SKIN["footer_text"]}
         />
       </>
+
+      :
+      
+      <>
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+      </>
+
       }
       
     </>
