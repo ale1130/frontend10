@@ -185,11 +185,9 @@ app.post('/createplayer',(req, res)=>{
         {
             if(err){
                 res.send({err:err});
+            }else{
+                res.send();
             }
-
-            if(result.length >0){
-                res.send(result);
-            }   
         }
     );
 })
@@ -206,10 +204,82 @@ app.post('/checkuniqplayer',(req, res)=>{
             }
 
             if(result.length >0){
-                res.send({message:"found"});
+                res.send({message:"changedfound"});
             }else{
                 res.send({message:"notfound"});
             } 
+        }
+    );
+})
+
+app.post('/checkuniqplayeremail',(req, res)=>{
+
+    const query = req.body.query;
+    
+    db.query(query, (err, result) =>
+    
+        {
+            if(err){
+                res.send({err:err});
+            }
+
+            if(result.length >0){
+                res.send({message:"changedfound"});
+            }else{
+                res.send({message:"notfound"});
+            } 
+        }
+    );
+})
+
+app.post('/getuserid',(req, res)=>{
+
+    const query = req.body.query;
+
+    db.query(
+        query,
+        (err, result) =>{
+            if(err){
+                res.send({err:err});
+            }
+
+            if(result.length >0){
+                res.send(result);
+            }else{
+                res.send({message:"No user id found"});
+            }
+        }
+    );
+})
+
+app.post('/adduserpath',(req, res)=>{
+
+    const query = req.body.query;
+
+    db.query(
+        query,
+        (err, result) =>{
+            if(err){
+                res.send({err:err});
+            }else{
+                res.send();
+            }
+        }
+    );
+})
+
+app.post('/modifylogin',(req, res)=>{
+
+    const query = req.body.query;
+
+    db.query(
+        query,
+        (err, result) =>{
+            if(err){
+                res.send({err:err});
+            }else{
+                res.send();
+            }
         }
     );
 })

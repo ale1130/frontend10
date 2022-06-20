@@ -1,5 +1,7 @@
 import { isMobile, browserName } from "react-device-detect";
 
+import axios from "axios";
+
 export const PLAYER_LEVEL = 30;
 export const SHOP_LEVEL = 20;
 
@@ -143,3 +145,23 @@ export const ckeckSkinSett = (arraySettings, setting) =>{
         return false;
     }
 }
+
+export const SetLastLogin = async (user_id) =>{
+
+    const lastLogin = Math.floor(Date.now() / 1000);
+
+    const query = "UPDATE users SET last_login = "+lastLogin+" WHERE id = "+user_id;
+
+    try{
+
+      const data = await axios
+      .post('http://localhost:3001/modifylogin',{ query : query });
+
+    }catch (e){
+
+      alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+    }
+}
+
+
+

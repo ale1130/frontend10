@@ -33,6 +33,7 @@ import Messages from "./pages/messages";
 
 import LoginModal from "./components/loginmodal";
 import RegistrationModal from "./components/registration";
+import RegistrationModalPix from "./components/registrationpix";
 import {Navbar} from './components/navbar';
 import Footer from './components/footer';
 
@@ -182,13 +183,29 @@ function App(){
             skin={SKIN["id"]}
           />
 
-          <RegistrationModal 
-            modalState={showReg} 
-            closeModal={() => setShowReg(false)}
-            skin={SKIN}
-            openModalLogin={() => setShow(true)}
-          />
+          {
+            SKIN["id"] != 3 ?
+          
+            <RegistrationModal 
+              modalState={showReg} 
+              closeModal={() => setShowReg(false)}
+              skin={SKIN}
+              openModalLogin={() => setShow(true)}
+              setUserC={setUser}
+              setLogin={setIsLogged}
+            />
+            
+            :
 
+            <RegistrationModalPix 
+              modalState={showReg} 
+              closeModal={() => setShowReg(false)}
+              skin={SKIN}
+              openModalLogin={() => setShow(true)}
+              setUserC={setUser}
+              setLogin={setIsLogged}
+            />
+          }
           <Routes>
             <Route path="/" element={<Home setShowC={()=>setShow(true)} statoLogin={isLogged}/>}/>
             <Route path="/sport" element={<Sport />}/>
