@@ -1,7 +1,68 @@
 {
-    "title": "Benvenuto",
-    "description": {
-      "part1": "prova1",
-      "part2": "Prova2"
-    }
+    "navbar": {
+      "sport": "Sport",
+      "sportlive": "Sport-live",
+      "casino": "Casino",
+      "casinolive": "Casino-live",
+      "poker": "Poker",
+      "virtual": "Virtual",
+      "bingo": "Bingo"
+    },
+
+    "languages": {
+      "italiano": "Italiano",
+      "inglese": "Inglese",
+      "tedesco": "Tedesco",
+      "turco": "Turco",
+      "arabo": "Arabo",
+      "rumeno": "Rumeno",
+      "cinese": "Cinese",
+      "spagnolo": "Spagnolo",
+      "francese": "Francese",
+      "portoghese": "Portoghese",
+      "portoghesebrasiliano": "Portoghese-Brasiliano",
+      "ungherese": "Ungherese",
+      "seleziona": "Seleziona la lingua",
+      "inviaemail": "Invia email"
+    },
+
+    "accedi":"Accedi",
+
+    "footerlinks":{
+      "regole": "Regole genrali",
+      "regoles": "Regole scommesse",
+      "bonus": "Bonus multipla",
+      "norma": "Norma antiriciclaggio",
+      "privacy": "Privacy policy",
+      "cookies": "Cookies",
+      "gioco": "Gioco responsabile",
+      "affiliato": "Diventa un affiliato",
+      "siamo": "Chi siamo",
+      "contatti": "Contatti",
+      "responsabile": "Gioca Responsabilmente"
+    },
+
+    "nutente": "Nome utente",
+    "password": "Password",
+    "dimenticatop": "Hai dimenticato la password?",
+    "noaccount": "Non possiedi ancora un account ?",
+    "registrati": "Registrati",
+
+    "errorilogin":{
+      "tuttidati": "Immettere tutti i dati!",
+      "credenziali": "Credenziali errate!",
+      "bloccato": "Ci dispiace ma l'account associato a questo nome utente risulta bloccato al momento, per ulteriori chiarimenti si prega di contattare l'assistenza tecnica"
+    },
+
+    "saldototale": "Saldo totale",
+    "saldoprelevabile": "Saldo prelevabile",
+    "saldononprelevabile": "Saldo non prelevabile",
+    "bonus": "Bonus",
+    "tuoprofilo": "Il tuo profilo",
+    "tuoconto": "Il tuo conto",
+    "esci": "Esci dal tuo account",
+    "versamento": "Versamento",
+    "benvenuto": "Benvenuto"
+
+
   }

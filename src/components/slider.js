@@ -1,6 +1,8 @@
 import Carousel from 'react-bootstrap/Carousel'
 import React, { useState } from "react";
 
+import { useTranslation } from 'react-i18next';
+
 <>
     <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
 
@@ -47,6 +49,8 @@ function ControlledCarousel(props) {
       setIndex(selectedIndex);
     };
   
+    const {t} = useTranslation();
+
     return (
     <>
       <Carousel activeIndex={index} onSelect={handleSelect}>
@@ -58,7 +62,7 @@ function ControlledCarousel(props) {
                     <div className="carousel-caption d-md-block  slide-adv">
                         <div className="content-adv">
                             <div className="button-adv">
-                                {!props.isLogged && <><a href="#" onClick={props.openForm} className="botton-adv-1">Log in</a></>}
+                                {!props.isLogged && <><a href="#" onClick={props.openForm} className="botton-adv-1">{t('accedi')}</a></>}
                             </div>
                         </div>
                     </div>

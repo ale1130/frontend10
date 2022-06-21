@@ -4,17 +4,23 @@ import '../styles/headerv1.css';
 
 import {LogOut} from '../constants/global'
 
+import { useTranslation } from 'react-i18next';
+
 function BoxUtente(props){
 
+    const {t} = useTranslation();
+
     const USER = props.utente;
+
+    const balancetot = USER["balance"]+USER["bonus"]+USER["balance_withdrawable"];
 
     return (
         <>
             <div className="dropdown-menu of-header show stile1" aria-labelledby="dropdownMenuLink" x-placement="bottom-start">
 
                     <div className="header-drop-down">
-                        <p>Benvenuto<br/><strong>{USER["username"]}</strong></p>
-                        <a className="button-header" href="/account?id=3">Versamento</a>
+                        <p>{t('benvenuto')}<br/><strong>{USER["username"]}</strong></p>
+                        <a className="button-header" href="/account?id=3">{t('versamento')}</a>
                     </div>
 
                     <a style={{color:"white"}} onClick={props.closeModal}>X</a>
@@ -22,23 +28,23 @@ function BoxUtente(props){
                     <div className="box-balance">
 
                         <div>
-                            <span className="elemento-voce">Saldo totale</span>
-                            <strong className="currentBalance">EUR 20.00</strong>
+                            <span className="elemento-voce">{t('saldototale')}</span>
+                            <strong className="currentBalance">{balancetot+" "+USER["currency"]}</strong>
                         </div>
 
                         <div>
-                            <span className="elemento-voce">Saldo prelevabile</span>
-                            <strong className="palayer-balance-prelevabile">0.00 EUR</strong>
+                            <span className="elemento-voce">{t('saldoprelevabile')}</span>
+                            <strong className="palayer-balance-prelevabile">{USER["balance_withdrawable"]+" "+USER["currency"]}</strong>
                         </div>
 
                         <div>
-                            <span className="elemento-voce">Saldo non prelevabile</span> <br/>
-                            <strong className="player-balance-non-prelevabile">0.00 EUR</strong>
+                            <span className="elemento-voce">{t('saldononprelevabile')}</span> <br/>
+                            <strong className="player-balance-non-prelevabile">{USER["balance"]+" "+USER["currency"]}</strong>
                         </div>
 
                         <div>
-                            <span className="elemento-voce">Bonus</span> <br/>
-                            <strong className="currentBonusBalance">20.00 EUR</strong>
+                            <span className="elemento-voce">{t('bonus')}</span> <br/>
+                            <strong className="currentBonusBalance">{USER["bonus"]+" "+USER["currency"]}</strong>
                         </div>
                     </div>
 
@@ -56,17 +62,17 @@ function BoxUtente(props){
                                     </path>
                             </svg>
 
-                            Il tuo profilo 
+                            {t('tuoprofilo')}
                         </a>
 
                         <a href="/account/transactions?id=3" className="button-header">
-                            Il tuo conto 
+                            {t('tuoconto')}
                         </a>
                     </div>
 
                     <p>
                         <a onClick={LogOut} className="exit-to-play">
-                            Esci dal profilo
+                            {t('esci')}
                         </a>
                     </p>
             </div>

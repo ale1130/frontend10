@@ -1,6 +1,25 @@
-import React, {Component} from "react";
+import React from "react";
+
+import { useTranslation } from 'react-i18next';
 
 function Footer(props){
+
+    const {t} = useTranslation();
+
+    const state = {
+        footerlinks:[
+            {id:0, nome:t('footerlinks.regole')},
+            {id:1, nome:t('footerlinks.regoles')},
+            {id:2, nome:t('footerlinks.bonus')},
+            {id:3, nome:t('footerlinks.norma')},
+            {id:4, nome:t('footerlinks.privacy')},
+            {id:5, nome:t('footerlinks.cookies')},
+            {id:6, nome:t('footerlinks.gioco')},
+            {id:7, nome:t('footerlinks.affiliato')},
+            {id:8, nome:t('footerlinks.siamo')},
+            {id:9, nome:t('footerlinks.contatti')},
+        ],
+    };
 
     return(
         <>
@@ -13,14 +32,10 @@ function Footer(props){
                     <div className="col-md-12">
                         <div className="box-link-footer">
                             <ul>
-                
-                                <li><a href="">Contacts</a></li>
-            
-                                <li><a href="">Become an Affiliate</a></li>
-
-        
-                                {props.footerlinks}
-
+                                {state.footerlinks.map(object =>
+                                    
+                                    <li><a href="">{object.nome}</a></li>
+                                )}
                             </ul>
                         </div>
                     </div>
@@ -88,7 +103,7 @@ function Footer(props){
                 
                 <div className="col-lg-4">
                     <div className="gioco-18">
-                    +18 Play Responsibly
+                    +18 {t('footerlinks.responsabile')}
                     </div>
                 </div>     
             </div>

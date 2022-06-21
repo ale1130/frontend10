@@ -42,7 +42,7 @@ function LoginModal(props) {
         event.preventDefault();
 
         if(!inputs.password || !inputs.username){
-            errorMsg [0] = "Immettere tutti i dati";
+            errorMsg [0] = t('errorilogin.tuttidati');
         }
         
         if(errorMsg.length>0){
@@ -62,17 +62,28 @@ function LoginModal(props) {
 
                 if(!response.data.message){
 
-                    props.setUserC(ConvertObjectToArray(response.data[0]));
-                    props.setLogin(true);
-                    localStorage.setItem('username', response.data[0].username);
-                    localStorage.setItem('passhash', response.data[0].passhash);
+                    if(response.data[0].blocked==1){
 
-                    close();
+                        var errorMsg = [];
+            
+                        errorMsg [0] = t('errorilogin.bloccato');
+
+                        error(errorMsg);
+                    }else{
+
+                        props.setUserC(ConvertObjectToArray(response.data[0]));
+                        props.setLogin(true);
+                        localStorage.setItem('username', response.data[0].username);
+                        localStorage.setItem('passhash', response.data[0].passhash);
+                        
+                        close();
+                    }
+                    
                 }else{
                     
                     var errorMsg = [];
             
-                    errorMsg [0] = response.data.message;
+                    errorMsg [0] = t(response.data.message);
 
                     error(errorMsg);
                 }
@@ -92,7 +103,7 @@ function LoginModal(props) {
                     <span aria-hidden="true" onClick={close}>×</span>
                 </button>
 
-                <h3 className="title-modal-1">Log in</h3>
+                <h3 className="title-modal-1">{t('accedi')}</h3>
 
                 <form id="signinForm" onSubmit={handleSubmit} className="coolform">
 
@@ -106,12 +117,12 @@ function LoginModal(props) {
 
                     <div className="form-group">
 
-                        <input type="text" className="form-control form-control-a" id="username" name="username" placeholder="Username" value={inputs.username || ""} onChange={handleChange}/>
-                        <input type="password" className="form-control form-control-a" id="password" name="password" placeholder="Password" value={inputs.password || ""} onChange={handleChange}/>
+                        <input type="text" className="form-control form-control-a" id="username" name="username" placeholder={t('nutente')} value={inputs.username || ""} onChange={handleChange}/>
+                        <input type="password" className="form-control form-control-a" id="password" name="password" placeholder={t('password')} value={inputs.password || ""} onChange={handleChange}/>
 
-                        <input type="submit" className="login loginButton" value={"Log in"} />
+                        <input type="submit" className="login loginButton" value={t('accedi')} />
 
-                        <p className="text-center"><a href="#" onClick={close} className="labelforget rec-pass">Did you forget your password?</a>
+                        <p className="text-center"><a href="#" onClick={close} className="labelforget rec-pass">{t('dimenticatop')}</a>
 
                         </p>
                     </div>
@@ -121,10 +132,10 @@ function LoginModal(props) {
                 <p className="underbox">
 
                     <img src="https://media.betzonelab.com/skins/logo/10.png" className="logoimglogin" />
-                    <br />Do not have an account?
+                    <br />{t('noaccount')}
                 </p>
 
-                <a href="#" onClick={()=> {props.openModalReg(); close();}} className="registration">Sign in</a>
+                <a href="#" onClick={()=> {props.openModalReg(); close();}} className="registration">{t('registrati')}</a>
             </Modal>
         </>
     );

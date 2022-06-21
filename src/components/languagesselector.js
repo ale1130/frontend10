@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 function  SelectLanguages (props){
 
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const setLanguageCookie = (event) =>{
         localStorage.setItem('language', event.target.value);
@@ -16,18 +16,18 @@ function  SelectLanguages (props){
 
     const state = {
         languages:[
-            {id:0, sigla:"it", nome:"Italiano", immagine:"https://rabitcasino.com/static-media/flags/Italy.png?v=100"},
-            {id:1, sigla:"en", nome:"English", immagine:""},
-            {id:2, sigla:"de", nome:"Deutsche", immagine:""},
-            {id:3, sigla:"tr", nome:"Turkçe", immagine:""},
-            {id:4, sigla:"ar", nome:"Arabic", immagine:""},
-            {id:5, sigla:"ro", nome:"Romana", immagine:""},
-            {id:6, sigla:"zh", nome:"Chinese", immagine:""},
-            {id:7, sigla:"es", nome:"Espanol", immagine:""},
-            {id:8, sigla:"fr", nome:"Français", immagine:""},
-            {id:9, sigla:"pt", nome:"Portugues", immagine:""},
-            {id:10, sigla:"pt-br", nome:"Portugues-Brasil", immagine:""},
-            {id:11, sigla:"hu", nome:"Hungary", immagine:""}
+            {id:0, sigla:"it", nome:t('languages.italiano'), immagine:"https://rabitcasino.com/static-media/flags/Italy.png?v=100"},
+            {id:1, sigla:"en", nome:t('languages.inglese'), immagine:""},
+            {id:2, sigla:"de", nome:t('languages.tedesco'), immagine:""},
+            {id:3, sigla:"tr", nome:t('languages.turco'), immagine:""},
+            {id:4, sigla:"ar", nome:t('languages.arabo'), immagine:""},
+            {id:5, sigla:"ro", nome:t('languages.rumeno'), immagine:""},
+            {id:6, sigla:"zh", nome:t('languages.cinese'), immagine:""},
+            {id:7, sigla:"es", nome:t('languages.spagnolo'), immagine:""},
+            {id:8, sigla:"fr", nome:t('languages.francese'), immagine:""},
+            {id:9, sigla:"pt", nome:t('languages.portoghese'), immagine:""},
+            {id:10, sigla:"pt-br", nome:t('languages.portoghesebrasiliano'), immagine:""},
+            {id:11, sigla:"hu", nome:t('languages.ungherese'), immagine:""}
         ],
     };
 
@@ -35,7 +35,7 @@ function  SelectLanguages (props){
         <div className="dropdown-menu of-header dropdown-menu-right show" aria-labelledby="info2">
 
             <div className="header-drop-down">
-                <p>Select language</p>
+                <p>{t('languages.seleziona')}</p>
                 <div className="language-lists">
 
                     {state.languages.map(language =>
@@ -50,7 +50,7 @@ function  SelectLanguages (props){
             </div>
 
             <div className="footer-drop-down d-d-footer" style={{display:"block", borderRadius:"3px"}}>
-                <p><a href="mailto:support@rabitcasino.com">{props.svgphone}Send email</a></p>
+                <p><a href="mailto:support@rabitcasino.com">{props.svgphone}{t('languages.inviaemail')}</a></p>
             </div>
         </div>
     );

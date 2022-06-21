@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react";
+import React, {useState} from "react";
 import {BoxUtente} from "./boxUtente";
 import {PhoneIcon} from './icons';
 import {GiftIcon} from './icons';
@@ -7,9 +7,13 @@ import {SettingsIcon} from './icons';
 import {PersonIcon} from "./icons";
 import {SelectLanguages} from './languagesselector';
 
+import { useTranslation } from 'react-i18next';
+
 import '../styles/headerv1.css';
 
 function Navbar(props){
+
+    const { t } = useTranslation();
 
     const [open, setOpen] = useState(false);
 
@@ -40,7 +44,7 @@ function Navbar(props){
                             {<GiftIcon />}
                         </a>
 
-                        {!props.statoLogin && <><a href="#" onClick={props.childModalButton} className="button-header login-pul">Log in</a></>}
+                        {!props.statoLogin && <><a href="#" onClick={props.childModalButton} className="button-header login-pul">{t('accedi')}</a></>}
 
                         {props.statoLogin && 
                         
@@ -79,34 +83,33 @@ function Navbar(props){
 
 }
 
-class GameSection extends Component{
+const GameSection = (props) =>{
 
-    state = {
+    const {t} = useTranslation();
+
+    const state = {
         gamecategory:[
-            {id:0, nome:"Sport", link:"/sport", immagine:""},
-            {id:1, nome:"Sport-Live", link:"/sport-live", immagine:""},
-            {id:2, nome:"Casino", link:"/casino", immagine:""},
-            {id:3, nome:"Casino-Live", link:"/casino-live", immagine:""},
-            {id:4, nome:"Poker", link:"/poker", immagine:""},
-            {id:5, nome:"Virtual", link:"/virtual", immagine:""},
-            {id:6, nome:"Bingo", link:"/bingo", immagine:""}
+            {id:0, nome:t('navbar.sport'), link:"/sport", immagine:""},
+            {id:1, nome:t('navbar.sportlive'), link:"/sport-live", immagine:""},
+            {id:2, nome:t('navbar.casino'), link:"/casino", immagine:""},
+            {id:3, nome:t('navbar.casinolive'), link:"/casino-live", immagine:""},
+            {id:4, nome:t('navbar.poker'), link:"/poker", immagine:""},
+            {id:5, nome:t('navbar.virtual'), link:"/virtual", immagine:""},
+            {id:6, nome:t('navbar.bingo'), link:"/bingo", immagine:""}
         ],
     }
 
-    render(){
-        
-        const currentPage = this.props.currentPage;
+    const currentPage = props.currentPage;
 
-        return(
-            this.state.gamecategory.map(category =>
-                <li className={currentPage==category.link ? "active" : ""} key={category.id}>
-                    <a href={category.link+"?id=3"}>
-                        <span>{category.nome}</span>
-                    </a>
-                </li>
-            )
-        );
-    }
+    return(
+        state.gamecategory.map(category =>
+            <li className={currentPage==category.link ? "active" : ""} key={category.id}>
+                <a href={category.link+"?id=3"}>
+                    <span>{category.nome}</span>
+                </a>
+            </li>
+        )
+    );
 }
 
 export { Navbar };

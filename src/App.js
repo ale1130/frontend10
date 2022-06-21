@@ -47,7 +47,7 @@ import {Megastile} from "./components/superStile";
 
 //Languages
 
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 function App(){
 
@@ -69,9 +69,7 @@ function App(){
 
   //Languages
 
-  const { i18n } = useTranslation();
-
-  const { t } = useTranslation();
+  const {t, i18n } = useTranslation();
 
   //Usestate per componenti
 
@@ -257,12 +255,6 @@ function App(){
 
         <Router>
 
-          <p>
-            <Trans i18nKey="description.part1">
-            </Trans><br />
-            {t('description.part2')}
-          </p>
-
           <Navbar
             logo={logoDirectory+SKIN["logo_img"]}
             currentPage={currentPage}
@@ -282,7 +274,7 @@ function App(){
           />
 
           {
-            SKIN["id"] != 3 ?
+            SKIN["id"] != 4 ?
           
             <RegistrationModal 
               modalState={showReg} 

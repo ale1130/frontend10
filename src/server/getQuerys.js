@@ -71,9 +71,10 @@ app.post('/getuserdata',(req, res)=>{
             }
 
             if(result.length >0){
+                
                 res.send(result);
             }else{
-                res.send({message:"Incorrect credential!"});
+                res.send({message:"errorilogin.credenziali"});
             }
         }
     );
