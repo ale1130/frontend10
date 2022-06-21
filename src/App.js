@@ -45,11 +45,11 @@ import Spinner from 'react-bootstrap/Spinner';
 import {createGlobalStyle} from 'styled-components';
 import {Megastile} from "./components/superStile";
 
-//Languages
-
-
-
 function App(){
+
+  //Variabili per settaggio e raccoglimento dati skin
+
+  const [SKIN, setSKIN] = useState(["empty"]);
 
   //Languages
 
@@ -59,23 +59,18 @@ function App(){
 
   const [loader, setLoader] = useState(0);
   const [loader2, setLoader2] = useState(0);
-  const [loader3, setLoader3] = useState(0);
-
-  //Variabili per settaggio e raccoglimento dati skin
-
-  const [SKIN, setSKIN] = useState(["empty"]);
-
-  //Variabili per informazioni utente
-
-  const [USER, setUser] = useState(["empty"]);
-
-  const [isLogged, setIsLogged] = useState(false);
 
   //Usestate per componenti
 
   const [show, setShow] = useState(false);
 
   const [showReg, setShowReg] = useState(false);
+
+  //Variabili per informazioni utente
+
+  const [USER, setUser] = useState(["empty"]);
+
+  const [isLogged, setIsLogged] = useState(false);
 
   //Pagina corrente
 
@@ -136,8 +131,7 @@ function App(){
           localStorage.setItem('passhash', response.data[0].passhash);
         }else{
 
-          localStorage.removeItem('username');
-          localStorage.removeItem('passhash');
+          localStorage.clear();
           setLoader2(loader2+1);
         }
       })
@@ -159,105 +153,21 @@ function App(){
       }else{
 
         setLoader2(loader2+1);
-
-        localStorage.removeItem('username');
-        localStorage.removeItem('passhash');
-
+        localStorage.clear();
         setIsLogged(false);
       }
     }
   }, [loader]);
 
-  
-  useEffect(()=>{
-
-    /*if(loader2>0){
-
-      const currentLang = localStorage.getItem("language");
-      const autoDetected = localStorage.getItem("i18nextLng");
-
-      const arrayLang = ['it','de','en','tr','ro','zh','fr','pt','pt-br','hu','es','ar'];
-
-      if(currentLang && arrayLang.includes(currentLang)){
-
-        i18n.changeLanguage(currentLang);
-        setLoader3(loader3+1);
-
-      }else if(arrayLang.includes(autoDetected)){
-
-        i18n.changeLanguage(currentLang);
-        setLoader3(loader3+1);
-        
-      }else{
-
-        switch(SKIN["id"]){
-
-          case 1:
-            i18n.changeLanguage('en');
-            localStorage.setItem('language', 'en');
-            setLoader3(loader3+1);
-          break;
-
-          case 2:
-            i18n.changeLanguage('en');
-            localStorage.setItem('language', 'en');
-            setLoader3(loader3+1);
-          break;
-
-          case 3:
-            i18n.changeLanguage('pt');
-            localStorage.setItem('language', 'pt');
-            setLoader3(loader3+1);
-          break;
-
-          case 4:
-            i18n.changeLanguage('en');
-            localStorage.setItem('language', 'en');
-            setLoader3(loader3+1);
-          break;
-
-          case 5:
-            i18n.changeLanguage('en');
-            localStorage.setItem('language', 'en');
-            setLoader3(loader3+1);
-          break;
-
-          case 6:
-            i18n.changeLanguage('en');
-            localStorage.setItem('language', 'en');
-            setLoader3(loader3+1);
-          break;
-
-          case 7:
-            i18n.changeLanguage('en');
-            localStorage.setItem('language', 'en');
-            setLoader3(loader3+1);
-          break;
-
-          default:
-            i18n.changeLanguage('en');
-            localStorage.setItem('language', 'en');
-            setLoader3(loader3+1);
-          break;
-        }
-      }
-    }*/
-
-    setLoader3(loader3+1);
-
-  },[loader2]);
-
   return (
     <>
 
-      {loader3>0 ? 
+      {loader2>0 ? 
 
       <>
         <Stile />
 
         <Router>
-
-          
 
           <Navbar
             logo={logoDirectory+SKIN["logo_img"]}

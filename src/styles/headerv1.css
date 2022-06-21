@@ -295,13 +295,3 @@ div.of-header {
 .white{
     color:#fff;
 }
-
-/*Languages*/
-
-.cLanguage{
-    background: #dddddd26;
-}
-
-.cLanguage input {
-    display: none;
-}

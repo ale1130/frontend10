@@ -13,10 +13,7 @@ function Profile (props){
     const LogOut = () => {
 
         if (window.confirm('Sicuro?')){
-            
-            localStorage.removeItem('username');
-            localStorage.removeItem('passhash');
-
+            localStorage.clear();
             window.location.href = '/?id=3';
         }
     };
