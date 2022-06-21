@@ -1,60 +1,32 @@
-import i18n from "i18next";
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
-import Backend from "i18next-xhr-backend";
-
-import { initReactI18next } from "react-i18next";
-
+import translationEN from './public/locales/en/translation.json';
+import translationIT from './public/locales/it/translation.json';
 
 i18n
-
-  .use(Backend)
-
+  // detect user language
+  // learn more: https://github.com/i18next/i18next-browser-languageDetector
+  .use(LanguageDetector)
+  // pass the i18n instance to react-i18next.
   .use(initReactI18next)
-
+  // init i18next
+  // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-
-    lng: "en",   //default language
-
-    fallbackLng: "en", //when specified language translations not present 
-
-//then fallbacklang translations loaded.
-
     debug: true,
-
-
-       backend: {
-
-      /* translation file path */
-
-      loadPath: "https://cdn.mindbowser.com/assets/i18n/{{ns}}/{{lng}}.json",
-
-    },
- 
-
-/* can have multiple namespace, in case you want to divide a huge translation into smaller pieces and load them on demand */
-
-
-    ns: ["translations"],
-
-    defaultNS: "translations",
-
-    keySeparator: false,
-
+    fallbackLng: 'en',
     interpolation: {
-
-      escapeValue: false,
-
-      formatSeparator: ",",
-
+      escapeValue: false, // not needed for react as it escapes by default
     },
-
-    react: {
-
-      wait: true,
-
-    },
-
+    resources: {
+      en: {
+        translation: translationEN
+      },
+      it: {
+        translation: translationIT
+      }
+    }
   });
-
 
 export default i18n;

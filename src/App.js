@@ -45,28 +45,39 @@ import Spinner from 'react-bootstrap/Spinner';
 import {createGlobalStyle} from 'styled-components';
 import {Megastile} from "./components/superStile";
 
+//Languages
+
+import { useTranslation, Trans } from 'react-i18next';
+
 function App(){
-
-  //Variabili per settaggio e raccoglimento dati skin
-
-  const [SKIN, setSKIN] = useState(["empty"]);
 
   //Variabile di caricamento
 
   const [loader, setLoader] = useState(0);
   const [loader2, setLoader2] = useState(0);
+  const [loader3, setLoader3] = useState(0);
 
-  //Usestate per componenti
+  //Variabili per settaggio e raccoglimento dati skin
 
-  const [show, setShow] = useState(false);
-
-  const [showReg, setShowReg] = useState(false);
+  const [SKIN, setSKIN] = useState(["empty"]);
 
   //Variabili per informazioni utente
 
   const [USER, setUser] = useState(["empty"]);
 
   const [isLogged, setIsLogged] = useState(false);
+
+  //Languages
+
+  const { i18n } = useTranslation();
+
+  const { t } = useTranslation();
+
+  //Usestate per componenti
+
+  const [show, setShow] = useState(false);
+
+  const [showReg, setShowReg] = useState(false);
 
   //Pagina corrente
 
@@ -127,7 +138,8 @@ function App(){
           localStorage.setItem('passhash', response.data[0].passhash);
         }else{
 
-          localStorage.clear();
+          localStorage.removeItem('username');
+          localStorage.removeItem('passhash');
           setLoader2(loader2+1);
         }
       })
@@ -149,21 +161,107 @@ function App(){
       }else{
 
         setLoader2(loader2+1);
-        localStorage.clear();
+
+        localStorage.removeItem('username');
+        localStorage.removeItem('passhash');
+
         setIsLogged(false);
       }
     }
   }, [loader]);
 
+  
+  useEffect(()=>{
+
+    if(loader2>0){
+
+      const currentLang = localStorage.getItem("language");
+      const autoDetected = localStorage.getItem("i18nextLng");
+
+      const arrayLang = ['it','de','en','tr','ro','zh','fr','pt','pt-br','hu','es','ar'];
+
+      if(currentLang && arrayLang.includes(currentLang)){
+
+        i18n.changeLanguage(currentLang);
+        setLoader3(loader3+1);
+
+      }else if(arrayLang.includes(autoDetected)){
+
+        i18n.changeLanguage(currentLang);
+        setLoader3(loader3+1);
+        
+      }else{
+
+        switch(SKIN["id"]){
+
+          case 1:
+            i18n.changeLanguage('en');
+            localStorage.setItem('language', 'en');
+            setLoader3(loader3+1);
+          break;
+
+          case 2:
+            i18n.changeLanguage('en');
+            localStorage.setItem('language', 'en');
+            setLoader3(loader3+1);
+          break;
+
+          case 3:
+            i18n.changeLanguage('pt');
+            localStorage.setItem('language', 'pt');
+            setLoader3(loader3+1);
+          break;
+
+          case 4:
+            i18n.changeLanguage('en');
+            localStorage.setItem('language', 'en');
+            setLoader3(loader3+1);
+          break;
+
+          case 5:
+            i18n.changeLanguage('en');
+            localStorage.setItem('language', 'en');
+            setLoader3(loader3+1);
+          break;
+
+          case 6:
+            i18n.changeLanguage('en');
+            localStorage.setItem('language', 'en');
+            setLoader3(loader3+1);
+          break;
+
+          case 7:
+            i18n.changeLanguage('en');
+            localStorage.setItem('language', 'en');
+            setLoader3(loader3+1);
+          break;
+
+          default:
+            i18n.changeLanguage('en');
+            localStorage.setItem('language', 'en');
+            setLoader3(loader3+1);
+          break;
+        }
+      }
+    }
+
+  },[loader2]);
+
   return (
     <>
 
-      {loader2>0 ? 
+      {loader3>0 ? 
 
       <>
         <Stile />
 
         <Router>
+
+          <p>
+            <Trans i18nKey="description.part1">
+            </Trans><br />
+            {t('description.part2')}
+          </p>
 
           <Navbar
             logo={logoDirectory+SKIN["logo_img"]}
