@@ -3,10 +3,15 @@ import 'react-dropdown/style.css';
 
 import '../styles/headerv1.css';
 
+<<<<<<< HEAD
 import { useTranslation } from "react-i18next";
+=======
+import { useTranslation } from 'react-i18next';
+>>>>>>> parent of b700e5a (error)
 
 function  SelectLanguages (){
 
+<<<<<<< HEAD
     const { t, i18n } = useTranslation();
 
     const changeLanguage = (event) => {
@@ -14,6 +19,14 @@ function  SelectLanguages (){
     i18n.changeLanguage(event.target.value);
 
   };
+=======
+    const { i18n } = useTranslation();
+
+    const setLanguageCookie = (event) =>{
+        localStorage.setItem('language', event.target.value);
+        i18n.changeLanguage(event.target.value);
+    }
+>>>>>>> parent of b700e5a (error)
 
     const state = {
         languages:[
@@ -41,9 +54,15 @@ function  SelectLanguages (){
 
                     {state.languages.map(language =>
                         <>
+<<<<<<< HEAD
                             <div key={language.id} className="form-check-p" >
                                 <label htmlFor={language.id}><img src={language.immagine} />{language.nome}</label>
                                 <input name="inputLanguage" type="radio" value={language.sigla} id={language.id} />
+=======
+                            <div key={language.id} className={ i18n.resolvedLanguage == language.sigla ? 'cLanguage ' + 'form-check-p' : '' + 'form-check-p'}>
+                                <label htmlFor={language.id}><img src={language.immagine}/>{language.nome}</label>
+                                <input name="inputLanguage" type="radio" id={language.id} value={language.sigla} onClick={setLanguageCookie} />
+>>>>>>> parent of b700e5a (error)
                             </div>
                         </>
                     )}

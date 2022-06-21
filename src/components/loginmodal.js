@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import Modal from "react-modal";
 import axios from "axios";
 
+import { useTranslation } from "react-i18next";
+
 import ErrorBox from '../components/errorBox.js'
 
 import {ConvertObjectToArray} from '../constants/global'
@@ -9,6 +11,8 @@ import {ConvertObjectToArray} from '../constants/global'
 Modal.setAppElement("#root");
 
 function LoginModal(props) {
+
+    const { t, i18n } = useTranslation();
 
     const close = props.closeModal;
 
