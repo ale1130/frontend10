@@ -3,16 +3,16 @@ import 'react-dropdown/style.css';
 
 import '../styles/headerv1.css';
 
-import { useTranslation } from 'react-i18next';
+//import { useTranslation } from 'react-i18next';
 
 function  SelectLanguages (props){
 
-    const { i18n } = useTranslation();
+    /*const { i18n } = useTranslation();
 
     const setLanguageCookie = (event) =>{
         localStorage.setItem('language', event.target.value);
         i18n.changeLanguage(event.target.value);
-    }
+    }*/
 
     const state = {
         languages:[
@@ -40,9 +40,9 @@ function  SelectLanguages (props){
 
                     {state.languages.map(language =>
                         <>
-                            <div key={language.id} className={ i18n.resolvedLanguage == language.sigla ? 'cLanguage ' + 'form-check-p' : '' + 'form-check-p'}>
+                            <div key={language.id} /*className={ i18n.resolvedLanguage == language.sigla ? 'cLanguage ' + 'form-check-p' : '' + 'form-check-p'}*/>
                                 <label htmlFor={language.id}><img src={language.immagine}/>{language.nome}</label>
-                                <input name="inputLanguage" type="radio" id={language.id} value={language.sigla} onClick={setLanguageCookie} />
+                                <input name="inputLanguage" type="radio" id={language.id} value={language.sigla} /*onClick={setLanguageCookie}*/ />
                             </div>
                         </>
                     )}

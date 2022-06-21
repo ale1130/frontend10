@@ -47,9 +47,13 @@ import {Megastile} from "./components/superStile";
 
 //Languages
 
-import { useTranslation, Trans } from 'react-i18next';
+
 
 function App(){
+
+  //Languages
+
+  
 
   //Variabile di caricamento
 
@@ -66,12 +70,6 @@ function App(){
   const [USER, setUser] = useState(["empty"]);
 
   const [isLogged, setIsLogged] = useState(false);
-
-  //Languages
-
-  const { i18n } = useTranslation();
-
-  const { t } = useTranslation();
 
   //Usestate per componenti
 
@@ -173,7 +171,7 @@ function App(){
   
   useEffect(()=>{
 
-    if(loader2>0){
+    /*if(loader2>0){
 
       const currentLang = localStorage.getItem("language");
       const autoDetected = localStorage.getItem("i18nextLng");
@@ -243,7 +241,9 @@ function App(){
           break;
         }
       }
-    }
+    }*/
+
+    setLoader3(loader3+1);
 
   },[loader2]);
 
@@ -257,11 +257,7 @@ function App(){
 
         <Router>
 
-          <p>
-            <Trans i18nKey="description.part1">
-            </Trans><br />
-            {t('description.part2')}
-          </p>
+          
 
           <Navbar
             logo={logoDirectory+SKIN["logo_img"]}
