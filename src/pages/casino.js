@@ -60,7 +60,7 @@ const Slideshow = () => {
             </Fade>
         </div>*/
 
-        <div class="margin-slider">
+        /*<div class="margin-slider">
 
 
 
@@ -94,7 +94,7 @@ const Slideshow = () => {
 
 
             </div>
-        </div>
+        </div>*/
     )
 }
 
