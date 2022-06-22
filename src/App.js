@@ -95,7 +95,7 @@ function App(){
       })
     }catch (e){
 
-     alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+     alert(t('erroregenerico'));  console.log(e);
     }
   };
 
@@ -144,7 +144,7 @@ function App(){
 
     }catch (e){
 
-     alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+     alert(t('erroregenerico'));  console.log(e);
     }
   };
 
@@ -262,6 +262,7 @@ function App(){
             statoLogin={isLogged}
             setLogin={setIsLogged}
             datiUtente={USER}
+            skin={SKIN}
           />
 
           <LoginModal 

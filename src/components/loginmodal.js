@@ -90,7 +90,7 @@ function LoginModal(props) {
             })
         }catch (e){
 
-           alert("Errore tecnico, contattare l'assistenza");
+           alert(t('erroregenerico'));
             console.log(e);
         }
     };

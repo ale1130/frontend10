@@ -15,6 +15,8 @@ function Navbar(props){
 
     const { t } = useTranslation();
 
+    const [SKIN, setSkin] = useState(props.skin);
+
     const [open, setOpen] = useState(false);
 
     const [openProfile, setOpenProfile] = useState(false);
@@ -76,7 +78,7 @@ function Navbar(props){
                                 {<SettingsIcon />}
                             </a>
 
-                            {open && <SelectLanguages svgphone={<PhoneIcon />} />}
+                            {open && <SelectLanguages skin={SKIN} svgphone={<PhoneIcon />} />}
                         </div>
                     </div>
                 </div>

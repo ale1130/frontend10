@@ -9,6 +9,8 @@ import { ArrowIcon } from "../components/icons";
 import "react-slideshow-image/dist/styles.css";
 import { Fade } from 'react-slideshow-image';
 
+import { useTranslation } from "react-i18next";
+
 const Providers = (props) =>{
 
     const [providers, setProviders] = useState(props.providers);
@@ -156,6 +158,8 @@ String.prototype.replaceAt = function(index, replacement) {
 
 function Casino (props){
 
+    const { t, i18n } = useTranslation();
+
     const SKIN = props.skin;
     const logged = props.isLogged;
 
@@ -198,7 +202,7 @@ function Casino (props){
             .then(response => {  
 
                 if(response.data.err){
-                    alert("Errore tecnico, contattare l'assistenza");  
+                    alert(t('erroregenerico'));  
                 }else if(response.data.message){
                     setProviders(["nothingFound"]);
                 }else{
@@ -208,7 +212,7 @@ function Casino (props){
             })
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  
+            alert(t('erroregenerico'));  
             console.log(e);
         }
     }
@@ -223,7 +227,7 @@ function Casino (props){
             .then(response => {  
 
                 if(response.data.err){
-                    alert("Errore tecnico, contattare l'assistenza");  
+                    alert(t('erroregenerico'));  
                 }else if(response.data.message){
                     setJackpots(["nothingFound"]);
                 }else{
@@ -233,7 +237,7 @@ function Casino (props){
             })
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  
+            alert(t('erroregenerico'));  
             console.log(e);
         }
     }
@@ -259,7 +263,7 @@ function Casino (props){
 
                 if(response.data.err){
                     console.log(response.data.err)
-                    alert("Errore tecnico, contattare l'assistenza");  
+                    alert(t('erroregenerico'));  
                 }else if(response.data.message){
                     setGames(["nothingFound"]);
                 }else{
@@ -269,7 +273,7 @@ function Casino (props){
             })
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  
+            alert(t('erroregenerico'));  
             console.log(e);
         }
     }
@@ -310,7 +314,7 @@ function Casino (props){
             .then(response => {  
 
             if(response.data.err){
-                alert("Errore tecnico, contattare l'assistenza");  
+                alert(t('erroregenerico'));  
             }else if(response.data.message){
                 setSubcategories(["nothingFound"]);
             }else{
@@ -320,7 +324,7 @@ function Casino (props){
             })
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  
+            alert(t('erroregenerico'));  
             console.log(e);
         }
     }

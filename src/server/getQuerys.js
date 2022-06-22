@@ -365,6 +365,27 @@ app.post('/getcasinosubcategories', (req,res) =>{
     );
 })
 
+
+app.post('/getlanguages', (req,res) =>{
+
+    const query = req.body.query;
+
+    db.query(
+        query,
+        (err, result) =>{
+            if(err){
+                res.send({err:err});
+            }
+
+            if(result.length >0){
+                res.send(result);
+            }else{
+                res.send({message:"no languages found"});
+            }
+        }
+    );
+})
+
 app.listen(3001, ()=>{
     console.log("server running");
 });

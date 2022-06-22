@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import 'react-dropdown/style.css';
 
 import '../styles/headerv1.css';
 
 import { useTranslation } from 'react-i18next';
 
+import { GetLanguages } from "../constants/global";
+
 function  SelectLanguages (props){
 
+    /*const [languages, setLanguages] = useState(["empty"]);
+
+    useEffect(()=>{
+        setLanguages(GetLanguages());
+    },[])*/
+
     const { t, i18n } = useTranslation();
+    const [SKIN, setSkin] = useState(props.skin);
 
     const setLanguageCookie = (event) =>{
         localStorage.setItem('language', event.target.value);
@@ -16,18 +25,18 @@ function  SelectLanguages (props){
 
     const state = {
         languages:[
-            {id:0, sigla:"it", nome:t('languages.italiano'), immagine:"https://rabitcasino.com/static-media/flags/Italy.png?v=100"},
-            {id:1, sigla:"en", nome:t('languages.inglese'), immagine:""},
-            {id:2, sigla:"de", nome:t('languages.tedesco'), immagine:""},
-            {id:3, sigla:"tr", nome:t('languages.turco'), immagine:""},
-            {id:4, sigla:"ar", nome:t('languages.arabo'), immagine:""},
-            {id:5, sigla:"ro", nome:t('languages.rumeno'), immagine:""},
-            {id:6, sigla:"zh", nome:t('languages.cinese'), immagine:""},
-            {id:7, sigla:"es", nome:t('languages.spagnolo'), immagine:""},
-            {id:8, sigla:"fr", nome:t('languages.francese'), immagine:""},
-            {id:9, sigla:"pt", nome:t('languages.portoghese'), immagine:""},
-            {id:10, sigla:"pt-br", nome:t('languages.portoghesebrasiliano'), immagine:""},
-            {id:11, sigla:"hu", nome:t('languages.ungherese'), immagine:""}
+            {id:0, sigla:"it", nome:t('languages.italiano'), immagine:"https://"+SKIN["name"]+"/static-media/flags/Italy.png"},
+            {id:1, sigla:"en", nome:t('languages.inglese'), immagine:"https://"+SKIN["name"]+"/static-media/flags/United-States.png"},
+            {id:2, sigla:"de", nome:t('languages.tedesco'), immagine:"https://"+SKIN["name"]+"/static-media/flags/Germany.png"},
+            {id:3, sigla:"tr", nome:t('languages.turco'), immagine:"https://"+SKIN["name"]+"/static-media/flags/Turkey.png"},
+            {id:4, sigla:"ar", nome:t('languages.arabo'), immagine:"https://"+SKIN["name"]+"/static-media/flags/United-Arab-Emirates.png"},
+            {id:5, sigla:"ro", nome:t('languages.rumeno'), immagine:"https://"+SKIN["name"]+"/static-media/flags/Romania.png"},
+            {id:6, sigla:"zh", nome:t('languages.cinese'), immagine:"https://"+SKIN["name"]+"/static-media/flags/China.png"},
+            {id:7, sigla:"es", nome:t('languages.spagnolo'), immagine:"https://"+SKIN["name"]+"/static-media/flags/Spain.png"},
+            {id:8, sigla:"fr", nome:t('languages.francese'), immagine:"https://"+SKIN["name"]+"/static-media/flags/France.png"},
+            {id:9, sigla:"pt", nome:t('languages.portoghese'), immagine:"https://"+SKIN["name"]+"/static-media/flags/Portugal.png"},
+            {id:10, sigla:"pt-br", nome:t('languages.portoghesebrasiliano'), immagine:"https://"+SKIN["name"]+"/static-media/flags/Brasil.png"},
+            {id:11, sigla:"hu", nome:t('languages.ungherese'), immagine:"https://"+SKIN["name"]+"/static-media/flags/Hungary.png"}
         ],
     };
 
