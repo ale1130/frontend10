@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {ConvertObjectToArray, CURR_DEVICE, PROVIDERS_LOGO_WEB_PATH} from "../constants/global";
+import { ConvertObjectToArray, CURR_DEVICE, PROVIDERS_LOGO_WEB_PATH } from "../constants/global";
 
 import axios from "axios";
 
@@ -16,14 +16,14 @@ const Providers = (props) =>{
     const [providers, setProviders] = useState(props.providers);
     const SKIN = props.skin;
 
-    return(
+    return (
 
         <><div className="slide-casino">
             {(providers.map(provider =>
 
                 <div key={provider.id} className="provider providers-list" id="provider-7">
-                    <a><img src={PROVIDERS_LOGO_WEB_PATH(SKIN)+provider.img} className={"provider-"+provider.nome} /></a>
-                </div>   
+                    <a><img src={PROVIDERS_LOGO_WEB_PATH(SKIN) + provider.img} className={"provider-" + provider.nome} /></a>
+                </div>
             ))}
         </div></>
     )
@@ -33,21 +33,21 @@ const Slideshow = () => {
 
     const fadeImages = [
         {
-        url: 'https://stagemedia.gamesolutions.org/slideshow/img1_620d0b14e2042.jpeg',
-        caption: 'First Slide'
+            url: 'https://stagemedia.gamesolutions.org/slideshow/img1_620d0b14e2042.jpeg',
+            caption: 'First Slide'
         },
         {
-        url: 'https://stagemedia.gamesolutions.org/slideshow/img2_620d0b14e2500.jpeg',
-        caption: 'Second Slide'
+            url: 'https://stagemedia.gamesolutions.org/slideshow/img2_620d0b14e2500.jpeg',
+            caption: 'Second Slide'
         },
         {
-        url: 'https://stagemedia.gamesolutions.org/slideshow/img1_620d0b14e2042.jpeg',
-        caption: 'Third Slide'
+            url: 'https://stagemedia.gamesolutions.org/slideshow/img1_620d0b14e2042.jpeg',
+            caption: 'Third Slide'
         },
     ];
 
     return (
-        <div className="slide-container">
+        /*<div className="slide-container">
             <Fade>
                 {fadeImages.map((fadeImage, index) => (
 
@@ -60,11 +60,48 @@ const Slideshow = () => {
                     
                 ))}
             </Fade>
-        </div>
+        </div>*/
+
+        /*<div class="margin-slider">
+
+
+
+            <div id="slickSlider" class="slick-slider">
+
+
+                <div class="slick-slide" style="height: 151px;width: 1340px; ">
+                    <div class="slider-item">
+
+                        <img src="" style="" class="noAnimation_item" />
+
+                        <div class="textLayer_wrap">
+                            <div class="textLayer_container">
+                                <div class="textLayer_labels">
+                                    <div>
+
+
+                                        <a href="#" class="sliderButtonSecond">Scopri ora</a>
+
+                                        <div class="beforeLogInButtons" style="display: block;">
+                                            <a href="javascript:void(0);" class="sliderButtonSignIn" onclick="openSignIn()" style="margin-right: 10px;" tabindex="0">Accedi</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>*/
+        <div></div>
     )
 }
 
-const Jackpots = (props) =>{
+const Jackpots = (props) => {
 
     const [jackpots, setJackpots] = useState(props.jackpots);
     const [SKIN, setSkin] = useState(props.skin);
@@ -74,50 +111,50 @@ const Jackpots = (props) =>{
             <h1>Jackpot Win</h1>
             <div>
                 <ul className="flip5 first-t">
-                    <div>{jackpots.map(jackpot => 
-                        
-                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)+" "+SKIN["currency"]} </span></li>
-                        
+                    <div>{jackpots.map(jackpot =>
+
+                        <li>{jackpot.username.replaceAt(jackpot.username.length / 2, "*****")}<span>{jackpot.win.toFixed(2) + " " + SKIN["currency"]} </span></li>
+
                     )}</div>
                 </ul>
 
                 <ul className="flip5 second-t">
-                    <div>{jackpots.map(jackpot => 
-                        
-                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)+" "+SKIN["currency"]} </span></li>
-                        
+                    <div>{jackpots.map(jackpot =>
+
+                        <li>{jackpot.username.replaceAt(jackpot.username.length / 2, "*****")}<span>{jackpot.win.toFixed(2) + " " + SKIN["currency"]} </span></li>
+
                     )}</div>
                 </ul>
 
                 <ul className="flip5 third-t">
-                    <div>{jackpots.map(jackpot => 
-                        
-                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)+" "+SKIN["currency"]} </span></li>
-                        
+                    <div>{jackpots.map(jackpot =>
+
+                        <li>{jackpot.username.replaceAt(jackpot.username.length / 2, "*****")}<span>{jackpot.win.toFixed(2) + " " + SKIN["currency"]} </span></li>
+
                     )}</div>
                 </ul>
-                
+
                 <ul className="flip5 forty-t">
-                    <div>{jackpots.map(jackpot => 
-                        
-                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)+" "+SKIN["currency"]} </span></li>
-                        
+                    <div>{jackpots.map(jackpot =>
+
+                        <li>{jackpot.username.replaceAt(jackpot.username.length / 2, "*****")}<span>{jackpot.win.toFixed(2) + " " + SKIN["currency"]} </span></li>
+
                     )}</div>
                 </ul>
-                
+
                 <ul className="flip5 five-t">
-                    <div>{jackpots.map(jackpot => 
-                        
-                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)+" "+SKIN["currency"]} </span></li>
-                        
+                    <div>{jackpots.map(jackpot =>
+
+                        <li>{jackpot.username.replaceAt(jackpot.username.length / 2, "*****")}<span>{jackpot.win.toFixed(2) + " " + SKIN["currency"]} </span></li>
+
                     )}</div>
                 </ul>
-                
+
                 <ul className="flip5 six-t">
-                    <div>{jackpots.map(jackpot => 
-                        
-                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)+" "+SKIN["currency"]} </span></li>
-                        
+                    <div>{jackpots.map(jackpot =>
+
+                        <li>{jackpot.username.replaceAt(jackpot.username.length / 2, "*****")}<span>{jackpot.win.toFixed(2) + " " + SKIN["currency"]} </span></li>
+
                     )}</div>
                 </ul>
             </div>
@@ -132,7 +169,7 @@ const Games = (props) => {
 
     return (
         <>
-            {games.map(game =>(
+            {games.map(game => (
                 <div className="square-box-casino">
                     <div className="square-content-casino">
                         <div className="container-casino">
@@ -140,9 +177,15 @@ const Games = (props) => {
                             <div className="middle-button">
                                 <div className="title-game">{game.name}</div>
                                 <a href="#" className="playBut">
-                                    gioca
+                                    <svg version="1.1" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 213.7 213.7" enable-background="new 0 0 213.7 213.7">
+
+                                        <polygon class="triangle" id="XMLID_18_" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+	73.5,62.5 148.5,105.8 73.5,149.1 "></polygon>
+
+                                        <circle class="circle" id="XMLID_17_" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="106.8" cy="106.8" r="103.3"></circle>
+                                    </svg>
                                 </a>
-                                <img src={PROVIDERS_LOGO_WEB_PATH(SKIN)+game.img} className={"icon-play-casino provider-"+game.name}/>
+                                <img src={PROVIDERS_LOGO_WEB_PATH(SKIN) + game.img} className={"icon-play-casino provider-" + game.name} />
                             </div>
                         </div>
                     </div>
@@ -152,11 +195,11 @@ const Games = (props) => {
     )
 }
 
-String.prototype.replaceAt = function(index, replacement) {
+String.prototype.replaceAt = function (index, replacement) {
     return this.substring(0, index) + replacement;
 }
 
-function Casino (props){
+function Casino(props) {
 
     const { t, i18n } = useTranslation();
 
@@ -176,27 +219,27 @@ function Casino (props){
 
     const range = 45;
 
-    const getProviders = async () =>{
+    const getProviders = async () => {
 
         var substringa1 = "";
 
-        if(!logged){
+        if (!logged) {
             substringa1 = " AND providers.hide_guest = 0"
         }
 
         var substringa2 = "";
 
-        if(CURR_DEVICE=="MOBILE"){
+        if (CURR_DEVICE == "MOBILE") {
             substringa2 = " AND games.is_mobile = 1";
-        }else{
+        } else {
             substringa2 = " AND games.is_desktop = 1";
         }
 
         var stringa = "SELECT providers.* FROM games LEFT JOIN providers ON providers.id = games.provider_id JOIN skins_providers ON skins_providers.provider_id = providers.id";
 
-        stringa += " WHERE skins_providers.skin_id = "+SKIN["id"]+" AND providers.stato = 1 AND skins_providers.view = 1 AND games.enabled = 1 AND games.category_id = 1 AND providers.name <> 'EvolutionX' AND providers.name <> 'EvolutionY' AND providers.name <> 'EvolutionZ' AND providers.special_provider = 0 "+substringa1+substringa2+" GROUP BY providers.id ORDER BY skins_providers.priority DESC, providers.name ASC";
+        stringa += " WHERE skins_providers.skin_id = " + SKIN["id"] + " AND providers.stato = 1 AND skins_providers.view = 1 AND games.enabled = 1 AND games.category_id = 1 AND providers.name <> 'EvolutionX' AND providers.name <> 'EvolutionY' AND providers.name <> 'EvolutionZ' AND providers.special_provider = 0 " + substringa1 + substringa2 + " GROUP BY providers.id ORDER BY skins_providers.priority DESC, providers.name ASC";
 
-        try{
+        try {
             const data = await axios
             .post('http://localhost:3001/getproviders',{ query : stringa})
             .then(response => {  
@@ -209,19 +252,19 @@ function Casino (props){
                     setProviders(response.data);
                 }
 
-            })
-        }catch (e){
+                })
+        } catch (e) {
 
             alert(t('erroregenerico'));  
             console.log(e);
         }
     }
 
-    const GetJackpotsWin = async () =>{
+    const GetJackpotsWin = async () => {
 
-        var stringa = "SELECT users.username as username, jackpots_win.win_amount as win FROM jackpots_win LEFT JOIN users on users.id=jackpots_win.user_id LEFT JOIN skins on users.skin_id=skins.id WHERE skins.id="+SKIN["id"];
+        var stringa = "SELECT users.username as username, jackpots_win.win_amount as win FROM jackpots_win LEFT JOIN users on users.id=jackpots_win.user_id LEFT JOIN skins on users.skin_id=skins.id WHERE skins.id=" + SKIN["id"];
 
-        try{
+        try {
             const data = await axios
             .post('http://localhost:3001/getjackpotswin',{ query : stringa})
             .then(response => {  
@@ -234,29 +277,29 @@ function Casino (props){
                     setJackpots(response.data);
                 }
 
-            })
-        }catch (e){
+                })
+        } catch (e) {
 
             alert(t('erroregenerico'));  
             console.log(e);
         }
     }
 
-    const GetGames = async () =>{
+    const GetGames = async () => {
 
         var stringaLog = "";
 
-        if(!logged){
+        if (!logged) {
             stringaLog = " AND providers.hide_guest = 0"
         }
 
-       var stringa = `SELECT games.*, providers.img, providers.name as nome_provider FROM games 
+        var stringa = `SELECT games.*, providers.img, providers.name as nome_provider FROM games 
        LEFT JOIN providers ON providers.id = games.provider_id
        JOIN skins_providers ON skins_providers.provider_id = providers.id
        LEFT JOIN gamesubcategories_assoc ON gamesubcategories_assoc.game_id = games.id
-       WHERE skins_providers.view = 1 AND games.category_id = 1 AND skins_providers.skin_id = `+SKIN["id"]+` AND providers.hide_games = 0 AND games.enabled = 1 AND games.is_desktop = 1 `+stringaLog+` GROUP BY games.id ORDER BY games.priority DESC, games.plays DESC`;
+       WHERE skins_providers.view = 1 AND games.category_id = 1 AND skins_providers.skin_id = `+ SKIN["id"] + ` AND providers.hide_games = 0 AND games.enabled = 1 AND games.is_desktop = 1 ` + stringaLog + ` GROUP BY games.id ORDER BY games.priority DESC, games.plays DESC`;
 
-        try{
+        try {
             const data = await axios
             .post('http://localhost:3001/getcasinogames',{ query : stringa})
             .then(response => {  
@@ -278,19 +321,19 @@ function Casino (props){
         }
     }
 
-    const GetSubCategories = async () =>{
+    const GetSubCategories = async () => {
 
         var substringaLoggato = "";
 
-        if(!logged){
+        if (!logged) {
             substringaLoggato = " AND providers.hide_guest = 0"
         }
 
         var substringaDevice = "";
 
-        if(CURR_DEVICE=="MOBILE"){
+        if (CURR_DEVICE == "MOBILE") {
             substringaDevice = " AND games.is_mobile = 1";
-        }else{
+        } else {
             substringaDevice = " AND games.is_desktop = 1";
         }
 
@@ -298,7 +341,7 @@ function Casino (props){
         JOIN games ON games.id = gamesubcategories_assoc.game_id 
         JOIN providers ON providers.id = games.provider_id
         JOIN skins_providers ON skins_providers.provider_id = providers.id
-        WHERE games.enabled = 1 and skins_providers.skin_id = `+SKIN["id"]+` and skins_providers.view = 1 and gamesubcategories_assoc.subcategory_id = gamesubcategories.id `+substringaLoggato+` `+substringaDevice+`) as totale
+        WHERE games.enabled = 1 and skins_providers.skin_id = `+ SKIN["id"] + ` and skins_providers.view = 1 and gamesubcategories_assoc.subcategory_id = gamesubcategories.id ` + substringaLoggato + ` ` + substringaDevice + `) as totale
         FROM gamesubcategories 
         WHERE gamesubcategories.category_id = 1  
         and 
@@ -306,9 +349,9 @@ function Casino (props){
         LEFT JOIN games ON games.id = gamesubcategories_assoc.game_id 
         LEFT JOIN providers ON providers.id = games.provider_id
         JOIN skins_providers ON skins_providers.provider_id = providers.id
-        WHERE games.enabled = 1 and skins_providers.skin_id = `+SKIN["id"]+` and skins_providers.view = 1 and gamesubcategories_assoc.subcategory_id = gamesubcategories.id and skins_providers.skin_id = `+SKIN["id"]+` `+substringaLoggato+` `+substringaDevice+`) >0 ORDER BY gamesubcategories.priority DESC`;
- 
-        try{
+        WHERE games.enabled = 1 and skins_providers.skin_id = `+ SKIN["id"] + ` and skins_providers.view = 1 and gamesubcategories_assoc.subcategory_id = gamesubcategories.id and skins_providers.skin_id = ` + SKIN["id"] + ` ` + substringaLoggato + ` ` + substringaDevice + `) >0 ORDER BY gamesubcategories.priority DESC`;
+
+        try {
             const data = await axios
             .post('http://localhost:3001/getcasinosubcategories',{ query : stringa})
             .then(response => {  
@@ -321,8 +364,8 @@ function Casino (props){
                 setSubcategories(response.data);
             }
 
-            })
-        }catch (e){
+                })
+        } catch (e) {
 
             alert(t('erroregenerico'));  
             console.log(e);
@@ -334,127 +377,127 @@ function Casino (props){
         GetJackpotsWin();
         GetGames();
         GetSubCategories();
-    },[])
+    }, [])
 
     useEffect(() => {
-        if(providers!="empty"){
+        if (providers != "empty") {
 
-            setLoader(loader+1);
+            setLoader(loader + 1);
         }
-    },[providers])
+    }, [providers])
 
     useEffect(() => {
-        if(jackpots!="empty"){
+        if (jackpots != "empty") {
 
-            setLoader(loader+1);
+            setLoader(loader + 1);
         }
-    },[jackpots])
+    }, [jackpots])
 
     useEffect(() => {
-        if(games!="empty"){
+        if (games != "empty") {
 
-            if(games!="nothingFound"){
-                const arrUtilizzo =  ConvertObjectToArray(games);
+            if (games != "nothingFound") {
+                const arrUtilizzo = ConvertObjectToArray(games);
                 setNumeroGiochi(arrUtilizzo.length);
-                setMaxPage(Math.round(arrUtilizzo.length/45));
+                setMaxPage(Math.round(arrUtilizzo.length / 45));
             }
 
-            setLoader(loader+1);
+            setLoader(loader + 1);
         }
-    },[games])
+    }, [games])
 
     useEffect(() => {
-        if(subcategories!="empty"){
+        if (subcategories != "empty") {
 
-            setLoader(loader+1);
+            setLoader(loader + 1);
         }
-    },[subcategories])
+    }, [subcategories])
 
-    const handlePage = () =>{
-        if(page < maxPage){
-            setPage(page+1);
+    const handlePage = () => {
+        if (page < maxPage) {
+            setPage(page + 1);
         }
     }
 
     return (
         <>
 
-            {loader<4 ? 
-            
-            <>
-                <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-                </Spinner>
-            </>
+            {loader < 4 ?
 
-            :
+                <>
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                </>
 
-            <>
-                <div className="container-fluid body-content slider-height">
+                :
 
-                    {jackpots != "nothingFound" && jackpots != "empty" && logged && SKIN["jackpot"]==1 ?
-                                    
-                        
-                        <Jackpots jackpots={jackpots} skin={SKIN}/>
+                <>
+                    <div className="container-fluid body-content slider-height">
 
-                        :
+                        {jackpots != "nothingFound" && jackpots != "empty" && logged && SKIN["jackpot"] == 1 ?
 
-                        <></>
-                    }
 
-                    <Slideshow />
+                            <Jackpots jackpots={jackpots} skin={SKIN} />
 
-                    {providers == "nothingFound" || games == "nothingFound" ?
-                                    
-                
-                        <div>Ci dispiace ma al momento non è stato possibile indivisuare nessun provider e/o gioco pe questa sezione, si prega di riprovare più tardi o di conttattare l'assistenza tecnica</div>
-            
-                    :
-                        <Providers providers={providers} skin={SKIN} />
-                    }
+                            :
 
-                    <div className="row">
+                            <></>
+                        }
 
-                        <div className="col-lg-12 col-sm-12 list-type-play">
-                            <div className="position-sticky ">
-                            
-                                <div className="pul-type-play games-subcategory" id="subcategory-0">
-                                    <a href="#"  onClick="loadCasinoGames(0,0, '')">Tutti i giochi <span>{numeroGiochi}</span></a>
+                        <Slideshow />
+
+                        {providers == "nothingFound" || games == "nothingFound" ?
+
+
+                            <div>Ci dispiace ma al momento non è stato possibile indivisuare nessun provider e/o gioco pe questa sezione, si prega di riprovare più tardi o di conttattare l'assistenza tecnica</div>
+
+                            :
+                            <Providers providers={providers} skin={SKIN} />
+                        }
+
+                        <div className="row">
+
+                            <div className="col-lg-12 col-sm-12 list-type-play">
+                                <div className="position-sticky ">
+
+                                    <div className="pul-type-play games-subcategory" id="subcategory-0">
+                                        <a href="#" onClick="loadCasinoGames(0,0, '')">Tutti i giochi <span>{numeroGiochi}</span></a>
+                                    </div>
+
+                                    {subcategories != "nothingFound" ?
+
+                                        <>{(subcategories.map(subcategory =>
+
+                                            <div className="pul-type-play games-subcategory" id={"subcategory-" + subcategory.id}>
+                                                <a href="#"> {subcategory.name} <span> {subcategory.totale} </span></a>
+                                            </div>
+                                        ))}</>
+
+                                        :
+
+                                        <></>
+                                    }
+
                                 </div>
-                                
-                                {subcategories != "nothingFound" ? 
-                                
-                                    <>{(subcategories.map(subcategory =>
-
-                                        <div className="pul-type-play games-subcategory" id={"subcategory-"+subcategory.id}>
-                                            <a href="#"> {subcategory.name} <span> {subcategory.totale} </span></a>
-                                        </div>  
-                                    ))}</>
-                                
-                                    :
-                                    
-                                    <></>
-                                }
-
                             </div>
-                        </div>
 
-                        <div className="col-lg-12 col-sm-12">
-                            <div id="games-load-container">
-                                <Games games={games} skin={SKIN}/>
-                            </div>
-                            
-                            <div id="loadNextGames">
-                                <div className="show-all-p">
-                                    <a href="#" id="loadNextPageLink">
-                                        <ArrowIcon />	carica altri giochi
-                                    </a>
+                            <div className="col-lg-12 col-sm-12">
+                                <div id="games-load-container">
+                                    <Games games={games} skin={SKIN} />
+                                </div>
+
+                                <div id="loadNextGames">
+                                    <div className="show-all-p">
+                                        <a href="#" id="loadNextPageLink">
+                                            <ArrowIcon />	carica altri giochi
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </>
+                </>
 
             }
         </>
@@ -464,4 +507,3 @@ function Casino (props){
 export default Casino;
 
 
-        
