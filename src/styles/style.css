@@ -1303,11 +1303,14 @@ div#loadNextGames>div.show-all-p>a>svg {
   overflow: hidden;
   background: var(--color6);
   border-radius: 30px;
-  -webkit-box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 75%);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 10px 0px rgb(44 57 79 / 80%);
   border: 1px solid rgb(255 255 255 / 11%);
 }
+
+
+
 
 .container-casino {
   display: table;
@@ -1335,14 +1338,37 @@ div#loadNextGames>div.show-all-p>a>svg {
   text-align: center;
 }
 
+.container-casino:hover .image-casino-icon {
+  opacity: 0.1;
+}
+
+.container-casino:hover .middle-button {
+  opacity: 1;
+}
+
+
+.icon-play-casino {
+  width: 100%;
+  margin-top: 5px;
+}
+
 .title-game {
   margin-bottom: 10px;
   font-size: 13px;
   color: #fff;
 }
 
+
+.circle {
+  stroke: var(--color1);
+  stroke-dasharray: 650;
+  stroke-dashoffset: 650;
+  -webkit-transition: all 0.5s ease-in-out;
+  opacity: 0.3;
+}
+
 .playBut {
-  /* border: 1px solid red; */
+  /*  border: 1px solid red;*/
   display: inline-block;
   -webkit-transition: all 0.5s ease;
 }
@@ -1355,10 +1381,14 @@ div#loadNextGames>div.show-all-p>a>svg {
   transform: translateY(0);
 }
 
-.circle {
+.playBut:hover .triangle {
+  stroke-dashoffset: 0;
+  opacity: 1;
   stroke: var(--color1);
-  stroke-dasharray: 650;
-  stroke-dashoffset: 650;
-  -webkit-transition: all 0.5s ease-in-out;
-  opacity: 0.3;
+  animation: nudge 0.7s ease-in-out;
+}
+
+.playBut:hover .circle {
+  stroke-dashoffset: 0;
+  opacity: 1;
 }
