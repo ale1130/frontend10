@@ -482,6 +482,10 @@ function Casino(props) {
                                 </div>
                             </div>
 
+                            {games != "empty" 
+                            
+                            ?
+
                             <div className="col-lg-12 col-sm-12">
                                 <div id="games-load-container">
                                     <Games games={games} skin={SKIN} />
@@ -495,6 +499,15 @@ function Casino(props) {
                                     </div>
                                 </div>
                             </div>
+                            
+                            :
+                            
+                            <Spinner animation="border" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner>
+
+                            }
+
                         </div>
                     </div>
                 </>
