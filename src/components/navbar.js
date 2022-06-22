@@ -19,6 +19,10 @@ function Navbar(props){
 
     const [openProfile, setOpenProfile] = useState(false);
 
+    const USER = props.datiUtente;
+
+    const balancetot = USER["balance"]+USER["bonus"]+USER["balance_withdrawable"];
+
     //Forse dovrei controllare anche qua lo stato della variabile USER
 
     return (
@@ -51,7 +55,7 @@ function Navbar(props){
                             <>
                                 <div className="info-profile">
                                     <span id="reloadBalance" >
-                                        <span className="currentBalance" style={{color:"white"}}>{ props.datiUtente["currency"]+" "+props.datiUtente["balance"] }</span> 
+                                        <span className="currentBalance" style={{color:"white"}}>{ USER["currency"]+" "+balancetot }</span> 
                                     </span>
                                 </div>
                 
@@ -59,7 +63,7 @@ function Navbar(props){
                                     {<PersonIcon />}                          
                                 </a>
 
-                                {openProfile && <BoxUtente setLogin={props.setLogin} closeModal={()=>setOpenProfile(false)} utente={props.datiUtente}/>}
+                                {openProfile && <BoxUtente setLogin={props.setLogin} closeModal={()=>setOpenProfile(false)} utente={USER}/>}
                     
                                 <a href="/account?id=3" className="button-header hide-mobile">
                                     {<CoinIcon />}

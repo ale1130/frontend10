@@ -322,3 +322,376 @@ button.close.new {
 .selezionato{
   color:red;
 }
+
+/*freccia casino*/
+
+.svgarrow{
+  width: 16px;
+  margin-right: 10px;
+  /*fill: var(--color1);*/
+  fill:rgba(0, 0, 0, 0.75);
+}
+
+/*Providers*/
+
+.provider > a > img {
+  width: 50%;
+  max-height: 25px;
+  margin: 0px;
+}
+
+.provider > a > img {
+  width: 50%;
+  max-height: 25px;
+  margin: 0px;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+.slide-casino {
+  background: var(--color4);
+  box-shadow: 0 0 10px rgb(0 0 0 / 38%);
+  border-bottom: 1px solid rgb(7 17 32 / 81%);
+  display: flex;
+  /* margin-left: -15px; */
+  /* margin-right: -15px; */
+  padding: 5px 55px 5px 5px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  will-change: transform;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  scrollbar-color: #2e323b;
+  -ms-overflow-style: none;
+  scrollbar-width: 3px !important;
+}
+
+.provider {
+  width: 100%;
+  padding-left: 2px;
+  padding-right: 2px;
+  min-width: 130px;
+}
+
+div.provider > a {
+  background: var(--color5);
+  border-radius: 8px;
+  border: 1px solid rgb(255 255 255 / 9%);
+  display: block;
+  padding: 3px;
+  text-align: center;
+}
+
+div.provider > a:hover {
+  background: rgb(255 255 255 / 0%);
+  border: 1px solid rgb(255 255 255 / 70%);
+}
+
+/*Slider jackpots*/
+
+.wordCarousel {
+    font-size: 15px;
+    font-weight: 100;
+    color: #eee;
+    display: flex;
+    margin: 10px;
+}
+
+.wordCarousel h1 {
+    font-size: 18px;
+    font-weight: 100;
+    color: #fbb104;
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    font-weight: 600;
+    background: #0e314a;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.wordCarousel div {
+    overflow: hidden;
+    position: relative;
+    width: 90%;
+    display: flex;
+    height: 40px;
+    padding-top: 0px;
+    margin-top: 0px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+
+    background: #ffffff0d;
+}
+
+.wordCarousel div > ul {
+    padding-left: 0px;
+    width: calc(17% - 2px);
+    margin-left: 1px;
+}
+
+
+.wordCarousel div > ul > li > span {
+    margin-left: 10px;
+    color: #fbb104;
+    font-weight: 700;
+}
+
+.flip5 {
+    -webkit-animation: flip5 50s cubic-bezier(0.23, 1, 0.32, 1.1) infinite;
+    animation: flip5 50s cubic-bezier(0.23, 1, 0.32, 1.1) infinite;
+    margin-bottom: 0px;
+}
+
+.wordCarousel div li {
+    color: #eee;
+    font-weight: 400;
+    padding: 0 10px;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    /* border-right: 1px solid #fff; */
+    background: #0e314a;
+}
+
+.first-t {
+animation-delay: 1s !important;
+}
+
+.second-t {
+animation-delay: 2s !important;
+}
+
+.third-t {
+animation-delay: 3s !important;
+}
+
+.forty-t {
+animation-delay: 4s !important;
+}
+
+.five-t {
+animation-delay: 5s !important;
+}
+
+.six-t {
+animation-delay: 6s !important;
+}
+
+
+
+@-webkit-keyframes flip5 {
+  0% {
+    margin-top: -270px;
+  }
+  5% {
+    margin-top: -180px;
+  }
+  33% {
+    margin-top: -180px;
+  }
+  38% {
+    margin-top: -90px;
+  }
+  66% {
+    margin-top: -90px;
+  }
+  71% {
+    margin-top: 0px;
+  }
+  99.99% {
+    margin-top: 0px;
+  }
+  100% {
+    margin-top: -270px;
+  }
+}
+@keyframes flip5 {
+  0% {
+    margin-top: -270px;
+  }
+  5% {
+    margin-top: -180px;
+  }
+  33% {
+    margin-top: -180px;
+  }
+  38% {
+    margin-top: -90px;
+  }
+  66% {
+    margin-top: -90px;
+  }
+  71% {
+    margin-top: 0px;
+  }
+  99.99% {
+    margin-top: 0px;
+  }
+  100% {
+    margin-top: -270px;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .wordCarousel h1 {
+    width: 40%;
+    font-size: 16px;
+}
+
+.wordCarousel div > ul {
+  
+    width: calc(100% - 2px);
+    
+}
+
+.wordCarousel div {
+
+    width: 70%;
+
+}
+
+}
+
+
+/*Conteggio giochi con subcategory*/
+
+.list-type-play {
+  border-right: 1px solid rgb(255 255 255 / 10%);
+}
+
+.list-type-play > div {
+  display: flex;
+  margin: 0px -15px;
+}
+
+.pul-type-play.active {
+  /*background: var(--color1);*/
+  background: #007bff;
+}
+
+.pul-type-play.active > a {
+  color: #272c35;
+}
+
+.pul-type-play > a {
+  padding: 8px 20px;
+  display: block;
+  color: #fff;
+  background: transparent;
+  font-size: 14px;
+  text-align: center;
+}
+
+.pul-type-play {
+  border-bottom: 1px solid #ffffff21;
+  width: 100%;
+  margin: 0px;
+}
+
+/*Carica altri giochi*/
+
+div#loadNextGames > div.show-all-p {
+  background: var(--color4);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+div#loadNextGames > div.show-all-p > a {
+  padding: 5px 25px 15px;
+  font-size: 14px!important;
+  cursor: pointer;
+  border-bottom-left-radius: 20px;
+  margin: 0 0 10px;
+  border-bottom-right-radius: 20px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--color5);
+  margin-bottom: 40px;
+}
+
+div#loadNextGames > div.show-all-p > a > svg {
+  width: 16px;
+  margin-right: 10px;
+  fill: var(--color1);
+}
+
+/*Giochi casino*/
+
+.square-box-casino {
+  position: relative;
+  width: 14.2857%;
+  overflow: hidden;
+  float: left;
+}
+
+.square-content-casino {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+  right: 10px;
+  overflow: hidden;
+  background: var(--color6);
+  border-radius: 30px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 75%);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 10px 0px rgb(44 57 79 / 80%);
+  border: 1px solid rgb(255 255 255 / 11%);
+}
+
+.container-casino {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.image-casino-icon {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle-button {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.title-game {
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: #fff;
+}
+
+.playBut {
+  /* border: 1px solid red; */
+  display: inline-block;
+  -webkit-transition: all 0.5s ease;
+}
+
+.icon-play-casino {
+  width: 100%;
+  margin-top: 5px;
+}

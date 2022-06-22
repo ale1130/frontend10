@@ -164,5 +164,7 @@ export const SetLastLogin = async (user_id) =>{
     }
 }
 
-
+export const PROVIDERS_LOGO_WEB_PATH = (SKIN) =>{
+    return SKIN["cdn_url"]+"/providers/img/";
+}
 
