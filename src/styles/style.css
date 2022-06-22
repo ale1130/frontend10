@@ -1288,6 +1288,12 @@ div#loadNextGames>div.show-all-p>a>svg {
   float: left;
 }
 
+.square-box-casino:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
 .square-content-casino {
   position: absolute;
   top: 10px;
