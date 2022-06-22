@@ -28,6 +28,7 @@
     "react-modal": "^3.15.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
+    "react-slideshow-image": "^3.7.5",
     "styled-components": "^5.3.5",
     "use-search-params": "^1.0.4",
     "uuid": "^8.3.2",

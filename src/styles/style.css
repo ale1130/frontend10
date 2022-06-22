@@ -691,7 +691,18 @@ div#loadNextGames > div.show-all-p > a > svg {
   -webkit-transition: all 0.5s ease;
 }
 
-.icon-play-casino {
-  width: 100%;
-  margin-top: 5px;
+.playBut .triangle {
+  -webkit-transition: all 0.7s ease-in-out;
+  stroke-dasharray: 240;
+  stroke-dashoffset: 480;
+  stroke: #fff;
+  transform: translateY(0);
+}
+
+.circle {
+  stroke: var(--color1);
+  stroke-dasharray: 650;
+  stroke-dashoffset: 650;
+  -webkit-transition: all 0.5s ease-in-out;
+  opacity: 0.3;
 }

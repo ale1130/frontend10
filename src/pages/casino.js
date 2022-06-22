@@ -6,7 +6,11 @@ import axios from "axios";
 import Spinner from 'react-bootstrap/Spinner';
 import { ArrowIcon } from "../components/icons";
 
+import "react-slideshow-image/dist/styles.css";
+import { Fade } from 'react-slideshow-image';
+
 const Providers = (props) =>{
+
     const [providers, setProviders] = useState(props.providers);
     const SKIN = props.skin;
 
@@ -23,8 +27,45 @@ const Providers = (props) =>{
     )
 }
 
+const Slideshow = () => {
+
+    const fadeImages = [
+        {
+        url: 'https://stagemedia.gamesolutions.org/slideshow/img1_620d0b14e2042.jpeg',
+        caption: 'First Slide'
+        },
+        {
+        url: 'https://stagemedia.gamesolutions.org/slideshow/img2_620d0b14e2500.jpeg',
+        caption: 'Second Slide'
+        },
+        {
+        url: 'https://stagemedia.gamesolutions.org/slideshow/img1_620d0b14e2042.jpeg',
+        caption: 'Third Slide'
+        },
+    ];
+
+    return (
+        <div className="slide-container">
+            <Fade>
+                {fadeImages.map((fadeImage, index) => (
+
+                    <div className="each-fade" key={index}>
+
+                        <div className="image-container">
+                            <img src={fadeImage.url} />
+                        </div><br />
+                    </div>
+                    
+                ))}
+            </Fade>
+        </div>
+    )
+}
+
 const Jackpots = (props) =>{
+
     const [jackpots, setJackpots] = useState(props.jackpots);
+    const [SKIN, setSkin] = useState(props.skin);
 
     return (
         <div className="wordCarousel">
@@ -33,7 +74,7 @@ const Jackpots = (props) =>{
                 <ul className="flip5 first-t">
                     <div>{jackpots.map(jackpot => 
                         
-                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)} </span></li>
+                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)+" "+SKIN["currency"]} </span></li>
                         
                     )}</div>
                 </ul>
@@ -41,7 +82,7 @@ const Jackpots = (props) =>{
                 <ul className="flip5 second-t">
                     <div>{jackpots.map(jackpot => 
                         
-                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)} </span></li>
+                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)+" "+SKIN["currency"]} </span></li>
                         
                     )}</div>
                 </ul>
@@ -49,7 +90,7 @@ const Jackpots = (props) =>{
                 <ul className="flip5 third-t">
                     <div>{jackpots.map(jackpot => 
                         
-                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)} </span></li>
+                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)+" "+SKIN["currency"]} </span></li>
                         
                     )}</div>
                 </ul>
@@ -57,7 +98,7 @@ const Jackpots = (props) =>{
                 <ul className="flip5 forty-t">
                     <div>{jackpots.map(jackpot => 
                         
-                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)} </span></li>
+                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)+" "+SKIN["currency"]} </span></li>
                         
                     )}</div>
                 </ul>
@@ -65,7 +106,7 @@ const Jackpots = (props) =>{
                 <ul className="flip5 five-t">
                     <div>{jackpots.map(jackpot => 
                         
-                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)} </span></li>
+                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)+" "+SKIN["currency"]} </span></li>
                         
                     )}</div>
                 </ul>
@@ -73,7 +114,7 @@ const Jackpots = (props) =>{
                 <ul className="flip5 six-t">
                     <div>{jackpots.map(jackpot => 
                         
-                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)} </span></li>
+                        <li>{jackpot.username.replaceAt(jackpot.username.length/2, "*****")}<span>{jackpot.win.toFixed(2)+" "+SKIN["currency"]} </span></li>
                         
                     )}</div>
                 </ul>
@@ -83,6 +124,7 @@ const Jackpots = (props) =>{
 }
 
 const Games = (props) => {
+
     const [games, setGames] = useState(props.games);
     const SKIN = props.skin;
 
@@ -349,12 +391,14 @@ function Casino (props){
                     {jackpots != "nothingFound" && jackpots != "empty" && logged && SKIN["jackpot"]==1 ?
                                     
                         
-                        <Jackpots jackpots={jackpots} />
+                        <Jackpots jackpots={jackpots} skin={SKIN}/>
 
                         :
 
                         <></>
                     }
+
+                    <Slideshow />
 
                     {providers == "nothingFound" || games == "nothingFound" ?
                                     
