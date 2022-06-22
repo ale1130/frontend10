@@ -175,7 +175,13 @@ const Games = (props) => {
                             <div className="middle-button">
                                 <div className="title-game">{game.name}</div>
                                 <a href="#" className="playBut">
-                                    gioca
+                                    <svg version="1.1" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 213.7 213.7" enable-background="new 0 0 213.7 213.7">
+
+                                        <polygon class="triangle" id="XMLID_18_" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+	73.5,62.5 148.5,105.8 73.5,149.1 "></polygon>
+
+                                        <circle class="circle" id="XMLID_17_" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="106.8" cy="106.8" r="103.3"></circle>
+                                    </svg>
                                 </a>
                                 <img src={PROVIDERS_LOGO_WEB_PATH(SKIN) + game.img} className={"icon-play-casino provider-" + game.name} />
                             </div>
