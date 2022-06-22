@@ -4,7 +4,11 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import Profile from "../pages/profile";
 
+import { useTranslation } from "react-i18next";
+
 function MyProfile (props){
+
+    const { t, i18n } = useTranslation();
 
     const USER = props.datiUtente;
 
@@ -29,13 +33,13 @@ function MyProfile (props){
                             <tbody>
                                 <tr>
                                     <td>
-                                        <h2 className="virtual-title">Il tuo profilo</h2>
+                                        <h2 className="virtual-title">{t('tuoprofilo')}</h2>
 
                                         <table width="100%" className="table table-bordered profile-table">
                                             <tbody>
                                                 <tr>
                                                     <td width="35%">
-                                                        <strong>Username</strong>
+                                                        <strong>{t('nomeutente')}</strong>
                                                     </td>
                                                     <td>
                                                     {USER["username"]}
@@ -44,7 +48,7 @@ function MyProfile (props){
                                                 
                                                 <tr>
                                                     <td>
-                                                        <strong>Nome e cognome</strong>
+                                                        <strong>{t('nome')} {t('e')} {t('cognome')}</strong>
                                                     </td>
                                                     <td>
                                                     {USER["firstname"]+" "+USER["lastname"]}
@@ -53,7 +57,7 @@ function MyProfile (props){
                                                 
                                                 <tr>
                                                     <td width="35%">
-                                                        <strong>Codice conto</strong>
+                                                        <strong>{t('codiceconto')}</strong>
                                                     </td>
                                                     <td>
                                                     {USER["id"]}                                        

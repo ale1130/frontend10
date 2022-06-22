@@ -129,7 +129,14 @@
     "passaporto":"Passaporto",
     "patente":"Patente",
     "seleziona":"Seleziona",
-    "promozione":"Promozione"
+    "promozione":"Promozione",
+
+    "dettagliosaldo":"Dettaglio saldo",
+    "cambiadati":"Cambia dati",
+    "cambiapassword":"Cambia password",
+    "messaggi":"Messaggi",
+    "ultimoaccesso":"Ultimo accesso",
+    "codiceconto":"Codice conto"
 
 
   }

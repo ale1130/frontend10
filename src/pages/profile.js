@@ -2,7 +2,11 @@ import React from "react";
 
 import { convertDate } from "../constants/global";
 
+import { useTranslation } from "react-i18next";
+
 function Profile (props){
+
+    const { t, i18n } = useTranslation();
 
     const USER = props.datiUtente;
 
@@ -29,18 +33,18 @@ function Profile (props){
                     <div className="col-md-12 col-lg-3">
 
                         <div className="box-balance">
-                            <h2>Dettaglio saldo</h2>
+                            <h2>{t('dettagliosaldo')}	</h2>
 
-                            <div><span className="elemento-voce">Saldo totale</span>
+                            <div><span className="elemento-voce">{t('saldototale')}</span>
                             <strong>{saldo_totale+" "+currency}</strong></div>
 
-                            <div><span className="elemento-voce">Saldo prelevabile</span>
+                            <div><span className="elemento-voce">{t('saldoprelevabile')}</span>
                             <strong>{USER["balance_withdrawable"]+" "+currency}</strong></div>
 
-                            <div><span className="elemento-voce">Saldo non prelevabile</span> <br/>
+                            <div><span className="elemento-voce">{t('saldononprelevabile')}</span> <br/>
                             <strong>{USER["balance"]+" "+currency}</strong></div>
 
-                            <div><span className="elemento-voce">Bonus</span> <br/>
+                            <div><span className="elemento-voce">{t('bonus')}</span> <br/>
                             <strong>{USER["bonus"]+" "+currency}</strong></div>
                         </div>
 
@@ -48,37 +52,37 @@ function Profile (props){
                         <div className="box-account-button">
                         
                             <h2>
-                                Il tuo profilo      			          
+                                {t('tuoprofilo')}			          
                             </h2>
                             
                             <div>
                                 <a href='/profile/info?id=3'>
                                     <div id="CambiaDati" className={currentPage2=="info" ? "selezionato" : ""} >
-                                        Cambia dati               
+                                        {t('cambiadati')}	         
                                     </div>
                                 </a>  
 
                                 <a href='/profile/password?id=3'>
                                     <div id="CambiaPassword" className={currentPage2=="password" ? "selezionato" : ""} >    
-                                        Cambia password                    
+                                        {t('cambiapassword')}	                    
                                     </div>
                                 </a> 
 
                                 <a href='/profile/messages?id=3'>
                                     <div id="Messages" className={currentPage2=="messages" ? "selezionato" : ""} >
-                                        Messaggi          
+                                        {t('messaggi')}	          
                                     </div>
                                 </a>   
 
                                 <span className="count-prelie">0</span>
 
                                 <div onClick={LogOut}>
-                                    Esci dal profilo                    
+                                    {t('esci')}	                    
                                 </div>
 
                             </div>
 
-                            <h2>Ultimo accesso</h2>
+                            <h2>{t('ultimoaccesso')}	</h2>
 
                             <span className="fa fa-clock-o"></span>
                             {last_login}
