@@ -160,11 +160,35 @@ export const SetLastLogin = async (user_id) =>{
 
     }catch (e){
 
-      alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+      console.log(e);
     }
 }
+
+export const GetLanguages = async () =>{
+
+    const stringa = "SELECT * FROM languages ORDER BY id";
+
+    try{
+
+      const data = await axios
+      .post('http://localhost:3001/getlanguages',{query : stringa})
+      .then(response => {
+        
+        return response.data;
+      })
+    }catch (e){
+
+        console.log(e);
+    }
+};
 
 export const PROVIDERS_LOGO_WEB_PATH = (SKIN) =>{
     return SKIN["cdn_url"]+"/providers/img/";
 }
+
+export const MEDIA_PROMO_WEB_PATH = (SKIN) =>{
+    return SKIN["cdn_url"]+"/promotions/";
+}
+
+
 

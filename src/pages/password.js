@@ -10,8 +10,11 @@ import SuccessBox from "../components/successBox";
 import axios from "axios";
 
 import { generateMd5 } from "../constants/global";
+import { useTranslation } from "react-i18next";
 
 function Password (props){
+
+    const { t, i18n } = useTranslation();
 
     const USER = props.datiUtente;
 
@@ -56,12 +59,12 @@ function Password (props){
 
                     success(response.data.message);
                 }else{
-                    alert("Errore tecnico, contattare l'assistenza");
+                    alert(t('erroregenerico'));
                 }
             })
         }catch (e){
 
-           alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+           alert(t('erroregenerico'));  console.log(e);
         }
     };
   

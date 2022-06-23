@@ -9,7 +9,9 @@ import { ArrowIcon } from "../components/icons";
 import "react-slideshow-image/dist/styles.css";
 import { Fade } from 'react-slideshow-image';
 
-const Providers = (props) => {
+import { useTranslation } from "react-i18next";
+
+const Providers = (props) =>{
 
     const [providers, setProviders] = useState(props.providers);
     const SKIN = props.skin;
@@ -199,6 +201,8 @@ String.prototype.replaceAt = function (index, replacement) {
 
 function Casino(props) {
 
+    const { t, i18n } = useTranslation();
+
     const SKIN = props.skin;
     const logged = props.isLogged;
 
@@ -237,21 +241,21 @@ function Casino(props) {
 
         try {
             const data = await axios
-                .post('http://localhost:3001/getproviders', { query: stringa })
-                .then(response => {
+            .post('http://localhost:3001/getproviders',{ query : stringa})
+            .then(response => {  
 
-                    if (response.data.err) {
-                        alert("Errore tecnico, contattare l'assistenza");
-                    } else if (response.data.message) {
-                        setProviders(["nothingFound"]);
-                    } else {
-                        setProviders(response.data);
-                    }
+                if(response.data.err){
+                    alert(t('erroregenerico'));  
+                }else if(response.data.message){
+                    setProviders(["nothingFound"]);
+                }else{
+                    setProviders(response.data);
+                }
 
                 })
         } catch (e) {
 
-            alert("Errore tecnico, contattare l'assistenza");
+            alert(t('erroregenerico'));  
             console.log(e);
         }
     }
@@ -262,21 +266,21 @@ function Casino(props) {
 
         try {
             const data = await axios
-                .post('http://localhost:3001/getjackpotswin', { query: stringa })
-                .then(response => {
+            .post('http://localhost:3001/getjackpotswin',{ query : stringa})
+            .then(response => {  
 
-                    if (response.data.err) {
-                        alert("Errore tecnico, contattare l'assistenza");
-                    } else if (response.data.message) {
-                        setJackpots(["nothingFound"]);
-                    } else {
-                        setJackpots(response.data);
-                    }
+                if(response.data.err){
+                    alert(t('erroregenerico'));  
+                }else if(response.data.message){
+                    setJackpots(["nothingFound"]);
+                }else{
+                    setJackpots(response.data);
+                }
 
                 })
         } catch (e) {
 
-            alert("Errore tecnico, contattare l'assistenza");
+            alert(t('erroregenerico'));  
             console.log(e);
         }
     }
@@ -297,22 +301,22 @@ function Casino(props) {
 
         try {
             const data = await axios
-                .post('http://localhost:3001/getcasinogames', { query: stringa })
-                .then(response => {
+            .post('http://localhost:3001/getcasinogames',{ query : stringa})
+            .then(response => {  
 
-                    if (response.data.err) {
-                        console.log(response.data.err)
-                        alert("Errore tecnico, contattare l'assistenza");
-                    } else if (response.data.message) {
-                        setGames(["nothingFound"]);
-                    } else {
-                        setGames(response.data);
-                    }
+                if(response.data.err){
+                    console.log(response.data.err)
+                    alert(t('erroregenerico'));  
+                }else if(response.data.message){
+                    setGames(["nothingFound"]);
+                }else{
+                    setGames(response.data);
+                }
 
-                })
-        } catch (e) {
+            })
+        }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");
+            alert(t('erroregenerico'));  
             console.log(e);
         }
     }
@@ -349,21 +353,21 @@ function Casino(props) {
 
         try {
             const data = await axios
-                .post('http://localhost:3001/getcasinosubcategories', { query: stringa })
-                .then(response => {
+            .post('http://localhost:3001/getcasinosubcategories',{ query : stringa})
+            .then(response => {  
 
-                    if (response.data.err) {
-                        alert("Errore tecnico, contattare l'assistenza");
-                    } else if (response.data.message) {
-                        setSubcategories(["nothingFound"]);
-                    } else {
-                        setSubcategories(response.data);
-                    }
+            if(response.data.err){
+                alert(t('erroregenerico'));  
+            }else if(response.data.message){
+                setSubcategories(["nothingFound"]);
+            }else{
+                setSubcategories(response.data);
+            }
 
                 })
         } catch (e) {
 
-            alert("Errore tecnico, contattare l'assistenza");
+            alert(t('erroregenerico'));  
             console.log(e);
         }
     }
@@ -478,6 +482,10 @@ function Casino(props) {
                                 </div>
                             </div>
 
+                            {games != "empty" 
+                            
+                            ?
+
                             <div className="col-lg-12 col-sm-12">
                                 <div id="games-load-container">
                                     <Games games={games} skin={SKIN} />
@@ -491,6 +499,15 @@ function Casino(props) {
                                     </div>
                                 </div>
                             </div>
+                            
+                            :
+                            
+                            <Spinner animation="border" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner>
+
+                            }
+
                         </div>
                     </div>
                 </>

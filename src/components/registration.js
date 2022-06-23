@@ -17,6 +17,8 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Spinner from 'react-bootstrap/Spinner';
 
+import { useTranslation } from "react-i18next";
+
 Modal.setAppElement("#root");
 
 function generateApiKey(){
@@ -26,6 +28,8 @@ function generateApiKey(){
 }  
 
 function RegistrationModal(props) {
+
+    const { t, i18n } = useTranslation();
 
     const close = props.closeModal;
     const SKIN = props.skin;
@@ -89,7 +93,10 @@ function RegistrationModal(props) {
                 });
             }else{
 
-                alert("Se il luogo di nascita corrisponde ad un paese estero si prega di inserire il codice fiscale manualmente");
+
+                //var erroreLuogoCod = t('erroregenerico');
+
+                alert(t('codicefiscaleerroreluogo'));
 
                 CodiceFiscale = "";
             }
@@ -97,7 +104,8 @@ function RegistrationModal(props) {
             setInputs(inputs => ({...inputs,"fiscal_code": CodiceFiscale}));
 
         }else{
-            alert("E' necessario inserire tutti i dati utili: nome, cognome, data e luogo di nascita per poter calcolare il codice fiscale");
+
+            alert(t('errorecodicefiscale'));
         }
     }
     
@@ -116,7 +124,7 @@ function RegistrationModal(props) {
 
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+            alert(t('erroregenerico'));  console.log(e);
         }
     };
 
@@ -146,7 +154,7 @@ function RegistrationModal(props) {
 
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+            alert(t('erroregenerico'));  console.log(e);
         }
         
     }
@@ -171,7 +179,7 @@ function RegistrationModal(props) {
 
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+            alert(t('erroregenerico'));  console.log(e);
         }
     }
 
@@ -206,7 +214,7 @@ function RegistrationModal(props) {
 
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+            alert(t('erroregenerico'));  console.log(e);
         }
     }
 
@@ -235,7 +243,7 @@ function RegistrationModal(props) {
             })
         }catch (e){
 
-           alert("Errore tecnico, contattare l'assistenza");
+           alert(t('erroregenerico'));
             console.log(e);
         }
     };
@@ -254,7 +262,7 @@ function RegistrationModal(props) {
 
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+            alert(t('erroregenerico'));  console.log(e);
         }
     }
 
@@ -272,7 +280,7 @@ function RegistrationModal(props) {
 
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+            alert(t('erroregenerico'));  console.log(e);
         }
     }
 
@@ -294,7 +302,7 @@ function RegistrationModal(props) {
             })
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+            alert(t('erroregenerico'));  console.log(e);
         }
     }
 
@@ -305,108 +313,108 @@ function RegistrationModal(props) {
         setErrorMessages(errore => ({...errore, "countAzioni" : 0}));
 
         if(!inputs.firstname){
-            setErrorMessages(errore => ({...errore, 1 : "Inserisci il tuo nome"}));
+            setErrorMessages(errore => ({...errore, 1 : t('erroresignin.nome')}));
         }
 
         if(!inputs.lastname){
-            setErrorMessages(errore => ({...errore, 2 : "Inserisci il tuo cognome"}));
+            setErrorMessages(errore => ({...errore, 2 : t('erroresignin.cognome')}));
         }
 
         if(!inputs.email){
-            setErrorMessages(errore => ({...errore, 3 : "Inserisci la tua email"}));
+            setErrorMessages(errore => ({...errore, 3 : t('erroresignin.email')}));
         }else{
             CheckIfUserExistEmail();
         }
 
         if(!inputs.mobile){
-            setErrorMessages(errore => ({...errore, 4 : "Inserisci il tuo numero di cellulare"}));
+            setErrorMessages(errore => ({...errore, 4 : t('erroresignin.cellulare')}));
         }
 
         if(!inputs.country_residence){
-            setErrorMessages(errore => ({...errore, 5 : "Inserisci il tuo stato di residenza"}));
+            setErrorMessages(errore => ({...errore, 5 : t('erroresignin.statoresidenza')}));
         }
 
         if(inputs.country_residence=='IT'){
 
             if(!inputs.province_residence){
-                setErrorMessages(errore => ({...errore, 6 : "Inserisci la tua provincia di residenza"}));
+                setErrorMessages(errore => ({...errore, 6 : t('erroresignin.provinciaresidenza')}));
             }
 
             if(!inputs.city_residence){
-                setErrorMessages(errore => ({...errore, 7 : "Inserisci la tua città di residenza"}));
+                setErrorMessages(errore => ({...errore, 7 : t('erroresignin.cittaresidenza')}));
             }
         }else{
             setInputs(inputs => ({...inputs,"province_residence": "", "city_residence" : ""}));
         }
 
         if(!inputs.address_residence){
-            setErrorMessages(errore => ({...errore, 8 : "Inserisci il tuo indirizzo di residenza"}));
+            setErrorMessages(errore => ({...errore, 8 : t('erroresignin.indirizzoresidenza')}));
         }
 
         if(!inputs.zip_residence){
-            setErrorMessages(errore => ({...errore, 9 : "Inserisci il CAP di residenza"}));
+            setErrorMessages(errore => ({...errore, 9 : t('erroresignin.capresidenza')}));
         }
 
         if(!inputs.country_birth){
-            setErrorMessages(errore => ({...errore, 10 : "Inserisci il tuo stato di nascita"}));
+            setErrorMessages(errore => ({...errore, 10 : t('erroresignin.statonascita')}));
         }
 
         if(inputs.country_birth=='IT'){
 
             if(!inputs.province_birth){
-                setErrorMessages(errore => ({...errore, 11 : "Inserisci la tua provincia di nascita"}));
+                setErrorMessages(errore => ({...errore, 11 : t('erroresignin.provincianascita')}));
             }
 
             if(!inputs.city_birth){
-                setErrorMessages(errore => ({...errore, 12 : "Inserisci la tua città di nascita"}));
+                setErrorMessages(errore => ({...errore, 12 : t('erroresignin.cittanascita')}));
             }
         }else{
             setInputs(inputs => ({...inputs,"province_birth": "", "city_birth" : ""}));
         }
 
         if(!inputs.birthday){
-            setErrorMessages(errore => ({...errore, 13 : "Inserisci il tuo giorno di nascita"}));
+            setErrorMessages(errore => ({...errore, 13 : t('erroresignin.giornonascita')}));
         }
         
         if(!getAge(inputs.birthday)){
-            setErrorMessages(errore => ({...errore, 14 : "La tua età risulta inferiore ai minimi di legge richiesti per poter accedere alla nostra piattaforma"}));
+            setErrorMessages(errore => ({...errore, 14 : t('erroresignin.minorenne')}));
         }
 
         if(!inputs.sex){
-            setErrorMessages(errore => ({...errore, 15 : "Inserisci il tuo sesso"}));
+            setErrorMessages(errore => ({...errore, 15 : t('erroresignin.sesso')}));
         }
 
         if(inputs.country_residence=='IT'){
 
             if(!inputs.fiscal_code){
-                setErrorMessages(errore => ({...errore, 16 : "Inserisci il tuo codcie fiscale o calcolalo automaticamente"}));
+                setErrorMessages(errore => ({...errore, 16 : t('erroresignin.fiscale')}));
             }
         }
 
         if(!inputs.document_type){
-            setErrorMessages(errore => ({...errore, 17 : "Inserisci la tua categoria di documento"}));
+            setErrorMessages(errore => ({...errore, 17 : t('erroresignin.vatdoc')}));
         }
 
         if(!inputs.document_number){
-            setErrorMessages(errore => ({...errore, 18 : "Inserisci il tuo numero di documento"}));
+            setErrorMessages(errore => ({...errore, 18 : t('erroresignin.numerodoc')}));
         }
 
         if(format.test(inputs.username)){
-            setErrorMessages(errore => ({...errore, 21 : "Impossibile creare un nome utente contenente caratteri speciali o spazi"}));
+            setErrorMessages(errore => ({...errore, 21 : t('erroresignin.usernamespec')}));
         }
 
         if(!inputs.realpass){
-            setErrorMessages(errore => ({...errore, 22 : "Inserisci la tua password"}));
+            setErrorMessages(errore => ({...errore, 22 : t('erroresignin.password')}));
         }else{
            setInputs(inputs => ({...inputs,"passhash" : generateMd5(inputs.realpass)}));
         }
         
         if(!termini){
-            setErrorMessages(errore => ({...errore, 23 : "E' necessario accetare i nostri termini e le condizioni d'uso"}));
+            setErrorMessages(errore => ({...errore, 23 : t('erroresignin.termini')}));
         }
 
         if(!maggiorenne){
-            setErrorMessages(errore => ({...errore, 24 : "E' necessario confermare di aver raggiunto la maggiore età"}));
+            setErrorMessages(errore => ({...errore, 24 : t('erroresignin.maggiorenne')}));
         }
 
         if(!inputs.promoter_code){
@@ -416,14 +424,14 @@ function RegistrationModal(props) {
                 setInputs(inputs => ({...inputs, "parent_id" : SKIN["online_shop_id"], currency : SKIN["currency"]}))
             }else{
 
-                setErrorMessages(errore => ({...errore, 19 : "Inserisci il codice promotore"}));
+                setErrorMessages(errore => ({...errore, 19 : t('erroresignin.codpromotore')}));
             }
         }else{
             GetShop();
         }
 
         if(!inputs.username){
-            setErrorMessages(errore => ({...errore, 20 : "Inserisci il tuo username"}));
+            setErrorMessages(errore => ({...errore, 20 : t('erroresignin.username')}));
 
         }else{
             CheckIfUserExist();
@@ -442,7 +450,7 @@ function RegistrationModal(props) {
                 setInputs(inputs => ({...inputs, "parent_id" : promoter.id , currency : promoter.currency}));
                 setErrorMessages(errore => ({...errore, "countAzioni" : errore.countAzioni+1}));
             }else{
-                setErrorMessages(errore => ({...errore, 25 : "Impossibile trovare un promotore associato a questo codice", "countAzioni" : errore.countAzioni+1}));
+                setErrorMessages(errore => ({...errore, 25 : t('erroresignin.promotoreinesi'), "countAzioni" : errore.countAzioni+1}));
             }
         }
     }, [promoter]);
@@ -452,7 +460,7 @@ function RegistrationModal(props) {
         if(submit==1){
                     
             if(errorDupUsername=="changedfound"){
-                setErrorMessages(errore => ({...errore, 26 : "Ci dispiace ma il nome utente digitato risulta già utilizzato, si prega di sceglierne un altro", "countAzioni" : errore.countAzioni+1}));
+                setErrorMessages(errore => ({...errore, 26 : t('erroresignin.usernamedup'), "countAzioni" : errore.countAzioni+1}));
             }else{
                 setErrorMessages(errore => ({...errore, "countAzioni" : errore.countAzioni+1}));
             }
@@ -464,7 +472,7 @@ function RegistrationModal(props) {
         if(submit==1){
                     
             if(errorDupEmail=="changedfound"){
-                setErrorMessages(errore => ({...errore, 27 : "La mail inserita risulta già registrata nella nostra banca dati, se non hai sbagliato a digitare prova ad effettuare il login ora!", "countAzioni" : errore.countAzioni+1}));
+                setErrorMessages(errore => ({...errore, 27 : t('erroresignin.dupemail'), "countAzioni" : errore.countAzioni+1}));
             }else{
                 setErrorMessages(errore => ({...errore, "countAzioni" : errore.countAzioni+1}));
             }
@@ -511,7 +519,7 @@ function RegistrationModal(props) {
 
                     <>
 
-                    {<BoxPromo skindefaultpromo={SKIN["default_promo"]} skin_id={SKIN["id"]} />}
+                    {<BoxPromo skin={SKIN} skindefaultpromo={SKIN["default_promo"]} skin_id={SKIN["id"]} />}
 
                         <div className="col-sm-8">
 
@@ -519,25 +527,25 @@ function RegistrationModal(props) {
 
                                 <div className="row">
                                     <div className="col-sm-6 pd-r-2">
-                                        <label className="color-top" htmlFor="firstname">First name</label>
-                                        <input type="text" className="form-control margin-bottom-5" value={inputs.firstname || ""} onChange={handleChange} id="firstname" name="firstname" placeholder="*First name" />
+                                        <label className="color-top" htmlFor="firstname">{t('nome')}</label>
+                                        <input type="text" className="form-control margin-bottom-5" value={inputs.firstname || ""} onChange={handleChange} id="firstname" name="firstname" placeholder={"*"+t('nome')} />
                                     </div>
                                     <div className="col-sm-6 pd-l-2">
-                                        <label className="color-top" htmlFor="lastname">Surname</label>
-                                        <input type="text" className="form-control margin-bottom-5" id="lastname" name="lastname" value={inputs.lastname || ""} onChange={handleChange} placeholder="*Surname" />
+                                        <label className="color-top" htmlFor="lastname">{t('cognome')}</label>
+                                        <input type="text" className="form-control margin-bottom-5" id="lastname" name="lastname" value={inputs.lastname || ""} onChange={handleChange} placeholder={"*"+t('cognome')} />
                                     </div>
                                     <div className="col-sm-6 pd-r-2">
                                         <label className="color-top" htmlFor="email">E-mail</label>
                                         <input type="email" className="form-control margin-bottom-5" id="email" name="email" value={inputs.email || ""} onChange={handleChange} placeholder="*E-mail" />
                                     </div>
                                     <div className="col-sm-6 pd-l-2">
-                                        <label className="color-top" htmlFor="mobile">Mobile number</label>
-                                        <input type="text" className="form-control margin-bottom-5" id="mobile" name="mobile" value={inputs.mobile || ""} onChange={handleChange} placeholder="*Mobile number" />
+                                        <label className="color-top" htmlFor="mobile">{t('cellulare')}</label>
+                                        <input type="text" className="form-control margin-bottom-5" id="mobile" name="mobile" value={inputs.mobile || ""} onChange={handleChange} placeholder={"*"+t('cellulare')} />
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-sm-12" id="div_country_residence">
-                                        <label className="color-top" htmlFor="c">Country of residence</label>
+                                        <label className="color-top" htmlFor="c">{t('statoresidenza')}</label>
                                         <SelectCountry name={"country_residence"} value={inputs.country_residence || ""} onchange={()=>handleChange}/>
                                     </div>
 
@@ -548,12 +556,12 @@ function RegistrationModal(props) {
                                             <>
 
                                                 <div className="col-sm-6 pd-r-2 geo_residence_italy" id="div_province_residence">
-                                                    <label className="color-top" htmlFor="province_residence">Province of residence</label>
+                                                    <label className="color-top" htmlFor="province_residence">{t('provinciaresidenza')}</label>
                                                     <SelectProvince name={"province_residence"} value={inputs.province_residence || ""} onchange={()=>handleChange}/>
                                                 </div>
 
                                                 <div className="col-sm-6 pd-l-2 geo_residence_italy" id="city_residence">
-                                                    <label className="color-top" htmlFor="city_residence">City of residence</label>
+                                                    <label className="color-top" htmlFor="city_residence">{t('cittaresidenza')}</label>
                                                     <span id="residence_selprovmsg">
                                                         <SelectCity name={"city_residence"} value={inputs.city_residence || ""} onchange={()=>handleChange}/>
                                                     </span>
@@ -570,17 +578,17 @@ function RegistrationModal(props) {
                                 </div>
                                 <div className="row">
                                     <div className="col-sm-8 pd-r-2">
-                                        <label className="color-top" htmlFor="address_residence">Residence address</label>
-                                        <input type="text" className="form-control margin-bottom-5" id="address_residence" value={inputs.address_residence || ""} onChange={handleChange} name="address_residence" placeholder="*Residence address" />
+                                        <label className="color-top" htmlFor="address_residence">{t('indirizzoresidenza')}</label>
+                                        <input type="text" className="form-control margin-bottom-5" id="address_residence" value={inputs.address_residence || ""} onChange={handleChange} name="address_residence" placeholder={"*"+t('indirizzoresidenza')} />
                                     </div>
                                     <div className="col-sm-4 pd-l-2">
-                                        <label className="color-top" htmlFor="zip_residence">Postal code of residence</label>
-                                        <input type="text" className="form-control margin-bottom-5" id="zip_residence" value={inputs.zip_residence || ""} onChange={handleChange} name="zip_residence" placeholder="*Postal code of residence" />
+                                        <label className="color-top" htmlFor="zip_residence">{t('capresidenza')}</label>
+                                        <input type="text" className="form-control margin-bottom-5" id="zip_residence" value={inputs.zip_residence || ""} onChange={handleChange} name="zip_residence" placeholder={"*"+t('capresidenza')} />
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-sm-12" id="div_cliente_nazione">
-                                        <label className="color-top" htmlFor="cliente_nazione">Country of birth</label>
+                                        <label className="color-top" htmlFor="cliente_nazione">{t('statonascita')}</label>
                                         <SelectCountry name={"country_birth"} value={inputs.country_birth || ""} onchange={()=>handleChange}/>
                                     </div>
 
@@ -593,12 +601,12 @@ function RegistrationModal(props) {
                                             <>
 
                                                 <div className="col-sm-6 pd-r-2 geo_italy" id="div_cliente_provincia">
-                                                    <label className="color-top" htmlFor="cliente_provincia">Province of birth</label>
+                                                    <label className="color-top" htmlFor="cliente_provincia">{t('provincianascita')}</label>
                                                     <SelectProvince name={"province_birth"} value={inputs.province_birth || ""} onchange={()=>handleChange}/>
                                                 </div>
 
                                                 <div className="col-sm-6 pd-l-2 geo_italy" id="div_cliente_citta">
-                                                    <label className="color-top" htmlFor="citta">City of Birth</label>
+                                                    <label className="color-top" htmlFor="citta">{t('cittanascita')}</label>
                                                     <span id="selprovmsg">
                                                         <SelectCity name={"city_birth"} value={inputs.city_birth || ""} onchange={()=>handleChange}/>                                    
                                                     </span>
@@ -615,14 +623,15 @@ function RegistrationModal(props) {
                                 <div className="birthday_box">
                                     <div className="row">
                                         <div className="col-sm-6 pd-l-2">
+                                        <label className="color-top" htmlFor="citta">{t('datanascita')}</label>
                                             <SelectDate value={inputs.birthday || ""} onchange={()=>handleChangeData}/>
                                         </div>
                                         <div className="col-sm-6 pd-l-2">
-                                            <label className="color-top" htmlFor="sesso">Sex</label>
+                                            <label className="color-top" htmlFor="sesso">{t('sesso')}</label>
                                             <select className="form-control margin-bottom-5" name="sex" id="sex" value={inputs.sex || ""} onChange={handleChange}>
-                                                <option value="">--Select--</option>
-                                                <option value="m">Male</option>
-                                                <option value="f">Female</option>
+                                                <option value="">{"--"+t('seleziona')+"--"}</option>
+                                                <option value="m">{t('uomo')}</option>
+                                                <option value="f">{t('donna')}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -636,12 +645,12 @@ function RegistrationModal(props) {
 
                                             <div className="row">
                                                 <div className="col-sm-12" id="fiscal_code_area">
-                                                    <label className="color-top" htmlFor="fiscal_code">Fiscal Code</label>
+                                                    <label className="color-top" htmlFor="fiscal_code">{t('codicefiscale')}</label>
                                                     <div className="input-group  margin-bottom-5">
-                                                        <input type="text" className="form-control" name="fiscal_code" id="fiscal_code" placeholder="*Fiscal Code" aria-label="Fiscal Code" aria-describedby="basic-addon1" value={inputs.fiscal_code || ""} onChange={handleChange} />
+                                                        <input type="text" className="form-control" name="fiscal_code" id="fiscal_code" placeholder={"*"+t('codicefiscale')} aria-label="Fiscal Code" aria-describedby="basic-addon1" value={inputs.fiscal_code || ""} onChange={handleChange} />
                                                         <div className="input-group-append">
                                                             <span className="input-group-text" id="basic-addon1">
-                                                                <button href="#" onClick={CalcoloCodiceFiscale}>Calcola</button>
+                                                                <button href="#" onClick={CalcoloCodiceFiscale}>{t('calcola')}</button>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -657,31 +666,31 @@ function RegistrationModal(props) {
 
                                 <div className="row">
                                     <div className="col-sm-6 pd-r-2">
-                                        <label className="color-top" htmlFor="document_type">Document type</label>
+                                        <label className="color-top" htmlFor="document_type">{t('tipodocumento')}</label>
                                         <select name="document_type" id="document_type" className="form-control margin-bottom-5" value={inputs.document_type || ""} onChange={handleChange}>
-                                            <option value="">--Select--</option>
-                                            <option value="identity_card">Identity card</option>
-                                            <option value="passport">Passport</option>
-                                            <option value="drivers_license">Driving license</option>
+                                            <option value="">{"--"+t('seleziona')+"--"}</option>
+                                            <option value="identity_card">{t('cartaid')}</option>
+                                            <option value="passport">{t('passaporto')}</option>
+                                            <option value="drivers_license">{t('patente')}</option>
                                         </select>
                                     </div>
                                     <div className="col-sm-6 pd-l-2">
-                                        <label className="color-top" htmlFor="document_number">Document number</label>
-                                        <input type="text" className="form-control margin-bottom-5" id="document_number" name="document_number" placeholder="*Document number" value={inputs.document_number || ""} onChange={handleChange}/>
+                                        <label className="color-top" htmlFor="document_number">{t('numerodoc')}</label>
+                                        <input type="text" className="form-control margin-bottom-5" id="document_number" name="document_number" placeholder={"*"+t('numerodoc')} value={inputs.document_number || ""} onChange={handleChange}/>
                                     </div>
                                 </div>
 
                                 <div className="row margin-regulation2">
                                     <div className="col-sm-12 pd-l-2 pd-r-2">
-                                        <label className="color-top" htmlFor="promoter_code">Promoter code</label>
-                                        <input type="text" className="form-control margin-bottom-5" id="promoter_code" name="promoter_code" placeholder="Promoter code" value={inputs.promoter_code || ""} onChange={handleChange}/>
+                                        <label className="color-top" htmlFor="promoter_code">{t('codicepromotore')}</label>
+                                        <input type="text" className="form-control margin-bottom-5" id="promoter_code" name="promoter_code" placeholder={"*"+t('codicepromotore')} value={inputs.promoter_code || ""} onChange={handleChange}/>
                                     </div>
                                 </div>
 
                                 <div className="row">
                                     <div className="col-sm-6 pd-r-2">
-                                        <label className="color-top" htmlFor="username">Username</label>
-                                        <input type="text" className="form-control margin-bottom-5" id="username" name="username" placeholder="*Username" value={inputs.username || ""} onChange={handleChange}/>
+                                        <label className="color-top" htmlFor="username">{t('nomeutente')}</label>
+                                        <input type="text" className="form-control margin-bottom-5" id="username" name="username" placeholder={"*"+t('nomeutente')} value={inputs.username || ""} onChange={handleChange}/>
                                     </div>
                                     <div className="col-sm-6 pd-l-2">
                                         <label className="color-top" htmlFor="password">Password</label>
@@ -692,19 +701,19 @@ function RegistrationModal(props) {
                                     <div className="col-sm-4 pd-r-2">
                                         <input className="form-check-input" type="checkbox" name="terms_conditions" id="terms_conditions" onClick={()=>setMaggiorenne(!maggiorenne)} />
                                         <label className="form-check-label white" htmlFor="terms_conditions" >
-                                            * I have more than 18 years </label>
+                                            * {t('ho18anni')} </label>
                                     </div>
                                     <div className="col-sm-8 pd-l-2">
                                         <input className="form-check-input" type="checkbox" name="18years" id="18years" onClick={()=>setTermini(!termini)}/>
                                         <label className="form-check-label white" htmlFor="18years">
-                                            * <a href="">Terms and conditions</a> and <a href="">Privacy Policy</a> are accepted
+                                            * <a href="">{t('termini')}</a> {t('e')} <a href="">{t('politicariservatezza')}</a> {t('sonoaccettate')}
                                         </label>
                                     </div>
                                 </div>
 
-                                {!asking ? <button type="submit" className="login" onClick={()=>{setAsking(true);handleSubmit();setSubmit(1)}}>Registrati</button> : ""}
+                                {!asking ? <button type="submit" className="login" onClick={()=>{setAsking(true);handleSubmit();setSubmit(1)}}>{t('registrati')}</button> : ""}
 
-                                <p className="white">Do you already have an account? <a href="#" onClick={()=>{props.openModalLogin(); close();}}>Login now</a></p>
+                                <p className="white">{t('haigaccount')}? <a href="#" onClick={()=>{props.openModalLogin(); close();}}>{t('accediora')}</a></p>
                         </div>
                     </>}
                 </div >

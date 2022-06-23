@@ -1,8 +1,11 @@
-import React, {Component} from "react";
+import React from "react";
+import { useTranslation } from "react-i18next";
 
-class SelectCountry extends Component{
+const SelectCountry = (props) =>{
 
-    state = {
+  const { t, i18n } = useTranslation();
+
+    const state = {
         countries:[
             {
               name: 'Afghanistan',
@@ -1757,25 +1760,25 @@ class SelectCountry extends Component{
         ],
     }
 
-    render(){
+    return(
+        <>
 
-        return(
-            <>
-
-                <select id={this.props.name} name={this.props.name} className="form-control margin-bottom-5"  value={this.props.value || ""} onChange={this.props.onchange()}>
-                    <option value="">--Select--</option>
-                    {this.state.countries.map(country =>
-                    <option key={country.name} value={country.code}>{country.name}</option>
-                    )}
-                </select>
-            </>
-        );
-    }
+            <select id={props.name} name={props.name} className="form-control margin-bottom-5"  value={props.value || ""} onChange={props.onchange()}>
+                <option value="">{"--"+t('seleziona')+"--"}</option>
+                {state.countries.map(country =>
+                <option key={country.name} value={country.code}>{country.name}</option>
+                )}
+            </select>
+        </>
+    );
+    
 }
 
-class SelectProvince extends Component {
+const SelectProvince = (props) =>{
 
-    state = {
+  const { t, i18n } = useTranslation();
+
+    const state = {
         provinces:[
             
             {id:"84",nome:"Agrigento",sigla:"AG"},
@@ -1893,26 +1896,28 @@ class SelectProvince extends Component {
         ],
     }
     
-    render(){
+    
 
-        return(
-            <>
+    return(
+        <>
 
-                <select id={this.props.name} name={this.props.name} className="form-control margin-bottom-5"  value={this.props.value || ""} onChange={this.props.onchange()}>
-                    <option value="">--Select--</option>
-                    {this.state.provinces.map(province =>
-                    <option key={province.nome} value={province.sigla}>{province.nome}</option>
-                    )}
-                </select>
-            </>
-        );
-    }
+            <select id={props.name} name={props.name} className="form-control margin-bottom-5"  value={props.value || ""} onChange={props.onchange()}>
+                <option value="">{"--"+t('seleziona')+"--"}</option>
+                {state.provinces.map(province =>
+                <option key={province.nome} value={province.sigla}>{province.nome}</option>
+                )}
+            </select>
+        </>
+    );
+    
 }
 
 
-class SelectCity extends Component {
+const SelectCity = (props) =>{
 
-    state = {
+  const { t, i18n } = useTranslation();
+
+    const state = {
         cities:[
             {id:"3455",nome:"Abano Terme"},
             {id:"7639",nome:"Abbadia Cerreto"},
@@ -10127,21 +10132,19 @@ class SelectCity extends Component {
             {id:"7810",nome:"Zungri"},
         ],
     }
+
+    return(
+        <>
+
+            <select id={props.name} name={props.name} className="form-control margin-bottom-5" value={props.value || ""} onChange={props.onchange()}>
+                <option value="">{"--"+t('seleziona')+"--"}</option>
+                {state.cities.map(city =>
+                <option key={city.id} value={city.nome}>{city.nome}</option>
+                )}
+            </select>
+        </>
+    );
     
-    render(){
-
-        return(
-            <>
-
-                <select id={this.props.name} name={this.props.name} className="form-control margin-bottom-5" value={this.props.value || ""} onChange={this.props.onchange()}>
-                    <option value="">--Select--</option>
-                    {this.state.cities.map(city =>
-                    <option key={city.id} value={city.nome}>{city.nome}</option>
-                    )}
-                </select>
-            </>
-        );
-    }
 }
 
 export {SelectCountry};

@@ -17,6 +17,8 @@ import SelectDate from './selectDate'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Spinner from 'react-bootstrap/Spinner';
 
+import { useTranslation } from "react-i18next";
+
 Modal.setAppElement("#root");
 
 function generateApiKey(){
@@ -26,6 +28,8 @@ function generateApiKey(){
 }  
 
 function RegistrationModalPix(props) {
+
+    const { t, i18n } = useTranslation();
 
     const close = props.closeModal;
     const SKIN = props.skin;
@@ -82,7 +86,7 @@ function RegistrationModalPix(props) {
 
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+            alert(t('erroregenerico'));  console.log(e);
         }
     };
 
@@ -112,7 +116,7 @@ function RegistrationModalPix(props) {
 
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+            alert(t('erroregenerico'));  console.log(e);
         }
         
     }
@@ -137,7 +141,7 @@ function RegistrationModalPix(props) {
 
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+            alert(t('erroregenerico'));  console.log(e);
         }
     }
 
@@ -172,7 +176,7 @@ function RegistrationModalPix(props) {
 
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+            alert(t('erroregenerico'));  console.log(e);
         }
     }
 
@@ -201,7 +205,7 @@ function RegistrationModalPix(props) {
             })
         }catch (e){
 
-           alert("Errore tecnico, contattare l'assistenza");
+           alert(t('erroregenerico'));
             console.log(e);
         }
     };
@@ -220,7 +224,7 @@ function RegistrationModalPix(props) {
 
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+            alert(t('erroregenerico'));  console.log(e);
         }
     }
 
@@ -238,7 +242,7 @@ function RegistrationModalPix(props) {
 
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+            alert(t('erroregenerico'));  console.log(e);
         }
     }
 
@@ -260,7 +264,7 @@ function RegistrationModalPix(props) {
             })
         }catch (e){
 
-            alert("Errore tecnico, contattare l'assistenza");  console.log(e);
+            alert(t('erroregenerico'));  console.log(e);
         }
     }
 
