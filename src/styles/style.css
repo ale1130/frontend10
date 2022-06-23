@@ -1392,3 +1392,24 @@ div#loadNextGames>div.show-all-p>a>svg {
   stroke-dashoffset: 0;
   opacity: 1;
 }
+
+/*roba lingue ale*/
+
+.lingua{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.card{
+  width:20%;
+}
+
+.sback{
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: #007bff;
+  color: #fff;
+  border-radius: 3px;
+}

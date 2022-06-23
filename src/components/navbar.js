@@ -101,7 +101,8 @@ const GameSection = (props) =>{
             {id:3, nome:t('navbar.casinolive'), link:"/casino-live", immagine:""},
             {id:4, nome:t('navbar.poker'), link:"/poker", immagine:""},
             {id:5, nome:t('navbar.virtual'), link:"/virtual", immagine:""},
-            {id:6, nome:t('navbar.bingo'), link:"/bingo", immagine:""}
+            {id:6, nome:t('navbar.bingo'), link:"/bingo", immagine:""},
+            {id:6, nome:"languages", link:"/languages", immagine:""}
         ],
     }
 

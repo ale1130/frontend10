@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 
-import {SetLastLogin, PLAYER_LEVEL, ConvertObjectToArraySettings, getAge, format, generateMd5, generateUniqId, ckeckSkinSett, skinId, SHOP_LEVEL, ConvertObjectToArray, ConvertObjectToStringIndex, ConvertObjectToStringValues } from "../constants/global";
+import {SetLastLogin, PLAYER_LEVEL, getAge, format, generateMd5, generateUniqId, ckeckSkinSett, skinId, SHOP_LEVEL, ConvertObjectToArray, ConvertObjectToStringIndex, ConvertObjectToStringValues } from "../constants/global";
 
 import BoxPromo from './boxpromodefault'
 import ErrorBox from "../components/errorBox";
@@ -32,7 +32,7 @@ function RegistrationModal(props) {
     const { t, i18n } = useTranslation();
 
     const close = props.closeModal;
-    const SKIN = props.skin;
+    const [SKIN, setSkin] = useState(props.skin);
 
     const [inputs, setInputs] = useState(["empty"]);
 
@@ -41,7 +41,7 @@ function RegistrationModal(props) {
     const [termini, setTermini] = useState(false);
     const [maggiorenne, setMaggiorenne] = useState(false);
 
-    const [skinSettings, setSkinSettings] = useState(["empty"]);
+    const [skinSettings, setSkinSettings] = useState(props.skinSettings);
 
     const [errorMessages, setErrorMessages] = useState([]);
     const [submit, setSubmit] = useState(0);
@@ -108,30 +108,6 @@ function RegistrationModal(props) {
             alert(t('errorecodicefiscale'));
         }
     }
-    
-    const Settings = async () =>{
-        try{
-
-            const data = await axios
-            .post('http://localhost:3001/getskinsettings',{ id : SKIN["id"] })
-            .then(response => {
-
-                if(!response.data.err){
-
-                    setSkinSettings(ConvertObjectToArraySettings(response.data));
-                }
-            })
-
-        }catch (e){
-
-            alert(t('erroregenerico'));  console.log(e);
-        }
-    };
-
-    useEffect(()=>{
-
-        Settings();
-    },[]);
 
     const createPlayer = async () =>{
 

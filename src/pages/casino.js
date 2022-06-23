@@ -16,13 +16,15 @@ const Providers = (props) =>{
     const [providers, setProviders] = useState(props.providers);
     const SKIN = props.skin;
 
+    var today = + new Date();
+
     return (
 
         <><div className="slide-casino">
             {(providers.map(provider =>
 
                 <div key={provider.id} className="provider providers-list" id="provider-7">
-                    <a><img src={PROVIDERS_LOGO_WEB_PATH(SKIN) + provider.img} className={"provider-" + provider.nome} /></a>
+                    <a><img src={PROVIDERS_LOGO_WEB_PATH(SKIN) + provider.img+"?v="+today} className={"provider-" + provider.nome} /></a>
                 </div>
             ))}
         </div></>
