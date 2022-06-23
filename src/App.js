@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from "react";
+import React, {useState} from "react";
 import {useEffect} from "react";
 
 import {
@@ -11,7 +11,7 @@ import axios from "axios";
 
 //global
 
-import { ConvertObjectToArray, skinId, logoDirectory } from "./constants/global";
+import {ConvertObjectToArraySettings, ConvertObjectToArray, skinId, logoDirectory } from "./constants/global";
 
 //Rotte
 
@@ -43,23 +43,23 @@ import Spinner from 'react-bootstrap/Spinner';
 //Components per stile globale dopo caricamento informazioni skin
 
 import {createGlobalStyle} from 'styled-components';
-import {Megastile} from "./components/superStile";
 
 //Languages
 
 import { useTranslation } from 'react-i18next';
+import { AdminLanguages, LanguagesBrasiliano, LanguagesArabo, LanguagesCinese, LanguagesFrancese, LanguagesInglese, LanguagesPortoghese, LanguagesRumeno, LanguagesSpagnolo, LanguagesTedesco, LanguagesTurco, LanguagesUngherese } from "./components/adminLanguages";
 
 function App(){
 
   //Variabile di caricamento
 
   const [loader, setLoader] = useState(0);
-  const [loader2, setLoader2] = useState(0);
-  const [loader3, setLoader3] = useState(0);
 
   //Variabili per settaggio e raccoglimento dati skin
 
   const [SKIN, setSKIN] = useState(["empty"]);
+  const [Stile, setStile] = useState();
+  const [skinSettings, setSkinSettings] = useState(["empty"]);
 
   //Variabili per informazioni utente
 
@@ -88,10 +88,10 @@ function App(){
     try{
 
       const data = await axios
-      .post('http://localhost:3001/getdataskin',{skinid : skinId})
+      .get('https://stageadmin.gamesolutions.org/apisfrontend/apis.php?api=getdataskin&id='+skinId)
       .then(response => {
-        
-        setSKIN(response.data[0]);
+
+        setSKIN(response.data);
       })
     }catch (e){
 
@@ -103,6 +103,8 @@ function App(){
     GetdataSkin();
   },[]);
 
+  //Stile globale skin
+
   useEffect(() => {
 
     if(SKIN!="empty"){
@@ -110,11 +112,68 @@ function App(){
     }
   },[SKIN]);
 
-  //Stile globale skin
+  useEffect(()=>{
 
-  const Stile = createGlobalStyle`
-    ${Megastile(SKIN)}
-  `;
+    if(loader==1){
+
+      setStile(createGlobalStyle`
+        :root {
+          --color1: ${SKIN["colore1"]};
+          --color2: ${SKIN["colore2"]};
+          --color3: ${SKIN["colore3"]};
+          --color4: ${SKIN["colore4"]};
+          --color5: ${SKIN["colore5"]};
+          --color6: ${SKIN["colore6"]};
+          --color7: ${SKIN["colore7"]};
+          --color8: ${SKIN["colore8"]};
+          --color9: ${SKIN["colore9"]};
+          --color10: ${SKIN["colore10"]};
+          --color11: ${SKIN["colore11"]};
+          --color12: ${SKIN["colore12"]};
+          --color13: ${SKIN["colore13"]};
+          --color14: ${SKIN["colore14"]};
+          --color15: ${SKIN["colore15"]};
+          --color16: ${SKIN["colore16"]};
+          --color17: ${SKIN["colore17"]};
+          --color18: ${SKIN["colore18"]};
+          --color19: ${SKIN["colore19"]};
+          --color20: ${SKIN["colore20"]};
+        }
+      `);
+
+      setLoader(loader+1);
+    }
+    
+  },[loader])
+
+  //Impostazioni della skin
+      
+  const Settings = async () =>{
+    try{
+
+      const data = await axios
+      .post('http://localhost:3001/getskinsettings',{ id : SKIN["id"] })
+      .then(response => {
+
+        if(!response.data.err){
+
+          setSkinSettings(ConvertObjectToArraySettings(response.data));
+        }
+      })
+
+    }catch (e){
+
+      alert(t('erroregenerico'));  console.log(e);
+    }
+  };
+
+  useEffect(()=>{
+
+    if(loader == 3){
+      Settings();
+    }
+    
+  },[loader])
 
   //Verifica dati utente nel localStorage
 
@@ -130,7 +189,7 @@ function App(){
 
           setUser(ConvertObjectToArray(response.data[0]));
           setIsLogged(true);
-          setLoader2(loader2+1);
+          setLoader(loader+1);
 
           localStorage.setItem('username', response.data[0].username);
           localStorage.setItem('passhash', response.data[0].passhash);
@@ -138,7 +197,7 @@ function App(){
 
           localStorage.removeItem('username');
           localStorage.removeItem('passhash');
-          setLoader2(loader2+1);
+          setLoader(loader+1);
         }
       })
 
@@ -150,7 +209,8 @@ function App(){
 
   useEffect(() => {
 
-    if(loader>0){
+    if(loader==3){
+
       const loggedInUsername = localStorage.getItem("username");
       const loggedInPasshash = localStorage.getItem("passhash");
       if (loggedInUsername && loggedInPasshash && skinId) {
@@ -158,7 +218,7 @@ function App(){
         VerifyDataUser(loggedInUsername, loggedInPasshash, skinId);
       }else{
 
-        setLoader2(loader2+1);
+        setLoader(loader+1);
 
         localStorage.removeItem('username');
         localStorage.removeItem('passhash');
@@ -171,7 +231,7 @@ function App(){
   
   useEffect(()=>{
 
-    if(loader2>0){
+    if(loader==4){
 
       const currentLang = localStorage.getItem("language");
       const autoDetected = localStorage.getItem("i18nextLng");
@@ -181,12 +241,12 @@ function App(){
       if(currentLang && arrayLang.includes(currentLang)){
 
         i18n.changeLanguage(currentLang);
-        setLoader3(loader3+1);
+        setLoader(loader+1);
 
       }else if(arrayLang.includes(autoDetected)){
 
         i18n.changeLanguage(currentLang);
-        setLoader3(loader3+1);
+        setLoader(loader+1);
         
       }else{
 
@@ -195,62 +255,63 @@ function App(){
           case 1:
             i18n.changeLanguage('en');
             localStorage.setItem('language', 'en');
-            setLoader3(loader3+1);
+            setLoader(loader+1);
           break;
 
           case 2:
             i18n.changeLanguage('en');
             localStorage.setItem('language', 'en');
-            setLoader3(loader3+1);
+            setLoader(loader+1);
           break;
 
           case 3:
             i18n.changeLanguage('pt');
             localStorage.setItem('language', 'pt');
-            setLoader3(loader3+1);
+            setLoader(loader+1);
           break;
 
           case 4:
             i18n.changeLanguage('en');
             localStorage.setItem('language', 'en');
-            setLoader3(loader3+1);
+            setLoader(loader+1);
           break;
 
           case 5:
             i18n.changeLanguage('en');
             localStorage.setItem('language', 'en');
-            setLoader3(loader3+1);
+            setLoader(loader+1);
           break;
 
           case 6:
             i18n.changeLanguage('en');
             localStorage.setItem('language', 'en');
-            setLoader3(loader3+1);
+            setLoader(loader+1);
           break;
 
           case 7:
             i18n.changeLanguage('en');
             localStorage.setItem('language', 'en');
-            setLoader3(loader3+1);
+            setLoader(loader+1);
           break;
 
           default:
             i18n.changeLanguage('en');
             localStorage.setItem('language', 'en');
-            setLoader3(loader3+1);
+            setLoader(loader+1);
           break;
         }
       }
     }
 
-  },[loader2]);
+  },[loader]);
 
   return (
     <>
 
-      {loader3>0 ? 
+      {loader>=5 ? 
 
       <>
+
         <Stile />
 
         <Router>
@@ -284,6 +345,7 @@ function App(){
               openModalLogin={() => setShow(true)}
               setUserC={setUser}
               setLogin={setIsLogged}
+              skinSettings={skinSettings}
             />
             
             :
@@ -311,6 +373,19 @@ function App(){
             <Route path="/profile/info" element={<Info datiUtente={USER} />} />
             <Route path="/profile/password" element={<Password datiUtente={USER} />} />
             <Route path="/profile/messages" element={<Messages datiUtente={USER} />} />
+
+            <Route path="/languages" element={<AdminLanguages />} />
+            <Route path="/languages/inglese" element={<LanguagesInglese />} />
+            <Route path="/languages/tedesco" element={<LanguagesTedesco />} />
+            <Route path="/languages/turco" element={<LanguagesTurco />} />
+            <Route path="/languages/arabo" element={<LanguagesArabo />} />
+            <Route path="/languages/rumeno" element={<LanguagesRumeno />} />
+            <Route path="/languages/cinese" element={<LanguagesCinese />} />
+            <Route path="/languages/spagnolo" element={<LanguagesSpagnolo />} />
+            <Route path="/languages/francese" element={<LanguagesFrancese />} />
+            <Route path="/languages/portoghese" element={<LanguagesPortoghese />} />
+            <Route path="/languages/brasiliano" element={<LanguagesBrasiliano />} />
+            <Route path="/languages/ungherese" element={<LanguagesUngherese />} />
           </Routes>
           
         </Router>
