@@ -1338,8 +1338,17 @@ div#loadNextGames>div.show-all-p>a>svg {
   text-align: center;
 }
 
+div.container-casino:hover>div.middle-button {
+  background: #000;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .container-casino:hover .image-casino-icon {
-  opacity: 0.1;
+  opacity: 1;
 }
 
 .container-casino:hover .middle-button {
