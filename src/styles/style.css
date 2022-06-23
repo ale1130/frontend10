@@ -1327,24 +1327,24 @@ div#loadNextGames>div.show-all-p>a>svg {
   backface-visibility: hidden;
 }
 
+div.container-casino:hover>div.middle-button {
+  background: #000000d4;
+}
+
+
 .middle-button {
   transition: .5s ease;
   opacity: 0;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+  top: 0px;
+  left: 0px;
   text-align: center;
-}
-
-div.container-casino:hover>div.middle-button {
-  background: #000;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .container-casino:hover .image-casino-icon {
