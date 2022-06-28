@@ -30,6 +30,7 @@
     "react-scripts": "^5.0.1",
     "react-slideshow-image": "^3.7.5",
     "styled-components": "^5.3.5",
+    "universal-cookie": "^4.0.4",
     "use-search-params": "^1.0.4",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"

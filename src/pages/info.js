@@ -1,30 +1,50 @@
 import React, { useState } from "react";
 
-import Spinner from 'react-bootstrap/Spinner';
+import axios from "axios";
+
+import { skinUrl, convertToFormdata, ckeckSkinSett, ConvertObjectToArrayErrors } from "../constants/global";
 
 import Profile from "../pages/profile";
 import ErrorBox from "../components/errorBox";
 import SuccessBox from "../components/successBox";
 
+import { useTranslation } from "react-i18next";
+import { SelectLanguageSett } from "../components/languagesselector";
+
 function Info (props){
 
+    const { t, i18n } = useTranslation();
+
     const USER = props.datiUtente;
-    
-    const [inputs, setInputs] = useState({});
+
+    const [inputs, setInputs] = useState({"email":USER["email"],"mobile":USER["mobile"], "max_deposit":USER["max_deposit"], "max_deposit_status":USER["max_deposit_status"], "user_id":USER["id"], "language_sett":USER["primary_language"] });
 
     const [modalError, setModalError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState([]);
 
     const [modalSuccess, setModalSuccess] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
 
     const handleChange = (event) => {
-      const name = event.target.name;
-      const value = event.target.value;
-      setInputs(values => ({...values,[name]: value}))
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({...values,[name]: value}))
     }
 
-    const error = (message="Errore") =>{
+    const handleChangeRadio = (event) => {
+
+        var newValue=1;
+
+        const name = event.target.name;
+        const value = event.target.defaultChecked;
+
+        if(value == 1){
+            newValue = 0;
+        }
+        setInputs(values => ({...values,[name]: newValue}))
+    }
+
+    const error = (message=[]) =>{
         setModalSuccess(false);
         setModalError(true);
 
@@ -38,106 +58,143 @@ function Info (props){
         setSuccessMessage(message);
     }
     
+    const SendData = async () => {
+
+        try{
+    
+          const data = await axios
+            ({
+                method:"post",
+                url:skinUrl+"rest/saveprofile.php",
+                data:convertToFormdata(inputs)
+            })
+          .then(response => {
+    
+            if(response.data.status=="ok"){
+
+                success(t('datiaggiornati'))
+              
+            }else{
+
+                error(ConvertObjectToArrayErrors(response.data.message));
+            }
+          })
+    
+        }catch (e){
+    
+            alert(t('erroregenerico'));  console.log(e);
+        }
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        SendData();
     }
 
     return (
         <>
-            {props.datiUtente=="empty" ? 
+            {<Profile paginaAttuale={"info"} datiUtente={USER} />}
 
-                <>
-                    <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                </>
-                :
-                <>
-                    {<Profile paginaAttuale={"info"} datiUtente={USER} />}
+            <div className="col-md-12 col-lg-9">
 
-                    <div className="col-md-12 col-lg-9">
+                <table width="100%" className="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h2 className="virtual-title">Cambia dati</h2>
 
-                        <table width="100%" className="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <h2 className="virtual-title">Cambia dati</h2>
+                                    <form onSubmit={handleSubmit} className="form-signUp clearForm">
 
-                                            <form onSubmit={handleSubmit} className="form-signUp clearForm">
+                                    {modalError ? <ErrorBox message={errorMessage}/> : ""} {modalSuccess ? <SuccessBox message={successMessage}/> : ""}
 
-                                            {modalError ? <ErrorBox message={errorMessage}/> : ""} {modalSuccess ? <SuccessBox message={successMessage}/> : ""}
+                                        <table width="100%" className="table table-bordered profile-table">
+                                        
+                                            <tbody>
+                                            
+                                                <tr>
+                                                    <td width="35%">
+                                                        <strong>Username</strong>
+                                                    </td>
+                                                    <td>
+                                                        {USER["username"]}                                            
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <strong>Nome e cognome</strong>
+                                                    </td>
+                                                    <td>
+                                                        {USER["firstname"]+" "+USER["lastname"]}                                               
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <strong>Email *</strong>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="email" name="email" placeholder="Email" value={inputs.email ||""} onChange={handleChange} className="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <strong>Cellulare</strong>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="mobile" name="mobile" placeholder="Cellulare" value={inputs.mobile || ""} onChange={handleChange} className="form-control" />
+                                                    </td>
+                                                </tr>
 
-                                                <table width="100%" className="table table-bordered profile-table">
-                                                
-                                                    <tbody>
+                                                {!ckeckSkinSett('disable_language_select') ?      
                                                     
+                                                    <>
                                                         <tr>
-                                                            <td width="35%">
-                                                                <strong>Username</strong>
+                                                            <td>
+                                                                <strong>Lingua</strong>
                                                             </td>
                                                             <td>
-                                                                {USER["username"]}                                            
+                                                                <SelectLanguageSett value={inputs.language_sett} onchange={()=>handleChange}/>
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <strong>Nome e cognome</strong>
-                                                            </td>
-                                                            <td>
-                                                                {USER["firstname"]+" "+USER["lastname"]}                                               
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <strong>Email *</strong>
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="email" name="email" placeholder="Email" value={USER["email"]} onChange={handleChange} className="form-control" />
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <strong>Cellulare</strong>
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="mobile" name="mobile" placeholder="Cellulare" value={USER["mobile"]} onChange={handleChange} className="form-control" />
-                                                            </td>
-                                                        </tr>
-                                                        
-                                                        <tr>
-                                                            <td>
-                                                                <strong>Deposito massimo settimanale</strong>
-                                                            </td>
-                                                            <td>
-                                                                <div className="input-group mb-3">
+                                                    </>
 
-                                                                    <input type="text" id="limiteDeposito" name="limiteDeposito" className="form-control" aria-label="Text input with checkbox" value={USER["max_deposit"]} onChange={handleChange} placeholder="Non impostato" />
+                                                    :
 
-                                                                    <div className="input-group-append">
-                                                                        <div className="input-group-text">
-                                                                            <input type="checkbox" id="ckeckLimite" name="ckeckLimite" aria-label="Checkbox for following text input" onChange={handleChange} /> Attivo
-                                                                        </div>
-                                                                    </div>
+                                                    <></>
+                                                } 
+                                                
+                                                <tr>
+                                                    <td>
+                                                        <strong>Deposito massimo settimanale</strong>
+                                                    </td>
+                                                    <td>
+                                                        <div className="input-group mb-3">
 
+                                                            <input type="text" id="max_deposit" name="max_deposit" className="form-control" aria-label="Text input with checkbox" value={inputs.max_deposit || ""} onChange={handleChange} placeholder={inputs.max_deposit ? "" : "Non impostato"} />
+
+                                                            <div className="input-group-append">
+                                                                <div className="input-group-text">
+                                                                    <input type="checkbox" id="max_deposit_status" name="max_deposit_status" aria-label="Checkbox for following text input" onChange={handleChangeRadio} value={inputs.max_deposit_status} defaultChecked={inputs.max_deposit_status} /> Attivo
                                                                 </div>
-                                                            </td>
-                                                        </tr>
-                                                
-                                                    </tbody>
-                                                </table>
-                                                
-                                                <input type="submit" className="login" value={"Salva dati"} />
-                                            </form>
+                                                            </div>
 
-                                        <form id="removeMaxDeposit" name="removeMaxDeposit"></form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                        
+                                            </tbody>
+                                        </table>
+                                        
+                                        <input type="submit" className="login" value={t('salvadati')} />
+                                    </form>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </>
-            }
+                                <form id="removeMaxDeposit" name="removeMaxDeposit"></form>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </>
     )
 }

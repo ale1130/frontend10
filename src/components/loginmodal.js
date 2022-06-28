@@ -1,16 +1,20 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import Modal from "react-modal";
 import axios from "axios";
 
 import { useTranslation } from "react-i18next";
 
-import ErrorBox from '../components/errorBox.js'
+import ErrorBox from '../components/errorBox.js';
 
-import {ConvertObjectToArray} from '../constants/global'
+import {api, convertObjectStringToNumbers, skinUrl} from '../constants/global';
+
+import Cookies from 'universal-cookie';
 
 Modal.setAppElement("#root");
 
 function LoginModal(props) {
+
+    const cookies = new Cookies();
 
     const { t, i18n } = useTranslation();
 
@@ -56,34 +60,42 @@ function LoginModal(props) {
 
         try{
 
-            const data = await axios
-            .post('http://localhost:3001/getuserdata',{ username : inputs.username, password : inputs.password, skin : skin_id })
+            const data = await api
+            .get('rest/login/:'+inputs.username+"/:"+inputs.password+"/")
             .then(response => {
 
-                if(!response.data.message){
+                if(response.data.status=="ok"){
 
-                    if(response.data[0].blocked==1){
-
+                    if(response.data.dati["blocked"]==1){
+                    
                         var errorMsg = [];
-            
+                
                         errorMsg [0] = t('errorilogin.bloccato');
-
+    
                         error(errorMsg);
+    
                     }else{
 
-                        props.setUserC(ConvertObjectToArray(response.data[0]));
+                        props.setUserC(convertObjectStringToNumbers(response.data.dati));
                         props.setLogin(true);
-                        localStorage.setItem('username', response.data[0].username);
-                        localStorage.setItem('passhash', response.data[0].passhash);
+
+                        cookies.set('gio_uid', response.data.dati.id, { path: '/' });
+                        cookies.set('gio_pass', response.data.dati.passhash, { path: '/' });
                         
                         close();
                     }
-                    
-                }else{
-                    
+
+                }else if(response.data.status=="nouser"){
+
                     var errorMsg = [];
             
-                    errorMsg [0] = t(response.data.message);
+                    errorMsg [0] = t('errorilogin.credenziali');
+
+                    error(errorMsg);
+                }else{
+                    var errorMsg = [];
+            
+                    errorMsg [0] = t('erroregenerico');
 
                     error(errorMsg);
                 }

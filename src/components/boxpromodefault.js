@@ -2,46 +2,28 @@ import React, {useState, useEffect} from "react";
 
 import axios from "axios";
 
-import Spinner from 'react-bootstrap/Spinner';
-
 import { useTranslation } from "react-i18next";
 import { MEDIA_PROMO_WEB_PATH } from "../constants/global";
+
+import { api,convertObjectStringToNumbers, skinUrl } from "../constants/global";
 
 function BoxPromo (props){
 
     const { t, i18n } = useTranslation();
 
-    const logoDirectory = "";
-
-    const promoId = props.skindefaultpromo;
-
     const [datiPromo, setDatiPromo] = useState(["empty"]);
     const [SKIN, setSkin] = useState(props.skin);
-
-    const ConvertObjectToArray = (object) =>{
-
-        var objectArray = Object.entries(object);
-    
-        var arrUtilizzo = [];
-    
-        objectArray.forEach(([key, value]) => {
-    
-          arrUtilizzo[key] = value;
-        });
-    
-        return arrUtilizzo;
-    }
 
     const GetPromo = async () =>{
 
         try{
     
-          const data = await axios
-          .post('http://localhost:3001/getdatapromo',{id : promoId, skin_id: props.skin_id})
+          const data = await api
+          .get('rest/getdatapromo/:'+SKIN["default_promo"]+"/")
           .then(response => {
 
-            if(!response.data.message){
-                setDatiPromo(ConvertObjectToArray(response.data[0]));
+            if(response.data.status=="ok"){
+                setDatiPromo(convertObjectStringToNumbers(response.data.dati));
             }
             
           })

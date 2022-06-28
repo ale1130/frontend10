@@ -2,6 +2,10 @@ import { isMobile, browserName } from "react-device-detect";
 
 import axios from "axios";
 
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
 export const PLAYER_LEVEL = 30;
 export const SHOP_LEVEL = 20;
 
@@ -16,6 +20,20 @@ export const ConvertObjectToArray = (object) =>{
     objectArray.forEach(([key, value]) => {
 
       arrUtilizzo[key] = value;
+    });
+
+    return arrUtilizzo;
+}
+
+export const ConvertObjectToArrayErrors = (object) =>{
+
+    var objectArray = Object.entries(object);
+
+    var arrUtilizzo = [];
+
+    objectArray.forEach(([key, value]) => {
+
+      arrUtilizzo.push(value);
     });
 
     return arrUtilizzo;
@@ -84,7 +102,11 @@ export const getAge = (dateString) => {
     }
 }
 
-export const skinId = (new URL(window.location.href)).searchParams.get('id');
+export const skinUrl = /*new URL(document.location.origin)*/ "https://betplay360.com/";
+
+export const api = axios.create({baseURL: skinUrl});
+
+export const skinId = 3;
 
 export const logoDirectory = "https://media.betzonelab.com/skins/logo/";
 
@@ -121,46 +143,18 @@ export const convertDate = (timeStamp) =>{
 export const LogOut = () => {
 
     if (window.confirm('Sicuro?')){
-        localStorage.removeItem('username');
-        localStorage.removeItem('passhash');
-        window.location.href = '/?id=3';
+        cookies.remove('gio_uid', { path: '/' });
+        cookies.remove('gio_pass', { path: '/' });
+        window.location.href="/";
     }
 };
 
-export const ConvertObjectToArraySettings = (object) =>{
-
-    var arrUtilizzo = [];
-
-    object.map(setting =>
-        {arrUtilizzo[setting.setting]=1;}
-    )
-
-    return arrUtilizzo;
-}
-
 export const ckeckSkinSett = (arraySettings, setting) =>{
 
-    if(arraySettings[setting] !== undefined){
+    if(arraySettings.includes(setting)){
         return true;
     }else{
         return false;
-    }
-}
-
-export const SetLastLogin = async (user_id) =>{
-
-    const lastLogin = Math.floor(Date.now() / 1000);
-
-    const query = "UPDATE users SET last_login = "+lastLogin+" WHERE id = "+user_id;
-
-    try{
-
-      const data = await axios
-      .post('http://localhost:3001/modifylogin',{ query : query });
-
-    }catch (e){
-
-      console.log(e);
     }
 }
 
@@ -190,5 +184,35 @@ export const MEDIA_PROMO_WEB_PATH = (SKIN) =>{
     return SKIN["cdn_url"]+"/promotions/";
 }
 
+export const convertObjectStringToNumbers = (array) =>{
 
+    var objectArray = Object.entries(array);
 
+    var arrUtilizzo = [];
+
+    objectArray.forEach(([key, value]) => {
+
+        if(value && value!= "" && value != ''){
+            if(isNaN(value)){
+                arrUtilizzo[key] = value;
+            }else{
+                arrUtilizzo[key] = parseFloat(value);
+            }
+        }else{
+            arrUtilizzo[key] = value;
+        }
+    });
+
+    return arrUtilizzo;
+}
+
+export const convertToFormdata = (object) =>{
+
+    var formData = new FormData();
+
+    for (var key in object) {
+        formData.append(key, object[key])
+    }
+
+    return formData
+}

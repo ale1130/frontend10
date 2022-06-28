@@ -78,17 +78,17 @@ export const AdminLanguages = () =>{
 
     const state = {
         languages:[
-            {id:1, sigla:"en", nome:t('languages.inglese'), link:'/languages/inglese?id=3', immagine:"https://betplay360.com/static-media/flags/United-States.png"},
-            {id:2, sigla:"de", nome:t('languages.tedesco'), link:'/languages/tedesco?id=3', immagine:"https://betplay360.com/static-media/flags/Germany.png"},
-            {id:3, sigla:"tr", nome:t('languages.turco'), link:'/languages/turco?id=3', immagine:"https://betplay360.com/static-media/flags/Turkey.png"},
-            {id:4, sigla:"ar", nome:t('languages.arabo'), link:'/languages/arabo?id=3', immagine:"https://betplay360.com/static-media/flags/United-Arab-Emirates.png"},
-            {id:5, sigla:"ro", nome:t('languages.rumeno'), link:'/languages/rumeno?id=3', immagine:"https://betplay360.com/static-media/flags/Romania.png"},
-            {id:6, sigla:"zh", nome:t('languages.cinese'), link:'/languages/cinese?id=3', immagine:"https://betplay360.com/static-media/flags/China.png"},
-            {id:7, sigla:"es", nome:t('languages.spagnolo'), link:'/languages/spagnolo?id=3', immagine:"https://betplay360.com/static-media/flags/Spain.png"},
-            {id:8, sigla:"fr", nome:t('languages.francese'), link:'/languages/francese?id=3', immagine:"https://betplay360.com/static-media/flags/France.png"},
-            {id:9, sigla:"pt", nome:t('languages.portoghese'), link:'/languages/portoghese?id=3', immagine:"https://betplay360.com/static-media/flags/Portugal.png"},
-            {id:10, sigla:"pt-br", nome:t('languages.portoghesebrasiliano'), link:'/languages/brasiliano?id=3', immagine:"https://betplay360.com/static-media/flags/Brasil.png"},
-            {id:11, sigla:"hu", nome:t('languages.ungherese'), link:'/languages/ungherese?id=3', immagine:"https://betplay360.com/static-media/flags/Hungary.png"}
+            {id:1, sigla:"en", nome:t('languages.inglese'), link:'/languages/inglese', immagine:"https://betplay360.com/static-media/flags/United-States.png"},
+            {id:2, sigla:"de", nome:t('languages.tedesco'), link:'/languages/tedesco', immagine:"https://betplay360.com/static-media/flags/Germany.png"},
+            {id:3, sigla:"tr", nome:t('languages.turco'), link:'/languages/turco', immagine:"https://betplay360.com/static-media/flags/Turkey.png"},
+            {id:4, sigla:"ar", nome:t('languages.arabo'), link:'/languages/arabo', immagine:"https://betplay360.com/static-media/flags/United-Arab-Emirates.png"},
+            {id:5, sigla:"ro", nome:t('languages.rumeno'), link:'/languages/rumeno', immagine:"https://betplay360.com/static-media/flags/Romania.png"},
+            {id:6, sigla:"zh", nome:t('languages.cinese'), link:'/languages/cinese', immagine:"https://betplay360.com/static-media/flags/China.png"},
+            {id:7, sigla:"es", nome:t('languages.spagnolo'), link:'/languages/spagnolo', immagine:"https://betplay360.com/static-media/flags/Spain.png"},
+            {id:8, sigla:"fr", nome:t('languages.francese'), link:'/languages/francese', immagine:"https://betplay360.com/static-media/flags/France.png"},
+            {id:9, sigla:"pt", nome:t('languages.portoghese'), link:'/languages/portoghese', immagine:"https://betplay360.com/static-media/flags/Portugal.png"},
+            {id:10, sigla:"pt-br", nome:t('languages.portoghesebrasiliano'), link:'/languages/brasiliano', immagine:"https://betplay360.com/static-media/flags/Brasil.png"},
+            {id:11, sigla:"hu", nome:t('languages.ungherese'), link:'/languages/ungherese', immagine:"https://betplay360.com/static-media/flags/Hungary.png"}
         ],
     };
 

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-import {ConvertObjectToArray} from '../constants/global'
-
 function ErrorBox (props){
 
     const messaggi = props.message;
+
+    console.log(messaggi)
 
     return (
  
@@ -16,7 +16,7 @@ function ErrorBox (props){
                             <div className="" id="saveProfileFormErroriLista">
                             
                                 {messaggi.map(messaggio =>
-                                <><span key={messaggio}>-{messaggio}</span><br /></>
+                                    <><span key={messaggio}>-{messaggio}</span><br /></>
                                 )}
 
                             </div>

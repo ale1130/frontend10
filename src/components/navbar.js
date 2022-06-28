@@ -34,7 +34,7 @@ function Navbar(props){
                     <div className="navigation-bar">
                         <a href="" className="menu-mobile-pul hide-desktop" data-toggle="modal" data-target="#ModalMenu"><i className="fa fa-bars"></i></a>
                         <h1 className="logo">
-                            <a href="/?id=3">
+                            <a href="/">
 
                                 <img src={props.logo}/>
                             </a>
@@ -46,7 +46,7 @@ function Navbar(props){
                         </nav>
                     </div>
                     <div className="login-links">
-                        <a href="/promotions?id=3" className="button-header hide-mobile">
+                        <a href="/promotions" className="button-header hide-mobile">
                             {<GiftIcon />}
                         </a>
 
@@ -67,7 +67,7 @@ function Navbar(props){
 
                                 {openProfile && <BoxUtente setLogin={props.setLogin} closeModal={()=>setOpenProfile(false)} utente={USER}/>}
                     
-                                <a href="/account?id=3" className="button-header hide-mobile">
+                                <a href="/account" className="button-header hide-mobile">
                                     {<CoinIcon />}
                                 </a>
                             </>
@@ -111,7 +111,7 @@ const GameSection = (props) =>{
     return(
         state.gamecategory.map(category =>
             <li className={currentPage==category.link ? "active" : ""} key={category.id}>
-                <a href={category.link+"?id=3"}>
+                <a href={category.link+""}>
                     <span>{category.nome}</span>
                 </a>
             </li>

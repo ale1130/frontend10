@@ -136,5 +136,17 @@
   "cambiapassword":"Cambia password",
   "messaggi":"Messaggi",
   "ultimoaccesso":"Ultimo accesso",
-  "codiceconto":"Codice conto"
+  "codiceconto":"Codice conto",
+
+  "cambiopassword":"Complimenti, cambio password eseguito correttamente al prosimo reindirizzamento vi verrà chiesto di eseguire nuovamente il login",
+  "datiaggiornati":"Complimenti hai aggiornato i tuoi dati con successo!",
+  "da":"Da",
+  "a":"A",
+  "info":"Info",
+  "promo":"Promo",
+  "nonvisualizzato":"Non visualizzato",
+  "visualizzato":"Visualizzato",
+  "cerca":"Cerca",
+  "salvadati":"Salva dati",
+  "toglifiltri":"Rimuovi filtri"
 }

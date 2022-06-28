@@ -20,7 +20,7 @@ function BoxUtente(props){
 
                     <div className="header-drop-down">
                         <p>{t('benvenuto')}<br/><strong>{USER["username"]}</strong></p>
-                        <a className="button-header" href="/account?id=3">{t('versamento')}</a>
+                        <a className="button-header" href="/account">{t('versamento')}</a>
                     </div>
 
                     <a style={{color:"white"}} onClick={props.closeModal}>X</a>
@@ -50,7 +50,7 @@ function BoxUtente(props){
 
                     <div className="footer-drop-down">
 
-                        <a href="/profile?id=3" className="button-header">
+                        <a href="/profile" className="button-header">
 
                             <svg version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512">
                 
@@ -65,7 +65,7 @@ function BoxUtente(props){
                             {t('tuoprofilo')}
                         </a>
 
-                        <a href="/account/transactions?id=3" className="button-header">
+                        <a href="/account/transactions" className="button-header">
                             {t('tuoconto')}
                         </a>
                     </div>

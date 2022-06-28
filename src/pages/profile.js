@@ -4,6 +4,8 @@ import { convertDate } from "../constants/global";
 
 import { useTranslation } from "react-i18next";
 
+import { LogOut } from "../constants/global";
+
 function Profile (props){
 
     const { t, i18n } = useTranslation();
@@ -13,14 +15,6 @@ function Profile (props){
     const currency = USER["currency"];
 
     const saldo_totale = USER["balance"]+USER["balance_withdrawable"]+USER["bonus"];
-
-    const LogOut = () => {
-
-        if (window.confirm('Sicuro?')){
-            localStorage.clear();
-            window.location.href = '/?id=3';
-        }
-    };
 
     var last_login = convertDate(USER["last_login"]);
 
@@ -56,19 +50,19 @@ function Profile (props){
                             </h2>
                             
                             <div>
-                                <a href='/profile/info?id=3'>
+                                <a href='/profile/info'>
                                     <div id="CambiaDati" className={currentPage2=="info" ? "selezionato" : ""} >
                                         {t('cambiadati')}	         
                                     </div>
                                 </a>  
 
-                                <a href='/profile/password?id=3'>
+                                <a href='/profile/password'>
                                     <div id="CambiaPassword" className={currentPage2=="password" ? "selezionato" : ""} >    
                                         {t('cambiapassword')}	                    
                                     </div>
                                 </a> 
 
-                                <a href='/profile/messages?id=3'>
+                                <a href='/profile/messages'>
                                     <div id="Messages" className={currentPage2=="messages" ? "selezionato" : ""} >
                                         {t('messaggi')}	          
                                     </div>

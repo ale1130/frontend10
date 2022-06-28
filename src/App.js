@@ -7,11 +7,16 @@ import {
   Route,
 } from "react-router-dom";
 
-import axios from "axios";
+//Loader
+import { Loader } from "./components/spinner";
+
+//Logged in or not 
+
+import { NoLogged } from "./components/schermatanolog";
 
 //global
 
-import {ConvertObjectToArraySettings, ConvertObjectToArray, skinId, logoDirectory } from "./constants/global";
+import {api, convertObjectStringToNumbers, logoDirectory } from "./constants/global";
 
 //Rotte
 
@@ -37,9 +42,6 @@ import RegistrationModalPix from "./components/registrationpix";
 import {Navbar} from './components/navbar';
 import Footer from './components/footer';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Spinner from 'react-bootstrap/Spinner';
-
 //Components per stile globale dopo caricamento informazioni skin
 
 import {createGlobalStyle} from 'styled-components';
@@ -49,7 +51,16 @@ import {createGlobalStyle} from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { AdminLanguages, LanguagesBrasiliano, LanguagesArabo, LanguagesCinese, LanguagesFrancese, LanguagesInglese, LanguagesPortoghese, LanguagesRumeno, LanguagesSpagnolo, LanguagesTedesco, LanguagesTurco, LanguagesUngherese } from "./components/adminLanguages";
 
+
+//Cookies
+
+import Cookies from 'universal-cookie';
+
 function App(){
+
+  //Cookies
+
+  const cookies = new Cookies();
 
   //Variabile di caricamento
 
@@ -87,11 +98,16 @@ function App(){
 
     try{
 
-      const data = await axios
-      .get('https://stageadmin.gamesolutions.org/apisfrontend/apis.php?api=getdataskin&id='+skinId)
+      const data = await api
+      .get('rest/datiskin')
       .then(response => {
 
-        setSKIN(response.data);
+        if(response.data.status="ok"){
+          setSKIN(convertObjectStringToNumbers(response.data.dati));
+        }else{
+          alert(t('erroregenerico'));
+        }
+
       })
     }catch (e){
 
@@ -151,13 +167,14 @@ function App(){
   const Settings = async () =>{
     try{
 
-      const data = await axios
-      .post('http://localhost:3001/getskinsettings',{ id : SKIN["id"] })
+      const data = await api
+      .get('rest/skinsett')
       .then(response => {
 
-        if(!response.data.err){
-
-          setSkinSettings(ConvertObjectToArraySettings(response.data));
+        if(response.data.status="ok"){
+          setSkinSettings(response.data.dati);
+        }else{
+          alert(t('erroregenerico'));
         }
       })
 
@@ -177,26 +194,35 @@ function App(){
 
   //Verifica dati utente nel localStorage
 
-  const VerifyDataUser = async (user, pass, idS) => {
+  const VerifyDataUser = async (user, pass) => {
 
     try{
 
-      const data = await axios
-      .post('http://localhost:3001/getuserdatacookie',{ username : user, passhash : pass, skin : idS })
+      const data = await api
+      .get('rest/usercookie/:'+user+"/:"+pass+"/")
       .then(response => {
 
-        if(!response.data.message){
+        if(response.data.status=="ok"){
 
-          setUser(ConvertObjectToArray(response.data[0]));
-          setIsLogged(true);
-          setLoader(loader+1);
+          if(response.data.dati["blocked"]!=1){
+            setUser(convertObjectStringToNumbers(response.data.dati));
 
-          localStorage.setItem('username', response.data[0].username);
-          localStorage.setItem('passhash', response.data[0].passhash);
+            setIsLogged(true);
+            setLoader(loader+1);
+
+            cookies.set('gio_uid', response.data.dati.id, { path: '/' });
+            cookies.set('gio_pass', response.data.dati.passhash, { path: '/' });
+
+          }else{
+            cookies.remove('gio_uid', { path: '/' });
+            cookies.remove('gio_pass', { path: '/' });
+            setLoader(loader+1);
+          }
+          
         }else{
 
-          localStorage.removeItem('username');
-          localStorage.removeItem('passhash');
+          cookies.remove('gio_uid', { path: '/' });
+          cookies.remove('gio_pass', { path: '/' });
           setLoader(loader+1);
         }
       })
@@ -211,17 +237,17 @@ function App(){
 
     if(loader==3){
 
-      const loggedInUsername = localStorage.getItem("username");
-      const loggedInPasshash = localStorage.getItem("passhash");
-      if (loggedInUsername && loggedInPasshash && skinId) {
+      const loggedInUsername = cookies.get("gio_uid");
+      const loggedInPasshash = cookies.get("gio_pass");
+      if (loggedInUsername && loggedInPasshash && SKIN["id"]) {
 
-        VerifyDataUser(loggedInUsername, loggedInPasshash, skinId);
+        VerifyDataUser(loggedInUsername, loggedInPasshash, SKIN["id"]);
       }else{
 
         setLoader(loader+1);
 
-        localStorage.removeItem('username');
-        localStorage.removeItem('passhash');
+        cookies.remove('gio_uid', { path: '/' });
+        cookies.remove('gio_pass', { path: '/' });
 
         setIsLogged(false);
       }
@@ -233,8 +259,7 @@ function App(){
 
     if(loader==4){
 
-      const currentLang = localStorage.getItem("language");
-      const autoDetected = localStorage.getItem("i18nextLng");
+      const currentLang = cookies.get("la");
 
       const arrayLang = ['it','de','en','tr','ro','zh','fr','pt','pt-br','hu','es','ar'];
 
@@ -243,63 +268,16 @@ function App(){
         i18n.changeLanguage(currentLang);
         setLoader(loader+1);
 
-      }else if(arrayLang.includes(autoDetected)){
+      }else if(USER["primary_language"] && arrayLang.includes(USER["primary_language"])){
 
-        i18n.changeLanguage(currentLang);
+        i18n.changeLanguage(USER["primary_language"]);
+        cookies.set('la',USER["primary_language"], { path: '/' });
         setLoader(loader+1);
-        
       }else{
 
-        switch(SKIN["id"]){
-
-          case 1:
-            i18n.changeLanguage('en');
-            localStorage.setItem('language', 'en');
-            setLoader(loader+1);
-          break;
-
-          case 2:
-            i18n.changeLanguage('en');
-            localStorage.setItem('language', 'en');
-            setLoader(loader+1);
-          break;
-
-          case 3:
-            i18n.changeLanguage('pt');
-            localStorage.setItem('language', 'pt');
-            setLoader(loader+1);
-          break;
-
-          case 4:
-            i18n.changeLanguage('en');
-            localStorage.setItem('language', 'en');
-            setLoader(loader+1);
-          break;
-
-          case 5:
-            i18n.changeLanguage('en');
-            localStorage.setItem('language', 'en');
-            setLoader(loader+1);
-          break;
-
-          case 6:
-            i18n.changeLanguage('en');
-            localStorage.setItem('language', 'en');
-            setLoader(loader+1);
-          break;
-
-          case 7:
-            i18n.changeLanguage('en');
-            localStorage.setItem('language', 'en');
-            setLoader(loader+1);
-          break;
-
-          default:
-            i18n.changeLanguage('en');
-            localStorage.setItem('language', 'en');
-            setLoader(loader+1);
-          break;
-        }
+        i18n.changeLanguage(SKIN["language"]);
+        cookies.set('la', SKIN["language"], { path: '/' });
+        setLoader(loader+1);
       }
     }
 
@@ -350,14 +328,7 @@ function App(){
             
             :
 
-            <RegistrationModalPix 
-              modalState={showReg} 
-              closeModal={() => setShowReg(false)}
-              skin={SKIN}
-              openModalLogin={() => setShow(true)}
-              setUserC={setUser}
-              setLogin={setIsLogged}
-            />
+            <RegistrationModalPix />
           }
           <Routes>
             <Route path="/" element={<Home setShowC={()=>setShow(true)} statoLogin={isLogged}/>}/>
@@ -368,11 +339,11 @@ function App(){
             <Route path="/poker" element={<Poker />}/>
             <Route path="/virtual" element={<Virtual />}/>
             <Route path="/bingo" element={<Bingo />}/>
-            <Route path="/account" element={<Account isLogged={isLogged} user={USER}/>}/>
-            <Route path="/profile" element={<MyProfile datiUtente={USER} />} />
-            <Route path="/profile/info" element={<Info datiUtente={USER} />} />
-            <Route path="/profile/password" element={<Password datiUtente={USER} />} />
-            <Route path="/profile/messages" element={<Messages datiUtente={USER} />} />
+            <Route path="/account" element={ isLogged ? <Account isLogged={isLogged} user={USER}/> : <NoLogged /> } />
+            <Route path="/profile" element={ isLogged ? <MyProfile datiUtente={USER}/> : <NoLogged />  } />
+            <Route path="/profile/info" element={ isLogged ? <Info datiUtente={USER} /> : <NoLogged /> } />
+            <Route path="/profile/password" element={ isLogged ? <Password datiUtente={USER} /> : <NoLogged /> } />
+            <Route path="/profile/messages" element={ isLogged ? <Messages datiUtente={USER} /> : <NoLogged /> } />
 
             <Route path="/languages" element={<AdminLanguages />} />
             <Route path="/languages/inglese" element={<LanguagesInglese />} />
@@ -399,9 +370,7 @@ function App(){
       :
       
       <>
-      <Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
+        <Loader />
       </>
 
       }
