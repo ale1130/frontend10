@@ -2,15 +2,14 @@ import React,{useEffect, useState} from "react";
 
 import axios from "axios";
 
-import { skinUrl, convertToFormdata, ConvertObjectToArrayErrors } from "../constants/global";
+import { skinUrl, convertToFormdata, convertDate, api } from "../constants/global";
 
 import Profile from "../pages/profile";
-import ErrorBox from "../components/errorBox";
-import SuccessBox from "../components/successBox";
 
 import { useTranslation } from "react-i18next";
 import { SelectCatMex, SelectMexStato, SelectPeriod } from "../components/selectors";
 import { Loader } from "../components/spinner";
+import { ModalMessage } from "../components/modalmessage";
 
 function Messages (props){
 
@@ -20,17 +19,13 @@ function Messages (props){
 
     const [inputs, setInputs] = useState({"user_id":USER["id"],"page":1});
 
-    const [modalError, setModalError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState([]);
-
-    const [modalSuccess, setModalSuccess] = useState(false);
-    const [successMessage, setSuccessMessage] = useState("");
-
     const [messages, setMessages] = useState(["empty"]);
     const [loader, setLoader] = useState(true);
 
     const [pages, setPages] = useState(0);
-    //const [nowPage, setNowPage] = useState(0);
+
+    const [realMessage, setRealMessage] = useState(["empty"]);
+    const [show, setShow] = useState(false);
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -42,7 +37,7 @@ function Messages (props){
     const handleChangeData = (event,data,indice) => {
 
         const index = indice;
-        const value = data;
+        const value = event;
         
         let date = JSON.stringify(value);
 
@@ -50,29 +45,10 @@ function Messages (props){
 
         setInputs(values => ({...values, [index]: dataTradotta}))
     }
-
-    const error = (message=[]) =>{
-        setModalSuccess(false);
-        setModalError(true);
-
-        console.log(message)
-
-        setErrorMessage(message);
-    }
-
-    const success = (message="Complimenti") =>{
-        setModalError(false);
-        setModalSuccess(true);
-
-        setSuccessMessage(message);
-    }
-
-    const unsetInput = () =>{
-
-        setInputs({"user_id":USER["id"]});
-    }
     
     const SendData = async () => {
+
+        setLoader(true);
 
         try{
     
@@ -84,17 +60,19 @@ function Messages (props){
             })
           .then(response => {
     
-            console.log(response.data)
-    
             if(response.data.status=="ok"){
 
                 setMessages(response.data.message);
                 setPages(response.data.params.total_pages);
-                setInputs(inputs => ({...inputs,"page":1}));
+
+                if(inputs.page > response.data.params.total_pages){
+                    setInputs(inputs => ({...inputs,"page":1}));
+                }
               
             }else if(response.data.status=="norecords"){
-
+                setPages(0);
                 setMessages([]);
+                setInputs(inputs => ({...inputs,"page":1}));
             }else{
 
                 alert(t('erroregenerico'));
@@ -107,19 +85,11 @@ function Messages (props){
         }
     };
 
-    const handleSubmit = (event) => {
-
-        event.preventDefault();
-
-        setLoader(true);
-
-        SendData();
-    }
-
     useEffect(()=>{
 
         SendData();
-    },[pages])
+
+    },[inputs.page])
 
     useEffect(()=>{
 
@@ -128,22 +98,125 @@ function Messages (props){
         }
     },[messages])
 
+    const reload = () => {
+
+        SendData();
+    }
+
+    const unsetInput = () =>{
+
+        setInputs({"user_id":USER["id"],"page":1});
+    }
+
     const sendPreviousPage = () =>{
         if(inputs.page>1){
-            setInputs(inputs => ({...inputs,"page": inputs.page+1}));
+            setInputs(inputs => ({...inputs,"page": inputs.page-1}));
         }
     }
 
     const sendNextPage = () =>{
         if(inputs.page<pages){
-            setInputs(inputs => ({...inputs,"page": inputs.page-1}));
+            setInputs(inputs => ({...inputs,"page": inputs.page+1}));
         }
     }
+
+    const DeleteMessage = async (id) => {
+
+        try{
+
+            const data = await api
+            .get('rest/deletemessage/:'+id+"/")
+            .then(response => {
+    
+                if(response.data.status=="ok"){
+
+                    SendData();
+
+                }else if(response.data.status=="error"){
+                    
+                    alert(t('erroregenerico'));
+                    setLoader(false);
+                }else{
+
+                    setLoader(false);
+                    alert(t('erroregenerico'));
+                }
+            })
+    
+        }catch (e){
+    
+            alert(t('erroregenerico'));  console.log(e);
+        }
+    }
+
+    const VisualMessage = async (id) => {
+
+        try{
+
+            const data = await api
+            .get('rest/visualmessage/:'+id+"/")
+            .then(response => {
+    
+                if(response.data.status=="ok"){
+
+                    setRealMessage(response.data.params);
+                    SendData();
+
+                }else if(response.data.status=="error"){
+                    
+                    alert(t('erroregenerico'));
+                    SendData();
+                    setLoader(false);
+                }else{
+
+                    alert(t('erroregenerico'));
+                    SendData();
+                    setLoader(false);
+                }
+            })
+    
+        }catch (e){
+    
+            alert(t('erroregenerico'));  console.log(e);
+        }
+    }
+
+    useEffect(()=>{
+
+        if(realMessage!="empty"){
+            setShow(true);
+            setLoader(false);
+        }
+    },[realMessage])
+
+    const ChangeState = (id,stato) => {
+
+        setLoader(true);
+
+        if(stato == 2){
+
+            if (window.confirm('Sicuro di voler elimare il messaggio selezionato?')){
+
+                DeleteMessage(id);
+            }else{
+                setLoader(false);
+            }
+        }else{
+
+            VisualMessage(id);
+        }
+    };
 
     return (
         <>
 
             {<Profile paginaAttuale={"messages"} datiUtente={USER} />}
+
+            {<ModalMessage 
+                modalState={show} 
+                closeModal={() => setShow(false)}
+                message={realMessage}
+            />}
 
             <div className="col-md-12 col-lg-9">
                 <table width="100%" className="table table-bordered">
@@ -153,7 +226,7 @@ function Messages (props){
                             
                                 <h2 className="virtual-title">Messaggi ricevuti</h2>
 
-                                <form onSubmit={handleSubmit}>
+                                
 
                                     <div className="row">
 
@@ -185,14 +258,14 @@ function Messages (props){
                                     
                                         <div className="col-md-12 form-group">
                                             <div>
-                                                <input type="submit" className="login button-account-m-p" id="btnRicerca" name="btnRicerca" value={t('cerca')} /><i className="fa fa-search"></i>
+                                                <button onClick={reload} className="login button-account-m-p" id="btnRicerca" name="btnRicerca" ><i className="fa fa-search"></i> {t('cerca')} </button>
                                                 <button onClick={unsetInput} className="login button-account-m-p" id="btnFiltri" name="btnFiltri"><i className="fa fa-times"></i> {t('toglifiltri')}</button>
                                             </div>
                                         </div>
 
                                     </div>
 
-                                </form>
+                                
 
                                 { pages ?
 
@@ -226,7 +299,7 @@ function Messages (props){
 
                                 <div className="pagination-content;"></div>
 
-                                <a href="javascript:void(0)" ><span className="fa fa-refresh"></span>Aggiorna</a>
+                                <a href="javascript:void(0)" onClick={reload}><span className="fa fa-refresh"></span>Aggiorna</a>
 
                                 {loader ? <Loader /> :
 
@@ -241,7 +314,7 @@ function Messages (props){
                                                             Oggetto                
                                                         </td>
                                                         <td scope="col">
-                                                            Categoria Messaggio                
+                                                            Categoria                
                                                         </td>
                                                         <td scope="col">
                                                             Stato                
@@ -259,8 +332,9 @@ function Messages (props){
                                                         
                                                 <>
                                                     <tbody>
-                                                        <tr>
-                                                            {messages.map(messaggio =>{
+                                                        {messages.map(messaggio =>{ return(
+                                                            <tr>
+                                                                
                                                                 <>
                                                                     <td>
                                                                         {messaggio.object}
@@ -269,17 +343,17 @@ function Messages (props){
                                                                         {messaggio.typo}        
                                                                     </td>
                                                                     <td>
-                                                                        {messaggio.stato}        
+                                                                        {messaggio.stato==1 ? "Già letto" : "Non letto"}
                                                                     </td>
                                                                     <td>
-                                                                        {messaggio.addedTime}        
+                                                                        {convertDate(messaggio.addedTime)}        
                                                                     </td>
                                                                     <td>
-                                                                        Azioni
+                                                                        {messaggio.stato==1 ? <><button onClick={() => ChangeState(messaggio.id,1)}>Visualizza</button>/<button onClick={() => ChangeState(messaggio.id,2)}>Elimina</button></> : <button onClick={() => ChangeState(messaggio.id,1)}>Visualizza</button>}
                                                                     </td>
                                                                 </>
-                                                            })}
-                                                        </tr>
+                                                            </tr>
+                                                        )})}
                                                     </tbody>
                                                 </>
 
@@ -299,7 +373,7 @@ function Messages (props){
                                             </table>
 
                                             <br />
-                                            
+
                                         </div>
                                     </div>
 
