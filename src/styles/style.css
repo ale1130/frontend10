@@ -405,11 +405,14 @@ button.close.new {
 
 .promoText {
   margin-top: 10px;
+  font-size: 1em;
 }
 
 .promoText h5 {
   font-size: 1.2em;
-  color: #fff;
+  color: #ffcc06;
+  margin-top: 10px;
+
 }
 
 

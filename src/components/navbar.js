@@ -1,17 +1,19 @@
-import React, {useState} from "react";
-import {BoxUtente} from "./boxUtente";
-import {PhoneIcon} from './icons';
-import {GiftIcon} from './icons';
-import {CoinIcon} from "./icons";
-import {SettingsIcon} from './icons';
-import {PersonIcon} from "./icons";
-import {SelectLanguages} from './languagesselector';
+import React, { useState } from "react";
+import { BoxUtente } from "./boxUtente";
+import { PhoneIcon } from './icons';
+import { GiftIcon } from './icons';
+import { CoinIcon } from "./icons";
+import { SettingsIcon } from './icons';
+import { PersonIcon } from "./icons";
+import { SelectLanguages } from './languagesselector';
 
 import { useTranslation } from 'react-i18next';
 
+import Dropdown from 'react-bootstrap/Dropdown';
+
 import '../styles/headerv1.css';
 
-function Navbar(props){
+function Navbar(props) {
 
     const { t } = useTranslation();
 
@@ -23,12 +25,13 @@ function Navbar(props){
 
     const USER = props.datiUtente;
 
-    const balancetot = USER["balance"]+USER["bonus"]+USER["balance_withdrawable"];
+    const balancetot = USER["balance"] + USER["bonus"] + USER["balance_withdrawable"];
 
     //Forse dovrei controllare anche qua lo stato della variabile USER
 
     return (
         <>
+
             <header className="header-top">
                 <div className="container-fluid d-flex justify-content-between align-items-center">
                     <div className="navigation-bar">
@@ -36,12 +39,12 @@ function Navbar(props){
                         <h1 className="logo">
                             <a href="/">
 
-                                <img src={props.logo}/>
+                                <img src={props.logo} />
                             </a>
                         </h1>
                         <nav className="nav-menu">
                             <ul>
-                                {<GameSection currentPage={props.currentPage}/>}
+                                {<GameSection currentPage={props.currentPage} />}
                             </ul>
                         </nav>
                     </div>
@@ -52,26 +55,38 @@ function Navbar(props){
 
                         {!props.statoLogin && <><a href="#" onClick={props.childModalButton} className="button-header login-pul">{t('accedi')}</a></>}
 
-                        {props.statoLogin && 
-                        
+                        {props.statoLogin &&
+
                             <>
                                 <div className="info-profile">
                                     <span id="reloadBalance" >
-                                        <span className="currentBalance" style={{color:"white"}}>{ USER["currency"]+" "+balancetot }</span> 
+                                        <span className="currentBalance" style={{ color: "white" }}>{USER["currency"] + " " + balancetot}</span>
                                     </span>
                                 </div>
-                
+
                                 <a href="#" onClick={() => setOpenProfile(!openProfile)} className="button-header login-pul" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {<PersonIcon />}                          
+                                    {<PersonIcon />}
                                 </a>
 
-                                {openProfile && <BoxUtente setLogin={props.setLogin} closeModal={()=>setOpenProfile(false)} utente={USER}/>}
-                    
+                                {openProfile && <BoxUtente setLogin={props.setLogin} closeModal={() => setOpenProfile(false)} utente={USER} />}
+
+                                <Dropdown>
+                                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                        Dropdown Button
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                        <BoxUtente setLogin={props.setLogin} closeModal={() => setOpenProfile(false)} utente={USER} />
+                                    </Dropdown.Menu>
+                                </Dropdown>
+
                                 <a href="/account" className="button-header hide-mobile">
                                     {<CoinIcon />}
                                 </a>
                             </>
                         }
+
+
 
                         <div className="btn-group">
                             <a href="#" className="button-header" onClick={() => setOpen(!open)}>
@@ -89,29 +104,29 @@ function Navbar(props){
 
 }
 
-const GameSection = (props) =>{
+const GameSection = (props) => {
 
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     const state = {
-        gamecategory:[
-            {id:0, nome:t('navbar.sport'), link:"/sport", immagine:""},
-            {id:1, nome:t('navbar.sportlive'), link:"/sport-live", immagine:""},
-            {id:2, nome:t('navbar.casino'), link:"/casino", immagine:""},
-            {id:3, nome:t('navbar.casinolive'), link:"/casino-live", immagine:""},
-            {id:4, nome:t('navbar.poker'), link:"/poker", immagine:""},
-            {id:5, nome:t('navbar.virtual'), link:"/virtual", immagine:""},
-            {id:6, nome:t('navbar.bingo'), link:"/bingo", immagine:""},
-            {id:6, nome:"languages", link:"/languages", immagine:""}
+        gamecategory: [
+            { id: 0, nome: t('navbar.sport'), link: "/sport", immagine: "" },
+            { id: 1, nome: t('navbar.sportlive'), link: "/sport-live", immagine: "" },
+            { id: 2, nome: t('navbar.casino'), link: "/casino", immagine: "" },
+            { id: 3, nome: t('navbar.casinolive'), link: "/casino-live", immagine: "" },
+            { id: 4, nome: t('navbar.poker'), link: "/poker", immagine: "" },
+            { id: 5, nome: t('navbar.virtual'), link: "/virtual", immagine: "" },
+            { id: 6, nome: t('navbar.bingo'), link: "/bingo", immagine: "" },
+            { id: 6, nome: "languages", link: "/languages", immagine: "" }
         ],
     }
 
     const currentPage = props.currentPage;
 
-    return(
+    return (
         state.gamecategory.map(category =>
-            <li className={currentPage==category.link ? "active" : ""} key={category.id}>
-                <a href={category.link+""}>
+            <li className={currentPage == category.link ? "active" : ""} key={category.id}>
+                <a href={category.link + ""}>
                     <span>{category.nome}</span>
                 </a>
             </li>
