@@ -44,6 +44,10 @@ a.botton-adv-1 {
   box-shadow: 0px 0px 6px -1px rgb(0 0 0 / 50%);
 }
 
+.carousel-item>img {
+  width: 100%;
+}
+
 /* Footer */
 
 #footer {
@@ -315,6 +319,56 @@ button.close.new {
   margin-top: 5px;
   margin-bottom: -3px;
 }
+
+.registration-promo>svg {
+  width: 20px;
+  fill: #ffcc06;
+  margin-right: 15px;
+}
+
+.registration-promo {
+  font-size: 1.5em;
+  color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ffffff36;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.react-datepicker-ignore-onclickoutside {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+
 
 
 /*slick slider*/
@@ -1404,17 +1458,14 @@ div.container-casino:hover>div.middle-button {
 
 /*roba lingue ale*/
 
-.lingua{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+.lingua {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.card{
-  width:20%;
-}
 
-.sback{
+.sback {
   display: block;
   width: 100%;
   text-align: center;
