@@ -52,15 +52,15 @@ function BoxPromo(props) {
                                 <PromotionIcon /> {t('promozione')}
                             </h1>
 
-                            <div className="">
 
+                            <div className="promoText">
                                 <img className="card-img-top" src={MEDIA_PROMO_WEB_PATH(SKIN) + datiPromo["img"]} alt={datiPromo["name"]} />
 
-                                <div className="card-body">
-                                    <h5>{datiPromo["name"]}</h5>
-                                    {datiPromo["descrizione"]}
-                                </div>
+
+                                <h5>{datiPromo["name"]}</h5>
+                                {datiPromo["descrizione"]}
                             </div>
+
                         </div>
                     </>
 

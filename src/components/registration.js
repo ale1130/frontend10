@@ -321,13 +321,13 @@ function RegistrationModal(props) {
                                     <input type="password" className="form-control margin-bottom-5" id="realpass" name="realpass" placeholder="*Password" value={inputs.realpass || ""} onChange={handleChange} />
                                 </div>
                             </div>
-                            <div className="row">
-                                <div className="col-sm-4 pd-r-2">
+                            <div className="row privacy_reg">
+                                <div className="col-sm-12 pd-r-2">
                                     <input className="form-check-input" type="checkbox" name="terms_conditions" id="terms_conditions" onClick={() => setMaggiorenne(!maggiorenne)} />
                                     <label className="form-check-label white" htmlFor="terms_conditions" >
                                         * {t('ho18anni')} </label>
                                 </div>
-                                <div className="col-sm-8 pd-l-2">
+                                <div className="col-sm-12 pd-l-2">
                                     <input className="form-check-input" type="checkbox" name="18years" id="18years" onClick={() => setTermini(!termini)} />
                                     <label className="form-check-label white" htmlFor="18years">
                                         * <a href="">{t('termini')}</a> {t('e')} <a href="">{t('politicariservatezza')}</a> {t('sonoaccettate')}
