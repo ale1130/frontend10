@@ -403,6 +403,15 @@ button.close.new {
   color: #ffcc06;
 }
 
+.promoText {
+  margin-top: 10px;
+}
+
+.promoText h5 {
+  font-size: 1.2em;
+  color: #fff;
+}
+
 
 
 
