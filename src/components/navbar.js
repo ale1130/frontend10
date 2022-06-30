@@ -19,10 +19,6 @@ function Navbar(props) {
 
     const [SKIN, setSkin] = useState(props.skin);
 
-    const [open, setOpen] = useState(false);
-
-    const [openProfile, setOpenProfile] = useState(false);
-
     const USER = props.datiUtente;
 
     const balancetot = USER["balance"] + USER["bonus"] + USER["balance_withdrawable"];
@@ -64,19 +60,13 @@ function Navbar(props) {
                                     </span>
                                 </div>
 
-                                <a href="#" onClick={() => setOpenProfile(!openProfile)} className="button-header login-pul" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {<PersonIcon />}
-                                </a>
-
-                                {openProfile && <BoxUtente setLogin={props.setLogin} closeModal={() => setOpenProfile(false)} utente={USER} />}
-
                                 <Dropdown>
                                     <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                        Dropdown Button
+                                        <PersonIcon />
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu>
-                                        <BoxUtente setLogin={props.setLogin} closeModal={() => setOpenProfile(false)} utente={USER} />
+                                        <BoxUtente setLogin={props.setLogin} utente={USER} />
                                     </Dropdown.Menu>
                                 </Dropdown>
 
@@ -89,11 +79,17 @@ function Navbar(props) {
 
 
                         <div className="btn-group">
-                            <a href="#" className="button-header" onClick={() => setOpen(!open)}>
-                                {<SettingsIcon />}
-                            </a>
 
-                            {open && <SelectLanguages skin={SKIN} svgphone={<PhoneIcon />} />}
+                            <Dropdown>
+                                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                    <SettingsIcon />
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <SelectLanguages skin={SKIN} svgphone={<PhoneIcon />} />
+                                </Dropdown.Menu>
+                            </Dropdown>
+
                         </div>
                     </div>
                 </div>

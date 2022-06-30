@@ -102,6 +102,7 @@
     align-items: center;
     width: auto;
     justify-content: flex-end;
+    position: relative;
 }
 
 .hide-mobile {
@@ -143,34 +144,7 @@ div.of-header {
     right: 0;
     left: auto;
 }
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    display: none;
-    float: left;
-    min-width: 10rem;
-    padding: 0.5rem 0;
-    margin: 0.125rem 0 0;
-    font-size: 1rem;
-    color: #212529;
-    text-align: left;
-    list-style: none;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: 0.25rem;
-}
 
-.show {
-    position: absolute;
-    transform: translate3d(-240px, 55px, 0px);
-    top: 0px;
-    left: 0px;
-    will-change: transform;
-    width: 280px;
-}
 
 .header-drop-down {
     margin: 0px 10px 10px;
@@ -274,26 +248,6 @@ div.of-header {
     margin-bottom: 5px;
     position: relative;
     display: block !important;
-}
-
-/*Dropdown-menu slide*/
-
-.stile1{
-    position: absolute;
-    will-change: transform;
-    top: 0px;
-    left: 0px;
-    transform: translate3d(1576px, 5px, 0px);
-}
-
-.stile2{
-    margin-right: 0px;
-}
-
-/*Per vdere le scritte*/
-
-.white{
-    color:#fff;
 }
 
 /*Languages*/

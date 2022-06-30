@@ -23,8 +23,6 @@ function BoxUtente(props){
                         <a className="button-header" href="/account">{t('versamento')}</a>
                     </div>
 
-                    <a style={{color:"white"}} onClick={props.closeModal}>X</a>
-
                     <div className="box-balance">
 
                         <div>
