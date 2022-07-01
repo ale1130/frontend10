@@ -13,7 +13,6 @@ import { useTranslation } from "react-i18next";
 const Jackpots = (props) => {
 
     const [jackpots, setJackpots] = useState(props.jackpots);
-    const [SKIN, setSkin] = useState(props.skin);
 
     return (
         <div className="wordCarousel">
@@ -76,6 +75,13 @@ const Providers = (props) =>{
     const [providers, setProviders] = useState(props.providers);
     const SKIN = props.skin;
 
+    const currentProvider=props.currentProv;
+
+    const handleProvider = (value)=>{
+        console.log(value)
+        props.setinput(inputs => ({...inputs,"provider": value}));
+    }
+
     var today = + new Date();
 
     return (
@@ -84,8 +90,8 @@ const Providers = (props) =>{
             <div className="slide-casino">
                 {(providers.map(provider =>
 
-                    <div key={provider.id} className="provider providers-list" id="provider-7">
-                        <a><img src={PROVIDERS_LOGO_WEB_PATH(SKIN) + provider.img+"?v="+today} className={"provider-" + provider.nome} /></a>
+                    <div key={provider.id} className={currentProvider && currentProvider == provider.id ? "provider providers-list active" : "provider providers-list"} id={"provider-"+provider.id}>
+                        <a onClick={()=>handleProvider(provider.id)}><img src={PROVIDERS_LOGO_WEB_PATH(SKIN) + provider.img+"?v="+today} className={"provider-" + provider.nome} /></a>
                     </div>
                 ))}
             </div>
@@ -138,20 +144,27 @@ const TypoGiochi = (props) =>{
     const countGiochi = props.countGames;
     const subCategories = props.subCateories;
 
+    const currentSubcategory= props.currentSub;
+
+    const handleCategory = (value)=>{
+        console.log(value)
+        props.setinput(inputs => ({...inputs,"subcategory": value}));
+    }
+
     return(
         <div className="col-lg-12 col-sm-12 list-type-play">
             <div className="position-sticky ">
 
-                <div className="pul-type-play games-subcategory" id="subcategory-0">
-                    <a href="#" onClick="loadCasinoGames(0,0, '')">Tutti i giochi <span>{countGiochi}</span></a>
+                <div className={currentSubcategory && currentSubcategory == "all" ? "pul-type-play games-subcategory active" : "pul-type-play games-subcategory"} id="subcategory-0">
+                    <a onClick={() => handleCategory("all")}> Tutti i giochi <span>{countGiochi}</span></a>
                 </div>
 
                 {subCategories != "nosubcategories" ?
 
                     <>{(subCategories.map(subcategory =>
 
-                        <div className="pul-type-play games-subcategory" id={"subcategory-" + subcategory.id}>
-                            <a href="#"> {subcategory.name} <span> {subcategory.totale} </span></a>
+                        <div className={currentSubcategory && currentSubcategory == subcategory.id ? "pul-type-play games-subcategory active" : "pul-type-play games-subcategory"} id={"subcategory-" + subcategory.id}>
+                            <a onClick={() => handleCategory(subcategory.id)}> {subcategory.name} <span> {subcategory.totale} </span></a>
                         </div>
                     ))}</>
 
@@ -226,7 +239,7 @@ function Casino(props) {
     const [page, setPage] = useState(0);
     const [maxPage, setMaxPage] = useState(0);
 
-    const [inputs, setInputs] = useState([]);
+    const [inputs, setInputs] = useState({"logged": logged ? 1 : 0, "category":1, "provider":135, "subcategory":"all", "search":""});
 
     const GetJackpotsWin = async () => {
 
@@ -355,7 +368,7 @@ function Casino(props) {
             const data = await axios
             ({
                 method:"post",
-                url:skinUrl+"rest/getgames.php",
+                url:skinUrl+"rest/getgamescasino.php",
                 data:convertToFormdata(inputs)
             })
             .then(response => {
@@ -381,7 +394,6 @@ function Casino(props) {
     }
 
     useEffect(() => {
-        setInputs(inputs => ({...inputs,"logged": logged ? 1 : 0}));
         GetProviders();
         GetJackpotsWin();
         GetCountGames();
@@ -428,6 +440,10 @@ function Casino(props) {
         }
     }, [games])
 
+    useEffect(() => {
+
+        console.log(inputs);
+    }, [inputs])
 
     /*const handlePage = () => {
         if (page < maxPage) {
@@ -472,8 +488,9 @@ function Casino(props) {
                         :
                         
                         <>
-                            <Providers providers={providers} skin={SKIN} />
-                            <TypoGiochi countGames={countGames} subCateories={subCategories} />
+                            <button onClick={()=>GetGames()}>Cerca giochi</button>
+                            <Providers providers={providers} skin={SKIN} setinput={()=>setInputs} currentProv={inputs.provider} />
+                            <TypoGiochi countGames={countGames} subCateories={subCategories} setinput={()=>setInputs} currentSub={inputs.subcategory} />
                             <Games skin={SKIN} games={games} />
                         </>
                     }
