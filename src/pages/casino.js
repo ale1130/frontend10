@@ -242,6 +242,13 @@ function Casino(props) {
 
     const openLogin = props.childModalButton;
 
+    const handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+
+        setInputs(inputs => ({ ...inputs, [name]: value }))
+    }
+
     const GetJackpotsWin = async () => {
 
         try {
@@ -541,6 +548,7 @@ function Casino(props) {
                         :
                         
                         <>
+                            <input type="text" className="form-control margin-bottom-5" value={inputs.search || ""} onChange={handleChange} id="search" name="search" placeholder={"Digit game name"} />
                             <Providers providers={providers} skin={SKIN} setinput={setInputs} currentProv={inputs.provider} />
                             <TypoGiochi countGames={countGames} subCateories={subCategories} setinput={setInputs} currentSub={inputs.subcategory} />
 
