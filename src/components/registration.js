@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 
-import { skinUrl, generateMd5, generateUniqId, api } from "../constants/global";
+import { skinUrl, convertToFormdata, ConvertObjectToArrayErrors } from "../constants/global";
 
 import BoxPromo from './boxpromodefault'
 import ErrorBox from "../components/errorBox";
@@ -18,31 +18,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Spinner from 'react-bootstrap/Spinner';
 
 import { useTranslation } from "react-i18next";
-import { PromotionIcon, RegistrationIcon } from "./icons";
+import { RegistrationIcon } from "./icons";
+import Cookies from 'universal-cookie';
 
 Modal.setAppElement("#root");
-
-function generateApiKey() {
-
-    var apiKey = generateMd5(generateUniqId());
-    return apiKey;
-}
 
 function RegistrationModal(props) {
 
     const { t, i18n } = useTranslation();
 
     const close = props.closeModal;
-    const [SKIN, setSkin] = useState(props.skin);
+    const SKIN = props.skin;
 
-    const [inputs, setInputs] = useState([]);
+    const [inputs, setInputs] = useState({"conditions":false,"years":false});
 
     const [modalError, setModalError] = useState(false);
 
-    const [termini, setTermini] = useState(false);
-    const [maggiorenne, setMaggiorenne] = useState(false);
+    const cookies = new Cookies();
 
     const [errorMessages, setErrorMessages] = useState([]);
+    const [submit, setSubmit] = useState(false);
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -87,7 +82,7 @@ function RegistrationModal(props) {
                 CodiceFiscale = "";
             }
 
-            setInputs(inputs => ({ ...inputs, "fiscal_code": CodiceFiscale }));
+            setInputs(inputs => ({ ...inputs, "fiscal_code": CodiceFiscale.code }));
 
         } else {
 
@@ -95,28 +90,36 @@ function RegistrationModal(props) {
         }
     }
 
-    /*const headers = {
-        "Access-Control-Allow-Origin" : "*"
-    }*/
-
     const SendData = async () => {
 
         try {
 
-            const data = await axios.post
-                ({ url: skinUrl + "rest/signup-new/", data: inputs })
-                .then(response => {
+            const data = await axios
+            ({
+                method:"post",
+                url:skinUrl+"rest/registration.php",
+                data:convertToFormdata(inputs)
+            })
+            .then(response => {
+        
+                if(response.data.status=="ok"){
 
-                    console.log(response)
+                    cookies.set('gio_uid', response.data.params.uid, { path: '/' });
+                    cookies.set('gio_pass', response.data.params.passhash, { path: '/' });
 
-                    if (response.data.status == "ok") {
+                    window.location.href="/";
 
+                }else if(response.data.status=="error"){
 
-                    } else {
+                    setSubmit(false)
 
+                    setErrorMessages(ConvertObjectToArrayErrors(response.data.message.errors))
+                    setModalError(true)
 
-                    }
-                })
+                }else{
+                    alert(t('erroregenerico'));  
+                }
+            })
 
         } catch (e) {
 
@@ -125,6 +128,8 @@ function RegistrationModal(props) {
     };
 
     const handleSubmit = () => {
+
+        setSubmit(true);
 
         SendData();
     }
@@ -135,8 +140,6 @@ function RegistrationModal(props) {
             <Modal isOpen={props.modalState} onRequestClose={close} className="mymodal largeStyleM" overlayClassName="myoverlay">
 
                 <div className="row">
-
-
 
                     <>
 
@@ -150,6 +153,9 @@ function RegistrationModal(props) {
                                         <RegistrationIcon /> Registrati
                                     </h1>
                                 </div>
+
+                                {modalError ? <ErrorBox message={errorMessages}/> : <></>}
+
                                 <div className="col-sm-6 pd-r-2">
                                     <label className="color-top" htmlFor="firstname">{t('nome')}</label>
                                     <input type="text" className="form-control margin-bottom-5" value={inputs.firstname || ""} onChange={handleChange} id="firstname" name="firstname" placeholder={"*" + t('nome')} />
@@ -323,19 +329,19 @@ function RegistrationModal(props) {
                             </div>
                             <div className="row privacy_reg">
                                 <div className="col-sm-12 pd-r-2">
-                                    <input className="form-check-input" type="checkbox" name="terms_conditions" id="terms_conditions" onClick={() => setMaggiorenne(!maggiorenne)} />
+                                    <input className="form-check-input" type="checkbox" name="terms_conditions" id="terms_conditions" onClick={() => setInputs(inputs => ({ ...inputs, "conditions" : !inputs.conditions }))} />
                                     <label className="form-check-label white" htmlFor="terms_conditions" >
                                         * {t('ho18anni')} </label>
                                 </div>
                                 <div className="col-sm-12 pd-l-2">
-                                    <input className="form-check-input" type="checkbox" name="18years" id="18years" onClick={() => setTermini(!termini)} />
+                                    <input className="form-check-input" type="checkbox" name="18years" id="18years" onClick={() => setInputs(inputs => ({ ...inputs, "years" : !inputs.years }))} />
                                     <label className="form-check-label white" htmlFor="18years">
                                         * <a href="">{t('termini')}</a> {t('e')} <a href="">{t('politicariservatezza')}</a> {t('sonoaccettate')}
                                     </label>
                                 </div>
                             </div>
 
-                            <button type="submit" className="registration" onClick={() => { handleSubmit() }}>{t('registrati')}</button>
+                            {submit ? <></> : <button type="submit" className="registration" onClick={() => { handleSubmit() }}>{t('registrati')}</button>}
 
                             <p className="white">{t('haigaccount')}? <a href="#" onClick={() => { props.openModalLogin(); close(); }}>{t('accediora')}</a></p>
                         </div>

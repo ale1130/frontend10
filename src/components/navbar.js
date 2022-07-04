@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BoxUtente } from "./boxUtente";
 import { PhoneIcon } from './icons';
 import { GiftIcon } from './icons';
@@ -17,7 +17,7 @@ function Navbar(props) {
 
     const { t } = useTranslation();
 
-    const [SKIN, setSkin] = useState(props.skin);
+    const SKIN = props.skin;
 
     const USER = props.datiUtente;
 

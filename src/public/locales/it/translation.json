@@ -51,7 +51,8 @@
   "errorilogin":{
     "tuttidati": "Immettere tutti i dati!",
     "credenziali": "Credenziali errate!",
-    "bloccato": "Ci dispiace ma l'account associato a questo nome utente risulta bloccato al momento, per ulteriori chiarimenti si prega di contattare l'assistenza tecnica"
+    "bloccato": "Ci dispiace ma l'account associato a questo nome utente risulta bloccato al momento, per ulteriori chiarimenti si prega di contattare l'assistenza tecnica",
+    "confermaemail": "Le tue credenziali risulatano corrette però è necessario confermare il tuo account attraverso la mail che ti abbiamo inviato al momento della registrazione"
   },
 
   "saldototale": "Saldo totale",
@@ -67,7 +68,7 @@
   "errorecodicefiscale":"E' necessario inserire tutti i dati utili: nome, cognome, data e luogo di nascita per poter calcolare il codice fiscale",
   "codicefiscaleerroreluogo":"Se il luogo di nascita corrisponde ad un paese estero si prega di inserire il codice fiscale manualmente",
 
-  "erroregenerico":"Errore nell'elaborazione dei dati, si prega di ricare la pagina, se l'errore dovesse persistere contattare l'assistenza tecnica",
+  "erroregenerico":"Errore nell'elaborazione dei dati, si prega di ricaricare la pagina, se l'errore dovesse persistere contattare l'assistenza tecnica",
 
   "erroresignin":{
     "nome":"Inserisci il tuo nome",
@@ -130,6 +131,9 @@
   "patente":"Patente",
   "seleziona":"Seleziona",
   "promozione":"Promozione",
+  "calcola":"Calcola",
+  "codicefiscale":"Codice Fiscale",
+  "provincianascita":"Provincia di nascita",
 
   "dettagliosaldo":"Dettaglio saldo",
   "cambiadati":"Cambia dati",

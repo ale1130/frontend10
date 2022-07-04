@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { PROVIDERS_LOGO_WEB_PATH, api, skinUrl, convertToFormdata } from "../constants/global";
+import { PROVIDERS_LOGO_WEB_PATH, api, skinUrl, convertToFormdata, ConvertObjectToArraySlideshow, MEDIA_SLIDESHOWS_WEB_PATH } from "../constants/global";
 
 import Spinner from 'react-bootstrap/Spinner';
 
@@ -9,6 +9,7 @@ import { Fade } from 'react-slideshow-image';
 import axios from "axios";
 
 import { useTranslation } from "react-i18next";
+import { ArrowIcon } from "../components/icons";
 
 const Jackpots = (props) => {
 
@@ -75,11 +76,11 @@ const Providers = (props) =>{
     const [providers, setProviders] = useState(props.providers);
     const SKIN = props.skin;
 
-    const currentProvider=props.currentProv;
+    const currentProvider = props.currentProv;
+    const setData = props.setinput;
 
-    const handleProvider = (value)=>{
-        console.log(value)
-        props.setinput(inputs => ({...inputs,"provider": value}));
+    const handleProvider = (dato)=>{
+        setData(inputs => ({...inputs,"provider": dato, "subcategory": "", "page":1}));
     }
 
     var today = + new Date();
@@ -102,25 +103,17 @@ const Providers = (props) =>{
 
 const Slideshow = (props) => {
 
-    const fadeImages = [
-        {
-            url: 'https://stagemedia.gamesolutions.org/slideshow/img1_620d0b14e2042.jpeg',
-            caption: 'First Slide'
-        },
-        {
-            url: 'https://stagemedia.gamesolutions.org/slideshow/img2_620d0b14e2500.jpeg',
-            caption: 'Second Slide'
-        },
-        {
-            url: 'https://stagemedia.gamesolutions.org/slideshow/img1_620d0b14e2042.jpeg',
-            caption: 'Third Slide'
-        },
-    ];
+    const {t} = useTranslation();
+
+    const logged = props.loggato;
+
+    const SKIN = props.skin;
+
+    const fadeImages = ConvertObjectToArraySlideshow(props.images[0]);
 
     return (
 
         <>
-
             <div className="slide-container">
                 <Fade>
                     {fadeImages.map((fadeImage, index) => (
@@ -128,7 +121,10 @@ const Slideshow = (props) => {
                         <div className="each-fade" key={index}>
 
                             <div className="image-container">
-                                <img src={fadeImage.url} />
+                                <img src={MEDIA_SLIDESHOWS_WEB_PATH(SKIN)+fadeImage.url} />
+                                <div className="button-adv">
+                                    {!logged && <><a href="#" onClick={props.login} className="botton-adv-1">{t('accedi')}</a></>}
+                                </div>
                             </div><br />
                         </div>
                         
@@ -144,11 +140,11 @@ const TypoGiochi = (props) =>{
     const countGiochi = props.countGames;
     const subCategories = props.subCateories;
 
-    const currentSubcategory= props.currentSub;
+    const currentSubcategory = props.currentSub;
+    const setData = props.setinput;
 
-    const handleCategory = (value)=>{
-        console.log(value)
-        props.setinput(inputs => ({...inputs,"subcategory": value}));
+    const handleCategory = (dato)=>{
+        setData(inputs => ({...inputs,"subcategory": dato, "provider":"", "page":1}));
     }
 
     return(
@@ -156,7 +152,7 @@ const TypoGiochi = (props) =>{
             <div className="position-sticky ">
 
                 <div className={currentSubcategory && currentSubcategory == "all" ? "pul-type-play games-subcategory active" : "pul-type-play games-subcategory"} id="subcategory-0">
-                    <a onClick={() => handleCategory("all")}> Tutti i giochi <span>{countGiochi}</span></a>
+                    <a onClick={() => handleCategory("all")} > Tutti i giochi <span>{countGiochi}</span></a>
                 </div>
 
                 {subCategories != "nosubcategories" ?
@@ -164,7 +160,7 @@ const TypoGiochi = (props) =>{
                     <>{(subCategories.map(subcategory =>
 
                         <div className={currentSubcategory && currentSubcategory == subcategory.id ? "pul-type-play games-subcategory active" : "pul-type-play games-subcategory"} id={"subcategory-" + subcategory.id}>
-                            <a onClick={() => handleCategory(subcategory.id)}> {subcategory.name} <span> {subcategory.totale} </span></a>
+                            <a onClick={() => handleCategory(subcategory.id)} > {subcategory.name} <span> {subcategory.totale} </span></a>
                         </div>
                     ))}</>
 
@@ -180,12 +176,12 @@ const TypoGiochi = (props) =>{
 
 const Games = (props) => {
 
-    const [games, setGames] = useState(props.games);
+    const games = props.games;
     const SKIN = props.skin;
 
     return (
         <>
-            {games != "nogames" && games != "empty" ?
+            {games != "nogames" ?
 
                 <>
                     {games.map(game => (
@@ -196,11 +192,11 @@ const Games = (props) => {
                                     <div className="middle-button">
                                         <div className="title-game">{game.name}</div>
                                         <a href="#" className="playBut">
-                                            <svg version="1.1" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 213.7 213.7" enable-background="new 0 0 213.7 213.7">
+                                            <svg version="1.1" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 213.7 213.7" enableBackground="new 0 0 213.7 213.7">
 
-                                                <polygon class="triangle" id="XMLID_18_" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="73.5,62.5 148.5,105.8 73.5,149.1 "></polygon>
+                                                <polygon className="triangle" id="XMLID_18_" fill="none" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="73.5,62.5 148.5,105.8 73.5,149.1 "></polygon>
 
-                                                <circle class="circle" id="XMLID_17_" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="106.8" cy="106.8" r="103.3"></circle>
+                                                <circle className="circle" id="XMLID_17_" fill="none" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" cx="106.8" cy="106.8" r="103.3"></circle>
                                             </svg>
                                         </a>
                                         <img src={PROVIDERS_LOGO_WEB_PATH(SKIN) + game.img} className={"icon-play-casino provider-" + game.name} />
@@ -213,7 +209,7 @@ const Games = (props) => {
 
                 :
 
-                <></>
+                <><div>Nessun gioco individuato per questo filtro</div></>
             }
         </>
     )
@@ -229,6 +225,8 @@ function Casino(props) {
     const [loader, setLoader] = useState(0);
     const [jackpots, setJackpots] = useState(["empty"]);
 
+    const [slideShow, setSlideShow] = useState(["empty"]);
+
     const [providers, setProviders] = useState(["empty"]);
     const [countGames, setCountGames] = useState(1111111111);
 
@@ -236,10 +234,13 @@ function Casino(props) {
     
     const [games, setGames] = useState(["empty"]);
 
-    const [page, setPage] = useState(0);
     const [maxPage, setMaxPage] = useState(0);
 
-    const [inputs, setInputs] = useState({"logged": logged ? 1 : 0, "category":1, "provider":135, "subcategory":"all", "search":""});
+    const [inputs, setInputs] = useState({"logged": logged ? 1 : 0, "category":1, "provider":"", "subcategory":"all", "search":"", "page":1});
+
+    const [loaderGames, setLoaderGames] = useState(true);
+
+    const openLogin = props.childModalButton;
 
     const GetJackpotsWin = async () => {
 
@@ -256,6 +257,36 @@ function Casino(props) {
                 }else if(response.data.status=="error"){
                     
                     setJackpots(["norecords"])
+                }else{
+
+                    alert(t('erroregenerico'));
+                }
+            })
+
+        } catch (e) {
+
+            alert(t('erroregenerico'));  
+            console.log(e);
+        }
+    }
+
+    const GetSlideshow = async () => {
+
+        const loggato = logged ? 1 : 0;
+
+        try {
+
+            const data = await api
+            .get('rest/getslideshowimg/:'+loggato+'/')
+            .then(response => {
+    
+                if(response.data.status=="ok"){
+
+                    setSlideShow(response.data.dati);
+
+                }else if(response.data.status=="error"){
+                    
+                    setSlideShow(["noslideshow"])
                 }else{
 
                     alert(t('erroregenerico'));
@@ -361,8 +392,6 @@ function Casino(props) {
 
     const GetGames = async () => {
 
-        const loggato = logged ? 1 : 0;
-
         try {
 
             const data = await axios
@@ -375,11 +404,16 @@ function Casino(props) {
         
                 if(response.data.status=="ok"){
 
-                    setMaxPage(response.data.total_pages)
+                    setMaxPage(response.data.total_pages);
+
+                    setGames(response.data.games);
+                    
 
                 }else if(response.data.status=="nogames"){
 
-                    setMaxPage(0)
+                    setGames("nogames");
+
+                    setMaxPage(0);
                 }else{
 
                     alert(t('erroregenerico'));  
@@ -396,12 +430,12 @@ function Casino(props) {
     useEffect(() => {
         GetProviders();
         GetJackpotsWin();
+        GetSlideshow();
         GetCountGames();
         GetSubCategories();
         GetGames();
-    }, [logged])
+    }, [logged]);
 
-    
     useEffect(() => {
 
         if (jackpots != "empty") {
@@ -409,6 +443,14 @@ function Casino(props) {
             setLoader(loader + 1);
         }
     }, [jackpots])
+
+    useEffect(() => {
+
+        if (slideShow != "empty") {
+
+            setLoader(loader + 1);
+        }
+    }, [slideShow])
     
     useEffect(() => {
         if (providers != "empty") {
@@ -432,29 +474,33 @@ function Casino(props) {
         }
     }, [subCategories])
 
+    useEffect(()=>{
+        
+        if (games != "empty") {
+
+            GetGames();
+        }
+    },[inputs])
+
     useEffect(() => {
 
         if (games != "empty") {
 
-            setLoader(loader + 1);
+            setLoaderGames(false);
         }
     }, [games])
 
-    useEffect(() => {
-
-        console.log(inputs);
-    }, [inputs])
-
-    /*const handlePage = () => {
-        if (page < maxPage) {
-            setPage(page + 1);
+    const handlePage = () => {
+        if (inputs.page < maxPage) {
+            setLoaderGames(true);
+            setInputs(inputs => ({...inputs,"page": inputs.page+1}));
         }
-    }*/
+    }
 
     return (
         <>
 
-            {loader <4 ?
+            {loader <5 ?
 
                 <>
                     <Spinner animation="border" role="status">
@@ -478,7 +524,14 @@ function Casino(props) {
                         }
                     </div>
 
-                    <Slideshow />
+                    { slideShow && slideShow!= "noslideshow" ?
+
+                        <Slideshow images={slideShow} loggato={logged} skin={SKIN} login={()=>openLogin()}/>
+
+                        :
+
+                        <></>
+                    }
 
                     {providers == "noproviders" || countGames==0 ?
 
@@ -488,10 +541,39 @@ function Casino(props) {
                         :
                         
                         <>
-                            <button onClick={()=>GetGames()}>Cerca giochi</button>
-                            <Providers providers={providers} skin={SKIN} setinput={()=>setInputs} currentProv={inputs.provider} />
-                            <TypoGiochi countGames={countGames} subCateories={subCategories} setinput={()=>setInputs} currentSub={inputs.subcategory} />
-                            <Games skin={SKIN} games={games} />
+                            <Providers providers={providers} skin={SKIN} setinput={setInputs} currentProv={inputs.provider} />
+                            <TypoGiochi countGames={countGames} subCateories={subCategories} setinput={setInputs} currentSub={inputs.subcategory} />
+
+                            {loaderGames ? 
+                            
+                            <>
+                                <Spinner animation="border" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </Spinner>
+                            </>
+                            
+                            :
+                            <>
+                                <Games skin={SKIN} games={games} />
+                            </>
+                            }
+
+                            
+
+                            {maxPage>1 && inputs.page<maxPage?
+
+                                <>
+                                    <div className="show-all-p">
+                                        <a style={{marginBottom:"40px"}} onClick={()=>handlePage()} id="loadNextPageLink">
+                                            <ArrowIcon />
+                                        Carica altri giochi</a>
+                                    </div>
+                                </>
+                        
+                                :
+
+                                <></>
+                            }
                         </>
                     }
                 </>

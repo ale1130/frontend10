@@ -334,7 +334,7 @@ function App(){
             <Route path="/" element={<Home setShowC={()=>setShow(true)} statoLogin={isLogged}/>}/>
             <Route path="/sport" element={<Sport />}/>
             <Route path="/sport-live" element={<SportLive />}/>
-            <Route path="/casino" element={<Casino isLogged={isLogged} skin={SKIN}/>}/>
+            <Route path="/casino" element={<Casino isLogged={isLogged} skin={SKIN} childModalButton={() => setShow(true)}/> }/>
             <Route path="/casino-live" element={<CasinoLive />}/>
             <Route path="/poker" element={<Poker />}/>
             <Route path="/virtual" element={<Virtual />}/>

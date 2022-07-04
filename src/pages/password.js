@@ -13,7 +13,7 @@ function Password (props){
 
     const { t, i18n } = useTranslation();
 
-    const [USER, setUser] = useState(props.datiUtente);
+    const USER = props.datiUtente;
 
     const [done, setDone] = useState(0);
     const [loader, setLoader] = useState(false);
