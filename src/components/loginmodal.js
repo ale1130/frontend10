@@ -91,7 +91,17 @@ function LoginModal(props) {
                     errorMsg [0] = t('errorilogin.credenziali');
 
                     error(errorMsg);
+
+                }else if(response.data.status=="errorEmailUnconfirmed"){
+
+                    var errorMsg = [];
+            
+                    errorMsg [0] = t('errorilogin.confermaemail');
+
+                    error(errorMsg);
+
                 }else{
+
                     var errorMsg = [];
             
                     errorMsg [0] = t('erroregenerico');

@@ -13,10 +13,11 @@ function ErrorBox (props){
                         <div className="alert-text">Correggi i seguenti errori:<br />
                             <div className="" id="saveProfileFormErroriLista">
                             
-                                {messaggi.map(messaggio =>
+                                {messaggi.map(messaggio => {return (
+                                    
                                     <><span key={messaggio}>-{messaggio}</span><br /></>
-                                )}
-
+                                    
+                                )})}
                             </div>
                         </div>
                     </div>
