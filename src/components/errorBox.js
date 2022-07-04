@@ -4,8 +4,6 @@ function ErrorBox (props){
 
     const messaggi = props.message;
 
-    console.log(messaggi)
-
     return (
  
         <>

@@ -1513,7 +1513,6 @@ div.container-casino:hover>div.middle-button {
   justify-content: space-between;
 }
 
-
 .sback {
   display: block;
   width: 100%;
@@ -1521,4 +1520,8 @@ div.container-casino:hover>div.middle-button {
   background: #007bff;
   color: #fff;
   border-radius: 3px;
+}
+
+.provider.active > a {
+  background: #4b5161;
 }

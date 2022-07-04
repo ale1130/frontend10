@@ -25,6 +25,23 @@ export const ConvertObjectToArray = (object) =>{
     return arrUtilizzo;
 }
 
+export const ConvertObjectToArraySlideshow = (object) =>{
+
+    var arrUtilizzo = [];
+    var arrUtilizzo2 = [];
+    var i=0;
+
+    for(i=1; i<=6; i++){
+        if(object["img_"+i]){
+            arrUtilizzo = [];
+            arrUtilizzo["url"]=(object["img_"+i]);
+            arrUtilizzo2.push(arrUtilizzo);
+        }
+    }
+
+    return arrUtilizzo2;
+}
+
 export const ConvertObjectToArrayErrors = (object) =>{
 
     var objectArray = Object.entries(object);
@@ -182,6 +199,10 @@ export const PROVIDERS_LOGO_WEB_PATH = (SKIN) =>{
 
 export const MEDIA_PROMO_WEB_PATH = (SKIN) =>{
     return SKIN["cdn_url"]+"/promotions/";
+}
+
+export const MEDIA_SLIDESHOWS_WEB_PATH = (SKIN) =>{
+    return SKIN["cdn_url"]+"/slideshow/";
 }
 
 export const convertObjectStringToNumbers = (array) =>{

@@ -14,7 +14,7 @@ function  SelectLanguages (props){
     const cookies = new Cookies();
     
     const { t, i18n } = useTranslation();
-    const [SKIN, setSkin] = useState(props.skin);
+    const SKIN = props.skin;
 
     const setLanguageCookie = (event) =>{
         cookies.set('la', event.target.value, { path: '/' });

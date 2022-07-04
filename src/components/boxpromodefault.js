@@ -13,7 +13,7 @@ function BoxPromo(props) {
     const { t, i18n } = useTranslation();
 
     const [datiPromo, setDatiPromo] = useState(["empty"]);
-    const [SKIN, setSkin] = useState(props.skin);
+    const SKIN = props.skin;
 
     const GetPromo = async () => {
 

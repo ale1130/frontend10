@@ -33,7 +33,7 @@ function RegistrationModal(props) {
     const { t, i18n } = useTranslation();
 
     const close = props.closeModal;
-    const [SKIN, setSkin] = useState(props.skin);
+    const SKIN = props.skin;
 
     const [inputs, setInputs] = useState([]);
 
