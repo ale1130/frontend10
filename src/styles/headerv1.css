@@ -1,3 +1,37 @@
+.dropdown-menu.show {
+    display: block;
+    padding: 0px;
+}
+
+.header-drop-down {
+    margin: 0px 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-drop-down>p {
+    color: #fff;
+    margin: 5px 0px;
+    font-size: 14px;
+    line-height: 1.1em;
+}
+
+
+
+div.dropdown-menu div.box-balance>div {
+    min-width: 300px;
+}
+
+div.dropdown-menu>div.box-balance {
+    margin: 0px 10px;
+}
+
+
+
+
+
+
 
 .header-top {
     padding: 0px 0 0px;
@@ -146,7 +180,7 @@ div.of-header {
 }
 
 
-.header-drop-down {
+.header-drop-down-language {
     margin: 0px 10px 10px;
     display: flex;
     justify-content: space-between;
@@ -155,15 +189,13 @@ div.of-header {
     align-items: flex-start;
 }
 
-.header-drop-down > p {
+.header-drop-down-language>p {
     font-size: 13px;
     font-weight: 600;
     color: #fff;
     margin: 5px 0px;
     line-height: 1.1em;
 }
-
-
 
 .language-lists {
     min-width: 260px;
@@ -179,7 +211,7 @@ div.of-header {
     justify-content: space-between;
 }
 
-.form-check-p > label {
+.form-check-p>label {
     font-size: 14px;
     padding: 10px 0px;
     width: 100%;
@@ -189,7 +221,7 @@ div.of-header {
     align-items: center;
 }
 
-.form-check-p > label > img {
+.form-check-p>label>img {
     width: 20px;
     margin: 0px 8px 0px 0px;
 }
@@ -200,22 +232,23 @@ div.of-header {
     background: var(--color3);
     margin: 10px;
     -webkit-box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 75%);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 75%);
 }
 
-.d-d-footer > p {
+.d-d-footer>p {
     color: #fff;
     font-size: 15px;
     padding: 20px 10px 20px;
     margin-bottom: 0px;
 }
-.d-d-footer > p > a {
+
+.d-d-footer>p>a {
     color: #fff;
     display: block;
 }
 
-.d-d-footer > p > a > svg {
+.d-d-footer>p>a>svg {
     fill: #fff;
     width: 18px;
     margin-right: 8px;
@@ -232,27 +265,9 @@ div.of-header {
     margin: 10px;
 }
 
-/*Info profile button*/
-
-.button-header {
-    font-size: 12px;
-    font-weight: 400;
-    background: var(--color1);
-    color: var(--color8);
-    border: 1px solid var(--color1);
-    padding: 5px 10px;
-    border-radius: 3px;
-    padding: 10px 13px;
-    margin-right: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    position: relative;
-    display: block !important;
-}
-
 /*Languages*/
 
-.cLanguage{
+.cLanguage {
     background: #dddddd26;
 }
 
