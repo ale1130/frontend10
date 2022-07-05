@@ -116,7 +116,9 @@ function App(){
 
           if(response.data.dati["blocked"]!=1){
 
-            setUser(dati => [...dati, convertObjectStringToNumbers(response.data.dati)]);
+            const nuoviDati = convertObjectStringToNumbers(response.data.dati);
+
+            setUser(dati => [...dati, nuoviDati]);
 
           }else{
 
@@ -394,7 +396,7 @@ function App(){
 
   //Funzione in background per count messaggi e aggiornamento dati utente
 
-  /*useEffect(() => {
+  useEffect(() => {
 
     if(loader>=6){
 
@@ -405,15 +407,17 @@ function App(){
 
         if (loggedInUsername && loggedInPasshash && SKIN["id"]) {
 
-          VerifyDataUser2(loggedInUsername, loggedInPasshash);
+          VerifyDataUser(loggedInUsername, loggedInPasshash);
         }
 
         GetCountMessages(USER["id"]);
 
       }, MINUTE_MS);
+
+      return () => clearInterval(interval);
     }
 
-  }, [loader])*/
+  }, [loader])
 
   return (
     <>
@@ -485,6 +489,9 @@ function App(){
             <Route path="/profile/info" element={ isLogged ? <Info datiUtente={USER} countMessages={countMessages} /> : <NoLogged /> } />
             <Route path="/profile/password" element={ isLogged ? <Password datiUtente={USER} countMessages={countMessages} /> : <NoLogged /> } />
             <Route path="/profile/messages" element={ isLogged ? <Messages datiUtente={USER} countMessages={countMessages} /> : <NoLogged /> } />
+
+            <Route path="/affiliate" />
+            <Route path="/multiplebonus" />
 
             <Route path="/languages" element={<AdminLanguages />} />
             <Route path="/languages/inglese" element={<LanguagesInglese />} />
