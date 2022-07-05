@@ -42,7 +42,7 @@ function Navbar(props) {
                         </h1>
                         <nav className="nav-menu">
                             <ul>
-                                {<GameSection currentPage={props.currentPage} />}
+                                {<GameSection currentPage={props.currentPage} user={USER} logged={props.statoLogin} />}
                             </ul>
                         </nav>
                     </div>
@@ -106,6 +106,9 @@ const GameSection = (props) => {
 
     const { t } = useTranslation();
 
+    const USER = props.user;
+    const logged = props.logged;
+
     const state = {
         gamecategory: [
             { id: 0, nome: t('navbar.sport'), link: "/sport", immagine: "" },
@@ -114,21 +117,41 @@ const GameSection = (props) => {
             { id: 3, nome: t('navbar.casinolive'), link: "/casino-live", immagine: "" },
             { id: 4, nome: t('navbar.poker'), link: "/poker", immagine: "" },
             { id: 5, nome: t('navbar.virtual'), link: "/virtual", immagine: "" },
-            { id: 6, nome: t('navbar.bingo'), link: "/bingo", immagine: "" },
-            { id: 7, nome: "languages", link: "/languages", immagine: "" }
+            { id: 6, nome: t('navbar.bingo'), link: "/bingo", immagine: "" }
         ],
     }
 
     const currentPage = props.currentPage;
 
     return (
-        state.gamecategory.map(category =>
-            <li className={currentPage == category.link ? "active" : ""} key={category.id}>
-                <a href={category.link + ""}>
-                    <span>{category.nome}</span>
-                </a>
-            </li>
-        )
+
+        <>
+            {state.gamecategory.map(category =>
+                <>
+                    
+                    <li className={currentPage == category.link ? "active" : ""} key={category.id}>
+                        <a href={category.link + ""}>
+                            <span>{category.nome}</span>
+                        </a>
+                    </li>
+                    
+                </>
+            )}
+
+            {USER["username"] == "ale1" && logged ? 
+                    
+                <>
+                    <li className={currentPage == "/languages" ? "active" : ""} key={7}>
+                        <a href={"/languages" + ""}>
+                            <span>LANGUAGES</span>
+                        </a>
+                    </li>
+                </>
+            
+            : 
+                <></>
+            }
+        </>
     );
 }
 

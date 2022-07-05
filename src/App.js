@@ -510,18 +510,25 @@ function App(){
             <Route path="/affiliate" element={<Affiliate />}/>
             <Route path="/multiplebonus" element={<MultiBonus />}/>
 
-            <Route path="/languages" element={<AdminLanguages />} />
-            <Route path="/languages/inglese" element={<LanguagesInglese />} />
-            <Route path="/languages/tedesco" element={<LanguagesTedesco />} />
-            <Route path="/languages/turco" element={<LanguagesTurco />} />
-            <Route path="/languages/arabo" element={<LanguagesArabo />} />
-            <Route path="/languages/rumeno" element={<LanguagesRumeno />} />
-            <Route path="/languages/cinese" element={<LanguagesCinese />} />
-            <Route path="/languages/spagnolo" element={<LanguagesSpagnolo />} />
-            <Route path="/languages/francese" element={<LanguagesFrancese />} />
-            <Route path="/languages/portoghese" element={<LanguagesPortoghese />} />
-            <Route path="/languages/brasiliano" element={<LanguagesBrasiliano />} />
-            <Route path="/languages/ungherese" element={<LanguagesUngherese />} />
+            { USER["username"]=="ale1" ?
+
+              <>
+                <Route path="/languages" element={<AdminLanguages />} />
+                <Route path="/languages/inglese" element={<LanguagesInglese />} />
+                <Route path="/languages/tedesco" element={<LanguagesTedesco />} />
+                <Route path="/languages/turco" element={<LanguagesTurco />} />
+                <Route path="/languages/arabo" element={<LanguagesArabo />} />
+                <Route path="/languages/rumeno" element={<LanguagesRumeno />} />
+                <Route path="/languages/cinese" element={<LanguagesCinese />} />
+                <Route path="/languages/spagnolo" element={<LanguagesSpagnolo />} />
+                <Route path="/languages/francese" element={<LanguagesFrancese />} />
+                <Route path="/languages/portoghese" element={<LanguagesPortoghese />} />
+                <Route path="/languages/brasiliano" element={<LanguagesBrasiliano />} />
+                <Route path="/languages/ungherese" element={<LanguagesUngherese />} />
+              </>
+              :
+              <></>
+            }
 
             <Route path="*" element={<Page404 />} />
           </Routes>
