@@ -60,12 +60,13 @@ function Navbar(props) {
                                     <span id="reloadBalance" >
                                         <span className="currentBalance" style={{ color: "white" }}>{USER["currency"] + " " + balancetot}</span>
                                     </span>
-                                </div><p style={{color:"white"}}>messages:{countMessages}</p>
+                                </div>
+
 
                                 <Dropdown>
                                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                                         <PersonIcon />
-                                    </Dropdown.Toggle>
+                                    </Dropdown.Toggle><div class="number-message">{countMessages}</div>
 
                                     <Dropdown.Menu>
                                         <BoxUtente setLogin={props.setLogin} utente={USER} />

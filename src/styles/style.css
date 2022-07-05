@@ -147,8 +147,8 @@ img.multiplatform {
   left: 50%;
   transform: translate(-50%, 10px);
   border: 1px solid rgb(51 51 51 / 50%);
-  /* background: var(--color5); */
-  background: #292649;
+  background: var(--color5);
+
   overflow: auto;
   border-radius: 4px;
   outline: none;
@@ -223,7 +223,7 @@ img.multiplatform {
   font-weight: 600;
   background: var(--color1);
 
-  /*color: var(--color8);*/
+  color: var(--color8);
   border: 1px solid var(--color1);
   padding: 5px 10px;
   border-radius: 4px;
@@ -586,7 +586,7 @@ button.close.new {
   background: var(--color5);
   list-style-type: none;
   text-align: center;
-  background: #feffff;
+
   padding: 2px;
   border-radius: 20px;
   display: block;
@@ -1066,8 +1066,8 @@ button.close.new {
 .svgarrow {
   width: 16px;
   margin-right: 10px;
-  /*fill: var(--color1);*/
-  fill: rgba(0, 0, 0, 0.75);
+  fill: var(--color1);
+
 }
 
 /*Providers*/
@@ -1332,8 +1332,8 @@ div.provider>a:hover {
 }
 
 .pul-type-play.active {
-  /*background: var(--color1);*/
-  background: #007bff;
+  background: var(--color1);
+
 }
 
 .pul-type-play.active>a {
@@ -1524,6 +1524,6 @@ div.container-casino:hover>div.middle-button {
   border-radius: 3px;
 }
 
-.provider.active > a {
+.provider.active>a {
   background: #4b5161;
 }
