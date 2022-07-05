@@ -17,6 +17,8 @@ function Info (props){
 
     const USER = props.datiUtente;
 
+    const countMessages = props.countMessages;
+
     const [inputs, setInputs] = useState({"email":USER["email"],"mobile":USER["mobile"], "max_deposit":USER["max_deposit"], "max_deposit_status":USER["max_deposit_status"], "user_id":USER["id"], "language_sett":USER["primary_language"] });
 
     const [modalError, setModalError] = useState(false);
@@ -94,7 +96,7 @@ function Info (props){
 
     return (
         <>
-            {<Profile paginaAttuale={"info"} datiUtente={USER} />}
+            {<Profile paginaAttuale={"info"} datiUtente={USER} countMessages={countMessages}/>}
 
             <div className="col-md-12 col-lg-9">
 
@@ -102,7 +104,7 @@ function Info (props){
                     <tbody>
                         <tr>
                             <td>
-                                <h2 className="virtual-title">Cambia dati</h2>
+                                <h2 className="virtual-title">{t('cambiadati')}</h2>
 
                                     <form onSubmit={handleSubmit} className="form-signUp clearForm">
 
@@ -122,7 +124,7 @@ function Info (props){
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <strong>Nome e cognome</strong>
+                                                        <strong>{t('nome')} {t('e')} {t('cognome')}</strong>
                                                     </td>
                                                     <td>
                                                         {USER["firstname"]+" "+USER["lastname"]}                                               
@@ -138,7 +140,7 @@ function Info (props){
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <strong>Cellulare</strong>
+                                                        <strong>{t('cellulare')}</strong>
                                                     </td>
                                                     <td>
                                                         <input type="text" id="mobile" name="mobile" placeholder="Cellulare" value={inputs.mobile || ""} onChange={handleChange} className="form-control" />
@@ -150,7 +152,7 @@ function Info (props){
                                                     <>
                                                         <tr>
                                                             <td>
-                                                                <strong>Lingua</strong>
+                                                                <strong>{t('lingua')}</strong>
                                                             </td>
                                                             <td>
                                                                 <SelectLanguageSett value={inputs.language_sett} onchange={()=>handleChange}/>
@@ -165,16 +167,16 @@ function Info (props){
                                                 
                                                 <tr>
                                                     <td>
-                                                        <strong>Deposito massimo settimanale</strong>
+                                                        <strong>{t('depositomax')}</strong>
                                                     </td>
                                                     <td>
                                                         <div className="input-group mb-3">
 
-                                                            <input type="text" id="max_deposit" name="max_deposit" className="form-control" aria-label="Text input with checkbox" value={inputs.max_deposit || ""} onChange={handleChange} placeholder={inputs.max_deposit ? "" : "Non impostato"} />
+                                                            <input type="text" id="max_deposit" name="max_deposit" className="form-control" aria-label="Text input with checkbox" value={inputs.max_deposit || ""} onChange={handleChange} placeholder={inputs.max_deposit ? "" : t('nonimpostato')} />
 
                                                             <div className="input-group-append">
                                                                 <div className="input-group-text">
-                                                                    <input type="checkbox" id="max_deposit_status" name="max_deposit_status" aria-label="Checkbox for following text input" onChange={handleChangeRadio} value={inputs.max_deposit_status} defaultChecked={inputs.max_deposit_status} /> Attivo
+                                                                    <input type="checkbox" id="max_deposit_status" name="max_deposit_status" aria-label="Checkbox for following text input" onChange={handleChangeRadio} value={inputs.max_deposit_status} defaultChecked={inputs.max_deposit_status} /> {t('attivo')}
                                                                 </div>
                                                             </div>
 

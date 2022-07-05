@@ -34,7 +34,7 @@ function Footer(props){
                             <ul>
                                 {state.footerlinks.map(object =>
                                     
-                                    <li><a href="">{object.nome}</a></li>
+                                    <li key={object.id}><a href="">{object.nome}</a></li>
                                 )}
                             </ul>
                         </div>

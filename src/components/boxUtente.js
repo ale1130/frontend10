@@ -22,7 +22,7 @@ function BoxUtente(props) {
 
                 <div className="header-drop-down">
                     <p>{t('benvenuto')}<br /><strong>{USER["username"]}</strong></p>
-                    <a className="button-header" href="/account">{t('versamento')}</a>
+                    <a className="button-header" href="/account/deposit">{t('versamento')}</a>
                 </div>
 
                 <div className="box-balance">

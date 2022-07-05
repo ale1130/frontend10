@@ -12,6 +12,8 @@ function Profile (props){
 
     const USER = props.datiUtente;
 
+    const countMessages = props.countMessages;
+
     const currency = USER["currency"];
 
     const saldo_totale = USER["balance"]+USER["balance_withdrawable"]+USER["bonus"];
@@ -68,7 +70,7 @@ function Profile (props){
                                     </div>
                                 </a>   
 
-                                <span className="count-prelie">0</span>
+                                <span className="count-prelie">{countMessages}</span>
 
                                 <div onClick={LogOut}>
                                     {t('esci')}	                    

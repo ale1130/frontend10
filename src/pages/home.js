@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 
 import ControlledCarousel from "../components/slider.js";
 

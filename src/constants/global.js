@@ -217,7 +217,9 @@ export const convertObjectStringToNumbers = (array) =>{
             if(isNaN(value)){
                 arrUtilizzo[key] = value;
             }else{
-                arrUtilizzo[key] = parseFloat(value);
+                var datoParziale1 = parseFloat(value);
+                var datoParziale2 = datoParziale1.toFixed(2)
+                arrUtilizzo[key] = parseFloat(datoParziale2);
             }
         }else{
             arrUtilizzo[key] = value;
@@ -237,3 +239,5 @@ export const convertToFormdata = (object) =>{
 
     return formData
 }
+
+export const MINUTE_MS = 60000;

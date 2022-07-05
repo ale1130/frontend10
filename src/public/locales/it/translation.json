@@ -152,5 +152,25 @@
   "visualizzato":"Visualizzato",
   "cerca":"Cerca",
   "salvadati":"Salva dati",
-  "toglifiltri":"Rimuovi filtri"
+  "toglifiltri":"Rimuovi filtri",
+  "deposit":"Depositi",
+  "withdrawals":"Prelievi",
+  "voucher":"Voucher",
+  "transactions":"Movimenti e saldo",
+  "coupons":"Scommesse sport",
+  "withdrawals_requests":"Richieste di prelievo in sospeso",
+  "altreoperazioni":"Altre operazioni",
+
+  "lingua":"Lingua",
+  "depositomax":"Deposito massimo settimanale",
+  "attivo":"Attivo",
+  "nonimpostato":"Non impostato",
+  "ripeti":"Ripeti",
+  "nuova":"Nuova",
+  "attuale":"Attuale",
+  "salva":"Salva",
+  "mettidati":"Immettere tutti i dati",
+  "oldpswnot":"La vecchia password non coincide",
+  "nuovauguale":"La nova password è uguale alla vecchia",
+  "pswsnot":"Le due password non coincidiono"
 }

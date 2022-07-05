@@ -10,10 +10,12 @@ function MyProfile (props){
 
     const USER = props.datiUtente;
 
+    const countMessages = props.countMessages;
+
     return (
         <>
 
-            {<Profile paginaAttuale={"/"} datiUtente={USER} />}
+            {<Profile paginaAttuale={"/"} datiUtente={USER} countMessages={countMessages} />}
 
             <div className="col-md-12 col-lg-9">
 

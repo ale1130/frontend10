@@ -15,6 +15,8 @@ function Messages (props){
 
     const USER = props.datiUtente;
 
+    const countMessages = props.countMessages;
+
     const { t, i18n } = useTranslation();
 
     const [inputs, setInputs] = useState({"user_id":USER["id"],"page":1});
@@ -210,7 +212,7 @@ function Messages (props){
     return (
         <>
 
-            {<Profile paginaAttuale={"messages"} datiUtente={USER} />}
+            {<Profile paginaAttuale={"messages"} datiUtente={USER} countMessages={countMessages} />}
 
             {<ModalMessage 
                 modalState={show} 

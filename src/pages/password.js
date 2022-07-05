@@ -15,6 +15,8 @@ function Password (props){
 
     const USER = props.datiUtente;
 
+    const countMessages = props.countMessages;
+
     const [done, setDone] = useState(0);
     const [loader, setLoader] = useState(false);
 
@@ -25,6 +27,10 @@ function Password (props){
 
     const [modalSuccess, setModalSuccess] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
+
+    const [myClass, setMyClass] = useState("password");
+    const [myClass2, setMyClass2] = useState("password");
+    const [myClass3, setMyClass3] = useState("password");
 
     const handleChange = (event) => {
       const name = event.target.name;
@@ -77,18 +83,18 @@ function Password (props){
         event.preventDefault();
 
         if(!inputs.oldpassword || !inputs.newpassword || !inputs.renewpassword){
-            errorMsg [0] = "Immettere tutti i dati";
+            errorMsg [0] = t('mettidati');
         }else{
             if(inputs.oldpassword != USER["realpass"]){
-            errorMsg [1] = "La vecchia password non coincide";
+            errorMsg [1] = t('oldpswnot');
             }
 
             if(inputs.newpassword == USER["realpass"]){
-                errorMsg [2] = "La nova password è uguale alla vecchia";
+                errorMsg [2] = t('nuovauguale');
             }
 
             if(inputs.newpassword != inputs.renewpassword){
-                errorMsg [3] = "Le due password non coincidiono";
+                errorMsg [3] = t('pswsnot');
             }
         }
 
@@ -109,9 +115,33 @@ function Password (props){
         }
     },done)
 
+    const changeClass = () =>{
+
+        if(myClass=="password")
+            setMyClass("text")
+        else
+            setMyClass("password")
+    }
+
+    const changeClass2 = () =>{
+
+        if(myClass2=="password")
+            setMyClass2("text")
+        else
+            setMyClass2("password")
+    }
+
+    const changeClass3 = () =>{
+
+        if(myClass3=="password")
+            setMyClass3("text")
+        else
+            setMyClass3("password")
+    }
+
     return (
         <>
-            {<Profile paginaAttuale={"password"} datiUtente={USER} />}
+            {<Profile paginaAttuale={"password"} datiUtente={USER} countMessages={countMessages} />}
 
             <div className="col-md-12 col-lg-9">
                 <table width="100%" className="table table-bordered">
@@ -119,7 +149,7 @@ function Password (props){
                         <tr>
                             <td>
                             
-                                <h2 className="virtual-title">Cambia password</h2>
+                                <h2 className="virtual-title">{t('cambiapassword')}</h2>
                                 
                                 <form onSubmit={handleSubmit} className="form-signUp clearForm">
 
@@ -133,17 +163,17 @@ function Password (props){
                                             <tr>
                                             
                                                 <td>
-                                                    <strong>Password attuale</strong>
+                                                    <strong>Password {t('attuale')}</strong>
                                                 </td>
                                                 
                                                 <td>
 
                                                     <div className="input-group ">
 
-                                                        <input type="password" name="oldpassword" id="oldpassword" value={inputs.oldpassword || ""} onChange={handleChange} className="form-control" />
+                                                        <input type={myClass} name="oldpassword" id="oldpassword" value={inputs.oldpassword || ""} onChange={handleChange} className="form-control" />
 
                                                         <div className="input-group-prepend">
-                                                            <span className="input-group-text" id="basic-addon1"> <i className="bi bi-eye-slash" id="occhio1"></i></span>
+                                                            <span className="input-group-text" id="basic-addon1"> <a className="bi bi-eye-slash" id="occhio1" onClick={()=>changeClass()}>occhio</a></span>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -152,17 +182,17 @@ function Password (props){
                                             <tr>
                                             
                                                 <td width="35%">
-                                                    <strong>Nuova password</strong>
+                                                    <strong>{t('nuova')} password</strong>
                                                 </td>
                                                 
                                                 <td>
 
                                                     <div className="input-group ">
 
-                                                        <input type="password" name="newpassword" id="newpassword" value={inputs.newpassword || ""} onChange={handleChange} className="form-control" />
+                                                        <input type={myClass2} name="newpassword" id="newpassword" value={inputs.newpassword || ""} onChange={handleChange} className="form-control" />
 
                                                         <div className="input-group-prepend">
-                                                            <span className="input-group-text" id="basic-addon1"> <i className="bi bi-eye-slash" id="occhio2"></i></span>
+                                                            <span className="input-group-text" id="basic-addon1"> <a className="bi bi-eye-slash" id="occhio1" onClick={()=>changeClass2()}>occhio</a></span>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -170,15 +200,15 @@ function Password (props){
                                             
                                             <tr>
                                                 <td>
-                                                    <strong>Conferma password</strong>
+                                                    <strong>{t('ripeti')} password</strong>
                                                 </td>
                                                 
                                                 <td>
                                                     <div className="input-group ">
 
-                                                        <input type="password" name="renewpassword" id="renewpassword" value={inputs.renewpassword || ""} onChange={handleChange} className="form-control" />
+                                                        <input type={myClass3} name="renewpassword" id="renewpassword" value={inputs.renewpassword || ""} onChange={handleChange} className="form-control" />
                                                         <div className="input-group-prepend">
-                                                            <span className="input-group-text" id="basic-addon1"> <i className="bi bi-eye-slash" id="occhio3"></i></span>
+                                                            <span className="input-group-text" id="basic-addon1"> <a className="bi bi-eye-slash" id="occhio1" onClick={()=>changeClass3()}>occhio</a></span>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -187,7 +217,7 @@ function Password (props){
                                         </tbody>
                                     </table>
                                     
-                                    <input type="submit" className="login" id="changePassword" value={"Salva password"} />
+                                    <input type="submit" className="login" id="changePassword" value={t('salva')+" password"} />
                                     
                                 </form>
 

@@ -16,7 +16,7 @@ import { NoLogged } from "./components/schermatanolog";
 
 //global
 
-import {api, convertObjectStringToNumbers, logoDirectory } from "./constants/global";
+import {api, convertObjectStringToNumbers, logoDirectory, MINUTE_MS } from "./constants/global";
 
 //Rotte
 
@@ -28,7 +28,6 @@ import CasinoLive from "./pages/casino-live";
 import Poker from "./pages/poker";
 import Virtual from "./pages/virtual";
 import Bingo from "./pages/bingo";
-import Account from "./pages/account";
 import MyProfile from "./components/myprofile";
 import Info from "./pages/info";
 import Password from "./pages/password";
@@ -55,6 +54,13 @@ import { AdminLanguages, LanguagesBrasiliano, LanguagesArabo, LanguagesCinese, L
 //Cookies
 
 import Cookies from 'universal-cookie';
+import Deposit from "./pages/deposit";
+import Withdrawals from "./pages/withdrawals";
+import Voucher from "./pages/voucher";
+import Transactions from "./pages/transactions";
+import Coupons from "./pages/coupons";
+import Bonus from "./pages/bonus";
+import WithdrawalsRequests from "./pages/withdrawals_requests";
 
 function App(){
 
@@ -92,6 +98,47 @@ function App(){
 
   const [currentPage, setCurrentPage] = useState(window.location.pathname);
 
+  //Conteggio ciclico messaggi (ogni minuto)
+
+  const [countMessages, setCountMessages]= useState(111111111);
+
+  //Funzione solo per aggiornare
+
+  const VerifyDataUser2 = async (user, pass) => {
+
+    try{
+
+      const data = await api
+      .get('rest/usercookie2/:'+user+"/:"+pass+"/")
+      .then(response => {
+
+        if(response.data.status=="ok"){
+
+          if(response.data.dati["blocked"]!=1){
+
+            setUser(dati => [...dati, convertObjectStringToNumbers(response.data.dati)]);
+
+          }else{
+
+            cookies.remove('gio_uid', { path: '/' });
+            cookies.remove('gio_pass', { path: '/' });
+            setLoader(loader+1);
+          }
+          
+        }else{
+
+          cookies.remove('gio_uid', { path: '/' });
+          cookies.remove('gio_pass', { path: '/' });
+          setLoader(loader+1);
+        }
+      })
+
+    }catch (e){
+
+     alert(t('erroregenerico'));  console.log(e);
+    }
+  };
+
   //Estrazione dati skin
 
   const GetdataSkin = async () =>{
@@ -111,22 +158,22 @@ function App(){
       })
     }catch (e){
 
-     alert(t('erroregenerico'));  console.log(e);
+    alert(t('erroregenerico'));  console.log(e);
     }
   };
 
   useEffect(() => {
     GetdataSkin();
   },[]);
-
-  //Stile globale skin
-
+  
   useEffect(() => {
 
-    if(SKIN!="empty"){
+    if(SKIN!="empty" && loader==0){
       setLoader(loader+1);
     }
   },[SKIN]);
+
+  //Stile globale skin
 
   useEffect(()=>{
 
@@ -171,9 +218,14 @@ function App(){
       .get('rest/skinsett')
       .then(response => {
 
-        if(response.data.status="ok"){
+        if(response.data.status=="ok"){
+
           setSkinSettings(response.data.dati);
+        }else if(response.data.status=="nosettingsfound"){
+
+          setSkinSettings([]);
         }else{
+
           alert(t('erroregenerico'));
         }
       })
@@ -186,13 +238,20 @@ function App(){
 
   useEffect(()=>{
 
-    if(loader == 3){
+    if(loader == 2){
       Settings();
     }
     
   },[loader])
 
-  //Verifica dati utente nel localStorage
+  useEffect(() => {
+
+    if(skinSettings!="empty"){
+      setLoader(loader+1);
+    }
+  },[skinSettings]);
+
+  //Verifico dati utente nei cookies
 
   const VerifyDataUser = async (user, pass) => {
 
@@ -205,15 +264,11 @@ function App(){
         if(response.data.status=="ok"){
 
           if(response.data.dati["blocked"]!=1){
+
             setUser(convertObjectStringToNumbers(response.data.dati));
 
-            setIsLogged(true);
-            setLoader(loader+1);
-
-            cookies.set('gio_uid', response.data.dati.id, { path: '/' });
-            cookies.set('gio_pass', response.data.dati.passhash, { path: '/' });
-
           }else{
+
             cookies.remove('gio_uid', { path: '/' });
             cookies.remove('gio_pass', { path: '/' });
             setLoader(loader+1);
@@ -239,9 +294,10 @@ function App(){
 
       const loggedInUsername = cookies.get("gio_uid");
       const loggedInPasshash = cookies.get("gio_pass");
+
       if (loggedInUsername && loggedInPasshash && SKIN["id"]) {
 
-        VerifyDataUser(loggedInUsername, loggedInPasshash, SKIN["id"]);
+        VerifyDataUser(loggedInUsername, loggedInPasshash);
       }else{
 
         setLoader(loader+1);
@@ -254,10 +310,63 @@ function App(){
     }
   }, [loader]);
 
+  useEffect(() => {
+
+    if(USER!="empty"){
+
+      setIsLogged(true);
+      setLoader(loader+1);
+    }
+  },[USER]);
+
+  //Count messages
+
+  const GetCountMessages = async (userid) => {
+
+    try{
+
+      const data = await api
+      .get('rest/getcountmessages/:'+userid+"/")
+      .then(response => {
+
+        if(response.data.status=="ok"){
+
+          setCountMessages(response.data.count.totale);
+        }else{
+
+          setCountMessages(36606);
+        }
+      })
+
+    }catch (e){
+
+     alert(t('erroregenerico'));  console.log(e);
+    }
+  };
+
+  useEffect(() => {
+
+    if(loader==4 && USER!="empty"){
+
+      GetCountMessages(USER["id"]);
+    }else if(loader==4){
+
+      setLoader(loader+1);
+    }
+  },[loader]);
+
+  useEffect(() => {
+
+    if(countMessages!=111111111){
+      setLoader(loader+1);
+    }
+  },[countMessages]);
   
+  //Imposto la lingua
+
   useEffect(()=>{
 
-    if(loader==4){
+    if(loader==5){
 
       const currentLang = cookies.get("la");
 
@@ -283,10 +392,33 @@ function App(){
 
   },[loader]);
 
+  //Funzione in background per count messaggi e aggiornamento dati utente
+
+  /*useEffect(() => {
+
+    if(loader>=6){
+
+      const interval = setInterval(() => {
+
+        const loggedInUsername = cookies.get("gio_uid");
+        const loggedInPasshash = cookies.get("gio_pass");
+
+        if (loggedInUsername && loggedInPasshash && SKIN["id"]) {
+
+          VerifyDataUser2(loggedInUsername, loggedInPasshash);
+        }
+
+        GetCountMessages(USER["id"]);
+
+      }, MINUTE_MS);
+    }
+
+  }, [loader])*/
+
   return (
     <>
 
-      {loader>=5 ? 
+      {loader>=6 ? 
 
       <>
 
@@ -302,6 +434,7 @@ function App(){
             setLogin={setIsLogged}
             datiUtente={USER}
             skin={SKIN}
+            countMessages={countMessages}
           />
 
           <LoginModal 
@@ -339,11 +472,19 @@ function App(){
             <Route path="/poker" element={<Poker />}/>
             <Route path="/virtual" element={<Virtual />}/>
             <Route path="/bingo" element={<Bingo />}/>
-            <Route path="/account" element={ isLogged ? <Account isLogged={isLogged} user={USER}/> : <NoLogged /> } />
-            <Route path="/profile" element={ isLogged ? <MyProfile datiUtente={USER}/> : <NoLogged />  } />
-            <Route path="/profile/info" element={ isLogged ? <Info datiUtente={USER} /> : <NoLogged /> } />
-            <Route path="/profile/password" element={ isLogged ? <Password datiUtente={USER} /> : <NoLogged /> } />
-            <Route path="/profile/messages" element={ isLogged ? <Messages datiUtente={USER} /> : <NoLogged /> } />
+
+            <Route path="/account/deposit" element={ isLogged ? <Deposit user={USER}/> : <NoLogged /> } />
+            <Route path="/account/withdrawals" element={ isLogged ? <Withdrawals user={USER}/> : <NoLogged /> } />
+            <Route path="/account/voucher" element={ isLogged ? <Voucher user={USER}/> : <NoLogged /> } />
+            <Route path="/account/transactions" element={ isLogged ? <Transactions user={USER}/> : <NoLogged /> } />
+            <Route path="/account/coupons" element={ isLogged ? <Coupons user={USER}/> : <NoLogged /> } />
+            <Route path="/account/bonus" element={ isLogged ? <Bonus user={USER}/> : <NoLogged /> } />
+            <Route path="/account/withdrawals_requests" element={ isLogged ? <WithdrawalsRequests user={USER}/> : <NoLogged /> } />
+
+            <Route path="/profile" element={ isLogged ? <MyProfile datiUtente={USER} countMessages={countMessages} /> : <NoLogged />  } />
+            <Route path="/profile/info" element={ isLogged ? <Info datiUtente={USER} countMessages={countMessages} /> : <NoLogged /> } />
+            <Route path="/profile/password" element={ isLogged ? <Password datiUtente={USER} countMessages={countMessages} /> : <NoLogged /> } />
+            <Route path="/profile/messages" element={ isLogged ? <Messages datiUtente={USER} countMessages={countMessages} /> : <NoLogged /> } />
 
             <Route path="/languages" element={<AdminLanguages />} />
             <Route path="/languages/inglese" element={<LanguagesInglese />} />

@@ -21,6 +21,8 @@ function Navbar(props) {
 
     const USER = props.datiUtente;
 
+    const countMessages = props.countMessages;
+
     const balancetot = USER["balance"] + USER["bonus"] + USER["balance_withdrawable"];
 
     //Forse dovrei controllare anche qua lo stato della variabile USER
@@ -58,7 +60,7 @@ function Navbar(props) {
                                     <span id="reloadBalance" >
                                         <span className="currentBalance" style={{ color: "white" }}>{USER["currency"] + " " + balancetot}</span>
                                     </span>
-                                </div>
+                                </div><p style={{color:"white"}}>messages:{countMessages}</p>
 
                                 <Dropdown>
                                     <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -113,7 +115,7 @@ const GameSection = (props) => {
             { id: 4, nome: t('navbar.poker'), link: "/poker", immagine: "" },
             { id: 5, nome: t('navbar.virtual'), link: "/virtual", immagine: "" },
             { id: 6, nome: t('navbar.bingo'), link: "/bingo", immagine: "" },
-            { id: 6, nome: "languages", link: "/languages", immagine: "" }
+            { id: 7, nome: "languages", link: "/languages", immagine: "" }
         ],
     }
 
