@@ -3,8 +3,12 @@ import React, { useState } from "react";
 
 import { useTranslation } from 'react-i18next';
 
+import { MEDIA_SLIDESHOWS_WEB_PATH } from '../constants/global';
+
 <>
-    <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
+    <script 
+    src="https://unpkg.com/react/umd/react.production.min.js" 
+    crossorigin></script>
 
     <script
     src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
@@ -21,28 +25,13 @@ import { useTranslation } from 'react-i18next';
     crossorigin="anonymous"/>
 </>
 
-const SliderData =[
-    {
-        imageUrl:'https://media.betzonelab.com/slideshow/img1_6239edd791841.jpeg'
-    },
-    {
-        imageUrl:'https://media.betzonelab.com/slideshow/img2_6239ffec6c6ba.jpeg'
-    },
-    {
-        imageUrl:'https://media.betzonelab.com/slideshow/img3_623a02ea891fd.jpeg'
-    },
-    {
-        imageUrl:'https://media.betzonelab.com/slideshow/img4_623aa7e6a51a7.jpeg'
-    },
-    {
-        imageUrl:'https://media.betzonelab.com/slideshow/img5_623c441b1bec9.jpeg'
-    },
-    {
-        imageUrl:'https://media.betzonelab.com/slideshow/img6_623c487160578.jpeg'
-    }
-]
 
 function ControlledCarousel(props) {
+
+    const SKIN = props.skin;
+    
+    const SliderData = props.immagini;
+
     const [index, setIndex] = useState(0);
   
     const handleSelect = (selectedIndex, e) => {
@@ -58,11 +47,11 @@ function ControlledCarousel(props) {
         {SliderData.map((image,indice)=>{
             return(
                 <Carousel.Item key={indice}>
-                    <img src={image.imageUrl} alt={indice}/>
+                    <img src={MEDIA_SLIDESHOWS_WEB_PATH(SKIN)+image.url} alt={indice}/>
                     <div className="carousel-caption d-md-block  slide-adv">
                         <div className="content-adv">
                             <div className="button-adv">
-                                {!props.isLogged && <><a href="#" onClick={props.openForm} className="botton-adv-1">{t('accedi')}</a></>}
+                                {!props.isLogged && <><a onClick={props.openForm} className="botton-adv-1">{t('accedi')}</a></>}
                             </div>
                         </div>
                     </div>

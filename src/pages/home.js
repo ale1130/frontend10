@@ -9,6 +9,8 @@ function Home (props){
             <ControlledCarousel 
                 openForm={() => props.setShowC()}
                 isLogged={props.statoLogin}
+                immagini={props.immagini}
+                skin={props.skin}
             />  
         </>
     )
