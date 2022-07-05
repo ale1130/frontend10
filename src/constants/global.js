@@ -177,9 +177,9 @@ export const LogOut = () => {
     }
 };
 
-export const ckeckSkinSett = (arraySettings, setting) =>{
+export const checkSkinSett = (arraySettings, setting) =>{
 
-    if(arraySettings.includes(setting)){
+    if(arraySettings.indexOf(setting)> -1){
         return true;
     }else{
         return false;

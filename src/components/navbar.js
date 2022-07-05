@@ -79,21 +79,28 @@ function Navbar(props) {
                             </>
                         }
 
+                        {!props.selectLanguageOK ?
+                        
+                            <div className="btn-group">
 
+                                <Dropdown>
+                                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                        <SettingsIcon />
+                                    </Dropdown.Toggle>
 
-                        <div className="btn-group">
+                                    <Dropdown.Menu>
+                                        <SelectLanguages skin={SKIN} svgphone={<PhoneIcon />} />
+                                    </Dropdown.Menu>
+                                </Dropdown>
 
-                            <Dropdown>
-                                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                    <SettingsIcon />
-                                </Dropdown.Toggle>
+                            </div>
 
-                                <Dropdown.Menu>
-                                    <SelectLanguages skin={SKIN} svgphone={<PhoneIcon />} />
-                                </Dropdown.Menu>
-                            </Dropdown>
+                            :
 
-                        </div>
+                            <></>
+                        }
+
+                        
                     </div>
                 </div>
 

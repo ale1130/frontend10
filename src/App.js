@@ -16,7 +16,7 @@ import { NoLogged } from "./components/schermatanolog";
 
 //global
 
-import {api, convertObjectStringToNumbers, ConvertObjectToArraySlideshow, logoDirectory, MINUTE_MS } from "./constants/global";
+import {api, checkSkinSett, convertObjectStringToNumbers, ConvertObjectToArraySlideshow, logoDirectory, MINUTE_MS } from "./constants/global";
 
 //Rotte
 
@@ -339,23 +339,30 @@ function App(){
   useEffect(()=>{
 
     if(loader==5){
-
+ 
       const currentLang = cookies.get("la");
 
       const arrayLang = ['it','de','en','tr','ro','zh','fr','pt','pt-br','hu','es','ar'];
 
-      if(currentLang && arrayLang.includes(currentLang)){
+      if(!checkSkinSett(skinSettings,'disable_language_select')){
+        if(currentLang && arrayLang.includes(currentLang)){
 
-        i18n.changeLanguage(currentLang);
-        setLoader(loader+1);
+          i18n.changeLanguage(currentLang);
+          setLoader(loader+1);
 
-      }else if(USER["primary_language"] && arrayLang.includes(USER["primary_language"])){
+        }else if(USER["primary_language"] && arrayLang.includes(USER["primary_language"])){
 
-        i18n.changeLanguage(USER["primary_language"]);
-        cookies.set('la',USER["primary_language"], { path: '/' });
-        setLoader(loader+1);
+          i18n.changeLanguage(USER["primary_language"]);
+          cookies.set('la',USER["primary_language"], { path: '/' });
+          setLoader(loader+1);
+        }else{
+
+          i18n.changeLanguage(SKIN["language"]);
+          cookies.set('la', SKIN["language"], { path: '/' });
+          setLoader(loader+1);
+        }
+
       }else{
-
         i18n.changeLanguage(SKIN["language"]);
         cookies.set('la', SKIN["language"], { path: '/' });
         setLoader(loader+1);
@@ -453,6 +460,7 @@ function App(){
             datiUtente={USER}
             skin={SKIN}
             countMessages={countMessages}
+            selectLanguageOK={checkSkinSett(skinSettings,'disable_language_select')}
           />
 
           <LoginModal 
@@ -503,7 +511,7 @@ function App(){
             <Route path="/account/withdrawals_requests" element={ isLogged ? <WithdrawalsRequests user={USER}/> : <NoLogged /> } />
 
             <Route path="/profile" element={ isLogged ? <MyProfile datiUtente={USER} countMessages={countMessages} /> : <NoLogged />  } />
-            <Route path="/profile/info" element={ isLogged ? <Info datiUtente={USER} countMessages={countMessages} /> : <NoLogged /> } />
+            <Route path="/profile/info" element={ isLogged ? <Info datiUtente={USER} countMessages={countMessages} disableLang={checkSkinSett(skinSettings,'disable_language_select')} /> : <NoLogged /> } />
             <Route path="/profile/password" element={ isLogged ? <Password datiUtente={USER} countMessages={countMessages} /> : <NoLogged /> } />
             <Route path="/profile/messages" element={ isLogged ? <Messages datiUtente={USER} countMessages={countMessages} /> : <NoLogged /> } />
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import axios from "axios";
 
-import { skinUrl, convertToFormdata, ckeckSkinSett, ConvertObjectToArrayErrors } from "../constants/global";
+import { skinUrl, convertToFormdata, checkSkinSett, ConvertObjectToArrayErrors } from "../constants/global";
 
 import Profile from "../pages/profile";
 import ErrorBox from "../components/errorBox";
@@ -147,7 +147,7 @@ function Info (props){
                                                     </td>
                                                 </tr>
 
-                                                {!ckeckSkinSett('disable_language_select') ?      
+                                                {!props.disableLang ?      
                                                     
                                                     <>
                                                         <tr>
