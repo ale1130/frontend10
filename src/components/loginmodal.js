@@ -81,7 +81,29 @@ function LoginModal(props) {
                         cookies.set('gio_uid', response.data.dati.id, { path: '/' });
                         cookies.set('gio_pass', response.data.dati.passhash, { path: '/' });
                         
-                        close();
+                        try{
+                        
+                            api
+                            .get('rest/getcountmessages/:'+response.data.dati.id+"/")
+                            .then(response => {
+                      
+                              if(response.data.status=="ok"){
+                      
+                                props.setCountMessages(response.data.count.totale);
+
+                                close();
+                              }else{
+                      
+                                props.setCountMessages(36606);
+
+                                close();
+                              }
+                            })
+                      
+                        }catch (e){
+                    
+                            alert(t('erroregenerico'));  console.log(e);
+                        }
                     }
 
                 }else if(response.data.status=="nouser"){

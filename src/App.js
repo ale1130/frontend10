@@ -16,7 +16,7 @@ import { NoLogged } from "./components/schermatanolog";
 
 //global
 
-import {api, convertObjectStringToNumbers, logoDirectory, MINUTE_MS } from "./constants/global";
+import {api, convertObjectStringToNumbers, ConvertObjectToArraySlideshow, logoDirectory, MINUTE_MS } from "./constants/global";
 
 //Rotte
 
@@ -32,6 +32,8 @@ import MyProfile from "./components/myprofile";
 import Info from "./pages/info";
 import Password from "./pages/password";
 import Messages from "./pages/messages";
+
+import Page404 from "./pages/page404";
 
 //Components
 
@@ -61,6 +63,9 @@ import Transactions from "./pages/transactions";
 import Coupons from "./pages/coupons";
 import Bonus from "./pages/bonus";
 import WithdrawalsRequests from "./pages/withdrawals_requests";
+import Affiliate from "./footerpages/affiliate";
+import MultiBonus from "./footerpages/multiplebonus";
+import Promotions from "./pages/promotions";
 
 function App(){
 
@@ -102,44 +107,9 @@ function App(){
 
   const [countMessages, setCountMessages]= useState(111111111);
 
-  //Funzione solo per aggiornare
+  //Costante immagini slideshow
 
-  const VerifyDataUser2 = async (user, pass) => {
-
-    try{
-
-      const data = await api
-      .get('rest/usercookie2/:'+user+"/:"+pass+"/")
-      .then(response => {
-
-        if(response.data.status=="ok"){
-
-          if(response.data.dati["blocked"]!=1){
-
-            const nuoviDati = convertObjectStringToNumbers(response.data.dati);
-
-            setUser(dati => [...dati, nuoviDati]);
-
-          }else{
-
-            cookies.remove('gio_uid', { path: '/' });
-            cookies.remove('gio_pass', { path: '/' });
-            setLoader(loader+1);
-          }
-          
-        }else{
-
-          cookies.remove('gio_uid', { path: '/' });
-          cookies.remove('gio_pass', { path: '/' });
-          setLoader(loader+1);
-        }
-      })
-
-    }catch (e){
-
-     alert(t('erroregenerico'));  console.log(e);
-    }
-  };
+  const [slideShowImages, setSlideShowImages] = useState(["empty"])
 
   //Estrazione dati skin
 
@@ -394,11 +364,55 @@ function App(){
 
   },[loader]);
 
+  //Immagini per lo slideshow iniziale
+
+  const GetSlideshowImages = async (page, logged) => {
+
+    const loggato = logged ? 1 : 0;
+
+    try{
+
+      const data = await api
+      .get('/rest/getslideshow/:'+page+"/:"+loggato+"/")
+      .then(response => {
+
+        if(response.data.status=="ok"){
+
+          setSlideShowImages(ConvertObjectToArraySlideshow(response.data.dati[0]));
+          
+        }else{
+
+          alert(t('erroregenerico'));
+        }
+      })
+
+    }catch (e){
+
+     alert(t('erroregenerico'));  console.log(e);
+    }
+  };
+
+  useEffect(() => {
+
+    if(loader==6){
+
+      GetSlideshowImages('home', isLogged);
+    }
+  }, [loader]);
+
+  useEffect(() => {
+
+    if(slideShowImages!="empty"){
+
+      setLoader(loader+1);
+    }
+  },[slideShowImages]);
+
   //Funzione in background per count messaggi e aggiornamento dati utente
 
   useEffect(() => {
 
-    if(loader>=6){
+    if(loader>=7){
 
       const interval = setInterval(() => {
 
@@ -422,7 +436,7 @@ function App(){
   return (
     <>
 
-      {loader>=6 ? 
+      {loader>=7 ? 
 
       <>
 
@@ -447,6 +461,7 @@ function App(){
             openModalReg={() => setShowReg(true)}
             setUserC={setUser}
             setLogin={setIsLogged}
+            setCountMessages={setCountMessages}
             skin={SKIN["id"]}
           />
 
@@ -468,7 +483,7 @@ function App(){
             <RegistrationModalPix />
           }
           <Routes>
-            <Route path="/" element={<Home setShowC={()=>setShow(true)} statoLogin={isLogged}/>}/>
+            <Route path="/" element={<Home setShowC={()=>setShow(true)} statoLogin={isLogged} immagini={slideShowImages} skin={SKIN} />}/>
             <Route path="/sport" element={<Sport />}/>
             <Route path="/sport-live" element={<SportLive />}/>
             <Route path="/casino" element={<Casino isLogged={isLogged} skin={SKIN} childModalButton={() => setShow(true)}/> }/>
@@ -476,6 +491,8 @@ function App(){
             <Route path="/poker" element={<Poker />}/>
             <Route path="/virtual" element={<Virtual />}/>
             <Route path="/bingo" element={<Bingo />}/>
+
+            <Route path="/promotions" element={<Promotions />}/>
 
             <Route path="/account/deposit" element={ isLogged ? <Deposit user={USER}/> : <NoLogged /> } />
             <Route path="/account/withdrawals" element={ isLogged ? <Withdrawals user={USER}/> : <NoLogged /> } />
@@ -490,8 +507,8 @@ function App(){
             <Route path="/profile/password" element={ isLogged ? <Password datiUtente={USER} countMessages={countMessages} /> : <NoLogged /> } />
             <Route path="/profile/messages" element={ isLogged ? <Messages datiUtente={USER} countMessages={countMessages} /> : <NoLogged /> } />
 
-            <Route path="/affiliate" />
-            <Route path="/multiplebonus" />
+            <Route path="/affiliate" element={<Affiliate />}/>
+            <Route path="/multiplebonus" element={<MultiBonus />}/>
 
             <Route path="/languages" element={<AdminLanguages />} />
             <Route path="/languages/inglese" element={<LanguagesInglese />} />
@@ -505,6 +522,8 @@ function App(){
             <Route path="/languages/portoghese" element={<LanguagesPortoghese />} />
             <Route path="/languages/brasiliano" element={<LanguagesBrasiliano />} />
             <Route path="/languages/ungherese" element={<LanguagesUngherese />} />
+
+            <Route path="*" element={<Page404 />} />
           </Routes>
           
         </Router>

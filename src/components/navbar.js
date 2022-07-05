@@ -72,7 +72,7 @@ function Navbar(props) {
                                     </Dropdown.Menu>
                                 </Dropdown>
 
-                                <a href="/account" className="button-header hide-mobile">
+                                <a href="/account/transactions" className="button-header hide-mobile">
                                     {<CoinIcon />}
                                 </a>
                             </>
