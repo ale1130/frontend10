@@ -23,18 +23,18 @@ function SelectLanguages(props) {
 
     const state = {
         languages: [
-            { id: 0, sigla: "it", nome: t('languages.italiano'), immagine: skinUrl + "/static-media/flags/Italy.png" },
-            { id: 1, sigla: "en", nome: t('languages.inglese'), immagine: skinUrl + "/static-media/flags/United-States.png" },
-            { id: 2, sigla: "de", nome: t('languages.tedesco'), immagine: skinUrl + "/static-media/flags/Germany.png" },
-            { id: 3, sigla: "tr", nome: t('languages.turco'), immagine: skinUrl + "/static-media/flags/Turkey.png" },
-            { id: 4, sigla: "ar", nome: t('languages.arabo'), immagine: skinUrl + "/static-media/flags/United-Arab-Emirates.png" },
-            { id: 5, sigla: "ro", nome: t('languages.rumeno'), immagine: skinUrl + "/static-media/flags/Romania.png" },
-            { id: 6, sigla: "zh", nome: t('languages.cinese'), immagine: skinUrl + "/static-media/flags/China.png" },
-            { id: 7, sigla: "es", nome: t('languages.spagnolo'), immagine: skinUrl + "/static-media/flags/Spain.png" },
-            { id: 8, sigla: "fr", nome: t('languages.francese'), immagine: skinUrl + "/static-media/flags/France.png" },
-            { id: 9, sigla: "pt", nome: t('languages.portoghese'), immagine: skinUrl + "/static-media/flags/Portugal.png" },
-            { id: 10, sigla: "pt-br", nome: t('languages.portoghesebrasiliano'), immagine: skinUrl + "/static-media/flags/Brasil.png" },
-            { id: 11, sigla: "hu", nome: t('languages.ungherese'), immagine: skinUrl + "/static-media/flags/Hungary.png" }
+            { id: 0, sigla: "it", nome: t('italiano'), immagine: skinUrl + "/static-media/flags/Italy.png" },
+            { id: 1, sigla: "en", nome: t('inglese'), immagine: skinUrl + "/static-media/flags/United-States.png" },
+            { id: 2, sigla: "de", nome: t('tedesco'), immagine: skinUrl + "/static-media/flags/Germany.png" },
+            { id: 3, sigla: "tr", nome: t('turco'), immagine: skinUrl + "/static-media/flags/Turkey.png" },
+            { id: 4, sigla: "ar", nome: t('arabo'), immagine: skinUrl + "/static-media/flags/United-Arab-Emirates.png" },
+            { id: 5, sigla: "ro", nome: t('rumeno'), immagine: skinUrl + "/static-media/flags/Romania.png" },
+            { id: 6, sigla: "zh", nome: t('cinese'), immagine: skinUrl + "/static-media/flags/China.png" },
+            { id: 7, sigla: "es", nome: t('spagnolo'), immagine: skinUrl + "/static-media/flags/Spain.png" },
+            { id: 8, sigla: "fr", nome: t('francese'), immagine: skinUrl + "/static-media/flags/France.png" },
+            { id: 9, sigla: "pt", nome: t('portoghese'), immagine: skinUrl + "/static-media/flags/Portugal.png" },
+            { id: 10, sigla: "pt-br", nome: t('portoghesebrasiliano'), immagine: skinUrl + "/static-media/flags/Brasil.png" },
+            { id: 11, sigla: "hu", nome: t('ungherese'), immagine: skinUrl + "/static-media/flags/Hungary.png" }
         ],
     };
 
@@ -42,7 +42,7 @@ function SelectLanguages(props) {
         <div className="dropdown-menu of-header dropdown-menu-right show" aria-labelledby="info2">
 
             <div className="header-drop-down-language">
-                <p>{t('languages.seleziona')}</p>
+                <p>{t('selezionalingua')}</p>
                 <div className="language-lists">
 
                     {state.languages.map(language =>
@@ -57,7 +57,7 @@ function SelectLanguages(props) {
             </div>
 
             <div className="footer-drop-down d-d-footer" style={{ display: "block", borderRadius: "3px" }}>
-                <p><a href="mailto:support@rabitcasino.com">{props.svgphone}{t('languages.inviaemail')}</a></p>
+                <p><a href="mailto:support@rabitcasino.com">{props.svgphone}{t('inviaemail')}</a></p>
             </div>
         </div>
     );
@@ -69,18 +69,18 @@ export const SelectLanguageSett = (props) => {
 
     const state = {
         languages: [
-            { id: 0, sigla: "it", nome: t('languages.italiano'), immagine: skinUrl + "/static-media/flags/Italy.png" },
-            { id: 1, sigla: "en", nome: t('languages.inglese'), immagine: skinUrl + "/static-media/flags/United-States.png" },
-            { id: 2, sigla: "de", nome: t('languages.tedesco'), immagine: skinUrl + "/static-media/flags/Germany.png" },
-            { id: 3, sigla: "tr", nome: t('languages.turco'), immagine: skinUrl + "/static-media/flags/Turkey.png" },
-            { id: 4, sigla: "ar", nome: t('languages.arabo'), immagine: skinUrl + "/static-media/flags/United-Arab-Emirates.png" },
-            { id: 5, sigla: "ro", nome: t('languages.rumeno'), immagine: skinUrl + "/static-media/flags/Romania.png" },
-            { id: 6, sigla: "zh", nome: t('languages.cinese'), immagine: skinUrl + "/static-media/flags/China.png" },
-            { id: 7, sigla: "es", nome: t('languages.spagnolo'), immagine: skinUrl + "/static-media/flags/Spain.png" },
-            { id: 8, sigla: "fr", nome: t('languages.francese'), immagine: skinUrl + "/static-media/flags/France.png" },
-            { id: 9, sigla: "pt", nome: t('languages.portoghese'), immagine: skinUrl + "/static-media/flags/Portugal.png" },
-            { id: 10, sigla: "pt-br", nome: t('languages.portoghesebrasiliano'), immagine: skinUrl + "/static-media/flags/Brasil.png" },
-            { id: 11, sigla: "hu", nome: t('languages.ungherese'), immagine: skinUrl + "/static-media/flags/Hungary.png" }
+            { id: 0, sigla: "it", nome: t('italiano'), immagine: skinUrl + "/static-media/flags/Italy.png" },
+            { id: 1, sigla: "en", nome: t('inglese'), immagine: skinUrl + "/static-media/flags/United-States.png" },
+            { id: 2, sigla: "de", nome: t('tedesco'), immagine: skinUrl + "/static-media/flags/Germany.png" },
+            { id: 3, sigla: "tr", nome: t('turco'), immagine: skinUrl + "/static-media/flags/Turkey.png" },
+            { id: 4, sigla: "ar", nome: t('arabo'), immagine: skinUrl + "/static-media/flags/United-Arab-Emirates.png" },
+            { id: 5, sigla: "ro", nome: t('rumeno'), immagine: skinUrl + "/static-media/flags/Romania.png" },
+            { id: 6, sigla: "zh", nome: t('cinese'), immagine: skinUrl + "/static-media/flags/China.png" },
+            { id: 7, sigla: "es", nome: t('spagnolo'), immagine: skinUrl + "/static-media/flags/Spain.png" },
+            { id: 8, sigla: "fr", nome: t('francese'), immagine: skinUrl + "/static-media/flags/France.png" },
+            { id: 9, sigla: "pt", nome: t('portoghese'), immagine: skinUrl + "/static-media/flags/Portugal.png" },
+            { id: 10, sigla: "pt-br", nome: t('portoghesebrasiliano'), immagine: skinUrl + "/static-media/flags/Brasil.png" },
+            { id: 11, sigla: "hu", nome: t('ungherese'), immagine: skinUrl + "/static-media/flags/Hungary.png" }
         ],
     };
 

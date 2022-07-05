@@ -66,7 +66,7 @@ function Navbar(props) {
                                 <Dropdown>
                                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                                         <PersonIcon />
-                                    </Dropdown.Toggle><div class="number-message">{countMessages}</div>
+                                    </Dropdown.Toggle>{countMessages>0 ? <><div className="number-message">{countMessages}</div></> : <></> }
 
                                     <Dropdown.Menu>
                                         <BoxUtente setLogin={props.setLogin} utente={USER} />
@@ -112,13 +112,13 @@ const GameSection = (props) => {
 
     const state = {
         gamecategory: [
-            { id: 0, nome: t('navbar.sport'), link: "/sport", immagine: "" },
-            { id: 1, nome: t('navbar.sportlive'), link: "/sport-live", immagine: "" },
-            { id: 2, nome: t('navbar.casino'), link: "/casino", immagine: "" },
-            { id: 3, nome: t('navbar.casinolive'), link: "/casino-live", immagine: "" },
-            { id: 4, nome: t('navbar.poker'), link: "/poker", immagine: "" },
-            { id: 5, nome: t('navbar.virtual'), link: "/virtual", immagine: "" },
-            { id: 6, nome: t('navbar.bingo'), link: "/bingo", immagine: "" }
+            { id: 0, nome: t('sport'), link: "/sport", immagine: "" },
+            { id: 1, nome: t('sportlive'), link: "/sport-live", immagine: "" },
+            { id: 2, nome: t('casino'), link: "/casino", immagine: "" },
+            { id: 3, nome: t('casinolive'), link: "/casino-live", immagine: "" },
+            { id: 4, nome: t('poker'), link: "/poker", immagine: "" },
+            { id: 5, nome: t('virtual'), link: "/virtual", immagine: "" },
+            { id: 6, nome: t('bingo'), link: "/bingo", immagine: "" }
         ],
     }
 

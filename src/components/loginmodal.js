@@ -45,7 +45,7 @@ function LoginModal(props) {
         event.preventDefault();
 
         if(!inputs.password || !inputs.username){
-            errorMsg [0] = t('errorilogin.tuttidati');
+            errorMsg [0] = t('tuttidati');
         }
         
         if(errorMsg.length>0){
@@ -69,7 +69,7 @@ function LoginModal(props) {
                     
                         var errorMsg = [];
                 
-                        errorMsg [0] = t('errorilogin.bloccato');
+                        errorMsg [0] = t('bloccato');
     
                         error(errorMsg);
     
@@ -110,7 +110,7 @@ function LoginModal(props) {
 
                     var errorMsg = [];
             
-                    errorMsg [0] = t('errorilogin.credenziali');
+                    errorMsg [0] = t('credenziali');
 
                     error(errorMsg);
 
@@ -118,7 +118,7 @@ function LoginModal(props) {
 
                     var errorMsg = [];
             
-                    errorMsg [0] = t('errorilogin.confermaemail');
+                    errorMsg [0] = t('confermaemail');
 
                     error(errorMsg);
 

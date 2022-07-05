@@ -15,14 +15,25 @@ export const ConvertObjectToArray = (object) =>{
 
     var objectArray = Object.entries(object);
 
-    var arrUtilizzo = [];
+    var arrUtilizzo1 = [];
+
+    var arrUtilizzo2 = [];
 
     objectArray.forEach(([key, value]) => {
 
-      arrUtilizzo[key] = value;
+        arrUtilizzo1.push(key);
     });
 
-    return arrUtilizzo;
+    objectArray.forEach(([key, value]) => {
+
+        arrUtilizzo2.push(value);
+    });
+
+    var ArrTotale = [];
+
+    ArrTotale.push(arrUtilizzo1,arrUtilizzo2);
+
+    return ArrTotale;
 }
 
 export const ConvertObjectToArraySlideshow = (object) =>{

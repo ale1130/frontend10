@@ -14,14 +14,14 @@ function Footer(props){
 
     const state = {
         footerlinks:[
-            {id:0, nome:t('footerlinks.regole'), link:"/help/index.php?id=2"},
-            {id:1, nome:t('footerlinks.regoles'), link:"/help/index.php?id=3"},
-            {id:3, nome:t('footerlinks.norma'), link:"/help/index.php?id=14"},
-            {id:4, nome:t('footerlinks.privacy'), link:"/help/index.php?id=1"},
-            {id:5, nome:t('footerlinks.cookies'), link:"/help/index.php?id=10"},
-            {id:6, nome:t('footerlinks.gioco'), link:"/help/index.php?id=11"},
-            {id:8, nome:t('footerlinks.siamo'), link:"/help/index.php?id=4"},
-            {id:9, nome:t('footerlinks.contatti'), link:"/help/index.php?id=13"},
+            {id:0, nome:t('regole'), link:"/help/index.php?id=2"},
+            {id:1, nome:t('regoles'), link:"/help/index.php?id=3"},
+            {id:3, nome:t('norma'), link:"/help/index.php?id=14"},
+            {id:4, nome:t('privacy'), link:"/help/index.php?id=1"},
+            {id:5, nome:t('cookies'), link:"/help/index.php?id=10"},
+            {id:6, nome:t('gioco'), link:"/help/index.php?id=11"},
+            {id:8, nome:t('siamo'), link:"/help/index.php?id=4"},
+            {id:9, nome:t('contatti'), link:"/help/index.php?id=13"},
         ],
     };
 
@@ -40,8 +40,8 @@ function Footer(props){
 
                                     <li key={object.id}><a onClick={()=>help_popup(skinUrl+object.link)}>{object.nome}</a></li>  
                                 )}
-                                <li key={2}><a href="/multiplebonus">{t('footerlinks.bonus')}</a></li>
-                                <li key={7}><a href="/affiliate">{t('footerlinks.affiliato')}</a></li>
+                                <li key={2}><a href="/multiplebonus">{t('bonusm')}</a></li>
+                                <li key={7}><a href="/affiliate">{t('affiliato')}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -109,7 +109,7 @@ function Footer(props){
                 
                 <div className="col-lg-4">
                     <div className="gioco-18">
-                    +18 {t('footerlinks.responsabile')}
+                    +18 {t('responsabile')}
                     </div>
                 </div>     
             </div>

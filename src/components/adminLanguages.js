@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import Card from 'react-bootstrap/Card';
 import { useTranslation } from 'react-i18next';
 
-import { ConvertObjectToArray } from "../constants/global";
+import { ConvertObjectToArray, skinUrl } from "../constants/global";
 
 import jsonfilear from '../public/locales/ar/translation.json';
 import jsonfilede from '../public/locales/de/translation.json';
@@ -19,57 +19,268 @@ import jsonfiletr from '../public/locales/tr/translation.json';
 import jsonfilezh from '../public/locales/zh/translation.json';
 
 export const LanguagesInglese = () =>{
-    const [linguaIT, setLinguaIT] = useState(ConvertObjectToArray(jsonfileit));
-    console.log(linguaIT)
-    return(
-        linguaIT.map(traduzione =>(
-            <Card style={{ width: '18rem' }}>
-                <Card.Body>
-                    {traduzione}
-                </Card.Body>
-            </Card>
-        ))
+
+    const lingua = ConvertObjectToArray(jsonfileen);
+
+    const indici = lingua[0];
+    const valori = lingua[1];
+
+    var stringaFinale = "";
+
+    {indici.map((traduzione,indice)=>{
+
+        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
+    })}
+
+    return (
+        <>
+            <h2> File in Inglese</h2>
+
+            <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
+            
+            <textarea>{stringaFinale}</textarea>
+        </>
     );
 }
 
 export const LanguagesTedesco = () =>{
-    return(console.log(jsonfileit));
+    const lingua = ConvertObjectToArray(jsonfilede);
+
+    const indici = lingua[0];
+    const valori = lingua[1];
+
+    var stringaFinale = "";
+
+    {indici.map((traduzione,indice)=>{
+
+        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
+    })}
+
+    return (
+        <>
+            <h2> File in Tedesco</h2>
+
+            <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
+            
+            <textarea>{stringaFinale}</textarea>
+        </>
+    );
 }
 
 export const LanguagesTurco = () =>{
-    return(console.log(jsonfileit));
+    const lingua = ConvertObjectToArray(jsonfiletr);
+
+    const indici = lingua[0];
+    const valori = lingua[1];
+
+    var stringaFinale = "";
+
+    {indici.map((traduzione,indice)=>{
+
+        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
+    })}
+
+    return (
+        <>
+            <h2> File in Turco</h2>
+
+            <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
+            
+            <textarea>{stringaFinale}</textarea>
+        </>
+    );
 }
 
 export const LanguagesArabo = () =>{
-    return(console.log(jsonfileit));
+    const lingua = ConvertObjectToArray(jsonfilear);
+
+    const indici = lingua[0];
+    const valori = lingua[1];
+
+    var stringaFinale = "";
+
+    {indici.map((traduzione,indice)=>{
+
+        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
+    })}
+
+    return (
+        <>
+            <h2> File in Arabo</h2>
+
+            <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
+            
+            <textarea>{stringaFinale}</textarea>
+        </>
+    );
 }
 
 export const LanguagesRumeno = () =>{
-    return(console.log(jsonfileit));
+    const lingua = ConvertObjectToArray(jsonfilero);
+
+    const indici = lingua[0];
+    const valori = lingua[1];
+
+    var stringaFinale = "";
+
+    {indici.map((traduzione,indice)=>{
+
+        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
+    })}
+
+    return (
+        <>
+            <h2> File in Rumeno</h2>
+
+            <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
+            
+            <textarea>{stringaFinale}</textarea>
+        </>
+    );
 }
 
 export const LanguagesCinese = () =>{
-    return(console.log(jsonfileit));
+    const lingua = ConvertObjectToArray(jsonfilezh);
+
+    const indici = lingua[0];
+    const valori = lingua[1];
+
+    var stringaFinale = "";
+
+    {indici.map((traduzione,indice)=>{
+
+        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
+    })}
+
+    return (
+        <>
+            <h2> File in Cinese</h2>
+
+            <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
+            
+            <textarea>{stringaFinale}</textarea>
+        </>
+    );
 }
 
 export const LanguagesSpagnolo = () =>{
-    return(console.log(jsonfileit));
+    const lingua = ConvertObjectToArray(jsonfilees);
+
+    const indici = lingua[0];
+    const valori = lingua[1];
+
+    var stringaFinale = "";
+
+    {indici.map((traduzione,indice)=>{
+
+        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
+    })}
+
+    return (
+        <>
+            <h2> File in Spagnolo</h2>
+
+            <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
+            
+            <textarea>{stringaFinale}</textarea>
+        </>
+    );
 }
 
 export const LanguagesFrancese = () =>{
-    return(console.log(jsonfileit));
+    const lingua = ConvertObjectToArray(jsonfilefr);
+
+    const indici = lingua[0];
+    const valori = lingua[1];
+
+    var stringaFinale = "";
+
+    {indici.map((traduzione,indice)=>{
+
+        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
+    })}
+
+    return (
+        <>
+            <h2> File in Francese</h2>
+
+            <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
+            
+            <textarea>{stringaFinale}</textarea>
+        </>
+    );
 }
 
 export const LanguagesPortoghese = () =>{
-    return(console.log(jsonfileit));
+    const lingua = ConvertObjectToArray(jsonfilept);
+
+    const indici = lingua[0];
+    const valori = lingua[1];
+
+    var stringaFinale = "";
+
+    {indici.map((traduzione,indice)=>{
+
+        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
+    })}
+
+    return (
+        <>
+            <h2> File in Portoghese</h2>
+
+            <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
+            
+            <textarea>{stringaFinale}</textarea>
+        </>
+    );
 }
 
 export const LanguagesBrasiliano = () =>{
-    return(console.log(jsonfileit));
+    const lingua = ConvertObjectToArray(jsonfileptbr);
+
+    const indici = lingua[0];
+    const valori = lingua[1];
+
+    var stringaFinale = "";
+
+    {indici.map((traduzione,indice)=>{
+
+        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
+    })}
+
+    return (
+        <>
+            <h2> File in Brasiliano</h2>
+
+            <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
+            
+            <textarea>{stringaFinale}</textarea>
+        </>
+    );
 }
 
 export const LanguagesUngherese = () =>{
-    return(console.log(jsonfileit));
+    const lingua = ConvertObjectToArray(jsonfilehu);
+
+    const indici = lingua[0];
+    const valori = lingua[1];
+
+    var stringaFinale = "";
+
+    {indici.map((traduzione,indice)=>{
+
+        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
+    })}
+
+    return (
+        <>
+            <h2> File in Ungherese</h2>
+
+            <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
+            
+            <textarea>{stringaFinale}</textarea>
+        </>
+    );
 }
 
 export const AdminLanguages = () =>{
@@ -78,19 +289,31 @@ export const AdminLanguages = () =>{
 
     const state = {
         languages:[
-            {id:1, sigla:"en", nome:t('languages.inglese'), link:'/languages/inglese', immagine:"https://betplay360.com/static-media/flags/United-States.png"},
-            {id:2, sigla:"de", nome:t('languages.tedesco'), link:'/languages/tedesco', immagine:"https://betplay360.com/static-media/flags/Germany.png"},
-            {id:3, sigla:"tr", nome:t('languages.turco'), link:'/languages/turco', immagine:"https://betplay360.com/static-media/flags/Turkey.png"},
-            {id:4, sigla:"ar", nome:t('languages.arabo'), link:'/languages/arabo', immagine:"https://betplay360.com/static-media/flags/United-Arab-Emirates.png"},
-            {id:5, sigla:"ro", nome:t('languages.rumeno'), link:'/languages/rumeno', immagine:"https://betplay360.com/static-media/flags/Romania.png"},
-            {id:6, sigla:"zh", nome:t('languages.cinese'), link:'/languages/cinese', immagine:"https://betplay360.com/static-media/flags/China.png"},
-            {id:7, sigla:"es", nome:t('languages.spagnolo'), link:'/languages/spagnolo', immagine:"https://betplay360.com/static-media/flags/Spain.png"},
-            {id:8, sigla:"fr", nome:t('languages.francese'), link:'/languages/francese', immagine:"https://betplay360.com/static-media/flags/France.png"},
-            {id:9, sigla:"pt", nome:t('languages.portoghese'), link:'/languages/portoghese', immagine:"https://betplay360.com/static-media/flags/Portugal.png"},
-            {id:10, sigla:"pt-br", nome:t('languages.portoghesebrasiliano'), link:'/languages/brasiliano', immagine:"https://betplay360.com/static-media/flags/Brasil.png"},
-            {id:11, sigla:"hu", nome:t('languages.ungherese'), link:'/languages/ungherese', immagine:"https://betplay360.com/static-media/flags/Hungary.png"}
+            {id:1, sigla:"en", nome:t('inglese'), link:'/languages/inglese', immagine:skinUrl+"/static-media/flags/United-States.png"},
+            {id:2, sigla:"de", nome:t('tedesco'), link:'/languages/tedesco', immagine:skinUrl+"/static-media/flags/Germany.png"},
+            {id:3, sigla:"tr", nome:t('turco'), link:'/languages/turco', immagine:skinUrl+"/static-media/flags/Turkey.png"},
+            {id:4, sigla:"ar", nome:t('arabo'), link:'/languages/arabo', immagine:skinUrl+"/static-media/flags/United-Arab-Emirates.png"},
+            {id:5, sigla:"ro", nome:t('rumeno'), link:'/languages/rumeno', immagine:skinUrl+"/static-media/flags/Romania.png"},
+            {id:6, sigla:"zh", nome:t('cinese'), link:'/languages/cinese', immagine:skinUrl+"/static-media/flags/China.png"},
+            {id:7, sigla:"es", nome:t('spagnolo'), link:'/languages/spagnolo', immagine:skinUrl+"/static-media/flags/Spain.png"},
+            {id:8, sigla:"fr", nome:t('francese'), link:'/languages/francese', immagine:skinUrl+"/static-media/flags/France.png"},
+            {id:9, sigla:"pt", nome:t('portoghese'), link:'/languages/portoghese', immagine:skinUrl+"/static-media/flags/Portugal.png"},
+            {id:10, sigla:"pt-br", nome:t('portoghesebrasiliano'), link:'/languages/brasiliano', immagine:skinUrl+"/static-media/flags/Brasil.png"},
+            {id:11, sigla:"hu", nome:t('ungherese'), link:'/languages/ungherese', immagine:skinUrl+"/static-media/flags/Hungary.png"}
         ],
     };
+
+    const linguaIT = ConvertObjectToArray(jsonfileit);
+
+    const indici = linguaIT[0];
+    const valori = linguaIT[1];
+
+    var stringaFinale = "";
+
+    {indici.map((traduzione,indice)=>{
+
+        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
+    })}
 
     return (
         <>
@@ -107,6 +330,12 @@ export const AdminLanguages = () =>{
                 
                 ))}
             </div>
+
+            <h2> File in italiano </h2>
+
+            <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
+            
+            <textarea>{stringaFinale}</textarea>
         </>
     );
 }
