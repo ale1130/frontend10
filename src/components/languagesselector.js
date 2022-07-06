@@ -33,7 +33,7 @@ function SelectLanguages(props) {
             { id: 7, sigla: "es", nome: t('spagnolo'), immagine: skinUrl + "/static-media/flags/Spain.png" },
             { id: 8, sigla: "fr", nome: t('francese'), immagine: skinUrl + "/static-media/flags/France.png" },
             { id: 9, sigla: "pt", nome: t('portoghese'), immagine: skinUrl + "/static-media/flags/Portugal.png" },
-            { id: 10, sigla: "pt-br", nome: t('portoghesebrasiliano'), immagine: skinUrl + "/static-media/flags/Brasil.png" },
+            { id: 10, sigla: "ptbr", nome: t('portoghesebrasiliano'), immagine: skinUrl + "/static-media/flags/Brasil.png" },
             { id: 11, sigla: "hu", nome: t('ungherese'), immagine: skinUrl + "/static-media/flags/Hungary.png" }
         ],
     };

@@ -111,6 +111,10 @@ function App(){
 
   const [slideShowImages, setSlideShowImages] = useState(["empty"])
 
+  //Providers footer
+
+  const [providers, setProviders] = useState(["empty"])
+
   //Estrazione dati skin
 
   const GetdataSkin = async () =>{
@@ -342,7 +346,7 @@ function App(){
  
       const currentLang = cookies.get("la");
 
-      const arrayLang = ['it','de','en','tr','ro','zh','fr','pt','pt-br','hu','es','ar'];
+      const arrayLang = ['it','de','en','tr','ro','zh','fr','pt','ptbr','hu','es','ar'];
 
       if(!checkSkinSett(skinSettings,'disable_language_select')){
         if(currentLang && arrayLang.includes(currentLang)){
@@ -415,11 +419,59 @@ function App(){
     }
   },[slideShowImages]);
 
+  //Providers per il footer
+
+  const GetProviders = async () => {
+
+    const loggato = isLogged ? 1 : 0;
+
+    try {
+
+      const data = await api
+      .get('rest/getproviders/:'+loggato+'/')
+      .then(response => {
+
+        if(response.data.status=="ok"){
+
+          setProviders(response.data.dati);
+
+        }else if(response.data.status=="error"){
+            
+          setProviders(["noproviders"])
+        }else{
+
+          alert(t('erroregenerico'));
+        }
+      })
+
+    } catch (e) {
+
+      alert(t('erroregenerico'));  
+      console.log(e);
+    }
+  }
+
+  useEffect(() => {
+
+    if(loader==7){
+
+      GetProviders();
+    }
+  }, [loader]);
+
+  useEffect(() => {
+
+    if(providers!="empty"){
+
+      setLoader(loader+1);
+    }
+  },[providers]);
+
   //Funzione in background per count messaggi e aggiornamento dati utente
 
   useEffect(() => {
 
-    if(loader>=7){
+    if(loader>=8){
 
       const interval = setInterval(() => {
 
@@ -443,7 +495,7 @@ function App(){
   return (
     <>
 
-      {loader>=7 ? 
+      {loader>=8 ? 
 
       <>
 
@@ -452,7 +504,6 @@ function App(){
         <Router>
 
           <Navbar
-            logo={logoDirectory+SKIN["logo_img"]}
             currentPage={currentPage}
             childModalButton = {() => setShow(true)}
             statoLogin={isLogged}
@@ -544,8 +595,8 @@ function App(){
         </Router>
 
         <Footer
-          logo={logoDirectory+SKIN["logo_img"]}
-          footer_text={SKIN["footer_text"]}
+          skin={SKIN}
+          providers={providers}
         />
       </>
 

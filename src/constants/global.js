@@ -216,6 +216,28 @@ export const MEDIA_SLIDESHOWS_WEB_PATH = (SKIN) =>{
     return SKIN["cdn_url"]+"/slideshow/";
 }
 
+export const SKIN_LOGO_WEB_PATH = (SKIN) =>{
+    return SKIN["cdn_url"]+"/skins/logo/";
+}
+
+export const SKIN_FOOTER_IMG_WEB_PATH = (SKIN) =>{
+    return SKIN["cdn_url"]+"/skins/footer/";
+}
+
+export const TEMPLATE_WEBDIR = (SKIN) =>{
+
+    var CURRENT_THEME = "";
+        
+    if (CURR_DEVICE == "DESKTOP") {
+        CURRENT_THEME = "/templates/"+SKIN["theme"];
+    } else {
+        CURRENT_THEME = "/templates/"+SKIN["mobile_theme"];
+    }
+
+    return CURRENT_THEME;
+}
+
+
 export const convertObjectStringToNumbers = (array) =>{
 
     var objectArray = Object.entries(array);

@@ -1527,3 +1527,14 @@ div.container-casino:hover>div.middle-button {
 .provider.active>a {
   background: #4b5161;
 }
+
+/*Textare languages*/
+
+.textareaElement {
+  width: 300px;
+  min-height: 17px;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

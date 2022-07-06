@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 import '../styles/headerv1.css';
+import { SKIN_LOGO_WEB_PATH } from "../constants/global";
 
 function Navbar(props) {
 
@@ -37,7 +38,7 @@ function Navbar(props) {
                         <h1 className="logo">
                             <a href="/">
 
-                                <img src={props.logo} />
+                                <img src={SKIN_LOGO_WEB_PATH(SKIN)+SKIN["logo_img"]} />
                             </a>
                         </h1>
                         <nav className="nav-menu">

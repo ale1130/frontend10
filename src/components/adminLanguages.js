@@ -1,9 +1,9 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import Card from 'react-bootstrap/Card';
 import { useTranslation } from 'react-i18next';
 
-import { ConvertObjectToArray, skinUrl } from "../constants/global";
+import { api, ConvertObjectToArray, skinUrl } from "../constants/global";
 
 import jsonfilear from '../public/locales/ar/translation.json';
 import jsonfilede from '../public/locales/de/translation.json';
@@ -18,267 +18,963 @@ import jsonfilero from '../public/locales/ro/translation.json';
 import jsonfiletr from '../public/locales/tr/translation.json';
 import jsonfilezh from '../public/locales/zh/translation.json';
 
-export const LanguagesInglese = () =>{
+export const traduzioni = (jsonfile) =>{
 
-    const lingua = ConvertObjectToArray(jsonfileen);
+    const lingua = ConvertObjectToArray(jsonfile);
 
     const indici = lingua[0];
     const valori = lingua[1];
 
-    var stringaFinale = "";
+    if(indici.length>0){
 
-    {indici.map((traduzione,indice)=>{
+        var stringaFinale1 = "";
 
-        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
-    })}
+        {indici.map((traduzione,indice)=>{
+
+            stringaFinale1 += '"'+indici[indice]+'":"'+valori[indice]+'",\n';
+        })}
+
+        var stringaFinale = stringaFinale1.slice(0,-2);
+
+    }else{
+
+        var stringaFinale="Nessuna traduzione";
+    }
+
+    return stringaFinale;
+}
+
+export const LanguagesInglese = () =>{
+
+    var stringaFinaleIT = traduzioni(jsonfileit);
+
+    var stringaFinale = traduzioni(jsonfileen);
+
+    const [traduzione, setTraduzione] = useState({});
+
+    const [traduzioneVisual, setTraduzioneVisual] = useState([]);
+
+    const Traduci = async (parola,a,indice) =>{
+
+        parola = parola.replace("?","qmark");
+        parola = parola.replace(/%/g, "subperc");
+
+        const data = await api
+        .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
+        .then(response => {
+    
+            if(response.data.status=="ok"){
+    
+                setTraduzione(inputs => ({...inputs, [indice] : response.data.traduzione }));
+            }
+        })
+    }
+
+    const stringaTraduzione = (jsonFile, lingua) =>{
+
+        const linguaEntrata = ConvertObjectToArray(jsonfileit);
+    
+        const indiciEntrata = linguaEntrata[0];
+        const valoriEntrata = linguaEntrata[1];
+    
+        const lunghezzaEntrata = indiciEntrata.length;
+    
+        const linguaUscita = ConvertObjectToArray(jsonFile);
+    
+        const indiciUscita = linguaUscita[0];
+    
+        const lunghezzaUscita = indiciUscita.length;
+    
+        const differenza = lunghezzaEntrata-lunghezzaUscita;
+    
+        var i = lunghezzaUscita;
+    
+        if(differenza>0){
+    
+            for(i; i<lunghezzaEntrata; i++){
+    
+                Traduci(valoriEntrata[i],lingua,indiciEntrata[i]);
+            }
+        }
+    }
+
+    useEffect(() => {
+
+        if(traduzione){
+
+            setTraduzioneVisual(traduzioni(traduzione))
+        }
+    },[traduzione]);
 
     return (
         <>
             <h2> File in Inglese</h2>
 
+            <textarea className="textareaElement" value={stringaFinale}></textarea>
+
             <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
-            
-            <textarea>{stringaFinale}</textarea>
+
+            <button onClick={() => setTraduzione(stringaTraduzione(jsonfileen,'en'))}>Traduci da italiano</button>
+
+            <h2> Nuovi elementi tradotti</h2>
+
+            <textarea className="textareaElement" value={traduzioneVisual}></textarea>
+
+            <button onClick={() => {navigator.clipboard.writeText(traduzioneVisual)}}>Copia elementi</button>
+
+            <h2> File in Italiano</h2>
+
+            <textarea className="textareaElement" value={stringaFinaleIT}></textarea>
         </>
     );
 }
 
 export const LanguagesTedesco = () =>{
-    const lingua = ConvertObjectToArray(jsonfilede);
+    
+    var stringaFinaleIT = traduzioni(jsonfileit);
 
-    const indici = lingua[0];
-    const valori = lingua[1];
+    var stringaFinale = traduzioni(jsonfilede);
 
-    var stringaFinale = "";
+    const [traduzione, setTraduzione] = useState({});
 
-    {indici.map((traduzione,indice)=>{
+    const [traduzioneVisual, setTraduzioneVisual] = useState([]);
 
-        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
-    })}
+    const Traduci = async (parola,a,indice) =>{
+
+        parola = parola.replace("?","qmark");
+        parola = parola.replace(/%/g, "subperc");
+
+        const data = await api
+        .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
+        .then(response => {
+    
+            if(response.data.status=="ok"){
+    
+                setTraduzione(inputs => ({...inputs, [indice] : response.data.traduzione }));
+            }
+        })
+    }
+
+    const stringaTraduzione = (jsonFile, lingua) =>{
+
+        const linguaEntrata = ConvertObjectToArray(jsonfileit);
+    
+        const indiciEntrata = linguaEntrata[0];
+        const valoriEntrata = linguaEntrata[1];
+    
+        const lunghezzaEntrata = indiciEntrata.length;
+    
+        const linguaUscita = ConvertObjectToArray(jsonFile);
+    
+        const indiciUscita = linguaUscita[0];
+    
+        const lunghezzaUscita = indiciUscita.length;
+    
+        const differenza = lunghezzaEntrata-lunghezzaUscita;
+    
+        var i = lunghezzaUscita;
+    
+        if(differenza>0){
+    
+            for(i; i<lunghezzaEntrata; i++){
+    
+                Traduci(valoriEntrata[i],lingua,indiciEntrata[i]);
+            }
+        }
+    }
+
+    useEffect(() => {
+
+        if(traduzione){
+
+            setTraduzioneVisual(traduzioni(traduzione))
+        }
+    },[traduzione]);
 
     return (
         <>
             <h2> File in Tedesco</h2>
 
+            <textarea className="textareaElement" value={stringaFinale}></textarea>
+
             <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
-            
-            <textarea>{stringaFinale}</textarea>
+
+            <button onClick={() => setTraduzione(stringaTraduzione(jsonfilede,'de'))}>Traduci da italiano</button>
+
+            <h2> Nuovi elementi tradotti</h2>
+
+            <textarea className="textareaElement" value={traduzioneVisual}></textarea>
+
+            <button onClick={() => {navigator.clipboard.writeText(traduzioneVisual)}}>Copia elementi</button>
+
+            <h2> File in Italiano</h2>
+
+            <textarea className="textareaElement" value={stringaFinaleIT}></textarea>
         </>
     );
 }
 
 export const LanguagesTurco = () =>{
-    const lingua = ConvertObjectToArray(jsonfiletr);
+    
+    var stringaFinaleIT = traduzioni(jsonfileit);
 
-    const indici = lingua[0];
-    const valori = lingua[1];
+    var stringaFinale = traduzioni(jsonfiletr);
 
-    var stringaFinale = "";
+    const [traduzione, setTraduzione] = useState({});
 
-    {indici.map((traduzione,indice)=>{
+    const [traduzioneVisual, setTraduzioneVisual] = useState([]);
 
-        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
-    })}
+    const Traduci = async (parola,a,indice) =>{
+
+        parola = parola.replace("?","qmark");
+        parola = parola.replace(/%/g, "subperc");
+
+        const data = await api
+        .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
+        .then(response => {
+    
+            if(response.data.status=="ok"){
+    
+                setTraduzione(inputs => ({...inputs, [indice] : response.data.traduzione }));
+            }
+        })
+    }
+
+    const stringaTraduzione = (jsonFile, lingua) =>{
+
+        const linguaEntrata = ConvertObjectToArray(jsonfileit);
+    
+        const indiciEntrata = linguaEntrata[0];
+        const valoriEntrata = linguaEntrata[1];
+    
+        const lunghezzaEntrata = indiciEntrata.length;
+    
+        const linguaUscita = ConvertObjectToArray(jsonFile);
+    
+        const indiciUscita = linguaUscita[0];
+    
+        const lunghezzaUscita = indiciUscita.length;
+    
+        const differenza = lunghezzaEntrata-lunghezzaUscita;
+    
+        var i = lunghezzaUscita;
+    
+        if(differenza>0){
+    
+            for(i; i<lunghezzaEntrata; i++){
+    
+                Traduci(valoriEntrata[i],lingua,indiciEntrata[i]);
+            }
+        }
+    }
+
+    useEffect(() => {
+
+        if(traduzione){
+
+            setTraduzioneVisual(traduzioni(traduzione))
+        }
+    },[traduzione]);
 
     return (
         <>
-            <h2> File in Turco</h2>
+            <h2> File in turco</h2>
+
+            <textarea className="textareaElement" value={stringaFinale}></textarea>
 
             <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
-            
-            <textarea>{stringaFinale}</textarea>
+
+            <button onClick={() => setTraduzione(stringaTraduzione(jsonfiletr,'tr'))}>Traduci da italiano</button>
+
+            <h2> Nuovi elementi tradotti</h2>
+
+            <textarea className="textareaElement" value={traduzioneVisual}></textarea>
+
+            <button onClick={() => {navigator.clipboard.writeText(traduzioneVisual)}}>Copia elementi</button>
+
+            <h2> File in Italiano</h2>
+
+            <textarea className="textareaElement" value={stringaFinaleIT}></textarea>
         </>
     );
 }
 
 export const LanguagesArabo = () =>{
-    const lingua = ConvertObjectToArray(jsonfilear);
+    
+    var stringaFinaleIT = traduzioni(jsonfileit);
 
-    const indici = lingua[0];
-    const valori = lingua[1];
+    var stringaFinale = traduzioni(jsonfilear);
 
-    var stringaFinale = "";
+    const [traduzione, setTraduzione] = useState({});
 
-    {indici.map((traduzione,indice)=>{
+    const [traduzioneVisual, setTraduzioneVisual] = useState([]);
 
-        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
-    })}
+    const Traduci = async (parola,a,indice) =>{
+
+        parola = parola.replace("?","qmark");
+        parola = parola.replace(/%/g, "subperc");
+
+        const data = await api
+        .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
+        .then(response => {
+    
+            if(response.data.status=="ok"){
+    
+                setTraduzione(inputs => ({...inputs, [indice] : response.data.traduzione }));
+            }
+        })
+    }
+
+    const stringaTraduzione = (jsonFile, lingua) =>{
+
+        const linguaEntrata = ConvertObjectToArray(jsonfileit);
+    
+        const indiciEntrata = linguaEntrata[0];
+        const valoriEntrata = linguaEntrata[1];
+    
+        const lunghezzaEntrata = indiciEntrata.length;
+    
+        const linguaUscita = ConvertObjectToArray(jsonFile);
+    
+        const indiciUscita = linguaUscita[0];
+    
+        const lunghezzaUscita = indiciUscita.length;
+    
+        const differenza = lunghezzaEntrata-lunghezzaUscita;
+    
+        var i = lunghezzaUscita;
+    
+        if(differenza>0){
+    
+            for(i; i<lunghezzaEntrata; i++){
+    
+                Traduci(valoriEntrata[i],lingua,indiciEntrata[i]);
+            }
+        }
+    }
+
+    useEffect(() => {
+
+        if(traduzione){
+
+            setTraduzioneVisual(traduzioni(traduzione))
+        }
+    },[traduzione]);
 
     return (
         <>
-            <h2> File in Arabo</h2>
+            <h2> File in arabo</h2>
+
+            <textarea className="textareaElement" value={stringaFinale}></textarea>
 
             <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
-            
-            <textarea>{stringaFinale}</textarea>
+
+            <button onClick={() => setTraduzione(stringaTraduzione(jsonfilear,'ar'))}>Traduci da italiano</button>
+
+            <h2> Nuovi elementi tradotti</h2>
+
+            <textarea className="textareaElement" value={traduzioneVisual}></textarea>
+
+            <button onClick={() => {navigator.clipboard.writeText(traduzioneVisual)}}>Copia elementi</button>
+
+            <h2> File in Italiano</h2>
+
+            <textarea className="textareaElement" value={stringaFinaleIT}></textarea>
         </>
     );
 }
 
 export const LanguagesRumeno = () =>{
-    const lingua = ConvertObjectToArray(jsonfilero);
+    
+    var stringaFinaleIT = traduzioni(jsonfileit);
 
-    const indici = lingua[0];
-    const valori = lingua[1];
+    var stringaFinale = traduzioni(jsonfilero);
 
-    var stringaFinale = "";
+    const [traduzione, setTraduzione] = useState({});
 
-    {indici.map((traduzione,indice)=>{
+    const [traduzioneVisual, setTraduzioneVisual] = useState([]);
 
-        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
-    })}
+    const Traduci = async (parola,a,indice) =>{
+
+        parola = parola.replace("?","qmark");
+        parola = parola.replace(/%/g, "subperc");
+
+        const data = await api
+        .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
+        .then(response => {
+    
+            if(response.data.status=="ok"){
+    
+                setTraduzione(inputs => ({...inputs, [indice] : response.data.traduzione }));
+            }
+        })
+    }
+
+    const stringaTraduzione = (jsonFile, lingua) =>{
+
+        const linguaEntrata = ConvertObjectToArray(jsonfileit);
+    
+        const indiciEntrata = linguaEntrata[0];
+        const valoriEntrata = linguaEntrata[1];
+    
+        const lunghezzaEntrata = indiciEntrata.length;
+    
+        const linguaUscita = ConvertObjectToArray(jsonFile);
+    
+        const indiciUscita = linguaUscita[0];
+    
+        const lunghezzaUscita = indiciUscita.length;
+    
+        const differenza = lunghezzaEntrata-lunghezzaUscita;
+    
+        var i = lunghezzaUscita;
+    
+        if(differenza>0){
+    
+            for(i; i<lunghezzaEntrata; i++){
+    
+                Traduci(valoriEntrata[i],lingua,indiciEntrata[i]);
+            }
+        }
+    }
+
+    useEffect(() => {
+
+        if(traduzione){
+
+            setTraduzioneVisual(traduzioni(traduzione))
+        }
+    },[traduzione]);
 
     return (
         <>
-            <h2> File in Rumeno</h2>
+            <h2> File in rumeno</h2>
+
+            <textarea className="textareaElement" value={stringaFinale}></textarea>
 
             <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
-            
-            <textarea>{stringaFinale}</textarea>
+
+            <button onClick={() => setTraduzione(stringaTraduzione(jsonfilero,'ro'))}>Traduci da italiano</button>
+
+            <h2> Nuovi elementi tradotti</h2>
+
+            <textarea className="textareaElement" value={traduzioneVisual}></textarea>
+
+            <button onClick={() => {navigator.clipboard.writeText(traduzioneVisual)}}>Copia elementi</button>
+
+            <h2> File in Italiano</h2>
+
+            <textarea className="textareaElement" value={stringaFinaleIT}></textarea>
         </>
     );
 }
 
 export const LanguagesCinese = () =>{
-    const lingua = ConvertObjectToArray(jsonfilezh);
+    
+    var stringaFinaleIT = traduzioni(jsonfileit);
 
-    const indici = lingua[0];
-    const valori = lingua[1];
+    var stringaFinale = traduzioni(jsonfilezh);
 
-    var stringaFinale = "";
+    const [traduzione, setTraduzione] = useState({});
 
-    {indici.map((traduzione,indice)=>{
+    const [traduzioneVisual, setTraduzioneVisual] = useState([]);
 
-        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
-    })}
+    const Traduci = async (parola,a,indice) =>{
+
+        parola = parola.replace("?","qmark");
+        parola = parola.replace(/%/g, "subperc");
+
+        const data = await api
+        .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
+        .then(response => {
+    
+            if(response.data.status=="ok"){
+    
+                setTraduzione(inputs => ({...inputs, [indice] : response.data.traduzione }));
+            }
+        })
+    }
+
+    const stringaTraduzione = (jsonFile, lingua) =>{
+
+        const linguaEntrata = ConvertObjectToArray(jsonfileit);
+    
+        const indiciEntrata = linguaEntrata[0];
+        const valoriEntrata = linguaEntrata[1];
+    
+        const lunghezzaEntrata = indiciEntrata.length;
+    
+        const linguaUscita = ConvertObjectToArray(jsonFile);
+    
+        const indiciUscita = linguaUscita[0];
+    
+        const lunghezzaUscita = indiciUscita.length;
+    
+        const differenza = lunghezzaEntrata-lunghezzaUscita;
+    
+        var i = lunghezzaUscita;
+    
+        if(differenza>0){
+    
+            for(i; i<lunghezzaEntrata; i++){
+    
+                Traduci(valoriEntrata[i],lingua,indiciEntrata[i]);
+            }
+        }
+    }
+
+    useEffect(() => {
+
+        if(traduzione){
+
+            setTraduzioneVisual(traduzioni(traduzione))
+        }
+    },[traduzione]);
 
     return (
         <>
-            <h2> File in Cinese</h2>
+            <h2> File in cinese</h2>
+
+            <textarea className="textareaElement" value={stringaFinale}></textarea>
 
             <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
-            
-            <textarea>{stringaFinale}</textarea>
+
+            <button onClick={() => setTraduzione(stringaTraduzione(jsonfilezh,'zh'))}>Traduci da italiano</button>
+
+            <h2> Nuovi elementi tradotti</h2>
+
+            <textarea className="textareaElement" value={traduzioneVisual}></textarea>
+
+            <button onClick={() => {navigator.clipboard.writeText(traduzioneVisual)}}>Copia elementi</button>
+
+            <h2> File in Italiano</h2>
+
+            <textarea className="textareaElement" value={stringaFinaleIT}></textarea>
         </>
     );
 }
 
 export const LanguagesSpagnolo = () =>{
-    const lingua = ConvertObjectToArray(jsonfilees);
+    
+    var stringaFinaleIT = traduzioni(jsonfileit);
 
-    const indici = lingua[0];
-    const valori = lingua[1];
+    var stringaFinale = traduzioni(jsonfilees);
 
-    var stringaFinale = "";
+    const [traduzione, setTraduzione] = useState({});
 
-    {indici.map((traduzione,indice)=>{
+    const [traduzioneVisual, setTraduzioneVisual] = useState([]);
 
-        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
-    })}
+    const Traduci = async (parola,a,indice) =>{
+
+        parola = parola.replace("?","qmark");
+        parola = parola.replace(/%/g, "subperc");
+
+        const data = await api
+        .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
+        .then(response => {
+    
+            if(response.data.status=="ok"){
+    
+                setTraduzione(inputs => ({...inputs, [indice] : response.data.traduzione }));
+            }
+        })
+    }
+
+    const stringaTraduzione = (jsonFile, lingua) =>{
+
+        const linguaEntrata = ConvertObjectToArray(jsonfileit);
+    
+        const indiciEntrata = linguaEntrata[0];
+        const valoriEntrata = linguaEntrata[1];
+    
+        const lunghezzaEntrata = indiciEntrata.length;
+    
+        const linguaUscita = ConvertObjectToArray(jsonFile);
+    
+        const indiciUscita = linguaUscita[0];
+    
+        const lunghezzaUscita = indiciUscita.length;
+    
+        const differenza = lunghezzaEntrata-lunghezzaUscita;
+    
+        var i = lunghezzaUscita;
+    
+        if(differenza>0){
+    
+            for(i; i<lunghezzaEntrata; i++){
+    
+                Traduci(valoriEntrata[i],lingua,indiciEntrata[i]);
+            }
+        }
+    }
+
+    useEffect(() => {
+
+        if(traduzione){
+
+            setTraduzioneVisual(traduzioni(traduzione))
+        }
+    },[traduzione]);
 
     return (
         <>
-            <h2> File in Spagnolo</h2>
+            <h2> File in spagnolo</h2>
+
+            <textarea className="textareaElement" value={stringaFinale}></textarea>
 
             <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
-            
-            <textarea>{stringaFinale}</textarea>
+
+            <button onClick={() => setTraduzione(stringaTraduzione(jsonfilees,'es'))}>Traduci da italiano</button>
+
+            <h2> Nuovi elementi tradotti</h2>
+
+            <textarea className="textareaElement" value={traduzioneVisual}></textarea>
+
+            <button onClick={() => {navigator.clipboard.writeText(traduzioneVisual)}}>Copia elementi</button>
+
+            <h2> File in Italiano</h2>
+
+            <textarea className="textareaElement" value={stringaFinaleIT}></textarea>
         </>
     );
 }
 
 export const LanguagesFrancese = () =>{
-    const lingua = ConvertObjectToArray(jsonfilefr);
+    
+    var stringaFinaleIT = traduzioni(jsonfileit);
 
-    const indici = lingua[0];
-    const valori = lingua[1];
+    var stringaFinale = traduzioni(jsonfilefr);
 
-    var stringaFinale = "";
+    const [traduzione, setTraduzione] = useState({});
 
-    {indici.map((traduzione,indice)=>{
+    const [traduzioneVisual, setTraduzioneVisual] = useState([]);
 
-        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
-    })}
+    const Traduci = async (parola,a,indice) =>{
+
+        parola = parola.replace("?","qmark");
+        parola = parola.replace(/%/g, "subperc");
+
+        const data = await api
+        .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
+        .then(response => {
+    
+            if(response.data.status=="ok"){
+    
+                setTraduzione(inputs => ({...inputs, [indice] : response.data.traduzione }));
+            }
+        })
+    }
+
+    const stringaTraduzione = (jsonFile, lingua) =>{
+
+        const linguaEntrata = ConvertObjectToArray(jsonfileit);
+    
+        const indiciEntrata = linguaEntrata[0];
+        const valoriEntrata = linguaEntrata[1];
+    
+        const lunghezzaEntrata = indiciEntrata.length;
+    
+        const linguaUscita = ConvertObjectToArray(jsonFile);
+    
+        const indiciUscita = linguaUscita[0];
+    
+        const lunghezzaUscita = indiciUscita.length;
+    
+        const differenza = lunghezzaEntrata-lunghezzaUscita;
+    
+        var i = lunghezzaUscita;
+    
+        if(differenza>0){
+    
+            for(i; i<lunghezzaEntrata; i++){
+    
+                Traduci(valoriEntrata[i],lingua,indiciEntrata[i]);
+            }
+        }
+    }
+
+    useEffect(() => {
+
+        if(traduzione){
+
+            setTraduzioneVisual(traduzioni(traduzione))
+        }
+    },[traduzione]);
 
     return (
         <>
-            <h2> File in Francese</h2>
+            <h2> File in francese</h2>
+
+            <textarea className="textareaElement" value={stringaFinale}></textarea>
 
             <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
-            
-            <textarea>{stringaFinale}</textarea>
+
+            <button onClick={() => setTraduzione(stringaTraduzione(jsonfilefr,'fr'))}>Traduci da italiano</button>
+
+            <h2> Nuovi elementi tradotti</h2>
+
+            <textarea className="textareaElement" value={traduzioneVisual}></textarea>
+
+            <button onClick={() => {navigator.clipboard.writeText(traduzioneVisual)}}>Copia elementi</button>
+
+            <h2> File in Italiano</h2>
+
+            <textarea className="textareaElement" value={stringaFinaleIT}></textarea>
         </>
     );
 }
 
 export const LanguagesPortoghese = () =>{
-    const lingua = ConvertObjectToArray(jsonfilept);
+    
+    var stringaFinaleIT = traduzioni(jsonfileit);
 
-    const indici = lingua[0];
-    const valori = lingua[1];
+    var stringaFinale = traduzioni(jsonfilept);
 
-    var stringaFinale = "";
+    const [traduzione, setTraduzione] = useState({});
 
-    {indici.map((traduzione,indice)=>{
+    const [traduzioneVisual, setTraduzioneVisual] = useState([]);
 
-        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
-    })}
+    const Traduci = async (parola,a,indice) =>{
+
+        parola = parola.replace("?","qmark");
+        parola = parola.replace(/%/g, "subperc");
+
+        const data = await api
+        .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
+        .then(response => {
+    
+            if(response.data.status=="ok"){
+    
+                setTraduzione(inputs => ({...inputs, [indice] : response.data.traduzione }));
+            }
+        })
+    }
+
+    const stringaTraduzione = (jsonFile, lingua) =>{
+
+        const linguaEntrata = ConvertObjectToArray(jsonfileit);
+    
+        const indiciEntrata = linguaEntrata[0];
+        const valoriEntrata = linguaEntrata[1];
+    
+        const lunghezzaEntrata = indiciEntrata.length;
+    
+        const linguaUscita = ConvertObjectToArray(jsonFile);
+    
+        const indiciUscita = linguaUscita[0];
+    
+        const lunghezzaUscita = indiciUscita.length;
+    
+        const differenza = lunghezzaEntrata-lunghezzaUscita;
+    
+        var i = lunghezzaUscita;
+    
+        if(differenza>0){
+    
+            for(i; i<lunghezzaEntrata; i++){
+    
+                Traduci(valoriEntrata[i],lingua,indiciEntrata[i]);
+            }
+        }
+    }
+
+    useEffect(() => {
+
+        if(traduzione){
+
+            setTraduzioneVisual(traduzioni(traduzione))
+        }
+    },[traduzione]);
 
     return (
         <>
-            <h2> File in Portoghese</h2>
+            <h2> File in portoghese</h2>
+
+            <textarea className="textareaElement" value={stringaFinale}></textarea>
 
             <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
-            
-            <textarea>{stringaFinale}</textarea>
+
+            <button onClick={() => setTraduzione(stringaTraduzione(jsonfilept,'pt'))}>Traduci da italiano</button>
+
+            <h2> Nuovi elementi tradotti</h2>
+
+            <textarea className="textareaElement" value={traduzioneVisual}></textarea>
+
+            <button onClick={() => {navigator.clipboard.writeText(traduzioneVisual)}}>Copia elementi</button>
+
+            <h2> File in Italiano</h2>
+
+            <textarea className="textareaElement" value={stringaFinaleIT}></textarea>
         </>
     );
 }
 
 export const LanguagesBrasiliano = () =>{
-    const lingua = ConvertObjectToArray(jsonfileptbr);
+    
+    var stringaFinaleIT = traduzioni(jsonfileit);
 
-    const indici = lingua[0];
-    const valori = lingua[1];
+    var stringaFinale = traduzioni(jsonfileptbr);
 
-    var stringaFinale = "";
+    const [traduzione, setTraduzione] = useState({});
 
-    {indici.map((traduzione,indice)=>{
+    const [traduzioneVisual, setTraduzioneVisual] = useState([]);
 
-        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
-    })}
+    const Traduci = async (parola,a,indice) =>{
+
+        parola = parola.replace("?","qmark");
+        parola = parola.replace(/%/g, "subperc");
+
+        const data = await api
+        .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
+        .then(response => {
+    
+            if(response.data.status=="ok"){
+    
+                setTraduzione(inputs => ({...inputs, [indice] : response.data.traduzione }));
+            }
+        })
+    }
+
+    const stringaTraduzione = (jsonFile, lingua) =>{
+
+        const linguaEntrata = ConvertObjectToArray(jsonfileit);
+    
+        const indiciEntrata = linguaEntrata[0];
+        const valoriEntrata = linguaEntrata[1];
+    
+        const lunghezzaEntrata = indiciEntrata.length;
+    
+        const linguaUscita = ConvertObjectToArray(jsonFile);
+    
+        const indiciUscita = linguaUscita[0];
+    
+        const lunghezzaUscita = indiciUscita.length;
+    
+        const differenza = lunghezzaEntrata-lunghezzaUscita;
+    
+        var i = lunghezzaUscita;
+    
+        if(differenza>0){
+    
+            for(i; i<lunghezzaEntrata; i++){
+    
+                Traduci(valoriEntrata[i],lingua,indiciEntrata[i]);
+            }
+        }
+    }
+
+    useEffect(() => {
+
+        if(traduzione){
+
+            setTraduzioneVisual(traduzioni(traduzione))
+        }
+    },[traduzione]);
 
     return (
         <>
-            <h2> File in Brasiliano</h2>
+            <h2> File in brasiliano</h2>
+
+            <textarea className="textareaElement" value={stringaFinale}></textarea>
 
             <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
-            
-            <textarea>{stringaFinale}</textarea>
+
+            <button onClick={() => setTraduzione(stringaTraduzione(jsonfileptbr,'pt-br'))}>Traduci da italiano</button>
+
+            <h2> Nuovi elementi tradotti</h2>
+
+            <textarea className="textareaElement" value={traduzioneVisual}></textarea>
+
+            <button onClick={() => {navigator.clipboard.writeText(traduzioneVisual)}}>Copia elementi</button>
+
+            <h2> File in Italiano</h2>
+
+            <textarea className="textareaElement" value={stringaFinaleIT}></textarea>
         </>
     );
 }
 
 export const LanguagesUngherese = () =>{
-    const lingua = ConvertObjectToArray(jsonfilehu);
 
-    const indici = lingua[0];
-    const valori = lingua[1];
+    var stringaFinaleIT = traduzioni(jsonfileit);
 
-    var stringaFinale = "";
+    var stringaFinale = traduzioni(jsonfilehu);
 
-    {indici.map((traduzione,indice)=>{
+    const [traduzione, setTraduzione] = useState({});
 
-        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
-    })}
+    const [traduzioneVisual, setTraduzioneVisual] = useState([]);
+
+    const Traduci = async (parola,a,indice) =>{
+
+        parola = parola.replace("?","qmark");
+        parola = parola.replace(/%/g, "subperc");
+
+        const data = await api
+        .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
+        .then(response => {
+    
+            if(response.data.status=="ok"){
+    
+                setTraduzione(inputs => ({...inputs, [indice] : response.data.traduzione }));
+            }
+        })
+    }
+
+    const stringaTraduzione = (jsonFile, lingua) =>{
+
+        const linguaEntrata = ConvertObjectToArray(jsonfileit);
+    
+        const indiciEntrata = linguaEntrata[0];
+        const valoriEntrata = linguaEntrata[1];
+    
+        const lunghezzaEntrata = indiciEntrata.length;
+    
+        const linguaUscita = ConvertObjectToArray(jsonFile);
+    
+        const indiciUscita = linguaUscita[0];
+    
+        const lunghezzaUscita = indiciUscita.length;
+    
+        const differenza = lunghezzaEntrata-lunghezzaUscita;
+    
+        var i = lunghezzaUscita;
+    
+        if(differenza>0){
+    
+            for(i; i<lunghezzaEntrata; i++){
+    
+                Traduci(valoriEntrata[i],lingua,indiciEntrata[i]);
+            }
+        }
+    }
+
+    useEffect(() => {
+
+        if(traduzione){
+
+            setTraduzioneVisual(traduzioni(traduzione))
+        }
+    },[traduzione]);
 
     return (
         <>
-            <h2> File in Ungherese</h2>
+            <h2> File in ungherese</h2>
+
+            <textarea className="textareaElement" value={stringaFinale}></textarea>
 
             <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
-            
-            <textarea>{stringaFinale}</textarea>
+
+            <button onClick={() => setTraduzione(stringaTraduzione(jsonfilehu,'hu'))}>Traduci da italiano</button>
+
+            <h2> Nuovi elementi tradotti</h2>
+
+            <textarea className="textareaElement" value={traduzioneVisual}></textarea>
+
+            <button onClick={() => {navigator.clipboard.writeText(traduzioneVisual)}}>Copia elementi</button>
+
+            <h2> File in Italiano</h2>
+
+            <textarea className="textareaElement" value={stringaFinaleIT}></textarea>
         </>
     );
 }
@@ -303,17 +999,7 @@ export const AdminLanguages = () =>{
         ],
     };
 
-    const linguaIT = ConvertObjectToArray(jsonfileit);
-
-    const indici = linguaIT[0];
-    const valori = linguaIT[1];
-
-    var stringaFinale = "";
-
-    {indici.map((traduzione,indice)=>{
-
-        stringaFinale+= 'define("'+indici[indice]+'","'+valori[indice]+'");\n';
-    })}
+    var stringaFinaleIT = traduzioni(jsonfileit);
 
     return (
         <>
@@ -333,9 +1019,9 @@ export const AdminLanguages = () =>{
 
             <h2> File in italiano </h2>
 
-            <button onClick={() => {navigator.clipboard.writeText(stringaFinale)}}>Copia testo</button>
+            <button onClick={() => {navigator.clipboard.writeText(stringaFinaleIT)}}>Copia testo</button>
             
-            <textarea>{stringaFinale}</textarea>
+            <textarea>{stringaFinaleIT}</textarea>
         </>
     );
 }

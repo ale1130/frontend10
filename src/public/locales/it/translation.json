@@ -1,5 +1,4 @@
 {
-
   "sport": "Sport",
   "sportlive": "Sport-live",
   "casino": "Casino",
@@ -7,7 +6,6 @@
   "poker": "Poker",
   "virtual": "Virtual",
   "bingo": "Bingo",
-
   "italiano": "Italiano",
   "inglese": "Inglese",
   "tedesco": "Tedesco",
@@ -22,10 +20,7 @@
   "ungherese": "Ungherese",
   "selezionalingua": "Seleziona la lingua",
   "inviaemail": "Invia email",
-
   "accedi":"Accedi",
-
-
   "regole": "Regole genrali",
   "regoles": "Regole scommesse",
   "bonusm": "Bonus multipla",
@@ -37,19 +32,15 @@
   "siamo": "Chi siamo",
   "contatti": "Contatti",
   "responsabile": "Gioca Responsabilmente",
-
-
   "nutente": "Nome utente",
   "password": "Password",
-  "dimenticatop": "Hai dimenticato la password?",
+  "dimenticatop": "Hai dimenticato la password ?",
   "noaccount": "Non possiedi ancora un account ?",
   "registrati": "Registrati",
-
   "tuttidati": "Immettere tutti i dati!",
   "credenziali": "Credenziali errate!",
   "bloccato": "Ci dispiace ma l'account associato a questo nome utente risulta bloccato al momento, per ulteriori chiarimenti si prega di contattare l'assistenza tecnica",
   "confermaemail": "Le tue credenziali risulatano corrette però è necessario confermare il tuo account attraverso la mail che ti abbiamo inviato al momento della registrazione",
-
   "saldototale": "Saldo totale",
   "saldoprelevabile": "Saldo prelevabile",
   "saldononprelevabile": "Saldo non prelevabile",
@@ -59,12 +50,9 @@
   "esci": "Esci dal tuo account",
   "versamento": "Versamento",
   "benvenuto": "Benvenuto",
-
   "errorecodicefiscale":"E' necessario inserire tutti i dati utili: nome, cognome, data e luogo di nascita per poter calcolare il codice fiscale",
   "codicefiscaleerroreluogo":"Se il luogo di nascita corrisponde ad un paese estero si prega di inserire il codice fiscale manualmente",
-
   "erroregenerico":"Errore nell'elaborazione dei dati, si prega di ricaricare la pagina, se l'errore dovesse persistere contattare l'assistenza tecnica",
-
   "nome":"Nome",
   "cognome":"Cognome",
   "cellulare":"Cellulare",
@@ -99,14 +87,12 @@
   "calcola":"Calcola",
   "codicefiscale":"Codice Fiscale",
   "provincianascita":"Provincia di nascita",
-
   "dettagliosaldo":"Dettaglio saldo",
   "cambiadati":"Cambia dati",
   "cambiapassword":"Cambia password",
   "messaggi":"Messaggi",
   "ultimoaccesso":"Ultimo accesso",
   "codiceconto":"Codice conto",
-
   "cambiopassword":"Complimenti, cambio password eseguito correttamente al prosimo reindirizzamento vi verrà chiesto di eseguire nuovamente il login",
   "datiaggiornati":"Complimenti hai aggiornato i tuoi dati con successo!",
   "da":"Da",
@@ -125,7 +111,6 @@
   "coupons":"Scommesse sport",
   "withdrawals_requests":"Richieste di prelievo in sospeso",
   "altreoperazioni":"Altre operazioni",
-
   "lingua":"Lingua",
   "depositomax":"Deposito massimo settimanale",
   "attivo":"Attivo",
