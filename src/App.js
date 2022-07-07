@@ -665,6 +665,7 @@ function App(){
         <Footer
           skin={SKIN}
           providers={providers}
+          methods={countMethods}
         />
       </>
 
