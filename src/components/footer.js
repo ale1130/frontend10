@@ -106,7 +106,7 @@ function Footer(props) {
 
 
 
-
+                                <img src="https://media.gamesolutions.org/pay_methods/1.png?v=10030" />
 
 
 
