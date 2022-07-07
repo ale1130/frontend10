@@ -7,7 +7,7 @@ import { skinUrl, convertToFormdata, convertDate, api } from "../constants/globa
 import Profile from "../pages/profile";
 
 import { useTranslation } from "react-i18next";
-import { SelectCatMex, SelectMexStato, SelectPeriod } from "../components/selectors";
+import { SelectCatMex, SelectMexStato, SelectPage, SelectPeriod } from "../components/selectors";
 import { Loader } from "../components/spinner";
 import { ModalMessage } from "../components/modalmessage";
 
@@ -269,7 +269,7 @@ function Messages (props){
 
                                 
 
-                                { pages ?
+                                { pages && pages>1?
 
                                 <>
 
@@ -278,7 +278,7 @@ function Messages (props){
                                         <div className="col-sm-6">
                                             
                                             <div className="no-b">
-                                                <button href="" onClick={sendPreviousPage}>-</button><span className="text-muted">Pagina:{inputs.page}</span><button href="" onClick={sendNextPage}>+</button>
+                                                <button href="" onClick={sendPreviousPage}>-</button><span className="text-muted"><SelectPage pages={pages} onchange={() => handleChange} value={inputs.page || ""} /></span><button href="" onClick={sendNextPage}>+</button>
 
                                             </div>
 
