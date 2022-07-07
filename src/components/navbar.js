@@ -135,17 +135,19 @@ const GameSection = (props) => {
     return (
 
         <>
-            {state.gamecategory.map(category =>
-                <>
+            {state.gamecategory.map(category => {
+                return (
+                    <>
 
-                    <li className={currentPage == category.link ? "active" : ""} key={category.id}>
-                        <a href={category.link + ""}>
-                            <span>{category.nome}</span>
-                        </a>
-                    </li>
+                        <li key={category.id} className={currentPage == category.link ? "active" : ""} >
+                            <a href={category.link + ""}>
+                                <span>{category.nome}</span>
+                            </a>
+                        </li>
 
-                </>
-            )}
+                    </>
+                )
+            })}
 
             {USER["username"] == "ale1" && logged ?
 

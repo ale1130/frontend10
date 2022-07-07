@@ -7,7 +7,7 @@ function Voucher (props){
 
     return (
         <>
-            {<Account paginaAttuale={"voucher"} datiUtente={USER} />}
+            {<Account countMethods={props.countMethods} paginaAttuale={"vouchers"} datiUtente={USER} />}
         </>
     )
 }

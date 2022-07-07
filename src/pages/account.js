@@ -18,6 +18,8 @@ function Account (props){
 
     const currentPage2 = props.paginaAttuale;
 
+    const countMethods = props.countMethods;
+
     return (
         <>
             <div className="container-fluid body-content">
@@ -48,20 +50,32 @@ function Account (props){
                             </h2>
                             
                             <div>
-                                <a href='/account/deposit'>
-                                    <div id="deposit" className={currentPage2=="deposit" ? "selezionato" : ""} >
-                                        {t('deposit')}	         
-                                    </div>
-                                </a>  
 
-                                <a href='/account/withdrawals'>
-                                    <div id="withdrawals" className={currentPage2=="withdrawals" ? "selezionato" : ""} >    
-                                        {t('withdrawals')}	                    
-                                    </div>
-                                </a> 
+                            {countMethods["countDep"] >0 && countMethods != "nomethods" ? 
+                                <>
+                                    <a href='/account/deposit'>
+                                        <div id="deposit" className={currentPage2=="deposit" ? "selezionato" : ""} >
+                                            {t('deposit')}	         
+                                        </div>
+                                    </a> 
+                                </>
+                            
+                            : <></>}
 
-                                <a href='/account/voucher'>
-                                    <div id="voucher" className={currentPage2=="voucher" ? "selezionato" : ""} >
+
+                            {countMethods["countWith"] >0 && countMethods != "nomethods" ? 
+                                <>
+                                   <a href='/account/withdrawals'>
+                                        <div id="withdrawals" className={currentPage2=="withdrawals" ? "selezionato" : ""} >    
+                                            {t('withdrawals')}	                    
+                                        </div>
+                                    </a> 
+                                </>
+                            
+                            : <></>}
+
+                                <a href='/account/vouchers'>
+                                    <div id="voucher" className={currentPage2=="vouchers" ? "selezionato" : ""} >
                                         {t('voucher')}	          
                                     </div>
                                 </a>   
@@ -90,7 +104,7 @@ function Account (props){
 
                                 <a href='/account/withdrawals_requests'>
                                     <div id="withdrawals_requests" className={currentPage2=="withdrawals_requests" ? "selezionato" : ""} >
-                                        {t('withdrawals_requests')}	          
+                                        {t('withdrawals_history')}	          
                                     </div>
                                 </a>   
 

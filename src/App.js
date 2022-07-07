@@ -66,6 +66,8 @@ import WithdrawalsRequests from "./pages/withdrawals_requests";
 import Affiliate from "./footerpages/affiliate";
 import MultiBonus from "./footerpages/multiplebonus";
 import Promotions from "./pages/promotions";
+import DepositMethod from "./components/depositmethod";
+import WithdrawMethod from "./components/withdrawmethod";
 
 function App(){
 
@@ -114,6 +116,10 @@ function App(){
   //Providers footer
 
   const [providers, setProviders] = useState(["empty"])
+
+  //Count methods
+
+  const [countMethods, setCountMethods] = useState(["empty"]);
 
   //Estrazione dati skin
 
@@ -467,11 +473,57 @@ function App(){
     }
   },[providers]);
 
+  //Count depositi e prelievi
+
+  const GetCountMethods = async () => {
+
+    try {
+
+      const data = await api
+      .get('rest/countMethods/:'+USER["id"]+'/')
+      .then(response => {
+
+        if(response.data.status=="ok"){
+
+          setCountMethods(response.data.dati);
+
+        }else if(response.data.status=="error"){
+            
+          setCountMethods(["nomethods"])
+        }else{
+
+          alert(t('erroregenerico'));
+        }
+      })
+
+    } catch (e) {
+
+      alert(t('erroregenerico'));  
+      console.log(e);
+    }
+  }
+
+  useEffect(() => {
+
+    if(loader==8){
+
+      GetCountMethods();
+    }
+  }, [loader]);
+
+  useEffect(() => {
+
+    if(countMethods!="empty"){
+
+      setLoader(loader+1);
+    }
+  },[countMethods]);
+
   //Funzione in background per count messaggi e aggiornamento dati utente
 
   useEffect(() => {
 
-    if(loader>=8){
+    if(loader>=9){
 
       const interval = setInterval(() => {
 
@@ -495,7 +547,7 @@ function App(){
   return (
     <>
 
-      {loader>=8 ? 
+      {loader>=9 ? 
 
       <>
 
@@ -553,13 +605,13 @@ function App(){
 
             <Route path="/promotions" element={<Promotions />}/>
 
-            <Route path="/account/deposit" element={ isLogged ? <Deposit user={USER}/> : <NoLogged /> } />
-            <Route path="/account/withdrawals" element={ isLogged ? <Withdrawals user={USER}/> : <NoLogged /> } />
-            <Route path="/account/voucher" element={ isLogged ? <Voucher user={USER}/> : <NoLogged /> } />
-            <Route path="/account/transactions" element={ isLogged ? <Transactions user={USER}/> : <NoLogged /> } />
-            <Route path="/account/coupons" element={ isLogged ? <Coupons user={USER}/> : <NoLogged /> } />
-            <Route path="/account/bonus" element={ isLogged ? <Bonus user={USER}/> : <NoLogged /> } />
-            <Route path="/account/withdrawals_requests" element={ isLogged ? <WithdrawalsRequests user={USER}/> : <NoLogged /> } />
+            {countMethods["countDep"] >0 && countMethods != "nomethods" ? <Route path="/account/deposit" element={ isLogged ? <Deposit countMethods={countMethods} user={USER} skin={SKIN} /> : <NoLogged /> } /> : <></>}
+            {countMethods["countWith"]>0 && countMethods != "nomethods" ? <Route path="/account/withdrawals" element={ isLogged ? <Withdrawals countMethods={countMethods} user={USER} skin={SKIN} /> : <NoLogged /> } /> : <></>}
+            <Route path="/account/vouchers" element={ isLogged ? <Voucher countMethods={countMethods} user={USER}/> : <NoLogged /> } />
+            <Route path="/account/transactions" element={ isLogged ? <Transactions countMethods={countMethods} user={USER}/> : <NoLogged /> } />
+            <Route path="/account/coupons" element={ isLogged ? <Coupons countMethods={countMethods} user={USER}/> : <NoLogged /> } />
+            <Route path="/account/bonus" element={ isLogged ? <Bonus countMethods={countMethods} user={USER}/> : <NoLogged /> } />
+            <Route path="/account/withdrawals_requests" element={ isLogged ? <WithdrawalsRequests countMethods={countMethods} user={USER}/> : <NoLogged /> } />
 
             <Route path="/profile" element={ isLogged ? <MyProfile datiUtente={USER} countMessages={countMessages} /> : <NoLogged />  } />
             <Route path="/profile/info" element={ isLogged ? <Info datiUtente={USER} countMessages={countMessages} disableLang={checkSkinSett(skinSettings,'disable_language_select')} /> : <NoLogged /> } />
@@ -568,6 +620,22 @@ function App(){
 
             <Route path="/affiliate" element={<Affiliate />}/>
             <Route path="/multiplebonus" element={<MultiBonus />}/>
+
+            {countMethods.depositMethods.map(metodo=>{
+              return (
+                <>
+                  <Route key={metodo.method_code} path={"/account/deposit/"+metodo.method_code} element={ isLogged ? <DepositMethod countMethods={countMethods} skin={SKIN} user={USER} method={metodo.method_code} /> : <NoLogged /> } />
+                </>
+              )
+            })}
+
+            {countMethods.withdrawMethods.map(metodo=>{
+              return (
+                <>
+                  <Route key={metodo.method_code} path={"/account/withdrawals/"+metodo.method_code} element={ isLogged ? <WithdrawMethod countMethods={countMethods} skin={SKIN} user={USER} method={metodo.method_code} /> : <NoLogged /> } />
+                </>
+              )
+            })}
 
             { USER["username"]=="ale1" ?
 
