@@ -6,6 +6,7 @@ import { ConvertObjectToArraySlideshow, MEDIA_SLIDESHOWS_WEB_PATH } from '../con
 import { useTranslation } from 'react-i18next';
 
 <script>
+    
     <link
     rel="stylesheet"
     type="text/css"
@@ -15,8 +16,14 @@ import { useTranslation } from 'react-i18next';
     <link
     rel="stylesheet"
     type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-    />
+    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+    <link href="/templates/acqua/assets/css/slickslider-playwin.css" rel="stylesheet"></link>
+    
 </script>
 
 export const SlickSlider = (props) => {
