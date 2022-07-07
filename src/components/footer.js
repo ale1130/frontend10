@@ -8,6 +8,8 @@ function Footer(props) {
     const SKIN = props.skin;
     const providers = props.providers;
 
+    const methods = props.methods;
+
     const { t } = useTranslation();
 
     function help_popup(url) {
@@ -104,11 +106,9 @@ function Footer(props) {
 
                             <p className="loghi-pag">
 
-
-
-                                <img src="https://media.gamesolutions.org/pay_methods/1.png?v=10030" />
-
-
+                                {(methods.depositMethods.map(method =>
+                                    <img key={method.method_code} src={method.img} className="icon-play" />
+                                ))}
 
                             </p>
 
