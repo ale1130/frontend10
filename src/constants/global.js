@@ -274,3 +274,77 @@ export const convertToFormdata = (object) =>{
 }
 
 export const MINUTE_MS = 60000;
+
+export const getRichiestaPrelievoClass = (stato) => {
+
+    var result = "";
+
+    switch (stato){
+        case "0":
+            result="pending-stats";
+        break;
+        case "2":
+            result="rejected-stats";
+        break;
+        case "3":
+            result="error-w";
+        break;
+        case "4":
+            result="annulled-w";
+        break;
+        default:
+            result="error"
+        break;
+    }
+
+    return result;
+}
+
+export const getRichiestaPrelievoStato = (stato) =>{
+
+    var result = "";
+
+    switch (stato){
+        case "0":
+            result="sospeso";
+        break;
+        case "2":
+            result="negata";
+        break;
+        case "3":
+            result="errore";
+        break;
+        case "4":
+            result="annullata";
+        break;
+        default:
+            result="error"
+        break;
+    }
+    return result;
+}
+
+export const differenceDate = (dateString1, dateString2) => {
+
+    var date1 = new Date(dateString1);
+    var date2 = new Date(dateString2);
+
+    var age = date1.get - date2.getFullYear();
+    var m = date1.getMonth() - date2.getMonth();
+    var day = date1.getDay() - date2.getDay();
+
+    var hour = date1.getHours() - date2.getHours();
+    var minutes = date1.getMinutes() - date2.getMinutes();
+    var getSeconds = date1.getSeconds() - date2.getSeconds();
+
+    const difference = {"years":age, "months":m, "days":day, "hour":hour, "minutes":minutes, "seconds":getSeconds};
+
+    return difference;
+}
+
+export const differenceHour = (dateString1, dateString2) => {
+
+    var differenzaOre = (dateString1-dateString2)/60/60;
+
+    return differenzaOre;
+}

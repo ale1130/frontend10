@@ -7,7 +7,7 @@ function Transactions (props){
 
     return (
         <>
-            {<Account paginaAttuale={"transactions"} datiUtente={USER} />}
+            {<Account countMethods={props.countMethods} paginaAttuale={"transactions"} datiUtente={USER} />}
         </>
     )
 }

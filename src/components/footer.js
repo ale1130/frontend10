@@ -60,7 +60,7 @@ function Footer(props){
                 <div className="row section-footer-play">
                     
                     {(providers.map(provider =>
-                        <div className="col-md-2 col-4">
+                        <div key={provider.id} className="col-md-2 col-4">
                             <img src={PROVIDERS_LOGO_WEB_PATH(SKIN)+ provider.img} className="icon-play"/>
                         </div>
                     ))}

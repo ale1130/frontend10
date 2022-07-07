@@ -7,7 +7,7 @@ function Bonus (props){
 
     return (
         <>
-            {<Account paginaAttuale={"bonus"} datiUtente={USER} />}
+            {<Account countMethods={props.countMethods} paginaAttuale={"bonus"} datiUtente={USER} />}
         </>
     )
 }

@@ -1538,3 +1538,9 @@ div.container-casino:hover>div.middle-button {
   overflow-x: hidden;
   overflow-y: auto;
 }
+
+/*Providers deposit*/
+
+.payimg{
+  width: 30px;
+}

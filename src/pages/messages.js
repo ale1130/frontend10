@@ -301,7 +301,7 @@ function Messages (props){
 
                                 <div className="pagination-content;"></div>
 
-                                <a href="javascript:void(0)" onClick={reload}><span className="fa fa-refresh"></span>Aggiorna</a>
+                                <a onClick={()=>reload()}><span className="fa fa-refresh"></span>Aggiorna</a>
 
                                 {loader ? <Loader /> :
 
