@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { SelectPeriod } from "../components/selectors";
+import { SelectPage, SelectPeriod } from "../components/selectors";
 import { convertDate, convertObjectStringToNumbers, convertToFormdata, differenceDate, differenceHour, getRichiestaPrelievoClass, getRichiestaPrelievoStato, skinUrl } from "../constants/global";
 import Account from "./account";
 
@@ -21,8 +21,6 @@ function WithdrawalsRequests (props){
     const [loader, setLoader] = useState(true);
 
     const { t, i18n } = useTranslation();
-
-    const currentTime = new Date();
 
     const handleChange = (event) => {
 
@@ -107,7 +105,7 @@ function WithdrawalsRequests (props){
       
           }catch (e){
       
-              alert(t('erroregenerico'));  console.log(e);
+            alert(t('erroregenerico'));  console.log(e);
           }
     }
 
@@ -255,8 +253,8 @@ function WithdrawalsRequests (props){
                                                 <div className="col-sm-6">
                                                     
                                                     <div className="no-b">
-                                                        <button href="" onClick={sendPreviousPage}>-</button><span className="text-muted">Pagina:{inputs.page}</span><button href="" onClick={sendNextPage}>+</button>
 
+                                                        <button href="" onClick={sendPreviousPage}>-</button><span className="text-muted"><SelectPage pages={pages} onchange={() => handleChange} value={inputs.page || ""} /></span><button href="" onClick={sendNextPage}>+</button>
                                                     </div>
 
                                                 </div>

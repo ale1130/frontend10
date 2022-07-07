@@ -65,5 +65,25 @@ export const SelectMexStato = (props) =>{
     )
 }
 
+export const SelectPage = (props) =>{
+
+    const { t, i18n } = useTranslation();
+    const pageNumbers = props.pages;
+
+    var options = [];
+
+    for(let i=1; i<=pageNumbers; i++){
+        options.push(<option value={i}>{i}</option>); 
+    }
+
+    return(
+        <>
+            <select id="page" name="page" className="form-control"  value={props.value || ""} onChange={props.onchange()}>
+                {options}
+            </select>
+        </>
+    )
+}
+
 export {SelectPeriod};
 
