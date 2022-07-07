@@ -70,7 +70,7 @@ function Navbar(props) {
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu>
-                                        <BoxUtente setLogin={props.setLogin} utente={USER} />
+                                        <BoxUtente setLogin={props.setLogin} utente={USER} countMessages={countMessages} />
                                     </Dropdown.Menu>
                                 </Dropdown>
 

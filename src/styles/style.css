@@ -112,12 +112,16 @@ a.botton-adv-1 {
 img.multiplatform {
   width: 100%;
   max-width: 340px;
+  margin: 3px 0px 0px 0px;
 }
 
 .footer-bottom-bar {
-  padding-top: 1em;
+  padding: 10px 0px;
   border-top: 1px solid #ffffff59;
+  background: var(--color7);
 }
+
+
 
 .loghi-pag {
   text-align: center;
@@ -128,16 +132,20 @@ img.multiplatform {
   height: auto;
 }
 
+.logo-footer {
+  max-width: 190px;
+  margin-bottom: 30px;
+}
+
 .gioco-18 {
-  border: 0px solid #ffcc07;
+  border-color: var(--color4);
   color: #bbb;
   font-size: 13px;
-  border-radius: 0;
   padding: 10px 20px;
+  margin: 0px;
   text-align: center;
-  margin: 0;
-  border-left: 1px solid #4c4b4b;
-  border-right: 1px solid #4c4b4b;
+  border-left: 1px solid;
+  border-right: 1px solid;
 }
 
 /*Modal*/
@@ -1541,6 +1549,6 @@ div.container-casino:hover>div.middle-button {
 
 /*Providers deposit*/
 
-.payimg{
+.payimg {
   width: 30px;
 }
