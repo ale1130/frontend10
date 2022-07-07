@@ -96,7 +96,7 @@ function Footer(props) {
             </footer>
             <div className="footer-bottom-bar">
                 <div className="container">
-                    <div className="row">
+                    <div className="row align-items-center">
                         <div className="col-lg-4">
                             <img src={"https://betplay360.com" + TEMPLATE_WEBDIR(SKIN) + "/assets/img/icon-browser.png"} className="multiplatform icon-saturation" />
                         </div>
@@ -104,13 +104,13 @@ function Footer(props) {
                         <div className="col-lg-4">
 
 
-                            <p className="loghi-pag">
+                            <div className="loghi-pag">
 
                                 {(methods.depositMethods.map(method =>
-                                    <img key={method.method_code} src={method.img} className="icon-play" />
+                                    <img key={method.method_code} src={method.img} />
                                 ))}
 
-                            </p>
+                            </div>
 
 
                         </div>

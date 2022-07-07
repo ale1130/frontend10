@@ -38,13 +38,30 @@ div.dropdown-menu>div.box-balance {
     text-align: center;
 }
 
+.footer-drop-down2>a:last-child {
+    margin-right: 0px;
+}
+
 .footer-drop-down2>a>svg {
     width: 13px;
     margin-right: 8px;
     margin-top: -4px;
 }
 
+.exit-to-play {
+    text-align: right;
+}
 
+.exit-to-play>a {
+    color: #fff;
+}
+
+.exit-to-play>a>svg {
+    width: 15px;
+    fill: #ffffff7a;
+    margin-right: 5px;
+    margin-top: -2px;
+}
 
 
 .header-top {
