@@ -5,7 +5,7 @@ import '../styles/headerv1.css';
 import { LogOut } from '../constants/global'
 
 import { useTranslation } from 'react-i18next';
-import { CoinIcon2, PersonIcon } from "./icons";
+import { CoinIcon2, LogOutIcon, PersonIcon } from "./icons";
 
 function BoxUtente(props) {
 
@@ -65,9 +65,9 @@ function BoxUtente(props) {
                     </a>
                 </div>
 
-                <p>
-                    <a onClick={LogOut} className="exit-to-play">
-                        {t('esci')}
+                <p className="exit-to-play">
+                    <a href="#" onClick={LogOut}>
+                        <LogOutIcon /> {t('esci')}
                     </a>
                 </p>
             </div>
