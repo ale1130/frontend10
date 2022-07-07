@@ -7,21 +7,21 @@ import { useTranslation } from 'react-i18next';
 
 <script>
     <link
-    rel="stylesheet"
-    type="text/css"
-    charset="UTF-8"
-    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+        rel="stylesheet"
+        type="text/css"
+        charset="UTF-8"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
     />
     <link
-    rel="stylesheet"
-    type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
     />
 </script>
 
 export const SlickSlider = (props) => {
 
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     const logged = props.loggato;
 
@@ -35,7 +35,11 @@ export const SlickSlider = (props) => {
         slidesToShow: 2,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 4000
+        autoplaySpeed: 4000,
+        centerMode: true,
+        adaptiveWidth: true,
+        className: "provola",
+        arrows: false
     };
 
     return (
@@ -44,15 +48,13 @@ export const SlickSlider = (props) => {
             <Slider {...settings}>
                 {fadeImages.map((fadeImage, index) => (
 
-                    <div className="each-fade" key={index}>
+                    <>
+                        <img src={MEDIA_SLIDESHOWS_WEB_PATH(SKIN) + fadeImage.url} key={index} />
+                        <div className="button-adv">
+                            {!logged && <><a href="#" onClick={props.login} className="botton-adv-1">{t('accedi')}</a></>}
+                        </div>
 
-                        <div className="image-container">
-                            <img src={MEDIA_SLIDESHOWS_WEB_PATH(SKIN)+fadeImage.url} />
-                            <div className="button-adv">
-                                {!logged && <><a href="#" onClick={props.login} className="botton-adv-1">{t('accedi')}</a></>}
-                            </div>
-                        </div><br />
-                    </div>
+                    </>
                 ))}
             </Slider>
         </>
