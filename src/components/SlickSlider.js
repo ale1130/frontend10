@@ -6,6 +6,7 @@ import { ConvertObjectToArraySlideshow, MEDIA_SLIDESHOWS_WEB_PATH } from '../con
 import { useTranslation } from 'react-i18next';
 
 <script>
+
     <link
         rel="stylesheet"
         type="text/css"
