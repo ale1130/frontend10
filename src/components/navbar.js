@@ -38,7 +38,7 @@ function Navbar(props) {
                         <h1 className="logo">
                             <a href="/">
 
-                                <img src={SKIN_LOGO_WEB_PATH(SKIN)+SKIN["logo_img"]} />
+                                <img src={SKIN_LOGO_WEB_PATH(SKIN) + SKIN["logo_img"] + "?v=111111"} />
                             </a>
                         </h1>
                         <nav className="nav-menu">
@@ -66,8 +66,8 @@ function Navbar(props) {
 
                                 <Dropdown>
                                     <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                        <PersonIcon />
-                                    </Dropdown.Toggle>{countMessages>0 ? <><div className="number-message">{countMessages}</div></> : <></> }
+                                        <PersonIcon />{countMessages > 0 ? <><div className="number-message">{countMessages}</div></> : <></>}
+                                    </Dropdown.Toggle>
 
                                     <Dropdown.Menu>
                                         <BoxUtente setLogin={props.setLogin} utente={USER} />
@@ -81,7 +81,7 @@ function Navbar(props) {
                         }
 
                         {!props.selectLanguageOK ?
-                        
+
                             <div className="btn-group">
 
                                 <Dropdown>
@@ -101,7 +101,7 @@ function Navbar(props) {
                             <></>
                         }
 
-                        
+
                     </div>
                 </div>
 
@@ -137,18 +137,18 @@ const GameSection = (props) => {
         <>
             {state.gamecategory.map(category =>
                 <>
-                    
+
                     <li className={currentPage == category.link ? "active" : ""} key={category.id}>
                         <a href={category.link + ""}>
                             <span>{category.nome}</span>
                         </a>
                     </li>
-                    
+
                 </>
             )}
 
-            {USER["username"] == "ale1" && logged ? 
-                    
+            {USER["username"] == "ale1" && logged ?
+
                 <>
                     <li className={currentPage == "/languages" ? "active" : ""} key={7}>
                         <a href={"/languages" + ""}>
@@ -156,8 +156,8 @@ const GameSection = (props) => {
                         </a>
                     </li>
                 </>
-            
-            : 
+
+                :
                 <></>
             }
         </>

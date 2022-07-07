@@ -147,7 +147,7 @@ div.dropdown-menu>div.box-balance {
     background: var(--color1);
     color: var(--color8);
     border: 0px solid var(--color1);
-
+    font-size: 12px;
     border-radius: 3px;
     padding: 6px 13px 10px;
     margin-right: 5px;
@@ -170,7 +170,7 @@ div.dropdown-menu>div.box-balance {
 }
 
 div.of-header {
-    background: #161429;
+    background: var(--color6);
 }
 
 .dropdown-menu-right {
@@ -329,4 +329,21 @@ div.of-header {
     background: var(--color1);
     border: var(--color1);
     box-shadow: 0 0 0 0;
+}
+
+.dropdown-menu {
+    position: absolute;
+    z-index: 1000;
+    display: none;
+    min-width: 10rem;
+    margin: 0.125rem 0 0;
+    margin: 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: var(--color6);
+    background-clip: padding-box;
+
+    border-radius: 5px;
 }
