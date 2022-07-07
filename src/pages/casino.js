@@ -10,6 +10,7 @@ import axios from "axios";
 
 import { useTranslation } from "react-i18next";
 import { ArrowIcon } from "../components/icons";
+import { SlickSlider } from "../components/SlickSlider";
 
 const Jackpots = (props) => {
 
@@ -533,7 +534,7 @@ function Casino(props) {
 
                     { slideShow && slideShow!= "noslideshow" ?
 
-                        <Slideshow images={slideShow} loggato={logged} skin={SKIN} login={()=>openLogin()}/>
+                        <><SlickSlider images={slideShow} loggato={logged} skin={SKIN} login={()=>openLogin()}/></>
 
                         :
 
