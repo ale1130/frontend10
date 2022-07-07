@@ -11,7 +11,7 @@ import { SelectPage } from "../components/selectors";
 
 import { Loader } from "../components/spinner";
 
-import { convertToFormdata,convertObjectStringToNumbers } from "../constants/global";
+import { convertToFormdata } from "../constants/global";
 
 function Bonus (props){
 
@@ -64,8 +64,8 @@ function Bonus (props){
     
             if(response.data.status=="ok"){
 
-                setBonus(convertObjectStringToNumbers(response.data.dati));
-                setPages(response.data.pages);
+                setBonus(response.data.dati);
+                setPages(response.data.total_pages);
               
             }else if(response.data.status=="norecords"){
 
@@ -264,31 +264,31 @@ function Bonus (props){
                                             {bonus && bonus.length>0 ?
 
                                                 <>
-                                                    {/*bonus.map(bonu => {return (
+                                                    {bonus.map(bonu => {return (
                                                         
-                                                        <tr key={prelievo.id}>
+                                                        <tr key={bonu.id}>
                                                             <td scope="col">
-                                                                {convertDate(prelievo.addedTime)}                
+                                                                {convertDate(bonu.addedTime)}                
                                                             </td>
 
                                                             <td scope="col">
-                                                                {prelievo.request_status == 4 ? "Annullata dal giocatore" : prelievo.answer_description}                
+                                                                {bonu.nome_promo}                
                                                             </td>
 
                                                             <td scope="col">
-                                                                {prelievo.amount}                
+                                                                {convertDate(bonu.scadenza)}                
                                                             </td>
 
                                                             <td scope="col">
-                                                                <span className={getRichiestaPrelievoClass(prelievo.request_status)}>{getRichiestaPrelievoStato(prelievo.request_status)}</span>            
+                                                                {bonu.importo}           
                                                             </td>
 
                                                             <td scope="col">
-                                                                {prelievo.request_status==0 && differenceHour(Math.floor(Date.now()/1000),prelievo.addedTime) < 8 ? <button onClick={() => eliminaPrelievo(prelievo.id,prelievo.addedTime)}>Elimina richiesta</button> : <>Nessuna azione</>}
+                                                                {bonu.stato}
                                                             </td>
                                                         </tr>
 
-                                                    )})*/}
+                                                    )})}
                                                 </>
                                             
                                                 :
