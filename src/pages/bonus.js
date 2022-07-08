@@ -66,6 +66,10 @@ function Bonus (props){
 
                 setBonus(response.data.dati);
                 setPages(response.data.total_pages);
+
+                if(inputs.page > response.data.total_pages){
+                    setInputs(inputs => ({...inputs,"page":1}));
+                }
               
             }else if(response.data.status=="norecords"){
 

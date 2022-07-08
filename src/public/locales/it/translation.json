@@ -110,7 +110,7 @@
   "transactions":"Movimenti e saldo",
   "coupons":"Scommesse sport",
   "withdrawals_requests":"Richieste di prelievo in sospeso",
-  "withdrawals_history":"Storico prelievi",
+  "withdrawals_history":"Prelievi che necessitano di elaborazione",
   "altreoperazioni":"Altre operazioni",
   "lingua":"Lingua",
   "depositomax":"Deposito massimo settimanale",
@@ -126,5 +126,9 @@
   "pswsnot":"Le due password non coincidiono",
   "multipla":"Multipla",
   "descrizionemultipla":"Ottenere il bonus è semplice: basta giocare 5 avvenimenti con quota minima di 1.20. La percentuale di bonus partirà dal 4% e crescerà per ogni evento aggiunto alla tua multipla. Puoi raggiungere un bonus massimo del 150% selezionando fino a 30 eventi! Il sistema calcolerà la vincita potenziale, comprensiva di bonus, in automatico. Nella tabella trovi le percentuali di bonus in base al numero di eventi inseriti nella scommessa.",
-  "neventi":"N. Eventi"
+  "neventi":"N. Eventi",
+  "incassatovoucher": "Incassato Voucher con codice:",
+  "creatovoucher": "Creato Voucher con codice:",
+  "aggiuntobonus": "Accreditato bonus",
+  "richiestaprelievo":"Richiesta di prelievo N."
 }

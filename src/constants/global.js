@@ -348,3 +348,21 @@ export const differenceHour = (dateString1, dateString2) => {
 
     return differenzaOre;
 }
+
+export const playlogiqTicketStatus = (id) =>{
+
+    var statusAs = [];
+    statusAs['N'] = 'coupon.status.1'; //"Ticket is running";
+    statusAs[2] = 'coupon.status.2'; //"Ticket is in pending because of risk management and wait for confirmatin";
+    statusAs[3] = 'coupon.status.3'; //"Ticket canceled by player";
+    statusAs['C'] = 'coupon.status.4'; //"Ticket rejected by system";
+    statusAs[5] = 'coupon.status.5'; //"Ticket waiting for counter offer";
+    statusAs['V'] = 'coupon.status.6'; //"Ticket is void";
+    statusAs['W'] = 'coupon.status.7'; //"Ticket is won";
+    statusAs['L'] = 'coupon.status.8'; //"Ticket is lost";
+    statusAs[11] = 'coupon.status.11'; //"Ticket is won and waiting for payment";
+    statusAs[12] = 'coupon.status.12'; //"Open win ticket is played";
+    statusAs[13] = 'coupon.status.13'; //"Ticket cashout";
+
+    return statusAs[id];
+}
