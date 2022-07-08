@@ -534,7 +534,7 @@ function Casino(props) {
 
                     { slideShow && slideShow!= "noslideshow" ?
 
-                        <><SlickSlider images={slideShow} loggato={logged} skin={SKIN} login={()=>openLogin()}/></>
+                        <>{/*<SlickSlider images={slideShow} loggato={logged} skin={SKIN} login={()=>openLogin()}/>*/}</>
 
                         :
 

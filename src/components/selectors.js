@@ -73,7 +73,7 @@ export const SelectPage = (props) =>{
     var options = [];
 
     for(let i=1; i<=pageNumbers; i++){
-        options.push(<option value={i}>{i}</option>); 
+        options.push(<option key={i} value={i}>{i}</option>); 
     }
 
     return(

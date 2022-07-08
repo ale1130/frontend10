@@ -112,13 +112,13 @@ function Messages (props){
 
     const sendPreviousPage = () =>{
         if(inputs.page>1){
-            setInputs(inputs => ({...inputs,"page": inputs.page-1}));
+            setInputs(inputs => ({...inputs,"page": parseInt(inputs.page)-1}));
         }
     }
 
     const sendNextPage = () =>{
         if(inputs.page<pages){
-            setInputs(inputs => ({...inputs,"page": inputs.page+1}));
+            setInputs(inputs => ({...inputs,"page": parseInt(inputs.page)+1}));
         }
     }
 
