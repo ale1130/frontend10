@@ -6,7 +6,7 @@ import { ConvertObjectToArraySlideshow, MEDIA_SLIDESHOWS_WEB_PATH } from '../con
 import { useTranslation } from 'react-i18next';
 
 <script>
-    
+
     <link
     rel="stylesheet"
     type="text/css"
@@ -42,7 +42,11 @@ export const SlickSlider = (props) => {
         slidesToShow: 2,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 4000
+        autoplaySpeed: 4000,
+        arrows:false,
+        centerMode:true,
+        centerPadding:'250px',
+        fade:false
     };
 
     return (
