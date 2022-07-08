@@ -317,7 +317,7 @@ function Coupons (props){
                                                                 
                                                                 
 
-                                                                <tr>
+                                                                <tr key={coupon.id}>
                                                                     <td scope="col">
                                                                         {convertDate(coupon.addedTime)}         
                                                                     </td>

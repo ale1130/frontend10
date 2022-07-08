@@ -160,7 +160,7 @@ const TypoGiochi = (props) =>{
 
                     <>{(subCategories.map(subcategory =>
 
-                        <div className={currentSubcategory && currentSubcategory == subcategory.id ? "pul-type-play games-subcategory active" : "pul-type-play games-subcategory"} id={"subcategory-" + subcategory.id}>
+                        <div key={subcategory.id} className={currentSubcategory && currentSubcategory == subcategory.id ? "pul-type-play games-subcategory active" : "pul-type-play games-subcategory"} id={"subcategory-" + subcategory.id}>
                             <a onClick={() => handleCategory(subcategory.id)} > {subcategory.name} <span> {subcategory.totale} </span></a>
                         </div>
                     ))}</>

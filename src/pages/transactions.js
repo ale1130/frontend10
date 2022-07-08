@@ -223,7 +223,7 @@ function Transactions (props){
 
                                                         <>
                                                             {transactions.map(transaction => {return (
-                                                                <tr>
+                                                                <tr key={transaction.id}>
                                                                     <td scope="col">
                                                                         {convertDate(transaction.addedTime)}                
                                                                     </td>

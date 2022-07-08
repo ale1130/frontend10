@@ -335,7 +335,7 @@ function Messages (props){
                                                 <>
                                                     <tbody>
                                                         {messages.map(messaggio =>{ return(
-                                                            <tr>
+                                                            <tr key={messaggio.id}>
                                                                 
                                                                 <>
                                                                     <td>

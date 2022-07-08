@@ -607,7 +607,7 @@ function App(){
 
             {countMethods["countDep"] >0 && countMethods != "nomethods" ? <Route path="/account/deposit" element={ isLogged ? <Deposit countMethods={countMethods} user={USER} skin={SKIN} /> : <NoLogged /> } /> : <></>}
             {countMethods["countWith"]>0 && countMethods != "nomethods" ? <Route path="/account/withdrawals" element={ isLogged ? <Withdrawals countMethods={countMethods} user={USER} skin={SKIN} /> : <NoLogged /> } /> : <></>}
-            <Route path="/account/vouchers" element={ isLogged ? <Voucher countMethods={countMethods} user={USER}/> : <NoLogged /> } />
+            <Route path="/account/vouchers" element={ isLogged ? <Voucher countMethods={countMethods} user={USER} skin={SKIN}/> : <NoLogged /> } />
             <Route path="/account/transactions" element={ isLogged ? <Transactions countMethods={countMethods} user={USER}/> : <NoLogged /> } />
             <Route path="/account/coupons" element={ isLogged ? <Coupons countMethods={countMethods} user={USER}/> : <NoLogged /> } />
             <Route path="/account/bonus" element={ isLogged ? <Bonus countMethods={countMethods} user={USER}/> : <NoLogged /> } />
