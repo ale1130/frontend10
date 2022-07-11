@@ -1,10 +1,10 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import { PromoCode } from "./componentpromocode"
 import { useTranslation } from "react-i18next";
 import ErrorBox from "../components/errorBox";
 import SuccessBox from "../components/successBox";
 import axios from "axios";
-import { ConvertObjectToArrayErrors, convertToFormdata, skinUrl } from "../constants/global";
+import { api, ConvertObjectToArrayErrors, convertToFormdata, skinUrl } from "../constants/global";
 
 function ComponentPix(props) {
 
@@ -13,8 +13,6 @@ function ComponentPix(props) {
     const SKIN = props.skin;
     const USER = props.user;
 
-    const default_promo = props.default_promo;
-
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
 
@@ -22,7 +20,7 @@ function ComponentPix(props) {
 
     const { t, i18n } = useTranslation();
 
-    const [inputs, setInputs] = useState({"user_id":USER["id"],"method":method.method_code, "have_promocode": default_promo != "nopromo" ? 1 : 0, "cpf":USER["document_number"], "promocode" : default_promo != "nopromo" ? default_promo : ""});
+    const [inputs, setInputs] = useState({"user_id":USER["id"],"method":method.method_code, "cpf":USER["document_number"]});
 
     const handleChange = (event) => {
 
@@ -76,6 +74,35 @@ function ComponentPix(props) {
             alert(t('erroregenerico')); console.log(e);
         }
     }
+
+    const getDefaultPromoActive = async () =>{
+
+        try {
+    
+            const data = await api
+            .get('rest/defaultpromoactive/:'+USER["id"]+'/')
+            .then(response => {
+      
+              if(response.data.status=="ok"){
+      
+                setInputs(inputs =>({...inputs,  "have_promocode": 1,  "promocode": response.data.dati}))
+      
+              }else{
+      
+                setInputs(inputs =>({...inputs,  "have_promocode": 0,  "promocode": ''}))
+              }
+            })
+      
+        } catch (e) {
+    
+            alert(t('erroregenerico'));  
+            console.log(e);
+        }
+    }
+
+    useEffect(()=>{
+        getDefaultPromoActive();
+    },[]);
 
     const unsetInput = () =>{
 
