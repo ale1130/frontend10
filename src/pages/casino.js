@@ -434,7 +434,6 @@ function Casino(props) {
 
                         setGames(response.data.games);
 
-
                     } else if (response.data.status == "nogames") {
 
                         setGames("nogames");
@@ -504,6 +503,8 @@ function Casino(props) {
 
         if (games != "empty") {
 
+            setLoaderGames(true);
+
             GetGames();
         }
     }, [inputs])
@@ -516,9 +517,15 @@ function Casino(props) {
         }
     }, [games])
 
+    useEffect(()=>{
+        if(loaderGames==false){
+            window.scrollTo(0, 2000 * inputs.page);
+        }
+    },[loaderGames])
+
     const handlePage = () => {
         if (inputs.page < maxPage) {
-            setLoaderGames(true);
+            
             setInputs(inputs => ({ ...inputs, "page": inputs.page + 1 }));
         }
     }
@@ -530,7 +537,7 @@ function Casino(props) {
 
                 <>
                     <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
+                        <span>Loading...</span>
                     </Spinner>
                 </>
 
@@ -581,7 +588,7 @@ function Casino(props) {
 
                                 :
                                 <>
-                                    <Games skin={SKIN} games={games} />
+                                    {games.length >0 ? <Games skin={SKIN} games={games} /> : <div>Non abbiamo trovato giochi con questa ricerca...</div>}
                                 </>
                             }
 

@@ -20,7 +20,7 @@ function ComponentPix(props) {
 
     const { t, i18n } = useTranslation();
 
-    const [inputs, setInputs] = useState({"user_id":USER["id"],"method":method.method_code, "cpf":USER["document_number"]});
+    const [inputs, setInputs] = useState({"user_id":USER["id"],"method":method.method_code, "cpf": USER["document_number"].length == 14 ? USER["document_number"] : "" });
 
     const handleChange = (event) => {
 
@@ -62,7 +62,10 @@ function ComponentPix(props) {
                 }else if(response.data.status=="error"){
 
                     setError(true);
-                    setErrorMessages(ConvertObjectToArrayErrors(response.data.message))
+
+                    console.log(response.data)
+
+                    //setErrorMessages(response.data.message)
 
                 }else{
                     alert(t('erroregenerico'));  
@@ -120,7 +123,7 @@ function ComponentPix(props) {
 
                             <div className="row">
                                 <div className="col-md-3">
-                                    <img src={method.img} />
+                                    <img src={method.img} className="imgpay"/>
                                 </div>
 
                                 <div className="col-md-9">
