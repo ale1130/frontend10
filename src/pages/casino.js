@@ -16,25 +16,31 @@ const Jackpots = (props) => {
 
     const [jackpots, setJackpots] = useState(props.jackpots);
 
+    const SKIN = props.skin;
+
+    const jackpot1 = SKIN["jackpot_1"];
+    const jackpot2 = SKIN["jackpot_2"];
+    const jackpot3 = SKIN["jackpot_3"];
+
     return (
 
         <>
             <div className="jackpot">
                 <div className="jackpot-div-mini">
                     <span>Bronze jackpot</span>
-                    <strong id="jackpot_silver">497.92</strong>
+                    <strong id="jackpot_silver">{jackpot1}</strong>
 
 
                 </div>
                 <div className="jackpot-div-super">
 
                     <span>Silver jackpot</span>
-                    <strong id="jackpot_bronze">740.33</strong>
+                    <strong id="jackpot_bronze">{jackpot2}</strong>
 
                 </div>
                 <div className="jackpot-div-mega">
                     <span>Gold jackpot</span>
-                    <strong id="jackpot_gold">2,182.75</strong>
+                    <strong id="jackpot_gold">{jackpot3}</strong>
 
                 </div>
             </div>
@@ -250,7 +256,7 @@ const Games = (props) => {
 
                 :
 
-                <><div>Nessun gioco individuato per questo filtro</div></>
+                <><div><h2 className="nogames">Non abbiamo trovato giochi con questa ricerca...</h2></div></>
             }
         </>
     )
@@ -458,6 +464,8 @@ function Casino(props) {
 
                     } else if (response.data.status == "nogames") {
 
+                        setLoaderGames(false)
+
                         setGames("nogames");
 
                         setMaxPage(0);
@@ -541,7 +549,10 @@ function Casino(props) {
 
     useEffect(()=>{
         if(loaderGames==false){
-            window.scrollTo(0, 2000 * inputs.page);
+
+            if(inputs.page!=1){
+                window.scrollTo(0, 2000 * inputs.page);
+            }
         }
     },[loaderGames])
 
@@ -591,12 +602,12 @@ function Casino(props) {
                     {providers == "noproviders" || countGames == 0 ?
 
 
-                        <div>Ci dispiace ma al momento non è stato possibile individuare nessun provider e/o gioco per questa sezione, si prega di riprovare più tardi o di conttattare l'assistenza tecnica</div>
+                        <div><h2 className="nogames">Ci dispiace ma al momento non è stato possibile individuare nessun provider e/o gioco per questa sezione, si prega di riprovare più tardi o di conttattare l'assistenza tecnica</h2></div>
 
                         :
 
                         <>
-                            {/*<input type="text" className="form-control margin-bottom-5" value={inputs.search || ""} onChange={handleChange} id="search" name="search" placeholder={"Digit game name"} />*/}
+                            {<input type="text" className="form-control margin-bottom-5" value={inputs.search || ""} onChange={handleChange} id="search" name="search" placeholder={"Digit game name"} />}
                             <Providers providers={providers} skin={SKIN} setinput={setInputs} currentProv={inputs.provider} />
                             <TypoGiochi countGames={countGames} subCateories={subCategories} setinput={setInputs} currentSub={inputs.subcategory} />
 
