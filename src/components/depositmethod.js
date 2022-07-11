@@ -1,7 +1,13 @@
 import React from "react";
 import Account from "../pages/account";
+
 import { ComponentVoucher } from "../pagesdeposit/voucherdepositcomponent";
 import { ComponentPix } from "../pagesdeposit/pixdepositcomponent";
+import { ComponentCreditCard } from "../pagesdeposit/creditcarddepositcomponent";
+import { ComponentCrypto } from "../pagesdeposit/cryptodepositcomponent";
+import { ComponentBank } from "../pagesdeposit/bankdepositcomponent";
+import { ComponentLidgicash } from "../pagesdeposit/lidgicashdepositcomponent";
+import { ComponentIntouch } from "../pagesdeposit/intouchdepositcomponent";
 
 function DepositMethod (props){
 
@@ -23,29 +29,37 @@ function DepositMethod (props){
         break;
 
         case "creditcard":
+            mainComponent = <ComponentCreditCard />
         break;
 
         case "pixs2p":
+            mainComponent = <ComponentPix />
         break;
 
         case "cryptoio":
+            mainComponent = <ComponentCrypto />
         break;
 
         case "pixm":
+            mainComponent = <ComponentPix />
         break;
 
         case "intouch":
+            mainComponent = <ComponentIntouch />
         break;
 
         case "lidgi":
+            mainComponent = <ComponentLidgicash />
         break;
 
         case "bank":
+            mainComponent = <ComponentBank />
         break;
     }
 
     return (
         <>
+            {<Account countMethods={props.countMethods} paginaAttuale={"deposit"} datiUtente={USER} />}
             {mainComponent}
         </>
     )
