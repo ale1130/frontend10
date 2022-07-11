@@ -2,10 +2,12 @@ import React from "react";
 
 import Account from "../pages/account";
 
-export const ComponentVoucher = () =>{
+function ComponentVoucher (props){
     return (
         <>
             {<Account />}
         </>
     )
 }
+
+export {ComponentVoucher};

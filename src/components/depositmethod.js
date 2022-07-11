@@ -1,5 +1,6 @@
 import React from "react";
 import Account from "../pages/account";
+import { ComponentVoucher } from "../pagesdeposit/voucherdepositcomponent";
 
 function DepositMethod (props){
 
@@ -8,23 +9,36 @@ function DepositMethod (props){
 
     const method = props.method;
 
+    var mainComponent;
+
     switch(method){
+
         case "pix":
+            mainComponent = <ComponentPix />
         break;
+
         case "voucher":
+            mainComponent = <ComponentVoucher />
         break;
+
         case "creditcard":
         break;
+
         case "pixs2p":
         break;
+
         case "cryptoio":
         break;
+
         case "pixm":
         break;
+
         case "intouch":
         break;
+
         case "lidgi":
         break;
+
         case "bank":
         break;
     }
