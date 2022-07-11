@@ -71,6 +71,20 @@ export const CorrectMethodsArray = (object) =>{
     return arrUtilizzo2;
 }
 
+export const ConvertToAssociativeArray = (object) =>{
+
+    var arrUtilizzo = [];
+
+    var objectArray = Object.entries(object);
+
+    objectArray.forEach(([key, value]) => {
+
+        arrUtilizzo[value.method_code] = value;
+    });
+
+    return arrUtilizzo;
+}
+
 export const ConvertObjectToArraySlideshow = (object) =>{
 
     var arrUtilizzo = [];
@@ -239,6 +253,10 @@ export const SKIN_LOGO_WEB_PATH = (SKIN) =>{
 
 export const SKIN_FOOTER_IMG_WEB_PATH = (SKIN) =>{
     return SKIN["cdn_url"]+"/skins/footer/";
+}
+
+export const DEPOSIT_IMG_WEB_PATH = () =>{
+    return "https://stagemedia.gamesolutions.org/deposit/";
 }
 
 export const TEMPLATE_WEBDIR = (SKIN) =>{

@@ -1,36 +1,119 @@
-import React from "react";
+import React,{useState} from "react";
+import { PromoCode } from "./componentpromocode"
+import { useTranslation } from "react-i18next";
+import ErrorBox from "../components/errorBox";
+import SuccessBox from "../components/successBox";
+import axios from "axios";
+import { ConvertObjectToArrayErrors, convertToFormdata, skinUrl } from "../constants/global";
 
 function ComponentPix(props) {
+
+    const method = props.methodInfo;
+
+    const SKIN = props.skin;
+    const USER = props.user;
+
+    const default_promo = props.default_promo;
+
+    const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
+
+    const [errorMessages, setErrorMessages] = useState([])
+
+    const { t, i18n } = useTranslation();
+
+    const [inputs, setInputs] = useState({"user_id":USER["id"],"method":method.method_code, "have_promocode": default_promo != "nopromo" ? 1 : 0, "cpf":USER["document_number"], "promocode" : default_promo != "nopromo" ? default_promo : ""});
+
+    const handleChange = (event) => {
+
+        console.log(inputs)
+
+        const name = event.target.name;
+        const value = event.target.value;
+
+        setInputs(values => ({...values,[name]: value}))
+    }
+
+    const handleChangePromocode = () => {
+
+        if(inputs.have_promocode==0){
+            setInputs(values => ({...values,"have_promocode":1}))
+        }else{
+            setInputs(values => ({...values,"have_promocode":0}))
+        } 
+    }
+
+    const handleSubmit = async () =>{
+        try {
+
+            const data = await axios
+            ({
+                method:"post",
+                url:skinUrl+"rest/deposit-gateway.php",
+                data:convertToFormdata(inputs)
+            })
+            .then(response => {
+
+                console.log(response)
+        
+                if(response.data.status=="ok"){
+
+                    unsetInput();
+                    setSuccess(true);
+
+                }else if(response.data.status=="error"){
+
+                    setError(true);
+                    setErrorMessages(ConvertObjectToArrayErrors(response.data.message))
+
+                }else{
+                    alert(t('erroregenerico'));  
+                }
+            })
+
+        } catch (e) {
+
+            alert(t('erroregenerico')); console.log(e);
+        }
+    }
+
+    const unsetInput = () =>{
+
+        setInputs({"user_id":USER["id"]});
+    }
+
     return (
         <>
             <table className="table table-bordered">
                 <tbody>
                     <tr>
                         <td>
-                            <h2 className="virtual-title">Versamento con Pix - Starspay</h2>
+                            <h2 className="virtual-title">Versamento con {method.name}</h2>
                             <hr className="border-hr" />
 
                             <div className="row">
                                 <div className="col-md-3">
-                                    <img src="https://stagemedia.gamesolutions.org/deposit/img/13.png" />
+                                    <img src={method.img} />
                                 </div>
+
                                 <div className="col-md-9">
                                     PIX è un nuovo metodo di pagamento in Brasile per effettuare bonifici bancari diretti e istantanei, creato e di proprietà della Central Bank e utilizzato dalle banche brasiliane, dai conti digitali e dai wallet.
                                 </div>
                             </div>
+
+                            {error ? <ErrorBox message={errorMessages}/> : <></>}
+                            {success ? <SuccessBox message={"Complimenti il tuo deposito è stato effettuato con successo!"}/> : <></>}
+
                             <div className="row">
 
                                 <div className="col-sm-4">
 
-                                    <input type="hidden" name="method" value="pix" />
-
                                     <label htmlFor="amount" className="color-top">
-                                        <strong>Importo da versare</strong> Importo minimo: 5.00 EUR
+
+                                        <strong>Importo da versare</strong> Importo minimo: {method.min_dep} {SKIN["currency"]}
                                     </label>
 
-                                    <input type="text" name="amount" autoComplete="off" className="form-control margin-bottom-5" id="amount" placeholder="Inserisci qui l'importo" />
-
-
+                                    <input type="text" name="amount" value={inputs.amount || ""} onChange={handleChange} className="form-control margin-bottom-5" id="amount" placeholder="Inserisci qui l'importo" />
                                 </div>
 
 
@@ -39,36 +122,20 @@ function ComponentPix(props) {
 
                                     <label htmlFor="amount" className="color-top"><strong>Inserisci il tuo cpf</strong></label>
 
-                                    <input type="text" value="010.237.702-29" name="cpf" autoComplete="off" className="form-control margin-bottom-5" id="cpf" placeholder="Inserisci il tuo cpf" maxLength="14" />
-
-
+                                    <input type="text" name="cpf" value={USER["document_number"]} className="form-control margin-bottom-5" id="cpf" placeholder="Inserisci il tuo cpf" maxLength="14" readOnly />
                                 </div>
 
                                 <div className="col-sm-4">
-                                    <button type="submit" className="login">Procedi al pagamento <i className="fa fa-angle-right"></i></button>
+
+                                    <button className="login" onClick={()=>handleSubmit()} >Procedi al pagamento <i className="fa fa-angle-right"></i></button>
                                 </div>
 
-                                <div className="col-md-12">
-                                    <hr className="border-hr" />
-                                    <input type="checkbox" name="have_promocode" id="have_promocode" checked="" disabled="" value="0" /> <label htmlFor="have_promocode">Hai un codice promozionale?</label>
-                                    <input type="hidden" id="have_promocode" name="have_promocode" value="1" />
-                                    <div className="row">
-                                        <div className="col-sm-12" id="promocode-box">
-                                            <input type="text" name="promocode" autoComplete="off" readOnly="" value="WEL" className="form-control" id="promocode" placeholder="Inserisci qui il codice promozionale" />
-                                        </div>
-                                    </div>
-
-
-                                </div>
+                                <PromoCode handleChangePromocode={handleChangePromocode} handleChange={handleChange} inputs={inputs}/>
                             </div>
-
-
-
-
-
                         </td>
                     </tr>
-                </tbody></table>
+                </tbody>
+            </table>
         </>
     )
 }
