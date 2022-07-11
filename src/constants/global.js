@@ -36,6 +36,41 @@ export const ConvertObjectToArray = (object) =>{
     return ArrTotale;
 }
 
+export const CorrectMethodsArray = (object) =>{
+
+    const deposito = object.depositMethods;
+    const prelievo = object.withdrawMethods;
+
+    var arrUtilizzo = [];
+    var arrUtilizzo2 = [];
+
+    var objectArray = Object.entries(deposito);
+
+    objectArray.forEach(([key, value]) => {
+
+        if(!arrUtilizzo[value.method_code]){
+
+            arrUtilizzo2.push(value);
+        }
+
+        arrUtilizzo[value.method_code] = value;
+    });
+
+    var objectArray = Object.entries(prelievo);
+
+    objectArray.forEach(([key, value]) => {
+
+        if(!arrUtilizzo[value.method_code]){
+            
+            arrUtilizzo2.push(value);
+        }
+
+        arrUtilizzo[value.method_code] = value;
+    });
+
+    return arrUtilizzo2;
+}
+
 export const ConvertObjectToArraySlideshow = (object) =>{
 
     var arrUtilizzo = [];
@@ -185,24 +220,6 @@ export const checkSkinSett = (arraySettings, setting) =>{
         return false;
     }
 }
-
-export const GetLanguages = async () =>{
-
-    const stringa = "SELECT * FROM languages ORDER BY id";
-
-    try{
-
-      const data = await axios
-      .post('http://localhost:3001/getlanguages',{query : stringa})
-      .then(response => {
-        
-        return response.data;
-      })
-    }catch (e){
-
-        console.log(e);
-    }
-};
 
 export const PROVIDERS_LOGO_WEB_PATH = (SKIN) =>{
     return SKIN["cdn_url"]+"/providers/img/";

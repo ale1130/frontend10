@@ -1,14 +1,14 @@
 import React from "react";
 
 import { useTranslation } from 'react-i18next';
-import { PROVIDERS_LOGO_WEB_PATH, skinUrl, SKIN_FOOTER_IMG_WEB_PATH, SKIN_LOGO_WEB_PATH, TEMPLATE_WEBDIR } from "../constants/global";
+import { CorrectMethodsArray, PROVIDERS_LOGO_WEB_PATH, skinUrl, SKIN_FOOTER_IMG_WEB_PATH, SKIN_LOGO_WEB_PATH, TEMPLATE_WEBDIR } from "../constants/global";
 
 function Footer(props) {
 
     const SKIN = props.skin;
     const providers = props.providers;
 
-    const methods = props.methods;
+    const methods = CorrectMethodsArray(props.methods);
 
     const { t } = useTranslation();
 
@@ -106,7 +106,7 @@ function Footer(props) {
 
                             <div className="loghi-pag">
 
-                                {(methods.depositMethods.map(method =>
+                                {(methods.map(method =>
                                     <img key={method.method_code} src={method.img} />
                                 ))}
 

@@ -8,9 +8,29 @@ function DepositMethod (props){
 
     const method = props.method;
 
+    switch(method){
+        case "pix":
+        break;
+        case "voucher":
+        break;
+        case "creditcard":
+        break;
+        case "pixs2p":
+        break;
+        case "cryptoio":
+        break;
+        case "pixm":
+        break;
+        case "intouch":
+        break;
+        case "lidgi":
+        break;
+        case "bank":
+        break;
+    }
+
     return (
         <>
-            {method}
             {<Account countMethods={props.countMethods} paginaAttuale={"deposit"} datiUtente={USER} />}
         </>
     )
