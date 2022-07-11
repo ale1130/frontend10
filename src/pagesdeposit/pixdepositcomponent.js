@@ -1,11 +1,8 @@
 import React from "react";
 
-import Account from "../pages/account";
-
-export const ComponentPix = () => {
+function ComponentPix (props){
     return (
         <>
-            {<Account />}
             <table class="table table-bordered">
                 <tbody><tr>
                     <td>
@@ -80,3 +77,5 @@ export const ComponentPix = () => {
                             </>
                             )
 }
+
+export {ComponentPix}

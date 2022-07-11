@@ -1,6 +1,7 @@
 import React from "react";
 import Account from "../pages/account";
 import { ComponentVoucher } from "../pagesdeposit/voucherdepositcomponent";
+import { ComponentPix } from "../pagesdeposit/pixdepositcomponent";
 
 function DepositMethod (props){
 
@@ -45,7 +46,7 @@ function DepositMethod (props){
 
     return (
         <>
-            {<Account countMethods={props.countMethods} paginaAttuale={"deposit"} datiUtente={USER} />}
+            {mainComponent}
         </>
     )
 }
