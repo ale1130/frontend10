@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 import axios from "axios";
 
@@ -11,7 +11,7 @@ import { SelectCatMex, SelectMexStato, SelectPage, SelectPeriod } from "../compo
 import { Loader } from "../components/spinner";
 import { ModalMessage } from "../components/modalmessage";
 
-function Messages (props){
+function Messages(props) {
 
     const USER = props.datiUtente;
 
@@ -19,7 +19,7 @@ function Messages (props){
 
     const { t, i18n } = useTranslation();
 
-    const [inputs, setInputs] = useState({"user_id":USER["id"],"page":1});
+    const [inputs, setInputs] = useState({ "user_id": USER["id"], "page": 1 });
 
     const [messages, setMessages] = useState(["empty"]);
     const [loader, setLoader] = useState(true);
@@ -33,177 +33,177 @@ function Messages (props){
         const name = event.target.name;
         const value = event.target.value;
 
-        setInputs(values => ({...values,[name]: value}))
+        setInputs(values => ({ ...values, [name]: value }))
     }
 
-    const handleChangeData = (event,data,indice) => {
+    const handleChangeData = (event, data, indice) => {
 
         const index = indice;
         const value = event;
-        
+
         let date = JSON.stringify(value);
 
-        var dataTradotta = date.slice(1,11);
+        var dataTradotta = date.slice(1, 11);
 
-        setInputs(values => ({...values, [index]: dataTradotta}))
+        setInputs(values => ({ ...values, [index]: dataTradotta }))
     }
-    
+
     const SendData = async () => {
 
         setLoader(true);
 
-        try{
-    
-          const data = await axios
-            ({
-                method:"post",
-                url:skinUrl+"rest/messages.php",
-                data:convertToFormdata(inputs)
-            })
-          .then(response => {
-    
-            if(response.data.status=="ok"){
+        try {
 
-                setMessages(response.data.message);
-                setPages(response.data.params.total_pages);
+            const data = await axios
+                ({
+                    method: "post",
+                    url: skinUrl + "rest/messages.php",
+                    data: convertToFormdata(inputs)
+                })
+                .then(response => {
 
-                if(inputs.page > response.data.params.total_pages){
-                    setInputs(inputs => ({...inputs,"page":1}));
-                }
-              
-            }else if(response.data.status=="norecords"){
-                setPages(0);
-                setMessages([]);
-                setInputs(inputs => ({...inputs,"page":1}));
-            }else{
+                    if (response.data.status == "ok") {
 
-                alert(t('erroregenerico'));
-            }
-          })
-    
-        }catch (e){
-    
-            alert(t('erroregenerico'));  console.log(e);
+                        setMessages(response.data.message);
+                        setPages(response.data.params.total_pages);
+
+                        if (inputs.page > response.data.params.total_pages) {
+                            setInputs(inputs => ({ ...inputs, "page": 1 }));
+                        }
+
+                    } else if (response.data.status == "norecords") {
+                        setPages(0);
+                        setMessages([]);
+                        setInputs(inputs => ({ ...inputs, "page": 1 }));
+                    } else {
+
+                        alert(t('erroregenerico'));
+                    }
+                })
+
+        } catch (e) {
+
+            alert(t('erroregenerico')); console.log(e);
         }
     };
 
-    useEffect(()=>{
+    useEffect(() => {
 
         SendData();
 
-    },[inputs.page])
+    }, [inputs.page])
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        if(messages!="empty"){
+        if (messages != "empty") {
             setLoader(false);
         }
-    },[messages])
+    }, [messages])
 
     const reload = () => {
 
         SendData();
     }
 
-    const unsetInput = () =>{
+    const unsetInput = () => {
 
-        setInputs({"user_id":USER["id"],"page":1});
+        setInputs({ "user_id": USER["id"], "page": 1 });
     }
 
-    const sendPreviousPage = () =>{
-        if(inputs.page>1){
-            setInputs(inputs => ({...inputs,"page": parseInt(inputs.page)-1}));
+    const sendPreviousPage = () => {
+        if (inputs.page > 1) {
+            setInputs(inputs => ({ ...inputs, "page": parseInt(inputs.page) - 1 }));
         }
     }
 
-    const sendNextPage = () =>{
-        if(inputs.page<pages){
-            setInputs(inputs => ({...inputs,"page": parseInt(inputs.page)+1}));
+    const sendNextPage = () => {
+        if (inputs.page < pages) {
+            setInputs(inputs => ({ ...inputs, "page": parseInt(inputs.page) + 1 }));
         }
     }
 
     const DeleteMessage = async (id) => {
 
-        try{
+        try {
 
             const data = await api
-            .get('rest/deletemessage/:'+id+"/")
-            .then(response => {
-    
-                if(response.data.status=="ok"){
+                .get('rest/deletemessage/:' + id + "/")
+                .then(response => {
 
-                    SendData();
+                    if (response.data.status == "ok") {
 
-                }else if(response.data.status=="error"){
-                    
-                    alert(t('erroregenerico'));
-                    setLoader(false);
-                }else{
+                        SendData();
 
-                    setLoader(false);
-                    alert(t('erroregenerico'));
-                }
-            })
-    
-        }catch (e){
-    
-            alert(t('erroregenerico'));  console.log(e);
+                    } else if (response.data.status == "error") {
+
+                        alert(t('erroregenerico'));
+                        setLoader(false);
+                    } else {
+
+                        setLoader(false);
+                        alert(t('erroregenerico'));
+                    }
+                })
+
+        } catch (e) {
+
+            alert(t('erroregenerico')); console.log(e);
         }
     }
 
     const VisualMessage = async (id) => {
 
-        try{
+        try {
 
             const data = await api
-            .get('rest/visualmessage/:'+id+"/")
-            .then(response => {
-    
-                if(response.data.status=="ok"){
+                .get('rest/visualmessage/:' + id + "/")
+                .then(response => {
 
-                    setRealMessage(response.data.params);
-                    SendData();
+                    if (response.data.status == "ok") {
 
-                }else if(response.data.status=="error"){
-                    
-                    alert(t('erroregenerico'));
-                    SendData();
-                    setLoader(false);
-                }else{
+                        setRealMessage(response.data.params);
+                        SendData();
 
-                    alert(t('erroregenerico'));
-                    SendData();
-                    setLoader(false);
-                }
-            })
-    
-        }catch (e){
-    
-            alert(t('erroregenerico'));  console.log(e);
+                    } else if (response.data.status == "error") {
+
+                        alert(t('erroregenerico'));
+                        SendData();
+                        setLoader(false);
+                    } else {
+
+                        alert(t('erroregenerico'));
+                        SendData();
+                        setLoader(false);
+                    }
+                })
+
+        } catch (e) {
+
+            alert(t('erroregenerico')); console.log(e);
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        if(realMessage!="empty"){
+        if (realMessage != "empty") {
             setShow(true);
             setLoader(false);
         }
-    },[realMessage])
+    }, [realMessage])
 
-    const ChangeState = (id,stato) => {
+    const ChangeState = (id, stato) => {
 
         setLoader(true);
 
-        if(stato == 2){
+        if (stato == 2) {
 
-            if (window.confirm('Sicuro di voler elimare il messaggio selezionato?')){
+            if (window.confirm('Sicuro di voler elimare il messaggio selezionato?')) {
 
                 DeleteMessage(id);
-            }else{
+            } else {
                 setLoader(false);
             }
-        }else{
+        } else {
 
             VisualMessage(id);
         }
@@ -211,182 +211,188 @@ function Messages (props){
 
     return (
         <>
+            <div className="container-fluid body-content">
+                <div className="row">
 
-            {<Profile paginaAttuale={"messages"} datiUtente={USER} countMessages={countMessages} />}
+                    {<Profile paginaAttuale={"messages"} datiUtente={USER} countMessages={countMessages} />}
 
-            {<ModalMessage 
-                modalState={show} 
-                closeModal={() => setShow(false)}
-                message={realMessage}
-            />}
+                    {<ModalMessage
+                        modalState={show}
+                        closeModal={() => setShow(false)}
+                        message={realMessage}
+                    />}
 
-            <div className="col-md-12 col-lg-9">
-                <table width="100%" className="table table-bordered">
-                    <tbody>
-                        <tr>
-                            <td>
-                            
-                                <h2 className="virtual-title">Messaggi ricevuti</h2>
+                    <div className="col-md-12 col-lg-9">
+                        <table width="100%" className="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>
 
-                                
+                                        <h2 className="virtual-title">Messaggi ricevuti</h2>
 
-                                    <div className="row">
 
-                                        <div className="col-md-6 form-group">
-                                        
-                                            <label>Categoria Messaggio:</label>
 
-                                            <SelectCatMex name={"message_cat"} value={inputs.message_cat || ""} onchange={()=>handleChange}/>
-                                        </div>
+                                        <div className="row">
 
-                                        <div className="col-lg-6 col-md-8 margin-top-14px">
-                                            <label className="col-form-label">Oggetto:</label>
-                                            <input type="text" className="form-control kt-input" placeholder="Oggetto" name="object" id="object" value={inputs.object || ""} onChange={handleChange} />
-                                        </div>
+                                            <div className="col-md-6 form-group">
 
-                                        <div className="col-lg-6 col-md-8 margin-top-14px">
-                                        
-                                            <label className="col-form-label">Data ricezione:</label>
-                                            
-                                            <SelectPeriod onchange={handleChangeData}/>
-                                            
-                                        </div>
+                                                <label>Categoria Messaggio:</label>
 
-                                        <div className="col-lg-6 col-md-8 margin-top-14px">
-                                            <label className="col-form-label">Stato Messaggio:</label>
-
-                                            <SelectMexStato name={"message_stato"} value={inputs.message_stato || ""} onchange={()=>handleChange}/>
-                                        </div>	
-                                    
-                                        <div className="col-md-12 form-group">
-                                            <div>
-                                                <button onClick={reload} className="login button-account-m-p" id="btnRicerca" name="btnRicerca" ><i className="fa fa-search"></i> {t('cerca')} </button>
-                                                <button onClick={unsetInput} className="login button-account-m-p" id="btnFiltri" name="btnFiltri"><i className="fa fa-times"></i> {t('toglifiltri')}</button>
+                                                <SelectCatMex name={"message_cat"} value={inputs.message_cat || ""} onchange={() => handleChange} />
                                             </div>
-                                        </div>
 
-                                    </div>
+                                            <div className="col-lg-6 col-md-8 margin-top-14px">
+                                                <label className="col-form-label">Oggetto:</label>
+                                                <input type="text" className="form-control kt-input" placeholder="Oggetto" name="object" id="object" value={inputs.object || ""} onChange={handleChange} />
+                                            </div>
 
-                                
+                                            <div className="col-lg-6 col-md-8 margin-top-14px">
 
-                                { pages && pages>1?
+                                                <label className="col-form-label">Data ricezione:</label>
 
-                                <>
+                                                <SelectPeriod onchange={handleChangeData} />
 
-                                    <div className="row">
+                                            </div>
 
-                                        <div className="col-sm-6">
-                                            
-                                            <div className="no-b">
-                                                <button href="" onClick={sendPreviousPage}>-</button><span className="text-muted"><SelectPage pages={pages} onchange={() => handleChange} value={inputs.page || ""} /></span><button href="" onClick={sendNextPage}>+</button>
+                                            <div className="col-lg-6 col-md-8 margin-top-14px">
+                                                <label className="col-form-label">Stato Messaggio:</label>
 
+                                                <SelectMexStato name={"message_stato"} value={inputs.message_stato || ""} onchange={() => handleChange} />
+                                            </div>
+
+                                            <div className="col-md-12 form-group">
+                                                <div>
+                                                    <button onClick={reload} className="login button-account-m-p" id="btnRicerca" name="btnRicerca" ><i className="fa fa-search"></i> {t('cerca')} </button>
+                                                    <button onClick={unsetInput} className="login button-account-m-p" id="btnFiltri" name="btnFiltri"><i className="fa fa-times"></i> {t('toglifiltri')}</button>
+                                                </div>
                                             </div>
 
                                         </div>
 
-                                        <div className="col-6">
-                                            <strong>Totale pagine{pages}</strong>
-                                        </div>
-                                    </div>
 
-                                </>
 
-                                :
+                                        {pages && pages > 1 ?
 
-                                <></>
+                                            <>
 
-                                }
+                                                <div className="row">
 
-                                <div className="clearfix"></div>
+                                                    <div className="col-sm-6">
 
-                                <div className="pagination-content;"></div>
+                                                        <div className="no-b">
+                                                            <button href="" onClick={sendPreviousPage}>-</button><span className="text-muted"><SelectPage pages={pages} onchange={() => handleChange} value={inputs.page || ""} /></span><button href="" onClick={sendNextPage}>+</button>
 
-                                <a onClick={()=>reload()}><span className="fa fa-refresh"></span>Aggiorna</a>
+                                                        </div>
 
-                                {loader ? <Loader /> :
+                                                    </div>
 
-                                <>
+                                                    <div className="col-6">
+                                                        <strong>Totale pagine{pages}</strong>
+                                                    </div>
+                                                </div>
 
-                                    <div className="table-responsive" id="messagesElenco" name="messagesElenco">
-                                        <div className="table-responsive" id="messagesElenco" name="messagesElenco">
-                                            <table className="responsive-p">
-                                                <thead>
-                                                    <tr>
-                                                        <td scope="col">
-                                                            Oggetto                
-                                                        </td>
-                                                        <td scope="col">
-                                                            Categoria                
-                                                        </td>
-                                                        <td scope="col">
-                                                            Stato                
-                                                        </td>
-                                                        <td scope="col">
-                                                            Data ricezione                
-                                                        </td>
-                                                        <td scope="col">
-                                                            Azioni                
-                                                        </td>
-                                                    </tr>
-                                                </thead>
+                                            </>
 
-                                                { pages ?
-                                                        
-                                                <>
-                                                    <tbody>
-                                                        {messages.map(messaggio =>{ return(
-                                                            <tr key={messaggio.id}>
-                                                                
+                                            :
+
+                                            <></>
+
+                                        }
+
+                                        <div className="clearfix"></div>
+
+                                        <div className="pagination-content;"></div>
+
+                                        <a onClick={() => reload()}><span className="fa fa-refresh"></span>Aggiorna</a>
+
+                                        {loader ? <Loader /> :
+
+                                            <>
+
+                                                <div className="table-responsive" id="messagesElenco" name="messagesElenco">
+                                                    <div className="table-responsive" id="messagesElenco" name="messagesElenco">
+                                                        <table className="responsive-p">
+                                                            <thead>
+                                                                <tr>
+                                                                    <td scope="col">
+                                                                        Oggetto
+                                                                    </td>
+                                                                    <td scope="col">
+                                                                        Categoria
+                                                                    </td>
+                                                                    <td scope="col">
+                                                                        Stato
+                                                                    </td>
+                                                                    <td scope="col">
+                                                                        Data ricezione
+                                                                    </td>
+                                                                    <td scope="col">
+                                                                        Azioni
+                                                                    </td>
+                                                                </tr>
+                                                            </thead>
+
+                                                            {pages ?
+
                                                                 <>
-                                                                    <td>
-                                                                        {messaggio.object}
-                                                                    </td>
-                                                                    <td>
-                                                                        {messaggio.typo}        
-                                                                    </td>
-                                                                    <td>
-                                                                        {messaggio.stato==1 ? "Già letto" : "Non letto"}
-                                                                    </td>
-                                                                    <td>
-                                                                        {convertDate(messaggio.addedTime)}        
-                                                                    </td>
-                                                                    <td>
-                                                                        {messaggio.stato==1 ? <><button onClick={() => ChangeState(messaggio.id,1)}>Visualizza</button>/<button onClick={() => ChangeState(messaggio.id,2)}>Elimina</button></> : <button onClick={() => ChangeState(messaggio.id,1)}>Visualizza</button>}
-                                                                    </td>
+                                                                    <tbody>
+                                                                        {messages.map(messaggio => {
+                                                                            return (
+                                                                                <tr key={messaggio.id}>
+
+                                                                                    <>
+                                                                                        <td>
+                                                                                            {messaggio.object}
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            {messaggio.typo}
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            {messaggio.stato == 1 ? "Già letto" : "Non letto"}
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            {convertDate(messaggio.addedTime)}
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            {messaggio.stato == 1 ? <><button onClick={() => ChangeState(messaggio.id, 1)}>Visualizza</button>/<button onClick={() => ChangeState(messaggio.id, 2)}>Elimina</button></> : <button onClick={() => ChangeState(messaggio.id, 1)}>Visualizza</button>}
+                                                                                        </td>
+                                                                                    </>
+                                                                                </tr>
+                                                                            )
+                                                                        })}
+                                                                    </tbody>
                                                                 </>
-                                                            </tr>
-                                                        )})}
-                                                    </tbody>
-                                                </>
 
-                                                :
+                                                                :
 
-                                                <>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td colSpan="5">
-                                                                Nessun messaggio visualizzabile...                    
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </>
-                                                
-                                                }
-                                            </table>
+                                                                <>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td colSpan="5">
+                                                                                Nessun messaggio visualizzabile...
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </>
 
-                                            <br />
+                                                            }
+                                                        </table>
 
-                                        </div>
-                                    </div>
+                                                        <br />
 
-                                </>
+                                                    </div>
+                                                </div>
 
-                                }
+                                            </>
 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                        }
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </>
     )
