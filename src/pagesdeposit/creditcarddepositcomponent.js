@@ -2,10 +2,12 @@ import React from "react";
 
 import Account from "../pages/account";
 
-export const ComponentCreditCard = () =>{
+function ComponentCreditCard (props){
     return (
         <>
             {<Account />}
         </>
     )
 }
+
+export {ComponentCreditCard}
