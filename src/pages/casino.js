@@ -17,70 +17,92 @@ const Jackpots = (props) => {
     const [jackpots, setJackpots] = useState(props.jackpots);
 
     return (
-        <div className="wordCarousel">
-            <h1>Jackpot Win</h1>
-            <div>
-                <ul className="flip5 first-t">
-                    {jackpots.map(jackpot => {
-                        return (
 
-                            <li>{jackpot.username}<span>{jackpot.win} </span></li>
+        <>
+            <div className="jackpot">
+                <div className="jackpot-div-mini">
+                    <span>Bronze jackpot</span>
+                    <strong id="jackpot_silver">497.92</strong>
 
-                        )
-                    })}
-                </ul>
 
-                <ul className="flip5 second-t">
-                    {jackpots.map(jackpot => {
-                        return (
+                </div>
+                <div className="jackpot-div-super">
 
-                            <li>{jackpot.username}<span>{jackpot.win} </span></li>
+                    <span>Silver jackpot</span>
+                    <strong id="jackpot_bronze">740.33</strong>
 
-                        )
-                    })}
-                </ul>
+                </div>
+                <div className="jackpot-div-mega">
+                    <span>Gold jackpot</span>
+                    <strong id="jackpot_gold">2,182.75</strong>
 
-                <ul className="flip5 third-t">
-                    {jackpots.map(jackpot => {
-                        return (
-
-                            <li>{jackpot.username}<span>{jackpot.win} </span></li>
-
-                        )
-                    })}
-                </ul>
-
-                <ul className="flip5 forty-t">
-                    {jackpots.map(jackpot => {
-                        return (
-
-                            <li>{jackpot.username}<span>{jackpot.win} </span></li>
-
-                        )
-                    })}
-                </ul>
-
-                <ul className="flip5 five-t">
-                    {jackpots.map(jackpot => {
-                        return (
-
-                            <li>{jackpot.username}<span>{jackpot.win} </span></li>
-
-                        )
-                    })}
-                </ul>
-
-                <ul className="flip5 six-t">
-                    {jackpots.map(jackpot => {
-                        return (
-
-                            <li>{jackpot.username}<span>{jackpot.win} </span></li>
-
-                        )
-                    })}
-                </ul>
+                </div>
             </div>
-        </div>
+
+            <div className="wordCarousel">
+                <h1>Jackpot Win</h1>
+                <div>
+                    <ul className="flip5 first-t">
+                        {jackpots.map(jackpot => {
+                            return (
+
+                                <li>{jackpot.username}<span>{jackpot.win} </span></li>
+
+                            );
+                        })}
+                    </ul>
+
+                    <ul className="flip5 second-t">
+                        {jackpots.map(jackpot => {
+                            return (
+
+                                <li>{jackpot.username}<span>{jackpot.win} </span></li>
+
+                            );
+                        })}
+                    </ul>
+
+                    <ul className="flip5 third-t">
+                        {jackpots.map(jackpot => {
+                            return (
+
+                                <li>{jackpot.username}<span>{jackpot.win} </span></li>
+
+                            );
+                        })}
+                    </ul>
+
+                    <ul className="flip5 forty-t">
+                        {jackpots.map(jackpot => {
+                            return (
+
+                                <li>{jackpot.username}<span>{jackpot.win} </span></li>
+
+                            );
+                        })}
+                    </ul>
+
+                    <ul className="flip5 five-t">
+                        {jackpots.map(jackpot => {
+                            return (
+
+                                <li>{jackpot.username}<span>{jackpot.win} </span></li>
+
+                            );
+                        })}
+                    </ul>
+
+                    <ul className="flip5 six-t">
+                        {jackpots.map(jackpot => {
+                            return (
+
+                                <li>{jackpot.username}<span>{jackpot.win} </span></li>
+
+                            );
+                        })}
+                    </ul>
+                </div>
+            </div></>
     )
 }
 
