@@ -2,10 +2,12 @@ import React from "react";
 
 import Account from "../pages/account";
 
-export const ComponentLidgicash = () =>{
+function ComponentLidgicash (props){
     return (
         <>
             {<Account />}
         </>
     )
 }
+
+export {ComponentLidgicash}
