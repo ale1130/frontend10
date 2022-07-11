@@ -9,7 +9,7 @@ import { api } from "../constants/global";
 import { useTranslation } from "react-i18next";
 import { LoaderFetch } from "../components/spinner";
 
-function Password (props){
+function Password(props) {
 
     const { t, i18n } = useTranslation();
 
@@ -33,107 +33,107 @@ function Password (props){
     const [myClass3, setMyClass3] = useState("password");
 
     const handleChange = (event) => {
-      const name = event.target.name;
-      const value = event.target.value;
-      setInputs(values => ({...values,[name]: value}))
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({ ...values, [name]: value }))
     }
 
-    const error = (errors) =>{
-        
+    const error = (errors) => {
+
         setErrorMessage(errors);
 
         setModalSuccess(false);
         setModalError(true);
     }
 
-    const success = (message="Complimenti") =>{
+    const success = (message = "Complimenti") => {
 
         setModalError(false);
-        
+
         setSuccessMessage(message);
         setModalSuccess(true);
     }
-           
+
     const changePassword = async () => {
-        try{
+        try {
 
             const data = await api
-            .post('rest/change-password/:'+inputs.newpassword+'/:'+USER["id"]+"/")
-            .then(response => {
+                .post('rest/change-password/:' + inputs.newpassword + '/:' + USER["id"] + "/")
+                .then(response => {
 
-                if(response.data.status=="ok"){
+                    if (response.data.status == "ok") {
 
-                    success(t('cambiopassword'));
-                    setDone(done+1);
-                }else{
-                    alert(t('erroregenerico'));
-                    setDone(done+1);
-                }
-            })
-        }catch (e){
+                        success(t('cambiopassword'));
+                        setDone(done + 1);
+                    } else {
+                        alert(t('erroregenerico'));
+                        setDone(done + 1);
+                    }
+                })
+        } catch (e) {
 
-           alert(t('erroregenerico'));  console.log(e);
+            alert(t('erroregenerico')); console.log(e);
         }
     };
-  
+
     const handleSubmit = (event) => {
 
         setLoader(true);
         var errorMsg = [];
         event.preventDefault();
 
-        if(!inputs.oldpassword || !inputs.newpassword || !inputs.renewpassword){
-            errorMsg [0] = t('mettidati');
-        }else{
-            if(inputs.oldpassword != USER["realpass"]){
-            errorMsg [1] = t('oldpswnot');
+        if (!inputs.oldpassword || !inputs.newpassword || !inputs.renewpassword) {
+            errorMsg[0] = t('mettidati');
+        } else {
+            if (inputs.oldpassword != USER["realpass"]) {
+                errorMsg[1] = t('oldpswnot');
             }
 
-            if(inputs.newpassword == USER["realpass"]){
-                errorMsg [2] = t('nuovauguale');
+            if (inputs.newpassword == USER["realpass"]) {
+                errorMsg[2] = t('nuovauguale');
             }
 
-            if(inputs.newpassword != inputs.renewpassword){
-                errorMsg [3] = t('pswsnot');
+            if (inputs.newpassword != inputs.renewpassword) {
+                errorMsg[3] = t('pswsnot');
             }
         }
 
-        if(errorMsg.length>0){
+        if (errorMsg.length > 0) {
 
             error(errorMsg);
 
             setLoader(false);
-        }else{
+        } else {
 
             changePassword();
         }
     }
 
-    useEffect(()=>{
-        if(done!=0){
+    useEffect(() => {
+        if (done != 0) {
             setLoader(false);
         }
-    },done)
+    }, done)
 
-    const changeClass = () =>{
+    const changeClass = () => {
 
-        if(myClass=="password")
+        if (myClass == "password")
             setMyClass("text")
         else
             setMyClass("password")
     }
 
-    const changeClass2 = () =>{
+    const changeClass2 = () => {
 
-        if(myClass2=="password")
+        if (myClass2 == "password")
             setMyClass2("text")
         else
             setMyClass2("password")
     }
 
-    const changeClass3 = () =>{
+    const changeClass3 = () => {
 
-        if(myClass3=="password")
+        if (myClass3 == "password")
             setMyClass3("text")
         else
             setMyClass3("password")
@@ -141,91 +141,95 @@ function Password (props){
 
     return (
         <>
-            {<Profile paginaAttuale={"password"} datiUtente={USER} countMessages={countMessages} />}
+            <div className="container-fluid body-content">
+                <div className="row">
+                    {<Profile paginaAttuale={"password"} datiUtente={USER} countMessages={countMessages} />}
 
-            <div className="col-md-12 col-lg-9">
-                <table width="100%" className="table table-bordered">
-                    <tbody>
-                        <tr>
-                            <td>
-                            
-                                <h2 className="virtual-title">{t('cambiapassword')}</h2>
-                                
-                                <form onSubmit={handleSubmit} className="form-signUp clearForm">
+                    <div className="col-md-12 col-lg-9">
+                        <table width="100%" className="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>
 
-                                {modalError ? <ErrorBox message={errorMessage}/> : ""} {modalSuccess ? <SuccessBox message={successMessage}/> : ""}
-                                    
-                                    {loader ? <LoaderFetch /> : ""}
+                                        <h2 className="virtual-title">{t('cambiapassword')}</h2>
 
-                                    <table width="100%" className="table table-bordered profile-table">
-                                        <tbody>
-                                        
-                                            <tr>
-                                            
-                                                <td>
-                                                    <strong>Password {t('attuale')}</strong>
-                                                </td>
-                                                
-                                                <td>
+                                        <form onSubmit={handleSubmit} className="form-signUp clearForm">
 
-                                                    <div className="input-group ">
+                                            {modalError ? <ErrorBox message={errorMessage} /> : ""} {modalSuccess ? <SuccessBox message={successMessage} /> : ""}
 
-                                                        <input type={myClass} name="oldpassword" id="oldpassword" value={inputs.oldpassword || ""} onChange={handleChange} className="form-control" />
+                                            {loader ? <LoaderFetch /> : ""}
 
-                                                        <div className="input-group-prepend">
-                                                            <span className="input-group-text" id="basic-addon1"> <a className="bi bi-eye-slash" id="occhio1" onClick={()=>changeClass()}>occhio</a></span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            
-                                            <tr>
-                                            
-                                                <td width="35%">
-                                                    <strong>{t('nuova')} password</strong>
-                                                </td>
-                                                
-                                                <td>
+                                            <table width="100%" className="table table-bordered profile-table">
+                                                <tbody>
 
-                                                    <div className="input-group ">
+                                                    <tr>
 
-                                                        <input type={myClass2} name="newpassword" id="newpassword" value={inputs.newpassword || ""} onChange={handleChange} className="form-control" />
+                                                        <td>
+                                                            <strong>Password {t('attuale')}</strong>
+                                                        </td>
 
-                                                        <div className="input-group-prepend">
-                                                            <span className="input-group-text" id="basic-addon1"> <a className="bi bi-eye-slash" id="occhio1" onClick={()=>changeClass2()}>occhio</a></span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            
-                                            <tr>
-                                                <td>
-                                                    <strong>{t('ripeti')} password</strong>
-                                                </td>
-                                                
-                                                <td>
-                                                    <div className="input-group ">
+                                                        <td>
 
-                                                        <input type={myClass3} name="renewpassword" id="renewpassword" value={inputs.renewpassword || ""} onChange={handleChange} className="form-control" />
-                                                        <div className="input-group-prepend">
-                                                            <span className="input-group-text" id="basic-addon1"> <a className="bi bi-eye-slash" id="occhio1" onClick={()=>changeClass3()}>occhio</a></span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                            <div className="input-group ">
 
-                                        </tbody>
-                                    </table>
-                                    
-                                    <input type="submit" className="login" id="changePassword" value={t('salva')+" password"} />
-                                    
-                                </form>
+                                                                <input type={myClass} name="oldpassword" id="oldpassword" value={inputs.oldpassword || ""} onChange={handleChange} className="form-control" />
 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                                                <div className="input-group-prepend">
+                                                                    <span className="input-group-text" id="basic-addon1"> <a className="bi bi-eye-slash" id="occhio1" onClick={() => changeClass()}>occhio</a></span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
 
+                                                    <tr>
+
+                                                        <td width="35%">
+                                                            <strong>{t('nuova')} password</strong>
+                                                        </td>
+
+                                                        <td>
+
+                                                            <div className="input-group ">
+
+                                                                <input type={myClass2} name="newpassword" id="newpassword" value={inputs.newpassword || ""} onChange={handleChange} className="form-control" />
+
+                                                                <div className="input-group-prepend">
+                                                                    <span className="input-group-text" id="basic-addon1"> <a className="bi bi-eye-slash" id="occhio1" onClick={() => changeClass2()}>occhio</a></span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <strong>{t('ripeti')} password</strong>
+                                                        </td>
+
+                                                        <td>
+                                                            <div className="input-group ">
+
+                                                                <input type={myClass3} name="renewpassword" id="renewpassword" value={inputs.renewpassword || ""} onChange={handleChange} className="form-control" />
+                                                                <div className="input-group-prepend">
+                                                                    <span className="input-group-text" id="basic-addon1"> <a className="bi bi-eye-slash" id="occhio1" onClick={() => changeClass3()}>occhio</a></span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                            <input type="submit" className="login" id="changePassword" value={t('salva') + " password"} />
+
+                                        </form>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
             </div>
         </>
     )
