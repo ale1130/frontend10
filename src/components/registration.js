@@ -104,8 +104,8 @@ function RegistrationModal(props) {
         
                 if(response.data.status=="ok"){
 
-                    cookies.set('gio_uid', response.data.params.uid, { path: '/' });
-                    cookies.set('gio_pass', response.data.params.passhash, { path: '/' });
+                    cookies.set('gio_uid', response.data.params.uid, { path: '/', sameSite:"none", secure:true });
+                    cookies.set('gio_pass', response.data.params.passhash, { path: '/', sameSite:"none", secure:true });
 
                     window.location.href="/";
 

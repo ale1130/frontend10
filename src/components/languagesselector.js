@@ -17,7 +17,7 @@ function SelectLanguages(props) {
     const SKIN = props.skin;
 
     const setLanguageCookie = (event) => {
-        cookies.set('la', event.target.value, { path: '/' });
+        cookies.set('la', event.target.value, { path: '/', sameSite:"none", secure:true });
         i18n.changeLanguage(event.target.value);
     }
 

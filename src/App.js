@@ -363,18 +363,18 @@ function App(){
         }else if(USER["primary_language"] && arrayLang.includes(USER["primary_language"])){
 
           i18n.changeLanguage(USER["primary_language"]);
-          cookies.set('la',USER["primary_language"], { path: '/' });
+          cookies.set('la',USER["primary_language"], { path: '/', sameSite:"none", secure:true });
           setLoader(loader+1);
         }else{
 
           i18n.changeLanguage(SKIN["language"]);
-          cookies.set('la', SKIN["language"], { path: '/' });
+          cookies.set('la', SKIN["language"], { path: '/', sameSite:"none", secure:true });
           setLoader(loader+1);
         }
 
       }else{
         i18n.changeLanguage(SKIN["language"]);
-        cookies.set('la', SKIN["language"], { path: '/' });
+        cookies.set('la', SKIN["language"], { path: '/', sameSite:"none", secure:true });
         setLoader(loader+1);
       }
     }
