@@ -222,6 +222,41 @@ const Games = (props) => {
     const games = props.games;
     const SKIN = props.skin;
 
+    const loggato = props.loggato ? 1 : 0;
+
+    const playCasinoGame = async (id) => {
+
+        const dati = {"id":id}
+    
+        try {
+    
+            const data = await axios
+            ({
+                method:"post",
+                url:skinUrl+"rest/playgame-casino.php",
+                data:convertToFormdata(dati)
+            })
+            .then(response => {
+        
+                if(response.data.status=="ok"){
+    
+     
+                }else if(response.data.status=="error"){
+    
+    
+                }else{
+    
+                    alert("error");  
+                }
+            })
+    
+        } catch (e) {
+    
+            alert("error");
+            console.log(e);
+        }
+    }
+
     return (
         <>
             {games != "nogames" ?
@@ -236,7 +271,7 @@ const Games = (props) => {
                                             <img src={game.thumbnail.replace("http://", "https://")} className="image-casino-icon" />
                                             <div className="middle-button">
                                                 <div className="title-game">{game.name}</div>
-                                                <a href="#" className="playBut">
+                                                <a href="#" className="playBut" onClick={loggato == 0 ? props.login : ()=>playCasinoGame(game.id)}>
                                                     <svg version="1.1" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 213.7 213.7" enableBackground="new 0 0 213.7 213.7">
 
                                                         <polygon className="triangle" id="XMLID_18_" fill="none" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="73.5,62.5 148.5,105.8 73.5,149.1 "></polygon>
@@ -592,7 +627,7 @@ function Casino(props) {
 
                     {slideShow && slideShow != "noslideshow" ?
 
-                        <>{/*<SlickSlider images={slideShow} loggato={logged} skin={SKIN} login={()=>openLogin()}/>*/}</>
+                        <>{<SlickSlider images={slideShow} loggato={logged} skin={SKIN} login={()=>openLogin()}/>}</>
 
                         :
 
@@ -621,7 +656,7 @@ function Casino(props) {
 
                                 :
                                 <>
-                                    {games.length >0 ? <Games skin={SKIN} games={games} /> : <div>Non abbiamo trovato giochi con questa ricerca...</div>}
+                                    {games.length >0 ? <Games skin={SKIN} games={games} loggato={logged} login={()=>openLogin()} /> : <div>Non abbiamo trovato giochi con questa ricerca...</div>}
                                 </>
                             }
 
