@@ -265,6 +265,8 @@ const Games = (props) => {
                 })
                 .then(response => {
 
+                    console.log(response)
+
                     if (response.data.status == "ok") {
                         setGame(response.data.params)
 
@@ -348,15 +350,13 @@ function Casino(props) {
     const USER = props.user;
 
     const [loader, setLoader] = useState(0);
-    const [jackpots, setJackpots] = useState(["empty"]);
 
+    const [jackpots, setJackpots] = useState(["empty"]);
     const [slideShow, setSlideShow] = useState(["empty"]);
 
     const [providers, setProviders] = useState(["empty"]);
     const [countGames, setCountGames] = useState(1111111111);
-
     const [subCategories, setSubCategories] = useState(["empty"]);
-
     const [games, setGames] = useState(["empty"]);
 
     const [maxPage, setMaxPage] = useState(0);
@@ -474,7 +474,7 @@ function Casino(props) {
 
                     if (response.data.status == "ok") {
 
-                        setCountGames(response.data.dati["count_games"]);
+                        setCountGames(response.data.dati.count_games);
 
                     } else if (response.data.status == "error") {
 
@@ -560,19 +560,17 @@ function Casino(props) {
         }
     }
 
+    // A prescindere //
+
     useEffect(() => {
 
-        //==3
         GetJackpotsWin();
+    }, []);
+
+    useEffect(() => {
+
         GetSlideshow();
-        GetProviders();
-
-
-
-        GetCountGames();
-        GetSubCategories();
-        GetGames();
-    }, [logged]);
+    }, []);
 
     useEffect(() => {
 
@@ -590,14 +588,34 @@ function Casino(props) {
         }
     }, [slideShow])
 
+    //-------------------------------//
+
+    useEffect(() => {
+
+        GetProviders();
+    }, [logged]);
+
+    useEffect(() => {
+
+        GetCountGames();
+    }, [logged]);
+
+    useEffect(() => {
+
+        GetSubCategories();
+    }, [logged]);
+
+    useEffect(() => {
+
+        GetGames();
+    }, [logged]);
+
     useEffect(() => {
         if (providers != "empty") {
 
             setLoader(loader + 1);
         }
     }, [providers])
-
-    //==3
 
     useEffect(() => {
         if (countGames != 1111111111) {
@@ -657,7 +675,7 @@ function Casino(props) {
     return (
         <>
 
-            {loader < 1 ?
+            {loader < 5 ?
 
                 <>
                     <Spinner animation="border" role="status">
