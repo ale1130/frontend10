@@ -556,7 +556,7 @@ button.close.new {
 .slick-slide {
 
   outline: none;
- 
+
   display: flex !important;
   align-items: center;
   justify-content: center;
@@ -568,14 +568,14 @@ button.close.new {
   opacity: 1 !important;
 }
 
-.slider-item {
+.slick-slide>div {
   border-radius: 10px;
   overflow: hidden;
   display: inline-block;
   position: relative;
 }
 
-.slider-item:before {
+.slick-slide>div:before {
   content: "";
   position: absolute;
   top: -100px;
@@ -1710,19 +1710,19 @@ div.container-casino:hover>div.middle-button {
   margin-bottom: 5px;
 }
 
-.imgpay{
+.imgpay {
   width: 100%;
 }
 
-.nogames{
-  color:#fff;
-  margin-top:15px;
+.nogames {
+  color: #fff;
+  margin-top: 15px;
 }
 
 /*iFrame success pix*/
 
-.frame-pix{
-  color: rgb(0, 0, 0); 
-  background-color: rgb(255, 255, 221); 
+.frame-pix {
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 221);
   font: 12px Verdana;
 }
