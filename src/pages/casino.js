@@ -26,90 +26,96 @@ const Jackpots = (props) => {
     return (
 
         <>
-            <div className="jackpot">
-                <div className="jackpot-div-mini">
-                    <span>Bronze jackpot</span>
-                    <strong id="jackpot_silver">{jackpot1}</strong>
+            <div className="row">
+                <div className="col-12">
+                    <div className="jackpot">
+                        <div className="jackpot-div-mini">
+                            <span>Bronze jackpot</span>
+                            <strong id="jackpot_silver">{jackpot1}</strong>
 
 
+                        </div>
+                        <div className="jackpot-div-super">
+
+                            <span>Silver jackpot</span>
+                            <strong id="jackpot_bronze">{jackpot2}</strong>
+
+                        </div>
+                        <div className="jackpot-div-mega">
+                            <span>Gold jackpot</span>
+                            <strong id="jackpot_gold">{jackpot3}</strong>
+
+                        </div>
+                    </div>
                 </div>
-                <div className="jackpot-div-super">
+                <div className="col-12">
+                    <div className="wordCarousel">
+                        <h1>Jackpot Win</h1>
+                        <div>
+                            <ul className="flip5 first-t">
+                                {jackpots.map(jackpot => {
+                                    return (
 
-                    <span>Silver jackpot</span>
-                    <strong id="jackpot_bronze">{jackpot2}</strong>
+                                        <li>{jackpot.username}<span>{jackpot.win} </span></li>
 
-                </div>
-                <div className="jackpot-div-mega">
-                    <span>Gold jackpot</span>
-                    <strong id="jackpot_gold">{jackpot3}</strong>
+                                    );
+                                })}
+                            </ul>
 
+                            <ul className="flip5 second-t">
+                                {jackpots.map(jackpot => {
+                                    return (
+
+                                        <li>{jackpot.username}<span>{jackpot.win} </span></li>
+
+                                    );
+                                })}
+                            </ul>
+
+                            <ul className="flip5 third-t">
+                                {jackpots.map(jackpot => {
+                                    return (
+
+                                        <li>{jackpot.username}<span>{jackpot.win} </span></li>
+
+                                    );
+                                })}
+                            </ul>
+
+                            <ul className="flip5 forty-t">
+                                {jackpots.map(jackpot => {
+                                    return (
+
+                                        <li>{jackpot.username}<span>{jackpot.win} </span></li>
+
+                                    );
+                                })}
+                            </ul>
+
+                            <ul className="flip5 five-t">
+                                {jackpots.map(jackpot => {
+                                    return (
+
+                                        <li>{jackpot.username}<span>{jackpot.win} </span></li>
+
+                                    );
+                                })}
+                            </ul>
+
+                            <ul className="flip5 six-t">
+                                {jackpots.map(jackpot => {
+                                    return (
+
+                                        <li>{jackpot.username}<span>{jackpot.win} </span></li>
+
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div className="wordCarousel">
-                <h1>Jackpot Win</h1>
-                <div>
-                    <ul className="flip5 first-t">
-                        {jackpots.map(jackpot => {
-                            return (
-
-                                <li>{jackpot.username}<span>{jackpot.win} </span></li>
-
-                            );
-                        })}
-                    </ul>
-
-                    <ul className="flip5 second-t">
-                        {jackpots.map(jackpot => {
-                            return (
-
-                                <li>{jackpot.username}<span>{jackpot.win} </span></li>
-
-                            );
-                        })}
-                    </ul>
-
-                    <ul className="flip5 third-t">
-                        {jackpots.map(jackpot => {
-                            return (
-
-                                <li>{jackpot.username}<span>{jackpot.win} </span></li>
-
-                            );
-                        })}
-                    </ul>
-
-                    <ul className="flip5 forty-t">
-                        {jackpots.map(jackpot => {
-                            return (
-
-                                <li>{jackpot.username}<span>{jackpot.win} </span></li>
-
-                            );
-                        })}
-                    </ul>
-
-                    <ul className="flip5 five-t">
-                        {jackpots.map(jackpot => {
-                            return (
-
-                                <li>{jackpot.username}<span>{jackpot.win} </span></li>
-
-                            );
-                        })}
-                    </ul>
-
-                    <ul className="flip5 six-t">
-                        {jackpots.map(jackpot => {
-                            return (
-
-                                <li>{jackpot.username}<span>{jackpot.win} </span></li>
-
-                            );
-                        })}
-                    </ul>
-                </div>
-            </div></>
+        </>
     )
 }
 
@@ -197,31 +203,33 @@ const TypoGiochi = (props) => {
     }
 
     return (
+        <div className="container-fluid">
+            <div className="row">
+                <div className="col-lg-12 col-sm-12 list-type-play">
+                    <div className="position-sticky ">
 
-        <div className="col-lg-12 col-sm-12 list-type-play">
-            <div className="position-sticky ">
-
-                <div className={currentSubcategory && currentSubcategory == "all" ? "pul-type-play games-subcategory active" : "pul-type-play games-subcategory"} id="subcategory-0">
-                    <a onClick={() => handleCategory("all")} > Tutti i giochi <span>{countGiochi}</span></a>
-                </div>
-
-                {subCategories != "nosubcategories" ?
-
-                    <>{(subCategories.map(subcategory =>
-
-                        <div key={subcategory.id} className={currentSubcategory && currentSubcategory == subcategory.id ? "pul-type-play games-subcategory active" : "pul-type-play games-subcategory"} id={"subcategory-" + subcategory.id}>
-                            <a onClick={() => handleCategory(subcategory.id)} > {subcategory.name} <span> {subcategory.totale} </span></a>
+                        <div className={currentSubcategory && currentSubcategory == "all" ? "pul-type-play games-subcategory active" : "pul-type-play games-subcategory"} id="subcategory-0">
+                            <a onClick={() => handleCategory("all")} > Tutti i giochi <span>{countGiochi}</span></a>
                         </div>
-                    ))}</>
 
-                    :
+                        {subCategories != "nosubcategories" ?
 
-                    <></>
-                }
+                            <>{(subCategories.map(subcategory =>
 
+                                <div key={subcategory.id} className={currentSubcategory && currentSubcategory == subcategory.id ? "pul-type-play games-subcategory active" : "pul-type-play games-subcategory"} id={"subcategory-" + subcategory.id}>
+                                    <a onClick={() => handleCategory(subcategory.id)} > {subcategory.name} <span> {subcategory.totale} </span></a>
+                                </div>
+                            ))}</>
+
+                            :
+
+                            <></>
+                        }
+
+                    </div>
+                </div>
             </div>
         </div>
-
     )
 }
 
@@ -289,30 +297,31 @@ const Games = (props) => {
                 <>
 
                     {<CasinoFrame close={() => setStatoGame(false)} statoGame={statoGame} game={game} />}
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-lg-12 col-sm-12">
+                                {games.map(game => (
+                                    <div className="square-box-casino" key={game.id}>
+                                        <div className="square-content-casino">
+                                            <div className="container-casino">
+                                                <img src={game.thumbnail.replace("http://", "https://")} className="image-casino-icon" />
+                                                <div className="middle-button">
+                                                    <div className="title-game">{game.name}</div>
+                                                    <a className="playBut" onClick={loggato == 0 ? props.login : () => playCasinoGame(game.id)}>
+                                                        <svg version="1.1" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 213.7 213.7" enableBackground="new 0 0 213.7 213.7">
 
-                    <div className="row">
-                        <div className="col-lg-12 col-sm-12">
-                            {games.map(game => (
-                                <div className="square-box-casino" key={game.id}>
-                                    <div className="square-content-casino">
-                                        <div className="container-casino">
-                                            <img src={game.thumbnail.replace("http://", "https://")} className="image-casino-icon" />
-                                            <div className="middle-button">
-                                                <div className="title-game">{game.name}</div>
-                                                <a className="playBut" onClick={loggato == 0 ? props.login : () => playCasinoGame(game.id)}>
-                                                    <svg version="1.1" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 213.7 213.7" enableBackground="new 0 0 213.7 213.7">
+                                                            <polygon className="triangle" id="XMLID_18_" fill="none" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="73.5,62.5 148.5,105.8 73.5,149.1 "></polygon>
 
-                                                        <polygon className="triangle" id="XMLID_18_" fill="none" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="73.5,62.5 148.5,105.8 73.5,149.1 "></polygon>
-
-                                                        <circle className="circle" id="XMLID_17_" fill="none" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" cx="106.8" cy="106.8" r="103.3"></circle>
-                                                    </svg>
-                                                </a>
-                                                <img src={PROVIDERS_LOGO_WEB_PATH(SKIN) + game.img} className={"icon-play-casino provider-" + game.name} />
+                                                            <circle className="circle" id="XMLID_17_" fill="none" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" cx="106.8" cy="106.8" r="103.3"></circle>
+                                                        </svg>
+                                                    </a>
+                                                    <img src={PROVIDERS_LOGO_WEB_PATH(SKIN) + game.img} className={"icon-play-casino provider-" + game.name} />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </>
@@ -701,12 +710,14 @@ function Casino(props) {
                             {maxPage > 1 && inputs.page < maxPage ?
 
                                 <>
-                                    <div className="row">
-                                        <div className="col-12">
-                                            <div className="show-all-p">
-                                                <a onClick={() => handlePage()} id="loadNextPageLink">
-                                                    <ArrowIcon />
-                                                    Carica altri giochi</a>
+                                    <div className="container-fluid">
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <div className="show-all-p">
+                                                    <a onClick={() => handlePage()} id="loadNextPageLink">
+                                                        <ArrowIcon />
+                                                        Carica altri giochi</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

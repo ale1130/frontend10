@@ -573,6 +573,7 @@ button.close.new {
   overflow: hidden;
   display: inline-block;
   position: relative;
+  margin: 10px;
 }
 
 .slick-slide>div:before {
@@ -1575,10 +1576,6 @@ div.container-casino:hover>div.middle-button {
   z-index: 110;
   display: flex;
   justify-content: center;
-  transform-origin: bottom left;
-  -ms-transform: skew(-30deg, 0deg);
-  -webkit-transform: skew(-30deg, 0deg);
-  transform: skew(-30deg, 0deg);
 }
 
 
@@ -1595,12 +1592,10 @@ div.container-casino:hover>div.middle-button {
   font-weight: bolder;
   color: #fff;
   transform-origin: bottom left;
-  -ms-transform: skew(50deg, 0deg);
-  ;
-  -webkit-transform: skew(50deg, 0deg);
-  ;
-  transform: skew(50deg, 0deg);
-  ;
+  -ms-transform: skew(30deg, 0deg);
+  -webkit-transform: skew(30deg, 0deg);
+  transform: skew(30deg, 0deg);
+
 }
 
 
@@ -1645,14 +1640,9 @@ div.container-casino:hover>div.middle-button {
   padding: 0px 9px;
   transform-origin: bottom left;
   color: #fcb202;
-  -ms-transform: skew(50deg, 0deg);
-  ;
-  -webkit-transform: skew(50deg, 0deg);
-  ;
-  transform: skew(50deg, 0deg);
-  ;
-  ;
-  font-family: 'Titillium Web';
+  -ms-transform: skew(30deg, 0deg);
+  -webkit-transform: skew(30deg, 0deg);
+  transform: skew(30deg, 0deg);
   letter-spacing: 1px;
 }
 
