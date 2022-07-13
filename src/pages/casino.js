@@ -136,7 +136,14 @@ const Providers = (props) => {
                         <a onClick={() => handleProvider(provider.id)}><img src={PROVIDERS_LOGO_WEB_PATH(SKIN) + provider.img + "?v=" + today} className={"provider-" + provider.nome} /></a>
                     </div>
                 ))}
+
+                <div class="box-search" id="trigger-overlay">
+                    <div class="container-s">
+                        <div class="search"></div>
+                    </div>
+                </div>
             </div>
+
         </>
 
     )
@@ -547,18 +554,18 @@ function Casino(props) {
         }
     }, [games])
 
-    useEffect(()=>{
-        if(loaderGames==false){
+    useEffect(() => {
+        if (loaderGames == false) {
 
-            if(inputs.page!=1){
+            if (inputs.page != 1) {
                 window.scrollTo(0, 2000 * inputs.page);
             }
         }
-    },[loaderGames])
+    }, [loaderGames])
 
     const handlePage = () => {
         if (inputs.page < maxPage) {
-            
+
             setInputs(inputs => ({ ...inputs, "page": inputs.page + 1 }));
         }
     }
@@ -621,7 +628,7 @@ function Casino(props) {
 
                                 :
                                 <>
-                                    {games.length >0 ? <Games skin={SKIN} games={games} /> : <div>Non abbiamo trovato giochi con questa ricerca...</div>}
+                                    {games.length > 0 ? <Games skin={SKIN} games={games} /> : <div>Non abbiamo trovato giochi con questa ricerca...</div>}
                                 </>
                             }
 
