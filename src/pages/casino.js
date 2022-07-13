@@ -239,46 +239,46 @@ const Games = (props) => {
 
     const playCasinoGame = async (id) => {
 
-        const dati = {"id":id, "user_id":user_id}
-    
+        const dati = { "id": id, "user_id": user_id }
+
         try {
-    
+
             const data = await axios
-            ({
-                method:"post",
-                url:skinUrl+"rest/playgame-casino.php",
-                data:convertToFormdata(dati)
-            })
-            .then(response => {
-        
-                if(response.data.status=="ok"){
-                    setGame(response.data.params)
-     
-                }else if(response.data.status=="error"){
-    
-                    setGame("error")
-                }else{
-    
-                    alert("error");  
-                }
-            })
-    
+                ({
+                    method: "post",
+                    url: skinUrl + "rest/playgame-casino.php",
+                    data: convertToFormdata(dati)
+                })
+                .then(response => {
+
+                    if (response.data.status == "ok") {
+                        setGame(response.data.params)
+
+                    } else if (response.data.status == "error") {
+
+                        setGame("error")
+                    } else {
+
+                        alert("error");
+                    }
+                })
+
         } catch (e) {
-    
+
             alert("error");
             console.log(e);
         }
     }
 
-    useEffect(()=>{
-        if(game!="empty"){
+    useEffect(() => {
+        if (game != "empty") {
 
             setStatoGame(true);
-        }else if(game=="error"){
+        } else if (game == "error") {
 
             alert("errore tecnico durante l'apertura del GeolocationCoordinates, si prega di riprovare o di contattare l'assistenza tecnica")
         }
-    },[game])
+    }, [game])
 
     return (
         <>
@@ -286,7 +286,7 @@ const Games = (props) => {
 
                 <>
 
-                    {<CasinoFrame close={()=>setStatoGame(false)} statoGame={statoGame} game={game} />}
+                    {<CasinoFrame close={() => setStatoGame(false)} statoGame={statoGame} game={game} />}
 
                     <div className="row">
                         <div className="col-lg-12 col-sm-12">
@@ -297,7 +297,7 @@ const Games = (props) => {
                                             <img src={game.thumbnail.replace("http://", "https://")} className="image-casino-icon" />
                                             <div className="middle-button">
                                                 <div className="title-game">{game.name}</div>
-                                                <a className="playBut" onClick={loggato == 0 ? props.login : ()=>playCasinoGame(game.id)}>
+                                                <a className="playBut" onClick={loggato == 0 ? props.login : () => playCasinoGame(game.id)}>
                                                     <svg version="1.1" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 213.7 213.7" enableBackground="new 0 0 213.7 213.7">
 
                                                         <polygon className="triangle" id="XMLID_18_" fill="none" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="73.5,62.5 148.5,105.8 73.5,149.1 "></polygon>
@@ -552,7 +552,7 @@ function Casino(props) {
         GetSlideshow();
         GetProviders();
 
-        
+
 
         GetCountGames();
         GetSubCategories();
@@ -664,14 +664,14 @@ function Casino(props) {
 
                     {slideShow != "noslideshow" ?
 
-                        <>{<SlickSlider images={slideShow} loggato={logged} skin={SKIN} login={()=>openLogin()}/>}</>
+                        <>{<SlickSlider images={slideShow} loggato={logged} skin={SKIN} login={() => openLogin()} />}</>
 
                         :
 
                         <></>
                     }
 
-                    {providers != "noproviders" && countGames != 0 ? 
+                    {providers != "noproviders" && countGames != 0 ?
 
                         <>
                             {<input type="text" className="form-control margin-bottom-5" value={inputs.search || ""} onChange={handleChange} id="search" name="search" placeholder={"Digit game name"} />}
@@ -690,11 +690,7 @@ function Casino(props) {
 
                                 :
                                 <>
-<<<<<<< HEAD
-                                    {games.length > 0 ? <Games skin={SKIN} games={games} /> : <div>Non abbiamo trovato giochi con questa ricerca...</div>}
-=======
-                                    {games.length >0 ? <Games user={USER["id"]} skin={SKIN} games={games} loggato={logged} login={()=>openLogin()} /> : <div>Non abbiamo trovato giochi con questa ricerca...</div>}
->>>>>>> 45c3bc9ea14ccece23534fa00e98440376583bdd
+                                    {games.length > 0 ? <Games user={USER["id"]} skin={SKIN} games={games} loggato={logged} login={() => openLogin()} /> : <div>Non abbiamo trovato giochi con questa ricerca...</div>}
                                 </>
                             }
 
