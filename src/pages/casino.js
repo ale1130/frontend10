@@ -675,7 +675,7 @@ function Casino(props) {
     return (
         <>
 
-            {loader < 5 ?
+            {loader < 6 ?
 
                 <>
                     <Spinner animation="border" role="status">
