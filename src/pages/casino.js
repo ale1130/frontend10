@@ -138,9 +138,9 @@ const Providers = (props) => {
                     </div>
                 ))}
 
-                <div class="box-search" id="trigger-overlay">
-                    <div class="container-s">
-                        <div class="search"></div>
+                <div className="box-search" id="trigger-overlay">
+                    <div className="container-s">
+                        <div className="search"></div>
                     </div>
                 </div>
             </div>
