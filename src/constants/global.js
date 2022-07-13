@@ -407,3 +407,13 @@ export const stringToHTML = (str) => {
 	var doc = parser.parseFromString(str, 'text/html');
 	return doc.body;
 };
+
+export const openFullscreen = () => {
+
+    document.body.requestFullscreen();
+}
+
+export const closeFullscreen = () => {
+
+    window.document.exitFullscreen();
+}

@@ -15,7 +15,6 @@ import SelectDate from './selectDate'
 import axios from "axios";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Spinner from 'react-bootstrap/Spinner';
 
 import { useTranslation } from "react-i18next";
 import { RegistrationIcon } from "./icons";
