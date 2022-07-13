@@ -251,6 +251,8 @@ const Games = (props) => {
                 })
                 .then(response => {
 
+                    console.log(response)
+
                     if (response.data.status == "ok") {
                         setGame(response.data.params)
 
