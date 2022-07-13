@@ -9,7 +9,7 @@ import { Fade } from 'react-slideshow-image';
 import axios from "axios";
 
 import { useTranslation } from "react-i18next";
-import { ArrowIcon } from "../components/icons";
+import { ArrowIcon, IconSearch } from "../components/icons";
 import { SlickSlider } from "../components/SlickSlider";
 import { CasinoFrame } from "../components/iframecasino";
 
@@ -136,21 +136,27 @@ const Providers = (props) => {
     return (
 
         <>
-            <div className="slide-casino">
-                {(providers.map(provider =>
 
-                    <div key={provider.id} className={currentProvider && currentProvider == provider.id ? "provider providers-list active" : "provider providers-list"} id={"provider-" + provider.id}>
-                        <a onClick={() => handleProvider(provider.id)}><img src={PROVIDERS_LOGO_WEB_PATH(SKIN) + provider.img + "?v=" + today} className={"provider-" + provider.nome} /></a>
-                    </div>
-                ))}
 
-                <div className="box-search" id="trigger-overlay">
-                    <div className="container-s">
-                        <div className="search"></div>
-                    </div>
+
+            <div className="box-container-provaider">
+                <div className="slide-casino">
+                    {(providers.map(provider =>
+
+                        <div key={provider.id} className={currentProvider && currentProvider == provider.id ? "provider providers-list active" : "provider providers-list"} id={"provider-" + provider.id}>
+                            <a onClick={() => handleProvider(provider.id)}><img src={PROVIDERS_LOGO_WEB_PATH(SKIN) + provider.img + "?v=" + today} className={"provider-" + provider.nome} /></a>
+                        </div>
+                    ))}
+
+
+
+                </div>
+
+                <div className="search-box">
+                    <button className="btn-search">{<IconSearch />}</button>
+                    <input type="text" className="input-search" placeholder="Type to Search..." />
                 </div>
             </div>
-
         </>
 
     )
@@ -204,32 +210,32 @@ const TypoGiochi = (props) => {
 
     return (
         <div className="container-fluid">
-            <div className="row">
-                <div className="col-lg-12 col-sm-12 list-type-play">
-                    <div className="position-sticky ">
+            <div className="row list-type-play">
 
-                        <div className={currentSubcategory && currentSubcategory == "all" ? "pul-type-play games-subcategory active" : "pul-type-play games-subcategory"} id="subcategory-0">
-                            <a onClick={() => handleCategory("all")} > Tutti i giochi <span>{countGiochi}</span></a>
-                        </div>
+                <div className="position-sticky ">
 
-                        {subCategories != "nosubcategories" ?
-
-                            <>{(subCategories.map(subcategory =>
-
-                                <div key={subcategory.id} className={currentSubcategory && currentSubcategory == subcategory.id ? "pul-type-play games-subcategory active" : "pul-type-play games-subcategory"} id={"subcategory-" + subcategory.id}>
-                                    <a onClick={() => handleCategory(subcategory.id)} > {subcategory.name} <span> {subcategory.totale} </span></a>
-                                </div>
-                            ))}</>
-
-                            :
-
-                            <></>
-                        }
-
+                    <div className={currentSubcategory && currentSubcategory == "all" ? "pul-type-play games-subcategory active" : "pul-type-play games-subcategory"} id="subcategory-0">
+                        <a onClick={() => handleCategory("all")} > Tutti i giochi <span>{countGiochi}</span></a>
                     </div>
+
+                    {subCategories != "nosubcategories" ?
+
+                        <>{(subCategories.map(subcategory =>
+
+                            <div key={subcategory.id} className={currentSubcategory && currentSubcategory == subcategory.id ? "pul-type-play games-subcategory active" : "pul-type-play games-subcategory"} id={"subcategory-" + subcategory.id}>
+                                <a onClick={() => handleCategory(subcategory.id)} > {subcategory.name} <span> {subcategory.totale} </span></a>
+                            </div>
+                        ))}</>
+
+                        :
+
+                        <></>
+                    }
+
                 </div>
             </div>
         </div>
+
     )
 }
 
@@ -644,10 +650,14 @@ function Casino(props) {
         }
     }
 
+    useEffect(() => {
+        console.log(loader)
+    }, [loader])
+
     return (
         <>
 
-            {loader < 6 ?
+            {loader < 1 ?
 
                 <>
                     <Spinner animation="border" role="status">
@@ -683,7 +693,7 @@ function Casino(props) {
                     {providers != "noproviders" && countGames != 0 ?
 
                         <>
-                            {<input type="text" className="form-control margin-bottom-5" value={inputs.search || ""} onChange={handleChange} id="search" name="search" placeholder={"Digit game name"} />}
+                            {/*<input type="text" className="form-control margin-bottom-5" value={inputs.search || ""} onChange={handleChange} id="search" name="search" placeholder={"Digit game name"} />*/}
 
                             <Providers providers={providers} skin={SKIN} setinput={setInputs} currentProv={inputs.provider} />
 
