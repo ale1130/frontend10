@@ -554,9 +554,9 @@ button.close.new {
 }
 
 .slick-slide {
-  margin: 10px;
+
   outline: none;
-  max-width: 1340px;
+ 
   display: flex !important;
   align-items: center;
   justify-content: center;

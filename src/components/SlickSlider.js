@@ -33,13 +33,15 @@ export const SlickSlider = (props) => {
     const settings = {
         dots: true,
         infinite: true,
-        slidesToShow: 2,
+        slidesToShow:1,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 4000,
+        className: "center",
         centerMode: true,
-        adaptiveWidth: true,
-        className: "provola",
+        infinite: true,
+        centerPadding: "60px",
+        adaptiveHeight: true,
         arrows: false
     };
 
@@ -47,22 +49,9 @@ export const SlickSlider = (props) => {
 
         <>
             <Slider {...settings}>
-                <div className="margin-slider">
-                    <div id="slickSlider" className="slick-slider">
-
-                        {fadeImages.map((fadeImage, index) => (
-
-                            <>
-                                <div className="slick-slide">
-                                    <div className="slider-item">
-                                        <img src={MEDIA_SLIDESHOWS_WEB_PATH(SKIN) + fadeImage.url} />
-                                        {!logged && <><a href="#" onClick={props.login} className="botton-adv-1">{t('accedi')}</a></>}
-                                    </div>
-                                </div>   
-                            </>
-                        ))}
-                    </div>
-                </div>
+                <img src='https://stagemedia.gamesolutions.org/slideshow/img3_620d0b14e2915.jpeg'></img>
+                <img src='https://stagemedia.gamesolutions.org/slideshow/img2_620d0b14e2500.jpeg'></img>
+                <img src='https://stagemedia.gamesolutions.org/slideshow/img1_620d0b14e2042.jpeg'></img>
             </Slider>
         </>
     )
