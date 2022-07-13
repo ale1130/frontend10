@@ -1718,3 +1718,11 @@ div.container-casino:hover>div.middle-button {
   color:#fff;
   margin-top:15px;
 }
+
+/*iFrame success pix*/
+
+.frame-pix{
+  color: rgb(0, 0, 0); 
+  background-color: rgb(255, 255, 221); 
+  font: 12px Verdana;
+}

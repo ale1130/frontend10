@@ -401,3 +401,19 @@ export const playlogiqTicketStatus = (id) =>{
 
     return statusAs[id];
 }
+
+export const stringToHTML = (str) => {
+	var parser = new DOMParser();
+	var doc = parser.parseFromString(str, 'text/html');
+	return doc.body;
+};
+
+export const openFullscreen = () => {
+
+    document.body.requestFullscreen();
+}
+
+export const closeFullscreen = () => {
+
+    window.document.exitFullscreen();
+}

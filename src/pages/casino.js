@@ -11,6 +11,7 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { ArrowIcon } from "../components/icons";
 import { SlickSlider } from "../components/SlickSlider";
+import { CasinoFrame } from "../components/iframecasino";
 
 const Jackpots = (props) => {
 
@@ -149,7 +150,7 @@ const Providers = (props) => {
     )
 }
 
-const Slideshow = (props) => {
+/*const Slideshow = (props) => {
 
     const { t } = useTranslation();
 
@@ -181,7 +182,7 @@ const Slideshow = (props) => {
             </div>
         </>
     )
-}
+}*/
 
 const TypoGiochi = (props) => {
 
@@ -229,21 +230,74 @@ const Games = (props) => {
     const games = props.games;
     const SKIN = props.skin;
 
+    const user_id = props.user;
+
+    const loggato = props.loggato ? 1 : 0;
+
+    const [statoGame, setStatoGame] = useState(false);
+    const [game, setGame] = useState("empty");
+
+    const playCasinoGame = async (id) => {
+
+        const dati = {"id":id, "user_id":user_id}
+    
+        try {
+    
+            const data = await axios
+            ({
+                method:"post",
+                url:skinUrl+"rest/playgame-casino.php",
+                data:convertToFormdata(dati)
+            })
+            .then(response => {
+        
+                if(response.data.status=="ok"){
+                    setGame(response.data.params)
+     
+                }else if(response.data.status=="error"){
+    
+                    setGame("error")
+                }else{
+    
+                    alert("error");  
+                }
+            })
+    
+        } catch (e) {
+    
+            alert("error");
+            console.log(e);
+        }
+    }
+
+    useEffect(()=>{
+        if(game!="empty"){
+
+            setStatoGame(true);
+        }else if(game=="error"){
+
+            alert("errore tecnico durante l'apertura del GeolocationCoordinates, si prega di riprovare o di contattare l'assistenza tecnica")
+        }
+    },[game])
+
     return (
         <>
             {games != "nogames" ?
 
                 <>
+
+                    {<CasinoFrame close={()=>setStatoGame(false)} statoGame={statoGame} game={game} />}
+
                     <div className="row">
                         <div className="col-lg-12 col-sm-12">
                             {games.map(game => (
-                                <div className="square-box-casino">
+                                <div className="square-box-casino" key={game.id}>
                                     <div className="square-content-casino">
                                         <div className="container-casino">
                                             <img src={game.thumbnail.replace("http://", "https://")} className="image-casino-icon" />
                                             <div className="middle-button">
                                                 <div className="title-game">{game.name}</div>
-                                                <a href="#" className="playBut">
+                                                <a className="playBut" onClick={loggato == 0 ? props.login : ()=>playCasinoGame(game.id)}>
                                                     <svg version="1.1" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 213.7 213.7" enableBackground="new 0 0 213.7 213.7">
 
                                                         <polygon className="triangle" id="XMLID_18_" fill="none" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="73.5,62.5 148.5,105.8 73.5,149.1 "></polygon>
@@ -275,6 +329,8 @@ function Casino(props) {
 
     const SKIN = props.skin;
     const logged = props.isLogged;
+
+    const USER = props.user;
 
     const [loader, setLoader] = useState(0);
     const [jackpots, setJackpots] = useState(["empty"]);
@@ -490,9 +546,14 @@ function Casino(props) {
     }
 
     useEffect(() => {
-        GetProviders();
+
+        //==3
         GetJackpotsWin();
         GetSlideshow();
+        GetProviders();
+
+        
+
         GetCountGames();
         GetSubCategories();
         GetGames();
@@ -521,6 +582,8 @@ function Casino(props) {
         }
     }, [providers])
 
+    //==3
+
     useEffect(() => {
         if (countGames != 1111111111) {
 
@@ -540,19 +603,21 @@ function Casino(props) {
 
         if (games != "empty") {
 
-            setLoaderGames(true);
+            setLoader(loader + 1);
 
-            GetGames();
+            setLoaderGames(false);
         }
-    }, [inputs])
+    }, [games])
 
     useEffect(() => {
 
         if (games != "empty") {
 
-            setLoaderGames(false);
+            setLoaderGames(true);
+
+            GetGames();
         }
-    }, [games])
+    }, [inputs])
 
     useEffect(() => {
         if (loaderGames == false) {
@@ -573,7 +638,7 @@ function Casino(props) {
     return (
         <>
 
-            {loader < 5 ?
+            {loader < 6 ?
 
                 <>
                     <Spinner animation="border" role="status">
@@ -597,25 +662,22 @@ function Casino(props) {
                         }
                     </div>
 
-                    {slideShow && slideShow != "noslideshow" ?
+                    {slideShow != "noslideshow" ?
 
-                        <>{/*<SlickSlider images={slideShow} loggato={logged} skin={SKIN} login={()=>openLogin()}/>*/}</>
+                        <>{<SlickSlider images={slideShow} loggato={logged} skin={SKIN} login={()=>openLogin()}/>}</>
 
                         :
 
                         <></>
                     }
 
-                    {providers == "noproviders" || countGames == 0 ?
-
-
-                        <div><h2 className="nogames">Ci dispiace ma al momento non è stato possibile individuare nessun provider e/o gioco per questa sezione, si prega di riprovare più tardi o di conttattare l'assistenza tecnica</h2></div>
-
-                        :
+                    {providers != "noproviders" && countGames != 0 ? 
 
                         <>
                             {<input type="text" className="form-control margin-bottom-5" value={inputs.search || ""} onChange={handleChange} id="search" name="search" placeholder={"Digit game name"} />}
+
                             <Providers providers={providers} skin={SKIN} setinput={setInputs} currentProv={inputs.provider} />
+
                             <TypoGiochi countGames={countGames} subCateories={subCategories} setinput={setInputs} currentSub={inputs.subcategory} />
 
                             {loaderGames ?
@@ -628,7 +690,11 @@ function Casino(props) {
 
                                 :
                                 <>
+<<<<<<< HEAD
                                     {games.length > 0 ? <Games skin={SKIN} games={games} /> : <div>Non abbiamo trovato giochi con questa ricerca...</div>}
+=======
+                                    {games.length >0 ? <Games user={USER["id"]} skin={SKIN} games={games} loggato={logged} login={()=>openLogin()} /> : <div>Non abbiamo trovato giochi con questa ricerca...</div>}
+>>>>>>> 45c3bc9ea14ccece23534fa00e98440376583bdd
                                 </>
                             }
 
@@ -653,6 +719,11 @@ function Casino(props) {
                                 <></>
                             }
                         </>
+
+                        :
+
+                        <div><h2 className="nogames">Ci dispiace ma al momento non è stato possibile individuare nessun provider e/o gioco per questa sezione, si prega di riprovare più tardi o di conttattare l'assistenza tecnica</h2></div>
+
                     }
                 </>
             }

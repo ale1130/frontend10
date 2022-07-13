@@ -1,6 +1,6 @@
 import React from "react";
 
-export const ComponentBank = () =>{
+function ComponentCryptoW (props){
     return (
         <>
             <table width="100%" class="table table-bordered">
@@ -25,3 +25,5 @@ export const ComponentBank = () =>{
         </>
     )
 }
+
+export {ComponentCryptoW}

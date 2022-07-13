@@ -1,6 +1,7 @@
 import React from "react";
 
-export const ComponentBank = () =>{
+function ComponentIntouchW (props){
+
     return (
         <>
             <table width="100%" class="table table-bordered">
@@ -25,3 +26,5 @@ export const ComponentBank = () =>{
         </>
     )
 }
+
+export {ComponentIntouchW}

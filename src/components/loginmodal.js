@@ -78,8 +78,8 @@ function LoginModal(props) {
                         props.setUserC(convertObjectStringToNumbers(response.data.dati));
                         props.setLogin(true);
 
-                        cookies.set('gio_uid', response.data.dati.id, { path: '/' });
-                        cookies.set('gio_pass', response.data.dati.passhash, { path: '/' });
+                        cookies.set('gio_uid', response.data.dati.id, { path: '/', sameSite:"none", secure:true });
+                        cookies.set('gio_pass', response.data.dati.passhash, { path: '/', sameSite:"none", secure:true });
                         
                         try{
                         
