@@ -128,7 +128,7 @@ const Providers = (props) => {
     const setData = props.setinput;
 
     const handleProvider = (dato) => {
-        setData(inputs => ({ ...inputs, "provider": dato, "subcategory": "", "page": 1 }));
+        setData(inputs => ({ ...inputs, "provider": dato, "subcategory": "", "page": 1, "search":'' }));
     }
 
     var today = + new Date();
@@ -154,47 +154,13 @@ const Providers = (props) => {
 
                 <div className="search-box">
                     <button className="btn-search">{<IconSearch />}</button>
-                    <input type="text" className="input-search" placeholder="Type to Search..." />
+                    <input type="text" className="input-search" value={props.value || ""} onChange={props.funzione} id="search" name="search" placeholder={"Digit game name..."} />
                 </div>
             </div>
         </>
 
     )
 }
-
-/*const Slideshow = (props) => {
-
-    const { t } = useTranslation();
-
-    const logged = props.loggato;
-
-    const SKIN = props.skin;
-
-    const fadeImages = ConvertObjectToArraySlideshow(props.images[0]);
-
-    return (
-
-        <>
-            <div className="slide-container">
-                <Fade>
-                    {fadeImages.map((fadeImage, index) => (
-
-                        <div className="each-fade" key={index}>
-
-                            <div className="image-container">
-                                <img src={MEDIA_SLIDESHOWS_WEB_PATH(SKIN) + fadeImage.url} />
-                                <div className="button-adv">
-                                    {!logged && <><a href="#" onClick={props.login} className="botton-adv-1">{t('accedi')}</a></>}
-                                </div>
-                            </div><br />
-                        </div>
-
-                    ))}
-                </Fade>
-            </div>
-        </>
-    )
-}*/
 
 const TypoGiochi = (props) => {
 
@@ -205,7 +171,7 @@ const TypoGiochi = (props) => {
     const setData = props.setinput;
 
     const handleCategory = (dato) => {
-        setData(inputs => ({ ...inputs, "subcategory": dato, "provider": "", "page": 1 }));
+        setData(inputs => ({ ...inputs, "subcategory": dato, "provider": "", "page": 1, "search":'' }));
     }
 
     return (
@@ -711,9 +677,8 @@ function Casino(props) {
                     {providers != "noproviders" && countGames != 0 ?
 
                         <>
-                            {/*<input type="text" className="form-control margin-bottom-5" value={inputs.search || ""} onChange={handleChange} id="search" name="search" placeholder={"Digit game name"} />*/}
 
-                            <Providers providers={providers} skin={SKIN} setinput={setInputs} currentProv={inputs.provider} />
+                            <Providers providers={providers} skin={SKIN} setinput={setInputs} currentProv={inputs.provider} value={inputs.search || ""} funzione={handleChange} />
 
                             <TypoGiochi countGames={countGames} subCateories={subCategories} setinput={setInputs} currentSub={inputs.subcategory} />
 

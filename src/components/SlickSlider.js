@@ -49,9 +49,13 @@ export const SlickSlider = (props) => {
 
         <>
             <Slider {...settings}>
-                <img src='https://stagemedia.gamesolutions.org/slideshow/img3_620d0b14e2915.jpeg'></img>
-                <img src='https://stagemedia.gamesolutions.org/slideshow/img2_620d0b14e2500.jpeg'></img>
-                <img src='https://stagemedia.gamesolutions.org/slideshow/img1_620d0b14e2042.jpeg'></img>
+                {fadeImages.map((fadeImage, index) => (
+
+                    <>
+                        <img src={MEDIA_SLIDESHOWS_WEB_PATH(SKIN) + fadeImage.url} />
+                        {!logged && <><a href="#" onClick={props.login} className="botton-adv-1">{t('accedi')}</a></>}
+                    </>
+                ))}
             </Slider>
         </>
     )
