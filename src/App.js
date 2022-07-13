@@ -544,6 +544,8 @@ function App(){
 
   }, [loader])
 
+  //useEffect(()=>{console.log(loader)},[loader])
+
   return (
     <>
 
