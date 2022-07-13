@@ -30,11 +30,6 @@ export const CasinoFrame = (props) =>{
                         <Modal isOpen={true} onRequestClose={close} className={currentView == "screen" ? "schermo-normale" : "schermo-intero"} overlayClassName="myoverlay" backdrop="static">
                             <div style={{width:"100%", height:"100vh"}} id="modal-iframe" aria-labelledby="modal-iframe" role="dialog" className="iziModal hasScroll hasShadow isAttached">
 
-                                <button onClick={close}>X</button>
-
-                                <button onClick={()=>openFullscreen()}>Go to fullscreen</button>
-                                <button onClick={()=>closeFullscreen()}>Exit fullscreen</button>
-
                                 <div className="iziModal-header iziModal-noSubtitle">
                                 
                                     <i className="iziModal-header-icon icon-settings_system_daydream"></i>
@@ -45,9 +40,9 @@ export const CasinoFrame = (props) =>{
                                     
                                     <div className="iziModal-header-buttons">
                                     
-                                        <a href="#" className="iziModal-button iziModal-button-close" data-izimodal-close=""></a>
-                                        <a href="#" className="iziModal-button iziModal-button-fullscreen" data-izimodal-fullscreen=""></a>
-                                        <a href="#" className="iziModal-button" id="togglePageFullscreen"><i className="fa fa-arrows-alt"></i></a>
+                                        <a href="#" className="iziModal-button iziModal-button-close" data-izimodal-close="" onClick={close}>X</a>
+                                        <a href="#" className="iziModal-button iziModal-button-fullscreen" data-izimodal-fullscreen="" onClick={()=>openFullscreen()}>Go to fullscreen</a>
+                                        <a href="#" className="iziModal-button" id="togglePageFullscreen" onClick={()=>closeFullscreen()}><i className="fa fa-arrows-alt">Exit fullscreen</i></a>
                                     </div>
                                 </div>
                                 
