@@ -135,8 +135,6 @@ const GameSection = (props) => {
         ],
     }
 
-    console.log(state.gamecategory)
-
     const currentPage = props.currentPage;
 
     return (
