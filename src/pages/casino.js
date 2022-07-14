@@ -15,7 +15,7 @@ import { CasinoFrame } from "../components/iframecasino";
 
 const Jackpots = (props) => {
 
-    const [jackpots, setJackpots] = useState(props.jackpots);
+    const jackpots = props.jackpots;
 
     const SKIN = props.skin;
 
@@ -231,8 +231,6 @@ const Games = (props) => {
                 })
                 .then(response => {
 
-                    console.log(response)
-
                     if (response.data.status == "ok") {
                         setGame(response.data.params)
 
@@ -253,7 +251,7 @@ const Games = (props) => {
     }
 
     useEffect(() => {
-        if (game != "empty") {
+        if (game != "empty" && game != "error") {
 
             setStatoGame(true);
         } else if (game == "error") {
@@ -530,8 +528,11 @@ function Casino(props) {
 
     useEffect(() => {
 
-        GetJackpotsWin();
-    }, []);
+        if(logged){
+            GetJackpotsWin();
+        }
+
+    }, [logged]);
 
     useEffect(() => {
 
@@ -640,8 +641,7 @@ function Casino(props) {
 
     return (
         <>
-
-            {loader < 6 ?
+            {loader < 5 ?
 
                 <>
                     <Spinner animation="border" role="status">

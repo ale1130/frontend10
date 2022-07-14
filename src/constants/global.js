@@ -3,6 +3,7 @@ import { isMobile, browserName } from "react-device-detect";
 import axios from "axios";
 
 import Cookies from 'universal-cookie';
+import { useEffect, useState } from "react";
 
 const cookies = new Cookies();
 
@@ -257,6 +258,10 @@ export const SKIN_FOOTER_IMG_WEB_PATH = (SKIN) =>{
 
 export const DEPOSIT_IMG_WEB_PATH = () =>{
     return "https://stagemedia.gamesolutions.org/deposit/";
+}
+
+export const LOBBIES_LOGO_WEB_PATH = (SKIN) =>{
+    return SKIN["cdn_url"]+"/lobbies/img/";
 }
 
 export const TEMPLATE_WEBDIR = (SKIN) =>{

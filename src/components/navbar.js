@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 import '../styles/headerv1.css';
-import { SKIN_LOGO_WEB_PATH } from "../constants/global";
+import { checkSkinSett, SKIN_LOGO_WEB_PATH } from "../constants/global";
 
 function Navbar(props) {
 
@@ -25,6 +25,8 @@ function Navbar(props) {
     const countMessages = props.countMessages;
 
     const balancetot = USER["balance"] + USER["bonus"] + USER["balance_withdrawable"];
+
+    const skinSettings = props.skinSettings;
 
     //Forse dovrei controllare anche qua lo stato della variabile USER
 
@@ -43,7 +45,7 @@ function Navbar(props) {
                         </h1>
                         <nav className="nav-menu">
                             
-                            {<GameSection currentPage={props.currentPage} user={USER} logged={props.statoLogin} />}
+                            {<GameSection currentPage={props.currentPage} user={USER} logged={props.statoLogin} skinSettings={skinSettings} />}
                             
                         </nav>
                     </div>
@@ -118,15 +120,18 @@ const GameSection = (props) => {
     const USER = props.user;
     const logged = props.logged;
 
+    const skinSettings = props.skinSettings;
+
     const state = {
         gamecategory: [
-            { id: 0, nome: t('sport'), link: "/sport", immagine: "" },
+            checkSkinSett(skinSettings, 'show_sport') ? { id: 0, nome: t('sport'), link: "/sport", immagine: "" } : <></>,
             { id: 1, nome: t('sportlive'), link: "/sport-live", immagine: "" },
-            { id: 2, nome: t('casino'), link: "/casino", immagine: "" },
-            { id: 3, nome: t('casinolive'), link: "/casino-live", immagine: "" },
-            { id: 4, nome: t('poker'), link: "/poker", immagine: "" },
-            { id: 5, nome: t('virtual'), link: "/virtual", immagine: "" },
-            { id: 6, nome: t('bingo'), link: "/bingo", immagine: "" }
+            checkSkinSett(skinSettings, 'show_casino') ? { id: 2, nome: t('casino'), link: "/casino", immagine: "" } : <></>,
+            checkSkinSett(skinSettings, 'show_casinolive') ? { id: 3, nome: t('casinolive'), link: "/casino-live", immagine: "" } : <></>,
+            { id: 4, nome: 'Aviator', link: "/aviator", immagine: "" },
+            checkSkinSett(skinSettings, 'show_poker') ? { id: 5, nome: t('poker'), link: "/poker", immagine: "" } : <></>,
+            checkSkinSett(skinSettings, 'show_virtual') ? { id: 6, nome: t('virtual'), link: "/virtual", immagine: "" } : <></>,
+            checkSkinSett(skinSettings, 'show_bingo') ? { id: 7, nome: t('bingo'), link: "/bingo", immagine: "" } : <></>
         ],
     }
 

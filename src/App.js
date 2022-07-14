@@ -16,7 +16,7 @@ import { NoLogged } from "./components/schermatanolog";
 
 //global
 
-import {api, checkSkinSett, convertObjectStringToNumbers, ConvertObjectToArraySlideshow, logoDirectory, MINUTE_MS } from "./constants/global";
+import {api, checkSkinSett, convertObjectStringToNumbers, ConvertObjectToArraySlideshow, IsLogged, logoDirectory, MINUTE_MS } from "./constants/global";
 
 //Rotte
 
@@ -68,6 +68,7 @@ import MultiBonus from "./footerpages/multiplebonus";
 import Promotions from "./pages/promotions";
 import DepositMethod from "./components/depositmethod";
 import WithdrawMethod from "./components/withdrawmethod";
+import { Aviator } from "./pages/aviator";
 
 function App(){
 
@@ -303,12 +304,12 @@ function App(){
 
   //Count messages
 
-  const GetCountMessages = async (userid) => {
+  const GetCountMessages = async () => {
 
     try{
 
       const data = await api
-      .get('rest/getcountmessages/:'+userid+"/")
+      .get('rest/getcountmessages/:'+USER["id"]+"/")
       .then(response => {
 
         if(response.data.status=="ok"){
@@ -330,7 +331,7 @@ function App(){
 
     if(loader==4 && USER!="empty"){
 
-      GetCountMessages(USER["id"]);
+      GetCountMessages();
     }else if(loader==4){
 
       setLoader(loader+1);
@@ -535,8 +536,10 @@ function App(){
           VerifyDataUser(loggedInUsername, loggedInPasshash);
         }
 
-        GetCountMessages(USER["id"]);
-
+        if(USER!="empty"){
+          GetCountMessages();
+        }
+        
       }, MINUTE_MS);
 
       return () => clearInterval(interval);
@@ -566,6 +569,7 @@ function App(){
             skin={SKIN}
             countMessages={countMessages}
             selectLanguageOK={checkSkinSett(skinSettings,'disable_language_select')}
+            skinSettings={skinSettings}
           />
 
           <LoginModal 
@@ -597,13 +601,14 @@ function App(){
           }
           <Routes>
             <Route path="/" element={<Home setShowC={()=>setShow(true)} statoLogin={isLogged} immagini={slideShowImages} skin={SKIN} />}/>
-            <Route path="/sport" element={<Sport />}/>
+            {checkSkinSett(skinSettings, 'show_sport') ? <Route path="/sport" element={<Sport user={USER} />}/> : '' }
             <Route path="/sport-live" element={<SportLive />}/>
-            <Route path="/casino" element={<Casino isLogged={isLogged} skin={SKIN} childModalButton={() => setShow(true)} user={USER}/> }/>
-            <Route path="/casino-live" element={<CasinoLive />}/>
-            <Route path="/poker" element={<Poker />}/>
-            <Route path="/virtual" element={<Virtual />}/>
-            <Route path="/bingo" element={<Bingo />}/>
+            {checkSkinSett(skinSettings, 'show_casino') ? <Route path="/casino" element={<Casino isLogged={isLogged} skin={SKIN} childModalButton={() => setShow(true)} user={USER} /> }/> : '' }
+            {checkSkinSett(skinSettings, 'show_casinolive') ? <Route path="/casino-live" element={<CasinoLive skin={SKIN} user={USER} islogged={isLogged} login={() => setShow(true)} />}/> : '' }
+            {checkSkinSett(skinSettings, 'show_poker') ? <Route path="/poker" element={<Poker />}/> : '' }
+            {checkSkinSett(skinSettings, 'show_virtual') ? <Route path="/virtual" element={<Virtual skin={SKIN} user={USER} islogged={isLogged} login={() => setShow(true)} />}/> : '' }
+            {checkSkinSett(skinSettings, 'show_bingo') ? <Route path="/bingo" element={<Bingo />}/> : '' }
+            <Route path="/aviator" element={<Aviator skin={SKIN} user={USER} islogged={isLogged} login={() => setShow(true)}/>} />
 
             <Route path="/promotions" element={<Promotions />}/>
 
