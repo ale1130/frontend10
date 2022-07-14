@@ -134,7 +134,7 @@ function CasinoLive (props){
 
                                                         <div className='sys-game'>
                                                             <a onClick={loggato == 0 ? props.login : () => playCasinoGameLobby(lobby.id)}>
-                                                                <img src={LOBBIES_LOGO_WEB_PATH(SKIN)+lobby.img+"v=1111"} className='game-image'/>
+                                                                <img src={LOBBIES_LOGO_WEB_PATH(SKIN)+lobby.img+"?v=111"} className='game-image'/>
                                                             </a>
                                                         </div>
                                                         

@@ -579,7 +579,7 @@ function App(){
             setUserC={setUser}
             setLogin={setIsLogged}
             setCountMessages={setCountMessages}
-            skin={SKIN["id"]}
+            skin={SKIN}
           />
 
           {

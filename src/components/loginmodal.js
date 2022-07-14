@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import ErrorBox from '../components/errorBox.js';
 
-import {api, convertObjectStringToNumbers, skinUrl} from '../constants/global';
+import {api, convertObjectStringToNumbers, skinUrl, SKIN_LOGO_WEB_PATH} from '../constants/global';
 
 import Cookies from 'universal-cookie';
 
@@ -24,7 +24,7 @@ function LoginModal(props) {
     const [modalError, setModalError] = useState(false);
     const [errorMessage, setErrorMessage] = useState([]);
 
-    const skin_id = props.skin;
+    const SKIN = props.skin;
 
     const handleChange = (event) => {
       const name = event.target.name;
@@ -174,7 +174,7 @@ function LoginModal(props) {
 
                 <p className="underbox">
 
-                    <img src="https://media.betzonelab.com/skins/logo/10.png" className="logoimglogin" />
+                    <img src={SKIN_LOGO_WEB_PATH(SKIN) + SKIN["logo_img"] + "?v=111111"} className="logoimglogin" />
                     <br />{t('noaccount')}
                 </p>
 
