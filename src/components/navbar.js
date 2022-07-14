@@ -145,11 +145,15 @@ const GameSection = (props) => {
                     return (
                         <>
 
+                            {category.id>=0 ? 
+
                             <li key={category.id} className={currentPage == category.link ? "active" : ""} >
                                 <a href={category.link + ""}>
                                     <span>{category.nome}</span>
                                 </a>
                             </li>
+                            
+                            : <></>}
 
                         </>
                     )
