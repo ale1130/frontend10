@@ -1,0 +1,681 @@
+.iziModal .iziModal-header.iziModal-noSubtitle .iziModal-header-title {
+    font-size: 15px;
+    margin: 3px 0 0 0;
+    font-weight: 400;
+}
+
+.iziModal .iziModal-header-title {
+    color: var(--g-main-color-b-normal);
+}
+
+
+.iziModal .iziModal-header.iziModal-noSubtitle .iziModal-header-buttons {
+    right: 6px;
+    margin: -16px 0 0 0;
+}
+
+.iziModal .iziModal-header-buttons {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin: -17px 0 0 0;
+}
+
+.iziModal .iziModal-header.iziModal-noSubtitle .iziModal-button {
+    height: 30px;
+    width: 30px;
+}
+
+.iziModal .iziModal-header .iziModal-button {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.iziModal .iziModal-button-close {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTMyIDc5LjE1OTI4NCwgMjAxNi8wNC8xOS0xMzoxMzo0MCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUuNSAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODZCQkIzQ0I0RTg0MTFFNjlBODI4QTFBRTRBMkFCMDQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODZCQkIzQ0M0RTg0MTFFNjlBODI4QTFBRTRBMkFCMDQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4NkJCQjNDOTRFODQxMUU2OUE4MjhBMUFFNEEyQUIwNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4NkJCQjNDQTRFODQxMUU2OUE4MjhBMUFFNEEyQUIwNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsgTJLcAAALJSURBVHja3JnLS1VBHMfvQ7g9dBXRRrwEFRciAhMi1JRW1aIHVEIYEkW0iVpUhOD/ICK6cFMgSbUpC6VFkQa9NtpjkauriRY9Noa3pHT8/mIODMM5Or85o87pC5/NPf5mvmc8M7+Z36SFEKkY2gj2gUawF2wHW8A6+fwv+A6KYAQMg+dg2rbDtKXhGnAaHJIms4zYz9J4HxgAf1g9k2EGteAhWBBuNApaQNrUg6nRTaAbzIuV0RCocWW4DoyJlVcJXI5ruFk2tJqi/2TWxvA5sXbqA2Ucw01i7dVjargazAo/dE33p6/DlAheg50pP0SJpwG8CH7IaH/Q5pFZUhnoArkwwwVwJeWfdoMLYYZvqG+yTGo9CerAoIWBT+A4qAdPDWOugwo1NVcxJtpFZRLkwH3GJCqCghJfxVjnz1JMMMKnwAbGRAg0B5rAA4O4CblZ+qj8tkBjZthvSzDCtFIMM0ZpQhslk5Eej4jpZ/T7G+ygwG1ghrk+jjNMFy1eMPJzpOAzlou6iWmXZkm91EBHjEwUZXoQTDk2SxqhRh7HTJ9hpstB3rFZ0ldq6J2DnB9m2rXZfxOPlrX1DrJRXiaBXSHPaMHvB0cd9JPLpBImMvzLQTuUFA6A9yHPfoIjhsllOc1l5N4grtmDWgYrl5+JTUZcSjNkeMyxWdpA3ZN72IJj01OJTByJS82J2/wQVxmB5y1HK8x0JWMf/kzdD98FJcY5S51gdwyTQl6eUAraspo27PeWXgy8afim0+CELAwOWHyH9EkdkyWwJ4Yxk6BCP+bTm48anutWW5dAp34IpbW03UOzb0FPVEHbx0LKfvAyqpAyKw97JU8Mt6pml6rAJ6oY6Eu5NfvfF7QTeWWQyEsZr6694lwsNoPD8mKRo29gCNwGj7gXi7aGA1EBcY+8vq0GW8FmJb3Pgx9gEnwAr8Ab8MW2w0UBBgAVyyyaohV7ewAAAABJRU5ErkJggg==) no-repeat 50% 50%;
+}
+
+.iziModal .iziModal-button {
+    display: block;
+    float: right;
+    z-index: 2;
+    outline: none;
+    height: 34px;
+    width: 34px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    opacity: 0.3;
+    border-radius: 50%;
+    transition: transform 0.5s cubic-bezier(.16, .81, .32, 1), opacity 0.5s ease;
+    background-size: 67% !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.iziModal .iziModal-header-title,
+.iziModal .iziModal-header-subtitle {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', Arial;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+
+
+.iziModal-header-title span {
+    display: inline;
+    margin: 0;
+    font-size: 12px
+}
+
+.iziModal-header-title .btn-primary,
+.iziModal-header-title .btn-secondary {
+    border-radius: 15px !important;
+    color: #333;
+    border: none;
+    padding: 1px 8px;
+    font-size: 12px
+}
+
+.iziModal-header-title .btn-primary:first-child,
+.iziModal-header-title .btn-secondary:first-child {
+    margin-left: 10px
+}
+
+.iziModal-header-title .btn-primary:hover,
+.iziModal-header-title .btn-secondary:hover {
+    color: #111 !important;
+    background-color: #eee
+}
+
+#addNewGameFrame,
+#toggleGameFavorite {
+    color: #000;
+    background-color: hsla(0, 0%, 100%, .9);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    cursor: pointer
+}
+
+#addNewGameFrame:hover,
+#toggleGameFavorite:hover {
+    background-color: #fff
+}
+
+#togglePageFullscreen i {
+    color: #000;
+    background-color: hsla(0, 0%, 100%, .9);
+    border-radius: 50%;
+    text-align: center;
+    width: 67%;
+    height: 67%;
+    font-size: 12px !important;
+    line-height: 20px !important
+}
+
+#togglePageFullscreen i:hover {
+    background-color: #fff
+}
+
+html.iziModal-isOverflow #activityModal {
+    z-index: 99999999999
+}
+
+.iziModal .iziModal-content {
+    min-height: 600px
+}
+
+.iziModal .iziModal-header .iziModal-button {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center
+}
+
+#favoriteGames {
+    position: relative
+}
+
+#favoriteGames.visible a {
+    color: #333;
+    background-color: #ddd;
+    border-radius: 0 !important
+}
+
+#favoriteGames.visible #favoriteItems {
+    display: block
+}
+
+#favoriteItems,
+#recentItems {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 300px;
+    max-height: 500px;
+    overflow-y: auto;
+    display: none;
+    background-color: #ddd;
+    color: #333;
+    padding: 20px;
+    z-index: 9999999;
+    font-size: 12px
+}
+
+.favorite-item,
+.recent-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    margin: 3px 0 0;
+    padding: 3px 0 0;
+    align-items: center;
+    align-content: center
+}
+
+.favorite-item:last-child,
+.recent-item:last-child {
+    border: none
+}
+
+.favorite-item a,
+.recent-item a {
+    padding: 0 !important;
+    flex-grow: 1;
+    display: flex;
+    color: #333
+}
+
+.favorite-item a img,
+.recent-item a img {
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    margin-right: 5px
+}
+
+.favorite-item a span,
+.recent-item a span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.favorite-item button,
+.recent-item button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    color: #333
+}
+
+#openInNewTabBtn {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #111;
+    color: #fff;
+    z-index: 999999999;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center
+}
+
+#openInNewTabBtn.hidden {
+    left: -2500px;
+    display: none
+}
+
+#openInNewTabBtn:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #aaa;
+    width: calc(100% - 50px);
+    height: 60px;
+    border-radius: 50px
+}
+
+
+#multiGameFrame2,
+#multiGameFrame3,
+#multiGameFrame4 {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap
+}
+
+#multiGameFrame2 .iziModal-content,
+#multiGameFrame3 .iziModal-content,
+#multiGameFrame4 .iziModal-content {
+    height: 50%;
+    width: 50%;
+    min-height: 150px;
+    position: relative
+}
+
+.iziModal .iziModal-content {
+    height: 100%
+}
+
+.iziModal .iziModal-content iframe {
+    height: 100% !important
+}
+
+.iziModal-content {
+    border: 1px solid hsla(0, 0%, 100%, .3)
+}
+
+.iziModal-content:before {
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-animation: puffIn 1s infinite;
+    animation: puffIn 1s infinite;
+    font-size: 30px;
+    color: #555
+}
+
+.close-game-frame {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-bottom-left-radius: 10px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    background-color: #111;
+    cursor: pointer;
+    color: #fff
+}
+
+.game-frame-buttons {
+    height: 100%;
+    background-color: #111
+}
+
+.game-frame-buttons,
+.game-frame-buttons a {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center
+}
+
+.game-frame-buttons a {
+    border-radius: 10px;
+    border: 1px solid hsla(0, 0%, 100%, .3);
+    padding: 30px;
+    width: 70px;
+    height: 70px;
+    color: #aaa;
+    margin: 10px
+}
+
+.game-frame-buttons a:hover {
+    color: #fff;
+    border-color: #fff
+}
+
+.game-frame-buttons i {
+    font-size: 30px !important
+}
+
+#showIzimodal {
+    position: fixed;
+    z-index: 9999999999;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px 40px;
+    font-weight: 700;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #25272b;
+    color: #ecea85;
+    border: 3px solid #35394a;
+    box-shadow: 0 0 10px 10px rgba(236, 209, 63, .3);
+    letter-spacing: 1px
+}
+
+.iziModal .iziModal-header {
+    border-bottom: 1px solid var(--g-main-color-a-light);
+    background-color: var(--g-main-color-a-normal) !important;
+    color: var(--g-main-color-b-normal)
+}
+
+.iziModal .iziModal-header.iziModal-noSubtitle {
+    padding: 5px 12px;
+    height: 35px
+}
+
+.iziModal .iziModal-header-title {
+    color: var(--g-main-color-b-normal)
+}
+
+.iziModal .iziModal-wrap {
+    height: calc(100% - 89px) !important
+}
+
+.iziModal .iziModal-content {
+    height: 100%
+}
+
+.iziModal .iziModal-content iframe {
+    height: 100% !important
+}
+
+body.bottom-bar-hidden .iziModal .iziModal-wrap {
+    height: calc(100% - 35px) !important
+}
+
+.iziModal-isOverflow .modal-backdrop {
+    z-index: 9999999
+}
+
+.iziModal-isOverflow .modal {
+    z-index: 99999999
+}
+
+
+/*   element.style {
+       background: rgb(0, 0, 0);
+       padding-right: 160px;
+   }
+   .iziModal .iziModal-header.iziModal-noSubtitle {
+       padding: 5px 12px;
+       height: 35px;
+   }
+   .iziModal .iziModal-header.iziModal-noSubtitle {
+       height: auto;
+       padding: 10px 15px 12px;
+   }
+
+
+   #addNewGameFrame,
+   #toggleGameFavorite {
+       color: #000;
+       background-color: hsla(0, 0%, 100%, .9);
+       border-radius: 50%;
+       text-align: center;
+       font-size: 12px;
+       line-height: 20px;
+       width: 20px;
+       height: 20px;
+       margin: 5px;
+       cursor: pointer
+   }
+
+   #addNewGameFrame:hover,
+   #toggleGameFavorite:hover {
+       background-color: #fff
+   }
+
+   #togglePageFullscreen i {
+       color: #000;
+       background-color: hsla(0, 0%, 100%, .9);
+       border-radius: 50%;
+       text-align: center;
+       width: 67%;
+       height: 67%;
+       font-size: 12px!important;
+       line-height: 20px!important
+   }
+
+   #togglePageFullscreen i:hover {
+       background-color: #fff
+   }
+
+   html.iziModal-isOverflow #activityModal {
+       z-index: 99999999999
+   }
+
+   .iziModal .iziModal-content {
+       min-height: 600px
+   }
+
+   .iziModal .iziModal-header .iziModal-button {
+       display: flex;
+       align-content: center;
+       align-items: center;
+       justify-content: center
+   }
+
+
+   body {
+       --g-main-color-a-normal: #333743;
+       --g-main-color-a-light: #4b5062;
+       --g-main-color-a-dark: #272b34;
+       --g-main-color-b-normal: #ddd;
+       --g-main-color-b-light: #fff;
+       --g-main-color-b-dark: #bbb;
+       --g-gradient-normal: radial-gradient(circle, #333743, #272b34)
+   }
+
+   .iziModal .iziModal-header.iziModal-noSubtitle .iziModal-button {
+       height: 30px;
+       width: 30px;
+   }
+   .iziModal .iziModal-header .iziModal-button {
+       display: flex;
+       align-content: center;
+       align-items: center;
+       justify-content: center;
+   }
+   .iziModal .iziModal-button {
+       display: block;
+       float: right;
+       z-index: 2;
+       outline: 0;
+       height: 34px;
+       width: 34px;
+       border: 0;
+       padding: 0;
+       margin: 0;
+       opacity: .3;
+       border-radius: 50%;
+       transition: transform .5s cubic-bezier(.16,.81,.32,1),opacity .5s ease;
+       background-size: 67%!important;
+       -webkit-tap-highlight-color: transparent;
+   }
+
+   .iziModal .iziModal-header {
+       border-bottom: 1px solid var(--g-main-color-a-light);
+       background-color: var(--g-main-color-a-normal)!important;
+       color: var(--g-main-color-b-normal);
+   }
+   .iziModal .iziModal-header {
+       background: #88a0b9;
+       padding: 14px 18px 15px;
+       box-shadow: inset 0 -10px 15px -12px rgba(0,0,0,.3), 0 0 0 #555;
+       overflow: hidden;
+       position: relative;
+       z-index: 10;
+   }
+
+
+   .close-game-frame {
+       position: absolute;
+       top: 0;
+       right: 0;
+       border-bottom-left-radius: 10px;
+       width: 35px;
+       height: 35px;
+       text-align: center;
+       font-size: 22px;
+       font-weight: 700;
+       background-color: #111;
+       cursor: pointer;
+       color: #fff
+   }
+
+   .game-frame-buttons {
+       height: 100%;
+       background-color: #111
+   }
+
+   .game-frame-buttons,
+   .game-frame-buttons a {
+       display: flex;
+       justify-content: center;
+       align-content: center;
+       align-items: center
+   }
+
+   .game-frame-buttons a {
+       border-radius: 10px;
+       border: 1px solid hsla(0, 0%, 100%, .3);
+       padding: 30px;
+       width: 70px;
+       height: 70px;
+       color: #aaa;
+       margin: 10px
+   }
+
+   .game-frame-buttons a:hover {
+       color: #fff;
+       border-color: #fff
+   }
+
+   .game-frame-buttons i {
+       font-size: 30px!important
+   }
+
+
+
+   #multiGameFrame2,
+   #multiGameFrame3,
+   #multiGameFrame4 {
+       display: flex;
+       align-content: center;
+       align-items: center;
+       justify-content: center;
+       flex-wrap: wrap
+   }
+
+   #multiGameFrame2 .iziModal-content,
+   #multiGameFrame3 .iziModal-content,
+   #multiGameFrame4 .iziModal-content {
+       height: 50%;
+       width: 50%;
+       min-height: 150px;
+       position: relative
+   }
+
+   .iziModal .iziModal-content {
+       height: 100%
+   }
+
+   .iziModal .iziModal-content iframe {
+       height: 100%!important
+   }
+
+   .iziModal-content {
+       border: 1px solid hsla(0, 0%, 100%, .3)
+   }
+
+   .iziModal-content:before {
+       position: absolute;
+       z-index: -1;
+       left: 50%;
+       top: 50%;
+       transform: translate(-50%, -50%);
+       -webkit-animation: puffIn 1s infinite;
+       animation: puffIn 1s infinite;
+       font-size: 30px;
+       color: #555
+   }
+
+   .close-game-frame {
+       position: absolute;
+       top: 0;
+       right: 0;
+       border-bottom-left-radius: 10px;
+       width: 35px;
+       height: 35px;
+       text-align: center;
+       font-size: 22px;
+       font-weight: 700;
+       background-color: #111;
+       cursor: pointer;
+       color: #fff
+   }
+
+   .game-frame-buttons {
+       height: 100%;
+       background-color: #111
+   }
+
+   .game-frame-buttons,
+   .game-frame-buttons a {
+       display: flex;
+       justify-content: center;
+       align-content: center;
+       align-items: center
+   }
+
+   .game-frame-buttons a {
+       border-radius: 10px;
+       border: 1px solid hsla(0, 0%, 100%, .3);
+       padding: 30px;
+       width: 70px;
+       height: 70px;
+       color: #aaa;
+       margin: 10px
+   }
+
+
+   .iziModal .iziModal-iframe {
+       border: 0;
+       margin: 0 0 -6px;
+       width: 100%;
+       transition: height .3s ease
+   }
+
+   .iziModal-overlay {
+       display: block;
+       position: fixed;
+       top: 0;
+       left: 0;
+       height: 100%;
+       width: 100%
+   }
+   .game-frame-buttons a:hover {
+       color: #fff;
+       border-color: #fff
+   }
+
+   .game-frame-buttons i {
+       font-size: 30px!important
+   }
+*/
+
+.lobby-list {
+
+    padding: 5px 5px 5px 5px;
+}
