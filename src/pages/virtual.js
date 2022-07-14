@@ -7,7 +7,7 @@ import { api, convertToFormdata, PROVIDERS_LOGO_WEB_PATH, skinUrl, TEMPLATE_WEBD
 
 import { useTranslation } from "react-i18next";
 
-function Virtual (props){
+function Virtual(props) {
 
     const [loader, setLoader] = useState(true);
 
@@ -28,26 +28,26 @@ function Virtual (props){
         try {
 
             const data = await api
-            .get('rest/getvirtuallobbies/:'+loggato+'/')
-            .then(response => {
-      
-              if(response.data.status=="ok"){
-      
-                setLobbies(response.data.dati);
-      
-              }else if(response.data.status=="error"){
-                  
-                setLobbies(["nolobbies"])
-              }else{
-      
-                alert(t('erroregenerico'));
-              }
-            })
-      
+                .get('rest/getvirtuallobbies/:' + loggato + '/')
+                .then(response => {
+
+                    if (response.data.status == "ok") {
+
+                        setLobbies(response.data.dati);
+
+                    } else if (response.data.status == "error") {
+
+                        setLobbies(["nolobbies"])
+                    } else {
+
+                        alert(t('erroregenerico'));
+                    }
+                })
+
         } catch (e) {
-    
-        alert(t('erroregenerico'));  
-        console.log(e);
+
+            alert(t('erroregenerico'));
+            console.log(e);
         }
     }
 
@@ -56,7 +56,7 @@ function Virtual (props){
     }, [])
 
     useEffect(() => {
-        if(lobbies!="empty"){
+        if (lobbies != "empty") {
             setLoader(false);
         }
     }, [lobbies])
@@ -110,49 +110,42 @@ function Virtual (props){
             {!loader ? <>
 
                 {<CasinoFrame close={() => setStatoGame(false)} statoGame={statoGame} game={game} />}
-                
+
                 <div className="container-fluid body-content slider-height">
-                    <main id="turbogamePage" className="container-starss">
-                    
+                    <main id="turbogamePage2" className="container-starss">
+
                         <div className="starss"></div>
-                        
-                        <div id="pageContent" className="opened">
-                            <div id="turbogameBoxes">
-                            
+
+                        <div id="pageContent2" className="opened">
+                            <div id="turbogameBoxes2">
+
                                 <div className="container">
 
-                                    <img src={skinUrl+"/templates/acqua/assets/img/virtual/sports-big-2.png"} className="img-lobby-p" />
+                                    <img src={skinUrl + "/templates/acqua/assets/img/virtual/sports-big-2.png"} className="img-lobby-p" />
 
                                     <h2>Virtual</h2>
 
                                     <div className="box box-2">
                                         <div className="box-content">
 
-                                            {lobbies.length>0 && lobbies!="nolobbies" ? 
+                                            {lobbies.length > 0 && lobbies != "nolobbies" ?
 
                                                 <>
-                                                    {lobbies.map(lobby => {return(
+                                                    {lobbies.map(lobby => {
+                                                        return (
 
-                                                        <div className="square-box-virtual">
-                                                            <div className="square-content-casino">
-                                                                <div className="container-casino">
+                                                            <div className='sys-game'>
 
-                                                                    <img src={lobby.url} className="image-casino-icon" />
-                                                                    <div className="middle-button">
+                                                                <a onClick={loggato == 1 ? () => playVirtualGameLobby(lobby.id) : props.login} className="playBut">
+                                                                    <img src={lobby.url} className="game-image" />
+                                                                </a>
 
-                                                                        <div className="title-game">{lobby.name}</div>
 
-                                                                        <a onClick={loggato == 1 ? ()=>playVirtualGameLobby(lobby.id) : props.login} className="playBut">
-                                                                            svg
-                                                                        </a>
-
-                                                                        <img src={PROVIDERS_LOGO_WEB_PATH(SKIN)+lobby.img} className={"icon-play-casino provider-"+lobby.nome_provider}/>
-                                                                    </div>
-
-                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    )})}
+
+
+                                                        )
+                                                    })}
                                                 </>
 
                                                 :
@@ -161,7 +154,7 @@ function Virtual (props){
                                                     <div>Ci dispiace ma al momento non è stato possible individuare nessuna lobbby di gioco nella sezione casino-virtual si prega di attendere e riprovare più tardi, se ritieni che si tratti di un nostro errore ti preghiamo di conttare l'assistenza tecnica</div>
                                                 </>
                                             }
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -171,13 +164,13 @@ function Virtual (props){
                     </main>
                 </div>
             </>
-            
+
                 :
 
-            <>
-                <Loader />
-            </>
-        
+                <>
+                    <Loader />
+                </>
+
             }
         </>
     )
@@ -186,4 +179,3 @@ function Virtual (props){
 export default Virtual;
 
 
-        

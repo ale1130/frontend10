@@ -1,0 +1,305 @@
+.hidden {
+    display: none;
+}
+
+
+#turbogamePage {
+    background: linear-gradient(0deg, rgba(44, 176, 230, 0.1), rgba(44, 176, 230, 0.1)), url(https://betplay360.com/templates/acqua/assets/img/spribe/aviator-bg-image1.jpg) !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    display: flex;
+    flex-direction: column
+}
+
+
+#turbogamePage #howToPlayAviatorContent,
+#turbogamePage #howToPlayZeppelinContent,
+#turbogamePage #pageContent {
+    transition: all .7s;
+    display: none;
+    width: 100%;
+    z-index: 10
+}
+
+#turbogamePage #howToPlayAviatorContent.opened,
+#turbogamePage #howToPlayZeppelinContent.opened,
+#turbogamePage #pageContent.opened {
+    display: block
+}
+
+#turbogamePage #aviatorLogo {
+    opacity: .8
+}
+
+#turbogamePage #aviatorLogo:hover {
+    opacity: 1
+}
+
+#turbogamePage #zeppelinLogo {
+    opacity: .8
+}
+
+#turbogamePage #zeppelinLogo:hover {
+    opacity: 1
+}
+
+#turbogamePage #closeHowToPlayAviatorContent,
+#turbogamePage #closeHowToPlayZeppelinContent {
+    padding: 10px 50px;
+    border-radius: 40px;
+    font-weight: 700;
+    transition: all .3s;
+    position: absolute;
+    right: 25px;
+    top: -25px;
+    background-color: #424c5f;
+    color: #fff
+}
+
+#turbogamePage #turbogameLines {
+    background-image: url(https://betplay360.com/assets/img/spribe/zeppelin-lines1.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: top;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 8;
+    opacity: 0
+}
+
+#turbogamePage #turbogameLines.animate {
+    -webkit-animation: turbogameLines 2s ease-out;
+    animation: turbogameLines 2s ease-out;
+    opacity: 1
+}
+
+#turbogamePage #turbogameLines img {
+    width: 100%
+}
+
+#turbogamePage .box {
+    border: 5px solid rgba(42, 47, 57, .3);
+    background-color: rgba(32, 37, 53, .4);
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, .1);
+    margin: 5px;
+    position: relative;
+    width: 100%
+}
+
+#turbogamePage .box .box-header {
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, .1)
+}
+
+#turbogamePage .box.box-1 .box-content {
+    padding: 70px 0;
+    color: #fff
+}
+
+#turbogamePage .box.box-1 .box-content,
+#turbogamePage .box.box-1 .box-content .sys-game {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center
+}
+
+#turbogamePage .box.box-1 .box-content img {
+    max-height: 200px;
+    align-self: center;
+    margin-bottom: 40px
+}
+
+#turbogamePage .box.box-1 .box-content a.btn.play-now,
+#turbogamePage .box.box-1 .box-content a.btn.play-sys-game {
+    background-color: #bc0a36
+}
+
+#turbogamePage .box.box-2 .box-content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px
+}
+
+#turbogamePage .box.box-2 .box-content .sys-game {
+    width: calc(33.333% - 10px);
+    margin: 5px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer
+}
+
+#turbogamePage .box.box-2 .box-content .sys-game img {
+    width: 100%;
+    margin: 0
+}
+
+#turbogamePage .box.box-2 .box-content a.btn.play-now,
+#turbogamePage .box.box-2 .box-content a.btn.play-sys-game {
+    background-color: #d7a10b
+}
+
+#turbogamePage .box.box-3 .box-content a.btn.play-now,
+#turbogamePage .box.box-3 .box-content a.btn.play-sys-game {
+    background-color: #3da72a
+}
+
+#turbogamePage .box.box-4 .box-content a.btn.play-now,
+#turbogamePage .box.box-4 .box-content a.btn.play-sys-game {
+    background-color: #55a5b6
+}
+
+#turbogamePage .box .box-content ul {
+    padding-left: 25px;
+    line-height: 1.5
+}
+
+#turbogamePage .box .box-content p {
+    font-size: 18px;
+    margin: 20px 0
+}
+
+#turbogamePage .box .box-content a.btn {
+    padding: 5px 50px;
+    border-radius: 40px !important;
+    color: #fff;
+    transition: all .3s;
+    position: relative;
+    margin-bottom: 15px;
+    font-size: 17px
+}
+
+#turbogamePage .box .box-content a.btn.play-now,
+#turbogamePage .box .box-content a.btn.play-sys-game {
+    padding: 15px 50px;
+    font-weight: 700
+}
+
+#turbogamePage .box .box-content a.btn:hover {
+    transform: translateY(-3px)
+}
+
+#turbogamePage .box .box-content a.btn:hover:before {
+    opacity: 0
+}
+
+#turbogamePage .box .box-content a.btn:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 40px;
+    transition: all .3s;
+    background: linear-gradient(180deg, hsla(0, 0%, 100%, .3) 0, hsla(0, 0%, 100%, 0))
+}
+
+#turbogamePage #howToPlayAviatorContent,
+#turbogamePage #howToPlayZeppelinContent,
+#turbogamePage #turbogameBoxes {
+    margin-top: 120px;
+    margin-bottom: 100px;
+    z-index: 11;
+    width: 100%
+}
+
+#turbogamePage #howToPlayAviatorContent .container,
+#turbogamePage #howToPlayZeppelinContent .container,
+#turbogamePage #turbogameBoxes .container {
+    display: flex
+}
+
+#turbogamePage #turbogameRules {
+    width: 100%;
+    margin: 20px 0
+}
+
+#turbogamePage #turbogameRules .card {
+    background-color: transparent;
+    margin-bottom: 5px
+}
+
+#turbogamePage #turbogameRules .card .card-header {
+    padding: 3px 0;
+    background-color: hsla(0, 0%, 100%, .1);
+    border-radius: 40px
+}
+
+#turbogamePage #turbogameRules .card .card-header button {
+    color: #ddd
+}
+
+#turbogamePage #turbogameRules .card .card-header button:focus {
+    text-decoration: none
+}
+
+#turbogamePage #turbogameRules .card .card-header:hover {
+    background-color: hsla(0, 0%, 100%, .2)
+}
+
+#turbogamePage #turbogameRules .card .card-header:hover button {
+    text-decoration: none;
+    color: #fff
+}
+
+
+
+/*
+MOB
+ */
+@media (max-width:992px) {
+
+    #turbogamePage #closeHowToPlayAviatorContent,
+    #turbogamePage #closeHowToPlayZeppelinContent {
+        padding: 5px 20px;
+        top: -25px
+    }
+
+    #turbogamePage #howToPlayAviatorContent,
+    #turbogamePage #howToPlayZeppelinContent,
+    #turbogamePage #turbogameBoxes {
+        margin-top: 40px;
+        margin-bottom: 30px
+    }
+
+    #turbogamePage #howToPlayAviatorContent .container,
+    #turbogamePage #howToPlayZeppelinContent .container,
+    #turbogamePage #turbogameBoxes .container {
+        flex-wrap: wrap
+    }
+
+    #turbogamePage .box-1 .box-content {
+        padding: 20px 0
+    }
+
+    #turbogamePage .box-1 .box-content img {
+        max-height: 100px;
+        margin-bottom: 10px
+    }
+
+    #turbogamePage .box-1 .box-content p {
+        font-size: 13px;
+        line-height: 15px;
+        padding: 0 10px;
+        text-align: center
+    }
+
+    #turbogamePage .box-1 .box-content a.btn {
+        font-size: 12px;
+        padding: 5px 10px
+    }
+
+    #turbogamePage .box-1 .box-content a.btn.play-now {
+        padding: 10px 30px
+    }
+}

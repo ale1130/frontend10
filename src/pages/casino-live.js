@@ -7,7 +7,9 @@ import { api, convertToFormdata, LOBBIES_LOGO_WEB_PATH, skinUrl, TEMPLATE_WEBDIR
 
 import { useTranslation } from "react-i18next";
 
-function CasinoLive (props){
+import '../styles/casino-live.css';
+
+function CasinoLive(props) {
 
     const [loader, setLoader] = useState(true);
 
@@ -28,26 +30,26 @@ function CasinoLive (props){
         try {
 
             const data = await api
-            .get('rest/getskinlobbies/')
-            .then(response => {
-      
-              if(response.data.status=="ok"){
-      
-                setLobbies(response.data.dati);
-      
-              }else if(response.data.status=="error"){
-                  
-                setLobbies(["nolobbies"])
-              }else{
-      
-                alert(t('erroregenerico'));
-              }
-            })
-      
+                .get('rest/getskinlobbies/')
+                .then(response => {
+
+                    if (response.data.status == "ok") {
+
+                        setLobbies(response.data.dati);
+
+                    } else if (response.data.status == "error") {
+
+                        setLobbies(["nolobbies"])
+                    } else {
+
+                        alert(t('erroregenerico'));
+                    }
+                })
+
         } catch (e) {
-    
-        alert(t('erroregenerico'));  
-        console.log(e);
+
+            alert(t('erroregenerico'));
+            console.log(e);
         }
     }
 
@@ -56,7 +58,7 @@ function CasinoLive (props){
     }, [])
 
     useEffect(() => {
-        if(lobbies!="empty"){
+        if (lobbies != "empty") {
             setLoader(false);
         }
     }, [lobbies])
@@ -110,61 +112,65 @@ function CasinoLive (props){
             {!loader ? <>
 
                 {<CasinoFrame close={() => setStatoGame(false)} statoGame={statoGame} game={game} />}
-                
+
                 <div className="container-fluid body-content slider-height">
-                    <main id="turbogamePage" className="container-starss">
-                    
+                    <main id="turbogamePage2" className="container-starss">
+
                         <div className="starss"></div>
-                        
-                        <div id="pageContent" className="opened">
-                            <div id="turbogameBoxes">
-                            
+
+                        <div id="pageConten2t" className="opened">
+                            <div id="turbogameBoxes2">
+
                                 <div className="container">
-                            
-                                    <img src={skinUrl+TEMPLATE_WEBDIR(SKIN)+"/assets/img/casino-live/casino-live-2.png"} className="img-lobby-p" />
+
+                                    <img src={skinUrl + TEMPLATE_WEBDIR(SKIN) + "/assets/img/casino-live/casino-live-2.png"} className="img-lobby-p" />
                                     <h2>Casino Live</h2>
+                                    <div className="box box-2">
+                                        <div className="box-content">
 
-                                    {
-                                        lobbies.length>0 && lobbies != "nolobbies" ?
+                                            {
+                                                lobbies.length > 0 && lobbies != "nolobbies" ?
 
-                                        <>
-                                            {lobbies.map(lobby => { return(
-                                                <div className="box box-2">
-                                                    <div className="box-content">
+                                                    <>
+                                                        {lobbies.map(lobby => {
+                                                            return (
 
-                                                        <div className='sys-game'>
-                                                            <a onClick={loggato == 0 ? props.login : () => playCasinoGameLobby(lobby.id)}>
-                                                                <img src={LOBBIES_LOGO_WEB_PATH(SKIN)+lobby.img+"?v=111"} className='game-image'/>
-                                                            </a>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                </div>
-                                            )})}
-                                        </>
 
-                                        :
+                                                                <div className='sys-game'>
+                                                                    <a onClick={loggato == 0 ? props.login : () => playCasinoGameLobby(lobby.id)}>
+                                                                        <img src={LOBBIES_LOGO_WEB_PATH(SKIN) + lobby.img + "?v=111"} className='game-image' />
+                                                                    </a>
+                                                                </div>
 
-                                        <>
-                                            <div>Ci dispiace ma al momento non è stato possible individuare nessuna lobbby di gioco nella sezione casino-virtual si prega di attendere e riprovare più tardi, se ritieni che si tratti di un nostro errore ti preghiamo di conttare l'assistenza tecnica</div>
-                                        </>
-                                    }
 
-                                    
+                                                            )
+                                                        })}
+
+                                                    </>
+
+                                                    :
+
+                                                    <>
+                                                        <div>Ci dispiace ma al momento non è stato possible individuare nessuna lobbby di gioco nella sezione casino-virtual si prega di attendere e riprovare più tardi, se ritieni che si tratti di un nostro errore ti preghiamo di conttare l'assistenza tecnica</div>
+                                                    </>
+                                            }
+
+                                        </div>
+                                    </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </main>
                 </div>
             </>
-            
+
                 :
 
-            <>
-                <Loader />
-            </>
-        
+                <>
+                    <Loader />
+                </>
+
             }
         </>
     )
@@ -173,4 +179,3 @@ function CasinoLive (props){
 export default CasinoLive;
 
 
-        
