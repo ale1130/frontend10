@@ -114,12 +114,15 @@ function ComponentPix(props) {
         setInputs({"user_id":USER["id"],"method":method.method_code, "cpf": USER["document_number"].length == 14 ? USER["document_number"] : "" });
     }
 
-    /*api
-    .get('rest/userprova')
-    .then(response => {
+    useEffect(()=>{
 
-        console.log(response.data)
-    })*/
+        api
+        .get(skinUrl+'rest/userprova/')
+        .then(response => {
+
+            console.log(response.data)
+        })
+    },[]) 
 
     return (
         <>

@@ -3,7 +3,6 @@ import { isMobile, browserName } from "react-device-detect";
 import axios from "axios";
 
 import Cookies from 'universal-cookie';
-import { useEffect, useState } from "react";
 
 const cookies = new Cookies();
 
@@ -406,12 +405,6 @@ export const playlogiqTicketStatus = (id) =>{
 
     return statusAs[id];
 }
-
-export const stringToHTML = (str) => {
-	var parser = new DOMParser();
-	var doc = parser.parseFromString(str, 'text/html');
-	return doc.body;
-};
 
 export const openFullscreen = () => {
 

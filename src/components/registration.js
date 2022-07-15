@@ -29,7 +29,7 @@ function RegistrationModal(props) {
     const close = props.closeModal;
     const SKIN = props.skin;
 
-    const [inputs, setInputs] = useState({"conditions":false,"years":false});
+    const [inputs, setInputs] = useState({"conditions":false,"years":false, "model":"classic"});
 
     const [modalError, setModalError] = useState(false);
 

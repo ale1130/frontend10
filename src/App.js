@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 
+import TawkTo from "tawkto-react";
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -69,6 +71,9 @@ import Promotions from "./pages/promotions";
 import DepositMethod from "./components/depositmethod";
 import WithdrawMethod from "./components/withdrawmethod";
 import { Aviator } from "./pages/aviator";
+import { Promo } from "./components/promo";
+import RegistrationModalAffiliate from "./components/registrationAffiliate";
+import { FooterBar } from "./components/footerbar";
 
 function App() {
 
@@ -557,6 +562,22 @@ function App() {
 
   //useEffect(()=>{console.log(loader)},[loader])
 
+  useEffect(() => {
+        
+    var tawk = new TawkTo('62065c2fb9e4e21181be9eff', '1frkdg6qe')
+
+    tawk.onStatusChange((status) => 
+    {
+      console.log(status)
+    })
+  }, [])
+
+  const componentDidMount = () =>{
+    
+    var tawk = new TawkTo('62065c2fb9e4e21181be9eff', '1frkdg6qe')
+    tawk.hideWidget()
+  }
+
   return (
     <>
 
@@ -618,7 +639,20 @@ function App() {
               {checkSkinSett(skinSettings, 'show_bingo') ? <Route path="/bingo" element={<Bingo />} /> : ''}
               <Route path="/aviator" element={<Aviator skin={SKIN} user={USER} islogged={isLogged} login={() => setShow(true)} />} />
 
-              <Route path="/promotions" element={<Promotions />} />
+              <Route path="/promotions" element={<Promotions skin={SKIN} user={USER} islogged={isLogged} />} />
+              <Route path="/promo" element={<Promo skin={SKIN} user={USER} islogged={isLogged} login={() => setShow(true)} />} />
+
+              <Route path="/signup-promo" element={
+                <RegistrationModalAffiliate
+                  modalState={showReg}
+                  closeModal={() => setShowReg(false)}
+                  skin={SKIN}
+                  openModalLogin={() => setShow(true)}
+                  setUserC={setUser}
+                  setLogin={setIsLogged}
+                  skinSettings={skinSettings}
+                />
+              } />
 
               {countMethods["countDep"] > 0 && countMethods != "nomethods" ? <Route path="/account/deposit" element={isLogged ? <Deposit countMethods={countMethods} user={USER} skin={SKIN} /> : <NoLogged />} /> : <></>}
               {countMethods["countWith"] > 0 && countMethods != "nomethods" ? <Route path="/account/withdrawals" element={isLogged ? <Withdrawals countMethods={countMethods} user={USER} skin={SKIN} /> : <NoLogged />} /> : <></>}
@@ -633,7 +667,7 @@ function App() {
               <Route path="/profile/password" element={isLogged ? <Password datiUtente={USER} countMessages={countMessages} /> : <NoLogged />} />
               <Route path="/profile/messages" element={isLogged ? <Messages datiUtente={USER} countMessages={countMessages} /> : <NoLogged />} />
 
-              <Route path="/affiliate" element={<Affiliate />} />
+              <Route path="/affiliate" element={<Affiliate user={USER} skin={SKIN} islogged={isLogged} />} />
               <Route path="/multiplebonus" element={<MultiBonus />} />
 
               {countMethods.depositMethods.map(metodo => {
@@ -682,6 +716,8 @@ function App() {
             providers={providers}
             methods={countMethods}
           />
+
+          <FooterBar />
         </>
 
         :
