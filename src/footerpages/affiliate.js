@@ -102,17 +102,17 @@ function Affiliate (props){
                     
                                 <div className="col-lg-6 text-lg-start">
                         
-                                    <h1 data-aos="fade-right" className="title-1">Affiliazione</h1>
-                                    <h3 className="subtitle-1" data-aos="fade-right" data-aos-delay="100">paragrafo1</h3>
-                                    <p data-aos="fade-right" data-aos-delay="100">paragrafo2</p>
+                                    <h1 data-aos="fade-right" className="title-1">{t('affiliazione')}</h1>
+                                    <h3 className="subtitle-1" data-aos="fade-right" data-aos-delay="100">{t('p1affiliazione')}</h3>
+                                    <p data-aos="fade-right" data-aos-delay="100">{t('p2affiliazione')}</p>
 
                                     {error ? <ErrorBox message={errorMessages} /> : <></>}
                                     {success ? <SuccessBox param={"Complimenti, la tua richiesta di affiliazione è stata inviata correttamente, verrai contattato il prima possbile da un operatore!"} /> : <></>}
 
                                     <div className="row">
                                         <div className="col-md-12 form-group">
-                                            <label htmlFor="name" className="form-contact-1">Nome e cognome</label>
-                                            <input type="text" name="name" value={inputs.name || "" } onChange={handleChange} placeholder={logged==1 ? USER["firstname"]+" "+USER["lastname"] : "Inserisci nome e cognome..."} className="form-control" id="name" readOnly={logged==1 ? "readOnly" : ""} />
+                                            <label htmlFor="name" className="form-contact-1">{t('nome')} {t('e')} {t('cognome')}</label>
+                                            <input type="text" name="name" value={inputs.name || "" } onChange={handleChange} placeholder={logged==1 ? USER["firstname"]+" "+USER["lastname"] : t('inseriscinem')} className="form-control" id="name" readOnly={logged==1 ? "readOnly" : ""} />
                                         </div>
 
                                         <div className="col-md-6 form-group">
@@ -121,22 +121,22 @@ function Affiliate (props){
                                         </div>
 
                                         <div className="col-md-6 form-group">
-                                            <label htmlFor="mobile" className="form-contact-1">N. cellulare</label>
-                                            <input type="text" className="form-control" value={inputs.mobile || "" } onChange={handleChange} placeholder={logged==1 ? USER["mobile"] : "inserisci cellulare..."} name="mobile" id="mobile" readOnly={logged==1 ? "readOnly" : ""} />
+                                            <label htmlFor="mobile" className="form-contact-1">{t('ntelefono')}</label>
+                                            <input type="text" className="form-control" value={inputs.mobile || "" } onChange={handleChange} placeholder={logged==1 ? USER["mobile"] : t('inseriscic')} name="mobile" id="mobile" readOnly={logged==1 ? "readOnly" : ""} />
                                         </div>
 
                                         <div className="col-md-12 form-group">
-                                            <label htmlFor="message" className="form-contact-1">messaggio</label>
-                                            <textarea className="form-control" name="message" value={inputs.message || "" } onChange={handleChange} placeholder="inserisci messaggio..." id="message"></textarea>
+                                            <label htmlFor="message" className="form-contact-1">{t('messaggio')}</label>
+                                            <textarea className="form-control" name="message" value={inputs.message || "" } onChange={handleChange} placeholder={t('inseriscim')} id="message"></textarea>
                                         </div>
 
                                         <div className="col-md-6 form-group">
                                             <input type="checkbox" id="checkPrivacy" name="checkPrivacy" onClick={()=>handlePrivacy()}/>
-                                            <label htmlFor="checkPrivacy" className="form-contact-1">testoPrivacy </label>
+                                            <label htmlFor="checkPrivacy" className="form-contact-1">{t('testoprivacy')} </label>
                                         </div>
 
                                         <div className="col-md-6 form-group">
-                                            {!loader ? <button onClick={()=>handleSubmit()} className="btn btn-primary d-block w-100" value="Invia"></button> : <Loader />}
+                                            {!loader ? <button onClick={()=>handleSubmit()} className="btn btn-primary d-block w-100" value={t('invia')}></button> : <Loader />}
                                         </div>
                                     </div>
 
@@ -156,10 +156,10 @@ function Affiliate (props){
                 <div className="container">
                     <div className="row ">
                         <div className="col-md-6 aos-init aos-animate" data-aos="fade-up">
-                            <p className="section-heading">paragrafo10+skinmetatitle</p>
+                            <p className="section-heading">{t('affiliazionea')+SKIN["meta_title"]+t('affiliazionea2')}</p>
                         </div>
                         <div className="col-md-6 aos-init aos-animate" data-aos="fade-up">
-                            <p className="section-heading">paragrafo3+skinmetatitle</p>
+                            <p className="section-heading">{SKIN["meta_title"]+t('affiliazionep3')}</p>
                         </div>
                     </div>
                 </div>

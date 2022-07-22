@@ -24,10 +24,12 @@ export const ConvertObjectToArray = (object) =>{
         arrUtilizzo1.push(key);
     });
 
-    objectArray.forEach(([key, value]) => {
+    arrUtilizzo1.map(indice => {
 
-        arrUtilizzo2.push(value);
-    });
+        console.log(indice)
+
+        arrUtilizzo2.push(object[indice]);
+    })
 
     var ArrTotale = [];
 

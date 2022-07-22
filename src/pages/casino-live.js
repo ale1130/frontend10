@@ -124,7 +124,7 @@ function CasinoLive(props) {
                                 <div className="container">
 
                                     <img src={skinUrl + TEMPLATE_WEBDIR(SKIN) + "/assets/img/casino-live/casino-live-2.png"} className="img-lobby-p" />
-                                    <h2>Casino Live</h2>
+                                    <h2>{t('casinolive')}</h2>
                                     <div className="box box-2">
                                         <div className="box-content">
 

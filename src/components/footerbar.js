@@ -2,9 +2,13 @@ import { useEffect, useState } from "react"
 
 import TawkTo from "tawkto-react";
 
+import { useTranslation } from "react-i18next";
+
 export const FooterBar = () =>{
 
     const [chat, setChat] = useState(false);
+
+    const { t, i18n } = useTranslation();
 
     const openChat = () => {
         setChat(true);
@@ -33,7 +37,7 @@ export const FooterBar = () =>{
                         </a>
                         
                         <a className="b-b-footer" href="/promotions/">
-                            Promozioni                
+                            {t('promozioni')}                
                         </a>
                     </div>
 
@@ -41,7 +45,7 @@ export const FooterBar = () =>{
                     
                         <a href="https://wa.me/message/U5NZBWTRYSVHF1" target="_blank">
                             <button className="b-b-footer" type="button" id="whatsappButton">
-                                whatsapp
+                                WhatsApp
                             </button>
                         </a>
                         
@@ -53,9 +57,9 @@ export const FooterBar = () =>{
                             
                             <div className="dropdown-menu d-d-footer show" aria-labelledby="dropdownMenuButton1" x-placement="top-start">
                             
-                                <p><a onClick={()=>openChat()}>Chat Live</a></p>
-                                <p><a href="mailto:info@gamesolutions.org">Invia email</a></p>
-                                <p><a href="mailto:documents@gamesolutions.org">Invia documenti</a></p>
+                                <p><a onClick={()=>openChat()}>Chat {t('dalvivo')}</a></p>
+                                <p><a href="mailto:info@gamesolutions.org">{t('invia')} Email</a></p>
+                                <p><a href="mailto:documents@gamesolutions.org">{t('invia')} {t('documenti')}</a></p>
                                 
                             </div>
                         </div>                                 
