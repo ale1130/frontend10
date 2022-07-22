@@ -31,7 +31,7 @@ function Sport (props){
                         alert("error");
                         setUrlIframe('error');
                     }
-                    console.log(response);
+                    
                 })
 
         } catch (e) {
@@ -53,7 +53,7 @@ function Sport (props){
     
     return (
         <>
-            {!loader ? <> {urlIframe != 'error' ? <iframe src={urlIframe}></iframe> : <><div>E' incorso un problema durante il caricamento della sezione sport, si prega di ricaricare la pagina</div></>} </> : <Loader />}
+            {!loader ? <> {urlIframe != 'error' ? <iframe className="framesport" src={urlIframe}></iframe> : <><div>E' incorso un problema durante il caricamento della sezione sport, si prega di ricaricare la pagina</div></>} </> : <Loader />}
             
         </>
     )

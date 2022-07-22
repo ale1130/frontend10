@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowIcon, IconSearch } from "../components/icons";
 import { SlickSlider } from "../components/SlickSlider";
 import { CasinoFrame } from "../components/iframecasino";
+import { Loader } from "../components/spinner";
 
 const Jackpots = (props) => {
 
@@ -635,18 +636,16 @@ function Casino(props) {
         }
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
         console.log(loader)
-    }, [loader])
+    }, [loader])*/
 
     return (
         <>
             {loader < 5 ?
 
                 <>
-                    <Spinner animation="border" role="status">
-                        <span>Loading...</span>
-                    </Spinner>
+                    <Loader />
                 </>
 
                 :

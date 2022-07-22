@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+/*import { useEffect } from "react";
 import TawkTo from "tawkto-react";
 
 function TawkComponent (){
@@ -21,4 +21,4 @@ function TawkComponent (){
     }
 }
 
-export {TawkComponent}
+export {TawkComponent}*/

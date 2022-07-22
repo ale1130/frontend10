@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 
-import TawkTo from "tawkto-react";
-
 import {
   BrowserRouter as Router,
   Routes,
@@ -562,22 +560,6 @@ function App() {
 
   //useEffect(()=>{console.log(loader)},[loader])
 
-  useEffect(() => {
-        
-    var tawk = new TawkTo('62065c2fb9e4e21181be9eff', '1frkdg6qe')
-
-    tawk.onStatusChange((status) => 
-    {
-      console.log(status)
-    })
-  }, [])
-
-  const componentDidMount = () =>{
-    
-    var tawk = new TawkTo('62065c2fb9e4e21181be9eff', '1frkdg6qe')
-    tawk.hideWidget()
-  }
-
   return (
     <>
 
@@ -631,7 +613,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home setShowC={() => setShow(true)} statoLogin={isLogged} immagini={slideShowImages} skin={SKIN} />} />
               {checkSkinSett(skinSettings, 'show_sport') ? <Route path="/sport" element={<Sport user={USER} />} /> : ''}
-              <Route path="/sport-live" element={<SportLive />} />
+              <Route path="/sport-live" element={<Sport user={USER} />} />
               {checkSkinSett(skinSettings, 'show_casino') ? <Route path="/casino" element={<Casino isLogged={isLogged} skin={SKIN} childModalButton={() => setShow(true)} user={USER} />} /> : ''}
               {checkSkinSett(skinSettings, 'show_casinolive') ? <Route path="/casino-live" element={<CasinoLive skin={SKIN} user={USER} islogged={isLogged} login={() => setShow(true)} />} /> : ''}
               {checkSkinSett(skinSettings, 'show_poker') ? <Route path="/poker" element={<Poker />} /> : ''}

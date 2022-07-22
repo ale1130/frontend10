@@ -1,4 +1,27 @@
+import { useEffect, useState } from "react"
+
+import TawkTo from "tawkto-react";
+
 export const FooterBar = () =>{
+
+    const [chat, setChat] = useState(false);
+
+    const openChat = () => {
+        setChat(true);
+    }
+
+    useEffect(() => {
+
+        if(chat){
+            var tawk = new TawkTo('62065c2fb9e4e21181be9eff', '1frkdg6qe')
+    
+            tawk.onStatusChange((status) => 
+            {
+            console.log(status)
+            })
+        }
+    }, [chat])
+
     return(
         <div className="bottom-bar">
             <div className="row">
@@ -30,7 +53,7 @@ export const FooterBar = () =>{
                             
                             <div className="dropdown-menu d-d-footer show" aria-labelledby="dropdownMenuButton1" x-placement="top-start">
                             
-                                <p><a onclick="openChat()">Chat Live</a></p>
+                                <p><a onClick={()=>openChat()}>Chat Live</a></p>
                                 <p><a href="mailto:info@gamesolutions.org">Invia email</a></p>
                                 <p><a href="mailto:documents@gamesolutions.org">Invia documenti</a></p>
                                 
