@@ -134,13 +134,13 @@ export const Aviator = (props) => {
                     :
 
                     <>
-                        <div id="howToPlayAviatorContent">
+                        <div>
                             <div className="container">
                                 <div className="box box-1">
 
                                     <div className="box-header">
                                         {t('comesigioca')}
-                                        <a onClick={()=>setInfoGame(!infoGame)} id="closeHowToPlayAviatorContent"><i className="fa fa-arrow-left"></i>{t('indietro')}</a>
+                                        <a onClick={()=>setInfoGame(!infoGame)}><i className="fa fa-arrow-left"></i>{t('tornaindietro')}</a>
                                     </div>
 
                                     <div className="box-content">
@@ -151,7 +151,7 @@ export const Aviator = (props) => {
                                                         <div >
                                                             <h3 >{t('aviatorcosa')}</h3>
                                                         </div>
-                                                        <p>{t('avatorcosar')}</p>
+                                                        <p>{t('aviatorcosar')}</p>
                                                     </li>
                                                     <li >
                                                         <div >
@@ -186,7 +186,7 @@ export const Aviator = (props) => {
                                                         </p>
                                                     </li>
                                                 </ul>
-                                                <div id="liveCasinoSlider" className="carousel slide" data-ride="carousel">
+                                                <div className="carousel slide" data-ride="carousel">
                                                     <div className="carousel slide" data-ride="carousel">
                                                         <div >
                                                             <div className="carousel-inner">
@@ -229,8 +229,8 @@ export const Aviator = (props) => {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <a className="carousel-control-prev" href="#liveCasinoSlider" data-slide="prev"><img src={skinUrl + TEMPLATE_WEBDIR(SKIN)+"/assets/img/spribe/arr-left.png"} /></a>
-                                                    <a className="carousel-control-next" href="#liveCasinoSlider" data-slide="next"><img src={skinUrl + TEMPLATE_WEBDIR(SKIN)+"/assets/img/spribe/arr-right.png"} /></a>
+                                                    <a className="carousel-control-prev" data-slide="prev"><img src={skinUrl + TEMPLATE_WEBDIR(SKIN)+"/assets/img/spribe/arr-left.png"} /></a>
+                                                    <a className="carousel-control-next" data-slide="next"><img src={skinUrl + TEMPLATE_WEBDIR(SKIN)+"/assets/img/spribe/arr-right.png"} /></a>
                                                 </div>
                                             </div>
                                         </div>

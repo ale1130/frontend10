@@ -151,5 +151,20 @@
   "descraviator":"Moltiplica i tuoi guadagni man mano che il tuo Aviator aumenta",
   "comeaviator":"Come si gioca al gioco Aviator",
   "comesigioca":"Come si gioca",
-  "tornaindietro":"Torna indietro"
+  "tornaindietro":"Torna indietro",
+  "aviatorcosa":"QUAL È IL NUOVO GIOCO AVIATOR?",
+  "aviatorcosar":"Aviator è un nuovo gioco in cui chiunque può vincere fino a 10.000 €",
+  "aviatorcome":"COME GIOCARE?",
+  "aviatorcomeguadagnor":"Dopo aver piazzato la scommessa, l'utente deve attendere che il simbolo dell'aereo raggiunga l'altezza. L'utente deve incassare i soldi prima che il simbolo del gioco raggiunga l'altezza e scompaia dalla schermata di gioco. Nel caso in cui il simbolo scompaia prima di premere il pulsante di incassa, il giocatore perde l'importo della puntata. Quando viene utilizzata la funzione di incasso automatic, il denaro viene incassato quando l'indice supera l'importo selezionato di 0,01. Esempio: se scegli l'indice 2.0X, incasserai/scommetterai automaticamente a 2.01X.",
+  "aviatorcomeguadagno":"COME SI GUADAGNA?",
+  "aviatordettagli":"DETTAGLI AGGIUNTIVI",
+  "aviatordettaglir":"L'altezza del simbolo del gioco Aviator non è determinata e varia da 1,00 a infinito. Guadagni massimi per utente basati sul tour: 10.000 €",
+  "aviatorformula":"FORMULA VINCENTE",
+  "aviatorformular":"Le vincite vengono calcolate con la seguente formula: Importo della puntata X rapporto altezza attuale Dopo aver incassato l'importo della vincita verrà riportata istantaneamente sul saldo.",
+  "aviators1":"1- Prima di iniziare il round successivo, scegli l'importo della puntata desiderato.",
+  "aviators2":"2- Clicca sul pulsante scommetti.",
+  "aviators3":"3- Dopo aver piazzato una scommessa, attendi che il simbolo raggiunga l'altezza desiderata e incassa prima che l'aereo voli completamente",
+  "aviators4":"4- Oppure usa la funzione di scambio automatico delle scommesse e attendi il volo successivo.",
+  "aviators5":"5- Facendo clic sul pulsante 'Più', puoi piazzare due scommesse contemporaneamente.",
+  "aviators6":"6- Due scommesse ti danno una doppia opzione di strategia e l'opportunità di raddoppiare il tuo profitto."
 }
