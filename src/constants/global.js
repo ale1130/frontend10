@@ -26,8 +26,6 @@ export const ConvertObjectToArray = (object) =>{
 
     arrUtilizzo1.map(indice => {
 
-        console.log(indice)
-
         arrUtilizzo2.push(object[indice]);
     })
 
@@ -419,8 +417,6 @@ export const closeFullscreen = () => {
 }
 
 export const getNamesCategory = (name) =>{
-
-    console.log(name)
 
     switch(name){
 

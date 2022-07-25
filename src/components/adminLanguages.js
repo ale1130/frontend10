@@ -58,6 +58,8 @@ export const LanguagesInglese = () =>{
 
         parola = parola.replace("?","qmark");
         parola = parola.replace(/%/g, "subperc");
+        parola = parola.replace("/", "slash");
+        parola = parola.replace("#", "hash");
 
         const data = await api
         .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
@@ -143,7 +145,9 @@ export const LanguagesTedesco = () =>{
 
         parola = parola.replace("?","qmark");
         parola = parola.replace(/%/g, "subperc");
-
+        parola = parola.replace("/", "slash");
+        parola = parola.replace("#", "hash");
+    
         const data = await api
         .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
         .then(response => {
@@ -228,6 +232,8 @@ export const LanguagesTurco = () =>{
 
         parola = parola.replace("?","qmark");
         parola = parola.replace(/%/g, "subperc");
+        parola = parola.replace("/", "slash");
+        parola = parola.replace("#", "hash");
 
         const data = await api
         .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
@@ -313,6 +319,8 @@ export const LanguagesArabo = () =>{
 
         parola = parola.replace("?","qmark");
         parola = parola.replace(/%/g, "subperc");
+        parola = parola.replace("/", "slash");
+        parola = parola.replace("#", "hash");
 
         const data = await api
         .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
@@ -398,6 +406,8 @@ export const LanguagesRumeno = () =>{
 
         parola = parola.replace("?","qmark");
         parola = parola.replace(/%/g, "subperc");
+        parola = parola.replace("/", "slash");
+        parola = parola.replace("#", "hash");
 
         const data = await api
         .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
@@ -483,6 +493,8 @@ export const LanguagesCinese = () =>{
 
         parola = parola.replace("?","qmark");
         parola = parola.replace(/%/g, "subperc");
+        parola = parola.replace("/", "slash");
+        parola = parola.replace("#", "hash");
 
         const data = await api
         .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
@@ -568,6 +580,8 @@ export const LanguagesSpagnolo = () =>{
 
         parola = parola.replace("?","qmark");
         parola = parola.replace(/%/g, "subperc");
+        parola = parola.replace("/", "slash");
+        parola = parola.replace("#", "hash");
 
         const data = await api
         .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
@@ -653,6 +667,8 @@ export const LanguagesFrancese = () =>{
 
         parola = parola.replace("?","qmark");
         parola = parola.replace(/%/g, "subperc");
+        parola = parola.replace("/", "slash");
+        parola = parola.replace("#", "hash");
 
         const data = await api
         .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
@@ -738,6 +754,8 @@ export const LanguagesPortoghese = () =>{
 
         parola = parola.replace("?","qmark");
         parola = parola.replace(/%/g, "subperc");
+        parola = parola.replace("/", "slash");
+        parola = parola.replace("#", "hash");
 
         const data = await api
         .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
@@ -823,6 +841,8 @@ export const LanguagesBrasiliano = () =>{
 
         parola = parola.replace("?","qmark");
         parola = parola.replace(/%/g, "subperc");
+        parola = parola.replace("/", "slash");
+        parola = parola.replace("#", "hash");
 
         const data = await api
         .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
@@ -908,6 +928,8 @@ export const LanguagesUngherese = () =>{
 
         parola = parola.replace("?","qmark");
         parola = parola.replace(/%/g, "subperc");
+        parola = parola.replace("/", "slash");
+        parola = parola.replace("#", "hash");
 
         const data = await api
         .get('/rest/translate/:'+parola+"/:it/:"+a+"/")
