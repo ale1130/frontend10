@@ -81,8 +81,8 @@ export const ComponentBankW = (props) =>{
                 <tbody>
                     <tr>
                         <td>
-                            <h2 className="virtual-title">Prelievo con {method.name}</h2>
-                            <h4 className="virtual-title">Compila il form per procedere con la richiesta di prelievo</h4>
+                            <h2 className="virtual-title">{t('prelievocon')} {method.name}</h2>
+                            <h4 className="virtual-title">{t('formprelievo')}</h4>
                             <hr className="border-hr" />
 
                             <div className="row">
@@ -91,7 +91,7 @@ export const ComponentBankW = (props) =>{
                                 </div>
 
                                 <div className="col-md-9">
-                                    Inoltra una richiesta di prelievo con bonifico SEPA, ricevi il tuo denaro entro 24 ore *Tutte le richiesta di prelievo sono sottoposte ad autorizzazione e vengono gestiti nelle 24 ore successive alla richiesta stessa. Senza l'addebito di alcuna commissione.
+                                    {t('descrprelievobank')}
                                 </div>
                             </div>
 
@@ -104,39 +104,35 @@ export const ComponentBankW = (props) =>{
 
                                     <label htmlFor="amount" className="color-top">
 
-                                        <strong>Importo da prelevare</strong> Importo minimo: {method.min_with} {SKIN["currency"]}
+                                        <strong>{t('importodaprev')}</strong> {t('importom')}: {method.min_with} {SKIN["currency"]}
                                     </label>
 
-                                    <input type="text" name="amount" value={inputs.amount || ""} onChange={handleChange} className="form-control margin-bottom-5" id="amount" placeholder="Inserisci qui l'importo" />
+                                    <input type="text" name="amount" value={inputs.amount || ""} onChange={handleChange} className="form-control margin-bottom-5" id="amount" placeholder={t('insertim')} />
                                 </div>
 
                                 <div className="col-sm-4">
-                                    <label htmlFor="fullname" className="color-top"><strong>Nome e cognome</strong></label>
+                                    <label htmlFor="fullname" className="color-top"><strong>{t('nec')}</strong></label>
 
-                                    <input type="text" name="fullname" value={inputs.fullname || ""} onChange={handleChange} autoComplete="off" className="form-control" id="fullname" placeholder="nome e cognome" />
+                                    <input type="text" name="fullname" value={inputs.fullname || ""} onChange={handleChange} autoComplete="off" className="form-control" id="fullname" placeholder={t('insertnec')} />
 
                                 </div>
 
 
                                 <div className="col-sm-4">
-
-
                                     <label htmlFor="amount" className="color-top"><strong>IBAN</strong></label>
 
-                                    <input type="text" name="iban" value={inputs.iban || ''} onChange={handleChange} className="form-control margin-bottom-5" id="iban" placeholder="Inserisci il tuo IBAN" />
+                                    <input type="text" name="iban" value={inputs.iban || ''} onChange={handleChange} className="form-control margin-bottom-5" id="iban" placeholder={t('inserisciiban')} />
                                 </div>
 
                                 <div className="col-sm-4">
-
-
                                     <label htmlFor="amount" className="color-top"><strong>SWIFT</strong></label>
 
-                                    <input type="text" name="swift" value={inputs.swift || ''} onChange={handleChange} className="form-control margin-bottom-5" id="swift" placeholder="Opzionale" />
+                                    <input type="text" name="swift" value={inputs.swift || ''} onChange={handleChange} className="form-control margin-bottom-5" id="swift" placeholder={t('opzionale')} />
                                 </div>
 
                                 <div className="col-sm-4">
 
-                                    <button className="login" onClick={()=>handleSubmit()} >Procedi al prelievo <i className="fa fa-angle-right"></i></button>
+                                    <button className="login" onClick={()=>handleSubmit()}>{t('procediprel')}<i className="fa fa-angle-right"></i></button>
                                 </div>
 
                             </div>

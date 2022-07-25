@@ -121,7 +121,7 @@ function ComponentCreditCard (props){
                 <tbody>
                     <tr>
                         <td>
-                            <h2 className="virtual-title">Versamento con {method.name}</h2>
+                            <h2 className="virtual-title">{t('versamentocon')} {method.name}</h2>
                             <hr className="border-hr" />
 
                             <div className="row">
@@ -139,15 +139,15 @@ function ComponentCreditCard (props){
 
                                     <label htmlFor="amount" className="color-top">
 
-                                        <strong>Importo da versare</strong> Importo minimo: {method.min_dep} {SKIN["currency"]}
+                                        <strong>{t('importodav')}</strong> {t('importom')}: {method.min_dep} {SKIN["currency"]}
                                     </label>
 
-                                    <input type="text" name="amount" value={inputs.amount || ""} onChange={handleChange} className="form-control margin-bottom-5" id="amount" placeholder="Inserisci qui l'importo" />
+                                    <input type="text" name="amount" value={inputs.amount || ""} onChange={handleChange} className="form-control margin-bottom-5" id="amount" placeholder={t('insertim')} />
                                 </div>
 
                                 <div className="col-sm-4">
 
-                                    <button className="login" onClick={()=>handleSubmit()} >Procedi al pagamento <i className="fa fa-angle-right"></i></button>
+                                    <button className="login" onClick={()=>handleSubmit()}>{t('procedip')} <i className="fa fa-angle-right"></i></button>
                                 </div>
 
                                 <PromoCode handleChangePromocode={handleChangePromocode} handleChange={handleChange} inputs={inputs}/>

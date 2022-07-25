@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { PROVIDERS_LOGO_WEB_PATH, api, skinUrl, convertToFormdata, ConvertObjectToArraySlideshow, MEDIA_SLIDESHOWS_WEB_PATH } from "../constants/global";
-
-import Spinner from 'react-bootstrap/Spinner';
+import { PROVIDERS_LOGO_WEB_PATH, api, skinUrl, convertToFormdata, getNamesCategory } from "../constants/global";
 
 import "react-slideshow-image/dist/styles.css";
-import { Fade } from 'react-slideshow-image';
 
 import axios from "axios";
 
@@ -23,6 +20,8 @@ const Jackpots = (props) => {
     const jackpot1 = SKIN["jackpot_1"];
     const jackpot2 = SKIN["jackpot_2"];
     const jackpot3 = SKIN["jackpot_3"];
+
+    const { t, i18n } = useTranslation();
 
     return (
 
@@ -51,7 +50,7 @@ const Jackpots = (props) => {
                 </div>
                 <div className="col-12">
                     <div className="wordCarousel">
-                        <h1>Jackpot Win</h1>
+                        <h1>{t('vittoriaj')}</h1>
                         <div>
                             <ul className="flip5 first-t">
                                 {jackpots.map(jackpot => {
@@ -148,9 +147,6 @@ const Providers = (props) => {
                             <a onClick={() => handleProvider(provider.id)}><img src={PROVIDERS_LOGO_WEB_PATH(SKIN) + provider.img + "?v=" + today} className={"provider-" + provider.nome} /></a>
                         </div>
                     ))}
-
-
-
                 </div>
 
                 <div className="search-box">
@@ -171,6 +167,8 @@ const TypoGiochi = (props) => {
     const currentSubcategory = props.currentSub;
     const setData = props.setinput;
 
+    const { t, i18n } = useTranslation();
+
     const handleCategory = (dato) => {
         setData(inputs => ({ ...inputs, "subcategory": dato, "provider": "", "page": 1, "search":'' }));
     }
@@ -190,7 +188,7 @@ const TypoGiochi = (props) => {
                         <>{(subCategories.map(subcategory =>
 
                             <div key={subcategory.id} className={currentSubcategory && currentSubcategory == subcategory.id ? "pul-type-play games-subcategory active" : "pul-type-play games-subcategory"} id={"subcategory-" + subcategory.id}>
-                                <a onClick={() => handleCategory(subcategory.id)} > {subcategory.name} <span> {subcategory.totale} </span></a>
+                                <a onClick={() => handleCategory(subcategory.id)} > {t(getNamesCategory(subcategory.name))} <span> {subcategory.totale} </span></a>
                             </div>
                         ))}</>
 
@@ -624,7 +622,7 @@ function Casino(props) {
         if (loaderGames == false) {
 
             if (inputs.page != 1) {
-                window.scrollTo(0, 2000 * inputs.page);
+                window.scrollTo(0, 1700 * inputs.page);
             }
         }
     }, [loaderGames])
@@ -684,14 +682,12 @@ function Casino(props) {
                             {loaderGames ?
 
                                 <>
-                                    <Spinner animation="border" role="status">
-                                        <span className="visually-hidden">Loading...</span>
-                                    </Spinner>
+                                    <Loader />
                                 </>
 
                                 :
                                 <>
-                                    {games.length > 0 ? <Games user={USER["id"]} skin={SKIN} games={games} loggato={logged} login={() => openLogin()} /> : <div>Non abbiamo trovato giochi con questa ricerca...</div>}
+                                    {games.length > 0 ? <Games user={USER["id"]} skin={SKIN} games={games} loggato={logged} login={() => openLogin()} /> : <div>{t('nogamesearc')}</div>}
                                 </>
                             }
 
@@ -706,7 +702,8 @@ function Casino(props) {
                                                 <div className="show-all-p">
                                                     <a onClick={() => handlePage()} id="loadNextPageLink">
                                                         <ArrowIcon />
-                                                        Carica altri giochi</a>
+                                                        {t('caricagiochi')}
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -721,7 +718,7 @@ function Casino(props) {
 
                         :
 
-                        <div><h2 className="nogames">Ci dispiace ma al momento non è stato possibile individuare nessun provider e/o gioco per questa sezione, si prega di riprovare più tardi o di conttattare l'assistenza tecnica</h2></div>
+                        <div><h2 className="nogames">{t('nogamesorprov')}</h2></div>
 
                     }
                 </>

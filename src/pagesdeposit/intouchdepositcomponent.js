@@ -123,20 +123,13 @@ function ComponentIntouch (props){
                         <tr>
                             <td>
 
-                                <h2 className="virtual-title">Versamento con Intouch</h2>
+                                <h2 className="virtual-title">{t('versamentocon')} Intouch</h2>
                                 <hr className="border-hr" />
 
                                 <div className="col-md-12">
                                     <div className="alert alert-warning">
                                         <div className="alert-text">
-                                            Pour vos dépôts avec Orange Money Burkina, composez *144*4*6*montant# sur votre portable
-                                            pour obtenir un code OTP. Puis saisissez votre numéro de paiement, le code OTP reçu et
-                                            montant à payer dans les champs ci-dessous.<br />
-                                            Pour les autres paiements, saisissez votre numéro de paiement et le montant à payer puis
-                                            suivre les instructions.<br />
-                                            Le format du téléphone doit être précédé de l’indicatif de votre pays. Par exemple :
-                                            22701020304.<br />
-                                            Pour plus d‘infos : info@jackpotbet24.com<br />
+                                            {t('descrlint')}
                                         </div>
                                     </div>
                                 </div>
@@ -181,8 +174,8 @@ function ComponentIntouch (props){
 
                                 <div className="row">
                                     <div className="col-sm-6">
-                                        <label for="amount_fiat" className="color-top"><strong>Importo da versare EUR</strong></label>
-                                        <input type="text" name="amount" value={inputs.amount || ""} onChange={handleChange} autocomplete="off" className="form-control margin-bottom-5" id="amount_fiat" placeholder="Inserisci qui l'importo" />
+                                        <label for="amount_fiat" className="color-top"><strong>{t('importodav')} EUR</strong></label>
+                                        <input type="text" name="amount" value={inputs.amount || ""} onChange={handleChange} autocomplete="off" className="form-control margin-bottom-5" id="amount_fiat" placeholder={t('inserisciim')} />
                                     </div>
                                 </div>
 
@@ -194,7 +187,7 @@ function ComponentIntouch (props){
                                 <div className="row">
                                     <div className="col-md-12">
                                         <div className="col-sm-4  pd-l-2" align="center">
-                                            <button className="login" onClick={()=>handleSubmit()}>Procedi al pagamento<i className="fa fa-angle-right"></i></button>
+                                            <button className="login" onClick={()=>handleSubmit()}>{t('procedip')}<i className="fa fa-angle-right"></i></button>
                                         </div>
                                     </div>
                                 </div>

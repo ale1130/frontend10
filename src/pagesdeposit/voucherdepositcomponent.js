@@ -84,7 +84,7 @@ function ComponentVoucher (props){
                         <tr>
                             <td>
                                     
-                                <h2 className="virtual-title">Versamento con {method.name}</h2>
+                                <h2 className="virtual-title">{t('versamentocon')} {method.name}</h2>
                                 <hr className="border-hr" />
 
                                 <div className="row">
@@ -92,22 +92,20 @@ function ComponentVoucher (props){
                                         <img src={method.img} />
                                     </div>
                                     <div className="col-md-9">
-                                        I Voucher rappresentano la soluzione ideale per chi vuole ricaricare il proprio conto di gioco in modo rapido e sicuro.
-                                        I Voucher funzionano come una normale ricarica telefonica, con un codice da immettere sul sito.
-                                        Dopo aver convalidato il codice, ricevereai in maniera istantanea il credito sul conto gioco senza il pagamento di alcuna commissione.                    
+                                        {t('descrlvoucher')}                    
                                     </div>
                                 </div>
 
                                 {error ? <ErrorBox message={errorMessages}/> : <></>}
-                                {success ? <SuccessBox message={"Complimenti il tuo deposito è stato effettuato con successo!"}/> : <></>}
+                                {success ? <SuccessBox message={t('depositosuccess')}/> : <></>}
 
                                 <div className="row">
 
                                     <div className="col-sm-8 pd-r-2">
 
-                                        <label for="amount" className="color-top"><strong>Codice voucher:</strong>(Codice a 5 Caratteri)</label>
+                                        <label for="amount" className="color-top"><strong>{t('codvoucher')}:</strong>({t('codcinque')})</label>
 
-                                        <input type="text" name="codiceVoucher" value={inputs.codiceVoucher || ""} onChange={handleChange} autocomplete="off" className="form-control margin-bottom-5" id="codiceVoucher" placeholder="Inserisci qua il codice del tuo Voucher" />
+                                        <input type="text" name="codiceVoucher" value={inputs.codiceVoucher || ""} onChange={handleChange} autocomplete="off" className="form-control margin-bottom-5" id="codiceVoucher" placeholder={t('insertcode')} />
 
                                     </div>
 

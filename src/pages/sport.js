@@ -1,4 +1,5 @@
 import axios from "axios";
+import { t } from "i18next";
 import React, { useEffect, useState } from "react";
 import { Loader } from "../components/spinner";
 import { convertToFormdata, skinUrl } from "../constants/global";
@@ -53,7 +54,7 @@ function Sport (props){
     
     return (
         <>
-            {!loader ? <> {urlIframe != 'error' ? <iframe className="framesport" src={urlIframe}></iframe> : <><div>E' incorso un problema durante il caricamento della sezione sport, si prega di ricaricare la pagina</div></>} </> : <Loader />}
+            {!loader ? <> {urlIframe != 'error' ? <iframe className="framesport" src={urlIframe}></iframe> : <><div>{t('nosport')}</div></>} </> : <Loader />}
             
         </>
     )

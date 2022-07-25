@@ -158,7 +158,11 @@ export const Aviator = (props) => {
                                                             <h3 >{t('aviatorcome')}</h3>
                                                         </div>
                                                         <ul>
-                                                            {t('aviatorcomer')}
+                                                            <li>{t('aviatorcomer1')}</li>
+                                                            <li>{t('aviatorcomer2')}</li>
+                                                            <li>{t('aviatorcomer3')}</li>
+                                                            <li>{t('aviatorcomer4')}</li>
+                                                            <li>{t('aviatorcomer5')}</li>
                                                         </ul>
                                                     </li>
                                                     <li >

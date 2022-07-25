@@ -76,7 +76,7 @@ function Promotions (props){
                                         <div className="card-body">
                                             <h5>{promo.nome}</h5>
                                             <p>{promo.breve_descrizione}</p>
-                                            <a href={"promo?n="+promo.id} className="login">Vedi Promozione</a>
+                                            <a href={"promo?n="+promo.id} className="login">{t('vedipromozione')}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@ function Promotions (props){
                     
                     : 
                     
-                        <div>Non è stato possibil eindividuare nessuna promozione al momento</div>
+                        <div>{t('nopromo')}</div>
                     }
                 </>
 

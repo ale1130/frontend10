@@ -417,3 +417,27 @@ export const closeFullscreen = () => {
 
     window.document.exitFullscreen();
 }
+
+export const getNamesCategory = (name) =>{
+
+    console.log(name)
+
+    switch(name){
+
+        case 'Popular games':
+            return "giochipopolari"
+        break;
+
+        case 'New games':
+            return "nuovigiochi"
+        break;
+
+        case 'Table games':
+            return "giochitavolo"
+        break;
+
+        default :
+            return "undefined"
+        break;
+    }
+}

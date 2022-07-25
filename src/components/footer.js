@@ -74,8 +74,7 @@ function Footer(props) {
 
 
                     <div>
-                        {/*<img src={SKIN_FOOTER_IMG_WEB_PATH(SKIN) + SKIN["footer_img"]} className="multiplatform" /><br />*/}
-
+                        <img src={SKIN_FOOTER_IMG_WEB_PATH(SKIN) + SKIN["footer_img"]} className="multiplatform" /><br />
                     </div>
                 </div>
 
@@ -98,7 +97,7 @@ function Footer(props) {
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-4">
-                            <img src={"https://betplay360.com" + TEMPLATE_WEBDIR(SKIN) + "/assets/img/icon-browser.png"} className="multiplatform icon-saturation" />
+                            <img src={skinUrl + TEMPLATE_WEBDIR(SKIN) + "/assets/img/icon-browser.png"} className="multiplatform icon-saturation" />
                         </div>
 
                         <div className="col-lg-4">

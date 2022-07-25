@@ -70,8 +70,8 @@ function Deposit (props){
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h2 className="virtual-title">Versamento</h2>
-                                            <p>Seleziona il metodo di pagamento</p>
+                                            <h2 className="virtual-title">{t('versamento')}</h2>
+                                            <p>{t('selezmetodo')}</p>
 
                                             <div className="row">
 
@@ -84,9 +84,9 @@ function Deposit (props){
 
                                                             <div className="box-info-payment">
                                                                 <h3>{metodo.name}</h3>
-                                                                <p>Effettua un deposito istantaneo con {metodo.name} </p>
+                                                                <p>{t('depositacon')} {metodo.name} </p>
 
-                                                                <a href={"/account/deposit/"+metodo.method_code} className="login">Deposita ora</a>
+                                                                <a href={"/account/deposit/"+metodo.method_code} className="login">{t('depositnow')}</a>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -123,17 +123,13 @@ function ComponentLidgicash (props){
                         <tr>
                             <td>
 
-                                <h2 className="virtual-title">Versamento con Intouch</h2>
+                                <h2 className="virtual-title">{t('versamentocon')} Intouch</h2>
                                 <hr className="border-hr" />
 
                                 <div className="col-md-12">
                                     <div className="alert alert-warning">
                                         <div className="alert-text">
-                                        Vous pouvez faire un retrait ou un dépôt sans compte Ligdicash.<br />
-                                        Pour plus de sécurité et mieux suivre vos transactions nous vous prions de bien vouloir créer un compte Ligdicash.<br />
-                                        Pour plus d‘infos: info@jackpotbet24.com<br /><br />
-
-                                        Le numéro de transfert doit être le numéro utilisé lors de l’enregistrement. Si ce n’est pas le cas Jackpotbet24 pourrait vous demandez de justifier votre identité.
+                                            {t('descrlintouch')}
                                         </div>
                                     </div>
                                 </div>
@@ -157,8 +153,8 @@ function ComponentLidgicash (props){
 
                                 <div className="row">
                                     <div className="col-sm-6">
-                                        <label for="amount_fiat" className="color-top"><strong>Importo da versare EUR</strong></label>
-                                        <input type="text" name="amount" value={inputs.amount || ""} onChange={handleChange} autocomplete="off" className="form-control margin-bottom-5" id="amount_fiat" placeholder="Inserisci qui l'importo" />
+                                        <label for="amount_fiat" className="color-top"><strong>{t('importodav')} EUR</strong></label>
+                                        <input type="text" name="amount" value={inputs.amount || ""} onChange={handleChange} autocomplete="off" className="form-control margin-bottom-5" id="amount_fiat" placeholder={t('inserisciim')} />
                                     </div>
                                 </div>
 
@@ -169,7 +165,7 @@ function ComponentLidgicash (props){
                                 <div className="row">
                                     <div className="col-md-12">
                                         <div className="col-sm-4  pd-l-2" align="center">
-                                            <button className="login" onClick={()=>handleSubmit()}>Procedi al pagamento<i className="fa fa-angle-right"></i></button>
+                                            <button className="login" onClick={()=>handleSubmit()}>{t('procedip')}<i className="fa fa-angle-right"></i></button>
                                         </div>
                                     </div>
                                 </div>

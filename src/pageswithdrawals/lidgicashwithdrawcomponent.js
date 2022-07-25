@@ -9,13 +9,13 @@ function ComponentLidgicashW (props){
                     <tr>
                         <td>
                     
-                            <h2 class="virtual-title">Versamento con Crypto</h2>
+                            <h2 class="virtual-title">{t('prelievocon')} Crypto</h2>
                             <hr class="border-hr" />
 
                             <div class="col-md-12">
                                 <div class="alert alert-warning">
                                     <div class="alert-text">
-                                        This payment method is temporarily suspended.
+                                        {t('metodosospeso')}
                                     </div>
                                 </div>
                             </div>

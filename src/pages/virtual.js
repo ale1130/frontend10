@@ -123,7 +123,7 @@ function Virtual(props) {
 
                                     <img src={skinUrl + "/templates/acqua/assets/img/virtual/sports-big-2.png"} className="img-lobby-p" />
 
-                                    <h2>Virtual</h2>
+                                    <h2>{t('virtual')}</h2>
 
                                     <div className="box box-2">
                                         <div className="box-content">
@@ -151,7 +151,7 @@ function Virtual(props) {
                                                 :
 
                                                 <>
-                                                    <div>Ci dispiace ma al momento non è stato possible individuare nessuna lobbby di gioco nella sezione casino-virtual si prega di attendere e riprovare più tardi, se ritieni che si tratti di un nostro errore ti preghiamo di conttare l'assistenza tecnica</div>
+                                                    <div>{t('nolobbyvirtual')}</div>
                                                 </>
                                             }
 

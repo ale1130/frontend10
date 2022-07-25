@@ -228,7 +228,7 @@ function Messages(props) {
                                 <tr>
                                     <td>
 
-                                        <h2 className="virtual-title">Messaggi ricevuti</h2>
+                                        <h2 className="virtual-title">{t('messaggir')}</h2>
 
 
 
@@ -236,26 +236,26 @@ function Messages(props) {
 
                                             <div className="col-md-6 form-group">
 
-                                                <label>Categoria Messaggio:</label>
+                                                <label>{t('categoriam')}:</label>
 
                                                 <SelectCatMex name={"message_cat"} value={inputs.message_cat || ""} onchange={() => handleChange} />
                                             </div>
 
                                             <div className="col-lg-6 col-md-8 margin-top-14px">
-                                                <label className="col-form-label">Oggetto:</label>
+                                                <label className="col-form-label">{t('oggetto')}:</label>
                                                 <input type="text" className="form-control kt-input" placeholder="Oggetto" name="object" id="object" value={inputs.object || ""} onChange={handleChange} />
                                             </div>
 
                                             <div className="col-lg-6 col-md-8 margin-top-14px">
 
-                                                <label className="col-form-label">Data ricezione:</label>
+                                                <label className="col-form-label">{t('datarice')}:</label>
 
                                                 <SelectPeriod onchange={handleChangeData} />
 
                                             </div>
 
                                             <div className="col-lg-6 col-md-8 margin-top-14px">
-                                                <label className="col-form-label">Stato Messaggio:</label>
+                                                <label className="col-form-label">{t('statom')}:</label>
 
                                                 <SelectMexStato name={"message_stato"} value={inputs.message_stato || ""} onchange={() => handleChange} />
                                             </div>
@@ -287,7 +287,7 @@ function Messages(props) {
                                                     </div>
 
                                                     <div className="col-6">
-                                                        <strong>Totale pagine{pages}</strong>
+                                                        <strong>{t('totalep')}{pages}</strong>
                                                     </div>
                                                 </div>
 
@@ -303,7 +303,7 @@ function Messages(props) {
 
                                         <div className="pagination-content;"></div>
 
-                                        <a onClick={() => reload()}><span className="fa fa-refresh"></span>Aggiorna</a>
+                                        <a onClick={() => reload()}><span className="fa fa-refresh"></span>{t('aggiorna')}</a>
 
                                         {loader ? <Loader /> :
 
@@ -315,19 +315,19 @@ function Messages(props) {
                                                             <thead>
                                                                 <tr>
                                                                     <td scope="col">
-                                                                        Oggetto
+                                                                        {t('oggetto')}
                                                                     </td>
                                                                     <td scope="col">
-                                                                        Categoria
+                                                                        {t('categoria')}
                                                                     </td>
                                                                     <td scope="col">
-                                                                        Stato
+                                                                        {t('stato')}
                                                                     </td>
                                                                     <td scope="col">
-                                                                        Data ricezione
+                                                                        {t('datarice')}
                                                                     </td>
                                                                     <td scope="col">
-                                                                        Azioni
+                                                                        {t('azioni')}
                                                                     </td>
                                                                 </tr>
                                                             </thead>
@@ -354,7 +354,7 @@ function Messages(props) {
                                                                                             {convertDate(messaggio.addedTime)}
                                                                                         </td>
                                                                                         <td>
-                                                                                            {messaggio.stato == 1 ? <><button onClick={() => ChangeState(messaggio.id, 1)}>Visualizza</button>/<button onClick={() => ChangeState(messaggio.id, 2)}>Elimina</button></> : <button onClick={() => ChangeState(messaggio.id, 1)}>Visualizza</button>}
+                                                                                            {messaggio.stato == 1 ? <><button onClick={() => ChangeState(messaggio.id, 1)}>{t('visual')}</button>/<button onClick={() => ChangeState(messaggio.id, 2)}>{t('delete')}</button></> : <button onClick={() => ChangeState(messaggio.id, 1)}>{t('visual')}</button>}
                                                                                         </td>
                                                                                     </>
                                                                                 </tr>
@@ -369,7 +369,7 @@ function Messages(props) {
                                                                     <tbody>
                                                                         <tr>
                                                                             <td colSpan="5">
-                                                                                Nessun messaggio visualizzabile...
+                                                                                {t('nomex')}
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -377,16 +377,12 @@ function Messages(props) {
 
                                                             }
                                                         </table>
-
+                                                        
                                                         <br />
-
                                                     </div>
                                                 </div>
-
                                             </>
-
                                         }
-
                                     </td>
                                 </tr>
                             </tbody>

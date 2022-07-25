@@ -81,8 +81,8 @@ function ComponentPixW(props) {
                 <tbody>
                     <tr>
                         <td>
-                            <h2 className="virtual-title">Prelievo con {method.name}</h2>
-                            <h4 className="virtual-title">Compila il form per procedere con la richiesta di prelievo</h4>
+                            <h2 className="virtual-title">{t('prelievocon')} {method.name}</h2>
+                            <h4 className="virtual-title">{t('formprelievo')}</h4>
                             <hr className="border-hr" />
 
                             <div className="row">
@@ -91,7 +91,7 @@ function ComponentPixW(props) {
                                 </div>
 
                                 <div className="col-md-9">
-                                    PIX è un nuovo metodo di pagamento in Brasile per effettuare bonifici bancari diretti e istantanei, creato e di proprietà della Central Bank e utilizzato dalle banche brasiliane, dai conti digitali e dai wallet.
+                                    {t('descrlpix')}
                                 </div>
                             </div>
 
@@ -104,16 +104,16 @@ function ComponentPixW(props) {
 
                                     <label htmlFor="amount" className="color-top">
 
-                                        <strong>Importo da prelevare</strong> Importo minimo: {method.min_with} {SKIN["currency"]}
+                                        <strong>{t('importodaprev')}</strong> {t('importom')}: {method.min_with} {SKIN["currency"]}
                                     </label>
 
-                                    <input type="text" name="amount" value={inputs.amount || ""} onChange={handleChange} className="form-control margin-bottom-5" id="amount" placeholder="Inserisci qui l'importo" />
+                                    <input type="text" name="amount" value={inputs.amount || ""} onChange={handleChange} className="form-control margin-bottom-5" id="amount" placeholder={t('insertim')} />
                                 </div>
 
                                 <div className="col-sm-4">
-                                    <label htmlFor="fullname" className="color-top"><strong>Nome e cognome</strong></label>
+                                    <label htmlFor="fullname" className="color-top"><strong>{t('nec')}</strong></label>
 
-                                    <input type="text" name="fullname" value={inputs.fullname || ""} onChange={handleChange} autoComplete="off" className="form-control" id="fullname" placeholder="nome e cognome" />
+                                    <input type="text" name="fullname" value={inputs.fullname || ""} onChange={handleChange} autoComplete="off" className="form-control" id="fullname" placeholder={t('insertnec')} />
 
                                 </div>
 
@@ -121,13 +121,13 @@ function ComponentPixW(props) {
                                 <div className="col-sm-4">
 
 
-                                    <label htmlFor="amount" className="color-top"><strong>Inserisci il tuo cpf</strong></label>
+                                    <label htmlFor="amount" className="color-top"><strong>{t('insertcpf')}</strong></label>
 
-                                    <input type="text" name="cpf" value={inputs.cpf || ''} className="form-control margin-bottom-5" id="cpf" placeholder="Inserisci il tuo cpf" maxLength="14" readOnly />
+                                    <input type="text" name="cpf" value={inputs.cpf || ''} className="form-control margin-bottom-5" id="cpf" placeholder={t('insertcpf')} maxLength="14" readOnly />
                                 </div>
 
                                 <div className="col-sm-4">
-                                    <label htmlFor="cpf" className="color-top"><strong>Tipo di chiave</strong></label>
+                                    <label htmlFor="cpf" className="color-top"><strong>{t('keytype')}</strong></label>
                                     <select type="text" name="pixtype" autoComplete="off" className="form-control" id="pixtype" placeholder="" value={inputs.pixtype || ""} onChange={handleChange}>
                                         <option value="CPF">CPF</option>
                                         <option value="PHONE">PHONE</option>
@@ -137,15 +137,15 @@ function ComponentPixW(props) {
                                 </div>
 
                                 <div className="col-sm-4" hidden={inputs.pixtype=="CPF" ? "" : "hidden"}>
-                                    <label htmlFor="pixkey" className="color-top"><strong>Chiave</strong></label>
+                                    <label htmlFor="pixkey" className="color-top"><strong>{t('key')}</strong></label>
 
-                                    <input type="text" name="pixkey" value={inputs.pixkey || ""} onChange={handleChange} autoComplete="off" className="form-control" id="pixkey" placeholder="chive" />
+                                    <input type="text" name="pixkey" value={inputs.pixkey || ""} onChange={handleChange} autoComplete="off" className="form-control" id="pixkey" placeholder={t('key')} />
 
                                 </div>
 
                                 <div className="col-sm-4">
 
-                                    <button className="login" onClick={()=>handleSubmit()} >Procedi al prelievo <i className="fa fa-angle-right"></i></button>
+                                    <button className="login" onClick={()=>handleSubmit()} >{t('procediprel')}<i className="fa fa-angle-right"></i></button>
                                 </div>
 
                             </div>

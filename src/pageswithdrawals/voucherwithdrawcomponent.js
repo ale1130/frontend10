@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import ErrorBox from "../components/errorBox";
 import SuccessBox from "../components/successBox";
-import { convertToFormdata, skinUrl, stringToHTML } from "../constants/global";
+import { convertToFormdata, skinUrl } from "../constants/global";
 
 import { useTranslation } from "react-i18next";
 import { ModalVoucher } from "../components/modalvoucher";
@@ -102,7 +102,7 @@ function ComponentVoucherW (props){
                                 skin={SKIN}
                             />}
                                     
-                                <h2 className="virtual-title">Prelievo con {method.name}</h2>
+                                <h2 className="virtual-title">{t('prelievocon')} {method.name}</h2>
                                 <hr className="border-hr" />
 
                                 <div className="row">
@@ -110,29 +110,27 @@ function ComponentVoucherW (props){
                                         <img src={method.img} />
                                     </div>
                                     <div className="col-md-9">
-                                        I Voucher rappresentano la soluzione ideale per chi vuole ricaricare il proprio conto di gioco in modo rapido e sicuro.
-                                        I Voucher funzionano come una normale ricarica telefonica, con un codice da immettere sul sito.
-                                        Dopo aver convalidato il codice, ricevereai in maniera istantanea il credito sul conto gioco senza il pagamento di alcuna commissione.                    
+                                        {t('descrlvoucher')}
                                     </div>
                                 </div>
 
                                 {error ? <ErrorBox message={errorMessages}/> : <></>}
-                                {success ? <SuccessBox message={successMessage} param={<a href="/account/vouchers">Vai alla tua area Voucher</a>}/> : <></>}
+                                {success ? <SuccessBox message={successMessage} param={<a href="/account/vouchers">{t('areavoucher')}</a>}/> : <></>}
 
-                                {button!="empty" ? <button onClick={()=>visualVoucher()}>Visualizza voucher</button> : ""}
+                                {button!="empty" ? <button onClick={()=>visualVoucher()}>{t('visualv')}</button> : ""}
 
                                 <div className="row">
 
                                     <div className="col-sm-8 pd-r-2">
 
-                                        <strong>Importo da prelevare</strong> Importo minimo: {method.min_with} {SKIN["currency"]}
+                                        <strong>{t('importodaprev')}</strong> {t('importom')}: {method.min_with} {SKIN["currency"]}
 
-                                        <input type="text" name="amount" value={inputs.amount || ""} onChange={handleChange} autoComplete="off" className="form-control margin-bottom-5" id="amount" placeholder="Inserisci qua il codice del tuo Voucher" />
+                                        <input type="text" name="amount" value={inputs.amount || ""} onChange={handleChange} autoComplete="off" className="form-control margin-bottom-5" id="amount" placeholder={t('insertcodev')} />
 
                                     </div>
 
                                     <div className="col-sm-4  pd-l-2" align="center">
-                                        <button onClick={()=>handleSubmit()} className="login">Genera subito il tuo voucher<i className="fa fa-angle-right"></i></button>
+                                        <button onClick={()=>handleSubmit()} className="login">{t('generavoucher')}<i className="fa fa-angle-right"></i></button>
                                     </div>
 
                                 </div>

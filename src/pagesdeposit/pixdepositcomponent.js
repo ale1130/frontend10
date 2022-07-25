@@ -130,7 +130,7 @@ function ComponentPix(props) {
                 <tbody>
                     <tr>
                         <td>
-                            <h2 className="virtual-title">Versamento con {method.name}</h2>
+                            <h2 className="virtual-title">{t('versamentocon')} {method.name}</h2>
                             <hr className="border-hr" />
 
                             <div className="row">
@@ -139,7 +139,7 @@ function ComponentPix(props) {
                                 </div>
 
                                 <div className="col-md-9">
-                                    PIX è un nuovo metodo di pagamento in Brasile per effettuare bonifici bancari diretti e istantanei, creato e di proprietà della Central Bank e utilizzato dalle banche brasiliane, dai conti digitali e dai wallet.
+                                    {t('descrlpix')}
                                 </div>
                             </div>
 
@@ -152,24 +152,24 @@ function ComponentPix(props) {
 
                                     <label htmlFor="amount" className="color-top">
 
-                                        <strong>Importo da versare</strong> Importo minimo: {method.min_dep} {SKIN["currency"]}
+                                        <strong>{t('importov')}</strong> {t('importom')}: {method.min_dep} {SKIN["currency"]}
                                     </label>
 
-                                    <input type="text" name="amount" value={inputs.amount || ""} onChange={handleChange} className="form-control margin-bottom-5" id="amount" placeholder="Inserisci qui l'importo" />
+                                    <input type="text" name="amount" value={inputs.amount || ""} onChange={handleChange} className="form-control margin-bottom-5" id="amount" placeholder={t('insertim')} />
                                 </div>
 
 
                                 <div className="col-sm-4">
 
 
-                                    <label htmlFor="amount" className="color-top"><strong>Inserisci il tuo cpf</strong></label>
+                                    <label htmlFor="amount" className="color-top"><strong>{t('insertcpf')}</strong></label>
 
-                                    <input type="text" name="cpf" value={inputs.cpf || ''} className="form-control margin-bottom-5" id="cpf" placeholder="Inserisci il tuo cpf" maxLength="14" readOnly />
+                                    <input type="text" name="cpf" value={inputs.cpf || ''} className="form-control margin-bottom-5" id="cpf" placeholder={t('insertcpf')} maxLength="14" readOnly />
                                 </div>
 
                                 <div className="col-sm-4">
 
-                                    <button className="login" onClick={()=>handleSubmit()} >Procedi al pagamento <i className="fa fa-angle-right"></i></button>
+                                    <button className="login" onClick={()=>handleSubmit()}> {t('procedip')} <i className="fa fa-angle-right"></i></button>
                                 </div>
 
                                 <PromoCode handleChangePromocode={handleChangePromocode} handleChange={handleChange} inputs={inputs}/>
