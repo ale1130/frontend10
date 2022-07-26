@@ -1837,3 +1837,10 @@ button.btn-search>svg {
   color: #fff;
   font-weight: 600;
 }
+
+/*svg whatsapp*/
+
+.svgwhatsapp > svg{
+  width: 22px;
+  fill: white;
+}

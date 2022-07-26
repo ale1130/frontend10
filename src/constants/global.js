@@ -437,3 +437,8 @@ export const getNamesCategory = (name) =>{
         break;
     }
 }
+
+export const currentLanguage = () =>{
+    const currlang = cookies.get("la");
+    return  currlang;
+}

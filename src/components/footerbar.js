@@ -5,8 +5,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import TawkTo from "tawkto-react";
 
 import { useTranslation } from "react-i18next";
-import { SelectLanguages } from "./languagesselector";
-import { PhoneIcon } from "./icons";
+import { LanguagesButton, SelectLanguagesFooter } from "./languagesselector";
+import { ChatIcon, PhoneIcon, WhatsAppIcon } from "./icons";
 
 export function FooterBar (props){
 
@@ -49,34 +49,37 @@ export function FooterBar (props){
                     <div className="b-footer-left">
 
                         <a href="https://wa.me/message/U5NZBWTRYSVHF1" target="_blank">
-                            <button className="b-b-footer" type="button" id="whatsappButton">
-                                WhatsApp
+                            <button className="b-b-footer svgwhatsapp" type="button" id="whatsappButton">
+                                <WhatsAppIcon />
                             </button>
                         </a>
 
+                        <Dropdown>
+                            <Dropdown.Toggle>
+                                <ChatIcon />
+                            </Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                                <div className="dropdown-menu d-d-footer show" aria-labelledby="dropdownMenuButton1" x-placement="top-start">
+                                    <p><a onClick={() => openChat()}>Chat {t('dalvivo')}</a></p>
+                                    <p><a href="mailto:info@gamesolutions.org">{t('invia')} Email</a></p>
+                                    <p><a href="mailto:documents@gamesolutions.org">{t('invia')} {t('documenti')}</a></p>
+                                </div>
+                            </Dropdown.Menu>
+                        </Dropdown>
+
                         <div className="dropdown show">
 
-                            <button className="b-b-footer" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="true">
-                                dropdown
-                            </button>
-
                             <Dropdown>
-                                <Dropdown.Toggle variant="success" id="dropdown-basic">
-
+                                <Dropdown.Toggle>
+                                    <LanguagesButton />
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <SelectLanguages skin={SKIN} svgphone={<PhoneIcon />} />
+                                    <SelectLanguagesFooter skin={SKIN}/>
                                 </Dropdown.Menu>
                             </Dropdown>
-
-                            <div className="dropdown-menu d-d-footer show" aria-labelledby="dropdownMenuButton1" x-placement="top-start">
-
-                                <p><a onClick={() => openChat()}>Chat {t('dalvivo')}</a></p>
-                                <p><a href="mailto:info@gamesolutions.org">{t('invia')} Email</a></p>
-                                <p><a href="mailto:documents@gamesolutions.org">{t('invia')} {t('documenti')}</a></p>
-
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
