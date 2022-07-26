@@ -5,8 +5,10 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import TawkTo from "tawkto-react";
 
 import { useTranslation } from "react-i18next";
+import { SelectLanguages } from "./languagesselector";
+import { PhoneIcon } from "./icons";
 
-export const FooterBar = () => {
+export function FooterBar (props){
 
     const SKIN = props.skin;
 
