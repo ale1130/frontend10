@@ -108,13 +108,8 @@ function Voucher (props){
 
     const showVoucher = (voucher) =>{
         setRealVoucher(voucher)
+        setShow(true);
     }
-
-    useEffect(()=>{
-        if(realVoucher!="empty"){
-            setShow(true);
-        }
-    },[realVoucher])
 
     return (
         <>
