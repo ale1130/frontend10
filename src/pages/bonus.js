@@ -183,7 +183,7 @@ function Bonus (props){
                     <tbody>
                         <tr>
                             <td>
-                                <h2 className="virtual-title">I tuoi bonus</h2>
+                                <h2 className="virtual-title">{t('tuoib')}</h2>
                                 <hr className="border-hr" />
 
                                 <div className="row">
@@ -193,7 +193,7 @@ function Bonus (props){
                                             
                                         <div className="input-group">
                                         
-                                            <label className="col-form-label">Periodo</label>
+                                            <label className="col-form-label">{t('periodo')}</label>
                                             
                                             <SelectPeriod onchange={handleChangeData}/>
                                         </div>
@@ -204,7 +204,7 @@ function Bonus (props){
                                         <div>
                                             <button onClick={()=>handleSubmit()} className="login button-account-m-p" id="btnRicerca" name="btnRicerca" ><i className="fa fa-search"></i> {t('cerca')} </button>
                                             <button onClick={()=>unsetInput()} className="login button-account-m-p" id="btnFiltri" name="btnFiltri"><i className="fa fa-times"></i> {t('toglifiltri')}</button>
-                                            <a onClick={()=>aggiorna()}><span className="fa fa-refresh"></span>Aggiorna tutto</a>
+                                            <a onClick={()=>aggiorna()}><span className="fa fa-refresh"></span>{t('aggiorna')} {t('tutto')}</a>
                                         </div>
                                     </div>
 
@@ -226,7 +226,7 @@ function Bonus (props){
                                             </div>
 
                                             <div className="col-6">
-                                                <strong>Totale pagine{pages}</strong>
+                                                <strong>{t('totalep')} {pages}</strong>
                                             </div>
                                         </div>
 
@@ -241,23 +241,23 @@ function Bonus (props){
 
                                             <tr>
                                                 <td scope="col">
-                                                    Data              
+                                                    {t('data')}              
                                                 </td>
 
                                                 <td scope="col">
-                                                    Nome                
+                                                    {t('nome')}                
                                                 </td>
 
                                                 <td scope="col">
-                                                    Scadenza                
+                                                    {t('scadenza')}                
                                                 </td>
 
                                                 <td scope="col">
-                                                    Importo accreditato                
+                                                    {t('importoacc')}                
                                                 </td>
 
                                                 <td scope="col">
-                                                    Stato                
+                                                    {t('stato')}                
                                                 </td>
                                             </tr>
 
@@ -299,7 +299,7 @@ function Bonus (props){
 
                                                 <tr>
                                                     <td colSpan="4">
-                                                        Nessun bonus visualizzabile...                
+                                                        {t('nobonus')}                
                                                     </td>
                                                 </tr>
                                             }
@@ -319,18 +319,18 @@ function Bonus (props){
                                 {!loaderJackpots ?
                                 
                                     <>
-                                        <h2 className="virtual-title">Jackpots assegnati</h2>
+                                        <h2 className="virtual-title">{t('jackpotsass')}</h2>
 
                                         <table className="responsive-p">
                                             <thead>
 
                                                 <tr>
                                                     <td scope="col">
-                                                        Data              
+                                                        {t('data')}              
                                                     </td>
 
                                                     <td scope="col">
-                                                        Importo accreditato                
+                                                        {t('importoacc')}                
                                                     </td>
                                                 </tr>
 
@@ -359,7 +359,7 @@ function Bonus (props){
 
                                                     <tr>
                                                         <td colSpan="4">
-                                                            Nessun jackpot assegnato...                
+                                                            {t('nojackass')}                
                                                         </td>
                                                     </tr>
                                                 }

@@ -207,7 +207,7 @@ function Coupons (props){
                                         {t('bettype')}:
 
                                         <select className="form-control" name="TypoBet" id="TypoBet" value={inputs.typoBet || ""} onChange={handleChange}>
-                                            <option value="">Seleziona</option>
+                                            <option value="">{"--"+t('seleziona')+"--"}</option>
                                             <option value="e">{t('emissione')}</option>
                                             <option value="c">{t('chiusura')}</option>
                                         </select>
@@ -218,7 +218,7 @@ function Coupons (props){
                                         Categoria:
 
                                         <select className="form-control" name="coupons_search_type" id="coupons_search_type" value={inputs.coupons_search_type || ""} onChange={handleChange}>
-                                            <option value="">Seleziona</option>
+                                            <option value="">{"--"+t('seleziona')+"--"}</option>
                                             <option value="P">{t('prematch')}</option>
                                             <option value="L">{t('live')}</option>
                                             <option value="S">{t('sistema')}</option>
@@ -230,7 +230,7 @@ function Coupons (props){
                                     <div className="col-md-3 form-group">
                                         {t('stato')}:
                                         <select className="form-control" name="status_coupon" id="status_coupon" value={inputs.status_coupon || ""} onChange={handleChange}>
-                                            <option value="">Seleziona</option>
+                                            <option value="">{"--"+t('seleziona')+"--"}</option>
                                             <option value="N">{t('insospeso')}</option>
                                             <option value="L">{t('perso')}</option>
                                             <option value="W">{t('vincente')}</option>
