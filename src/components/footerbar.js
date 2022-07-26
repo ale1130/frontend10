@@ -62,7 +62,7 @@ export const FooterBar = () => {
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-
+                                    <SelectLanguages skin={SKIN} svgphone={<PhoneIcon />} />
                                 </Dropdown.Menu>
                             </Dropdown>
 
