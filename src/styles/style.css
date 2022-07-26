@@ -1803,7 +1803,37 @@ button.btn-search>svg {
 
 /* Iframe sport */
 
-.framesport{
+.framesport {
   width: 100%;
   height: 614.711px;
+}
+
+
+/*bottom bar*/
+.bottom-bar {
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  background: var(--color3);
+  box-shadow: 0 0 10px hsl(0deg 0% 100% / 10%);
+  z-index: 997;
+}
+
+.botton-bar-option {
+  display: flex;
+  justify-content: space-between;
+}
+
+.b-footer-left {
+  display: flex;
+}
+
+.b-b-footer {
+  padding: 10px;
+  background: transparent;
+  border: 0px;
+  border-right: 0.25px solid rgb(255 255 255 / 20%);
+  border-left: 0.25px solid rgb(255 255 255 / 20%);
+  color: #fff;
+  font-weight: 600;
 }
