@@ -699,7 +699,7 @@ function App() {
             methods={countMethods}
           />
 
-          {<FooterBar />}
+          {<FooterBar skin={SKIN} />}
         </>
 
         :

@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next";
 
 export const FooterBar = () => {
 
+    const SKIN = props.skin;
+
     const [chat, setChat] = useState(false);
 
     const { t, i18n } = useTranslation();
