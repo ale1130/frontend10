@@ -70,8 +70,8 @@ function Withdrawals (props){
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h2 className="virtual-title">Prelievo</h2>
-                                            <p>Seleziona il metodo di prelievo</p>
+                                            <h2 className="virtual-title">{t('prelievo')}</h2>
+                                            <p>{t('selectprelmeth')}</p>
 
                                             <div className="row">
 
@@ -84,9 +84,9 @@ function Withdrawals (props){
 
                                                             <div className="box-info-payment">
                                                                 <h3>{metodo.name}</h3>
-                                                                <p>Effettua un prelievo istantaneo con {metodo.name} </p>
+                                                                <p>{t('prelievoist')} {metodo.name} </p>
 
-                                                                <a href={"/account/withdrawals/"+metodo.method_code} className="login">Preleva ora</a>
+                                                                <a href={"/account/withdrawals/"+metodo.method_code} className="login">{t('prelevaora')}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -101,7 +101,7 @@ function Withdrawals (props){
                 
                     :
 
-                    <><div>Ci dispiace ma al momento non risulta attivo nessun metodo di prelievo, prova ad attendere 10 minuti e ricaricare la paghina, se il problema dovesse persistere ti preghiammo di contattare l'assisteza tecnica</div></>
+                    <><div>{t('noprelmeth')}</div></>
                 }</>
                 
 

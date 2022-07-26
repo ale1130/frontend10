@@ -172,7 +172,7 @@ function WithdrawalsRequests (props){
                     <tbody>
                         <tr>
                             <td>
-                                <h2 className="virtual-title">Cerca le tue richieste di prelievo</h2>
+                                <h2 className="virtual-title">{t('serachrequest')}</h2>
                                 <hr className="border-hr" />
 
                                 <div className="row">
@@ -182,7 +182,7 @@ function WithdrawalsRequests (props){
                                                
                                         <div className="input-group">
                                         
-                                            <label className="col-form-label">Data richiesta prelievo</label>
+                                            <label className="col-form-label">{t('datarequest')}</label>
                                             
                                             <SelectPeriod onchange={handleChangeData}/>
                                         </div>
@@ -192,7 +192,7 @@ function WithdrawalsRequests (props){
 
                                     <div className="col-md-3 form-group">
 
-                                        Descrizione risposta               
+                                        {t('answerdesc')}               
 
                                         <input type="text" className="form-control margin-bottom-5" name="answer" id="answer" value={inputs.answer || ""} onChange={handleChange} placeholder="Inserire testo" />
 
@@ -200,32 +200,32 @@ function WithdrawalsRequests (props){
 
                                     <div className="col-md-3 form-group">
                                     
-                                        Valore          
+                                        {t('valore')}          
                                         
                                         <div className="input-group ">
                                         
                                             <div className="input-group-prepend">
-                                                <span className="input-group-text" id="basic-addon1">Da</span>
+                                                <span className="input-group-text" id="basic-addon1">{t('da')}</span>
                                             </div>
                                             
-                                            <input value={inputs.amountDa || ""} onChange={handleChange} type="text" className="form-control kt-input" placeholder="Da" name="amountDa" id="amountDa" />
+                                            <input value={inputs.amountDa || ""} onChange={handleChange} type="text" className="form-control kt-input" placeholder={t('da')} name="amountDa" id="amountDa" />
                                                 
                                             <div className="input-group-prepend">
-                                                <span className="input-group-text">a</span>
+                                                <span className="input-group-text">{t('a')}</span>
                                             </div>
                                             
-                                            <input value={inputs.amountA || ""} onChange={handleChange} type="text" className="form-control kt-input" placeholder="a" name="amountA" id="amountA" />
+                                            <input value={inputs.amountA || ""} onChange={handleChange} type="text" className="form-control kt-input" placeholder={t('a')} name="amountA" id="amountA" />
                                         </div>
                                     </div>
 
                                     <div className="col-md-3 form-group">
-                                        Stato
+                                        {t('stato')}
                                         <select className="form-control kt-input" id="status" name="status" value={inputs.status || ""} onChange={handleChange}>
-                                            <option value="">Seleziona</option>
-                                            <option value="zero">In sospeso</option>
-                                            <option value="2">Negata</option>
-                                            <option value="3">Errore</option>
-                                            <option value="4">Annullata</option>
+                                            <option value="">{"--"+t('seleziona')+"--"}</option>
+                                            <option value="zero">{t('sospeso')}</option>
+                                            <option value="2">{t('negata')}</option>
+                                            <option value="3">{t('errore')}</option>
+                                            <option value="4">{t('annulla')}</option>
                                         </select>
                                     </div>
 
@@ -238,9 +238,9 @@ function WithdrawalsRequests (props){
 
                                 </div>
                                 
-                                <h2 className="virtual-title">I tuoi prelievi</h2>
+                                <h2 className="virtual-title">{t('tuoiprelievi')}</h2>
 
-                                <a onClick={()=>handleSubmit()}><span className="fa fa-refresh"></span>Aggiorna</a>
+                                <a onClick={()=>handleSubmit()}><span className="fa fa-refresh"></span>{t('aggiorna')}</a>
 
                                 {!loader ? <>
 
@@ -260,7 +260,7 @@ function WithdrawalsRequests (props){
                                                 </div>
 
                                                 <div className="col-6">
-                                                    <strong>Totale pagine{pages}</strong>
+                                                    <strong>{t('totalep')} {pages}</strong>
                                                 </div>
                                             </div>
 
@@ -279,23 +279,23 @@ function WithdrawalsRequests (props){
 
                                             <tr>
                                                 <td scope="col">
-                                                    Data richiesta prelievo                
+                                                    {t('datarichiestap')}                
                                                 </td>
 
                                                 <td scope="col">
-                                                    Descrizione risposta                
+                                                    {t('descrisposta')}                
                                                 </td>
 
                                                 <td scope="col">
-                                                    Valore                
+                                                    {t('valore')}                
                                                 </td>
 
                                                 <td scope="col">
-                                                    Stato richiesta                
+                                                    {t('statorequest')}                
                                                 </td>
 
                                                 <td scope="col">
-                                                    Azioni prelievi                
+                                                    {t('azioniprelievi')}                
                                                 </td>
                                             </tr>
 
@@ -326,7 +326,7 @@ function WithdrawalsRequests (props){
                                                             </td>
 
                                                             <td scope="col">
-                                                                {prelievo.request_status==0 && differenceHour(Math.floor(Date.now()/1000),prelievo.addedTime) < 8 ? <button onClick={() => eliminaPrelievo(prelievo.id,prelievo.addedTime)}>Elimina richiesta</button> : <>Nessuna azione</>}
+                                                                {prelievo.request_status==0 && differenceHour(Math.floor(Date.now()/1000),prelievo.addedTime) < 8 ? <button onClick={() => eliminaPrelievo(prelievo.id,prelievo.addedTime)}>{t('deletereq')}</button> : <>{t('noaction')}</>}
                                                             </td>
                                                         </tr>
 
@@ -337,7 +337,7 @@ function WithdrawalsRequests (props){
 
                                                 <tr>
                                                     <td colSpan="4">
-                                                        Nessuna richiesta di prelievo visualizzabile...                
+                                                        {t('norequest')}                
                                                     </td>
                                                 </tr>
                                             }
