@@ -32,6 +32,7 @@
     "react-scripts": "^5.0.1",
     "react-slick": "^0.29.0",
     "react-slideshow-image": "^3.7.5",
+    "start": "^5.1.0",
     "styled-components": "^5.3.5",
     "tawkto-react": "^3.0.1",
     "universal-cookie": "^4.0.4",
