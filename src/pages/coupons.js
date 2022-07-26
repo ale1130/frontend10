@@ -184,13 +184,13 @@ function Coupons (props){
                 <tbody>
                     <tr>
                         <td>		
-                            <h2 className="virtual-title">Scommesse sport</h2>
+                            <h2 className="virtual-title">{t('sportbet')}</h2>
 
                                 <div className="row">
 
                                     <div className="col-md-6 form-group">
                                     
-                                        Periodo
+                                        {t('periodo')}
                                         <div className="input-group ">
                                             <SelectPeriod onchange={handleChangeData} />
                                         </div>
@@ -198,18 +198,18 @@ function Coupons (props){
 
                                     <div className="col-md-6 form-group">
 
-                                        Codice scommessa            
+                                        {t('betcode')}            
                                         <input type="text" name="codice" id="codice" value={inputs.codice || ""} onChange={handleChange} className="form-control margin-bottom-5" placeholder="Codice scommessa" />
                                     </div>
 
                                     <div className="col-md-3 form-group">
 
-                                        Tipologia scommessa:
+                                        {t('bettype')}:
 
                                         <select className="form-control" name="TypoBet" id="TypoBet" value={inputs.typoBet || ""} onChange={handleChange}>
                                             <option value="">Seleziona</option>
-                                            <option value="e">Emissione</option>
-                                            <option value="c">Chiusura</option>
+                                            <option value="e">{t('emissione')}</option>
+                                            <option value="c">{t('chiusura')}</option>
                                         </select>
                                     </div>
                                     
@@ -219,31 +219,31 @@ function Coupons (props){
 
                                         <select className="form-control" name="coupons_search_type" id="coupons_search_type" value={inputs.coupons_search_type || ""} onChange={handleChange}>
                                             <option value="">Seleziona</option>
-                                            <option value="P">Prematch</option>
-                                            <option value="L">Live</option>
-                                            <option value="S">Sistema</option>
-                                            <option value="M">Live &amp; Prematch</option>
+                                            <option value="P">{t('prematch')}</option>
+                                            <option value="L">{t('live')}</option>
+                                            <option value="S">{t('sistema')}</option>
+                                            <option value="M">{t('live')} &amp; {t('prematch')}</option>
                                         </select>
                                     </div>
 
 
                                     <div className="col-md-3 form-group">
-                                        Stato:
+                                        {t('stato')}:
                                         <select className="form-control" name="status_coupon" id="status_coupon" value={inputs.status_coupon || ""} onChange={handleChange}>
                                             <option value="">Seleziona</option>
-                                            <option value="N">In esecuzione</option>
-                                            <option value="L">Perdente</option>
-                                            <option value="W">Vincente</option>
-                                            <option value="V">Nullo</option>
-                                            <option value="C">Rifiutato dal sistema</option>
+                                            <option value="N">{t('insospeso')}</option>
+                                            <option value="L">{t('perso')}</option>
+                                            <option value="W">{t('vincente')}</option>
+                                            <option value="V">{t('nullo')}</option>
+                                            <option value="C">{t('nosystem')}</option>
                                         </select>
                                     </div>
                                     
                                     <div className="col-md-12 form-group">
                                         <div>
-                                            <button onClick={()=>handleSubmit()} className="login button-account-m-p" id="btnRicerca" name="btnRicerca"><i className="fa fa-search"></i> Cerca </button>
-                                            <button onClick={()=>unsetInput()} className="login button-account-m-p" id="btnFiltri" name="btnFiltri"><i className="fa fa-times"></i> Rimuovi filtri </button>
-                                            <a onClick={()=>handleSubmit()}><span className="fa fa-refresh"></span>Aggiorna tutto</a>
+                                            <button onClick={()=>handleSubmit()} className="login button-account-m-p" id="btnRicerca" name="btnRicerca"><i className="fa fa-search"></i> {t('cerca')} </button>
+                                            <button onClick={()=>unsetInput()} className="login button-account-m-p" id="btnFiltri" name="btnFiltri"><i className="fa fa-times"></i> {t('nofilter')} </button>
+                                            <a onClick={()=>handleSubmit()}><span className="fa fa-refresh"></span>{t('aggiorna')} {t('tutto')}</a>
                                         </div>
                                     </div>
 
@@ -274,7 +274,7 @@ function Coupons (props){
                                             </div>
 
                                             <div className="col-6">
-                                                <strong>Totale pagine{pages}</strong>
+                                                <strong>{t('totalep')} {pages}</strong>
                                             </div>
                                         </div>
 
@@ -289,19 +289,19 @@ function Coupons (props){
                                                 <thead>
                                                     <tr>
                                                         <td scope="col">
-                                                            Data            
+                                                            {t('data')}            
                                                         </td>
                                                         <td scope="col">
-                                                            Codice coupon            
+                                                            {t('codicetick')}            
                                                         </td>
                                                         <td scope="col">
-                                                            Importo            
+                                                            {t('importo')}            
                                                         </td>
                                                         <td scope="col">
-                                                            Vincita            
+                                                            {t('vincita')}            
                                                         </td>
                                                         <td scope="col">
-                                                            Stato scommessa            
+                                                            {t('statobet')}            
                                                         </td>
                                                     </tr>
                                                 </thead>
@@ -343,7 +343,7 @@ function Coupons (props){
                                                         <>
                                                             <tr>
                                                                 <td colspan="5">
-                                                                    Non ci sono scommesse...                
+                                                                    {t('nobet')}                
                                                                 </td>
                                                             </tr>
                                                         </>

@@ -134,31 +134,31 @@ function Transactions (props){
                     <tbody>
                         <tr>
                             <td>
-                                <h2 className="virtual-title">Movimenti e saldo</h2>
+                                <h2 className="virtual-title">{t('transactions')}</h2>
                                                 
                                 <div className="row">
 
                                     <div className="col-md-6 form-group">
-                                        Periodo
+                                        {t('periodo')}
                                         <div className="input-group ">
                                             <SelectPeriod onchange={handleChangeData} />
                                         </div>
                                     </div>
                                     
                                     <div className="col-md-6 form-group">
-                                        Tipologia
+                                        {t('typo')}
                                         <select name="type" className="form-control" value={inputs.type || ""} onChange={handleChange}>
-                                            <option value="">Tutte</option>
-                                            <option value="1">Versamento</option>
-                                            <option value="5">Prelievo</option>
-                                            <option value="10">Bonus</option>
+                                            <option value="">{t('tutte')}</option>
+                                            <option value="1">{t('versamento')}</option>
+                                            <option value="5">{t('deposit')}</option>
+                                            <option value="10">{t('bonus')}</option>
                                         </select>
                                     </div>
                                     
                                     <div className="col-md-12 form-group">
-                                        <button onClick={()=>handleSubmit()} className="login button-account-m-p"><i className="fa fa-search"></i>Cerca</button>
+                                        <button onClick={()=>handleSubmit()} className="login button-account-m-p"><i className="fa fa-search"></i>{t('cerca')}</button>
                                         <button onClick={()=>unsetInput()} className="login button-account-m-p" id="btnFiltri" name="btnFiltri"><i className="fa fa-times"></i> {t('toglifiltri')}</button>
-                                        <a onClick={()=>handleSubmit()}><span className="fa fa-refresh"></span>Aggiorna tutto</a>
+                                        <a onClick={()=>handleSubmit()}><span className="fa fa-refresh"></span>{t('aggiorna')} {t('tutto')}</a>
                                     </div>
                                 </div>
                                                     
@@ -186,7 +186,7 @@ function Transactions (props){
                                                 </div>
 
                                                 <div className="col-6">
-                                                    <strong>Totale pagine{pages}</strong>
+                                                    <strong>{t('totalep')} {pages}</strong>
                                                 </div>
                                             </div>
 
@@ -201,19 +201,19 @@ function Transactions (props){
                                                 <thead>
                                                     <tr>
                                                         <td scope="col">
-                                                            Data                
+                                                            {t('data')}                
                                                         </td>
                                                         <td scope="col">
-                                                            Tipologia                
+                                                            {t('typo')}                
                                                         </td>
                                                         <td scope="col">
-                                                            Importo                
+                                                            {t('importo')}                
                                                         </td>
                                                         <td scope="col">
-                                                            Metodo                
+                                                            {t('metodo')}                
                                                         </td>
                                                         <td scope="col">
-                                                            Causale                
+                                                            {t('causale')}                
                                                         </td>
                                                     </tr>
                                                 </thead>
@@ -248,7 +248,7 @@ function Transactions (props){
                                                         <>
                                                             <tr>
                                                                 <td colspan="5">
-                                                                    Non ci sono transazioni...                    
+                                                                    {t('notransactions')}                    
                                                                 </td>
                                                             </tr>
                                                         </>

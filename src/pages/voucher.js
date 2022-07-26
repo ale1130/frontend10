@@ -133,7 +133,7 @@ function Voucher (props){
                         <tr>
                             <td>
                         
-                                <h2 className="virtual-title">I tuoi voucher</h2>
+                                <h2 className="virtual-title">{t('tuoivoucher')}</h2>
                 
                                 <div className="clearfix"></div>
                                     
@@ -157,7 +157,7 @@ function Voucher (props){
                                             </div>
 
                                             <div className="col-6">
-                                                <strong>Totale pagine{pages}</strong>
+                                                <strong>{t('totalep')} {pages}</strong>
                                             </div>
                                         </div>
 
@@ -172,19 +172,19 @@ function Voucher (props){
                                         <thead>
                                             <tr>
                                                 <td scope="col">
-                                                    Codice voucher                
+                                                    {t('vouchercode')}                
                                                 </td>
 
                                                 <td scope="col">
-                                                    Valore                
+                                                    {('valore')}                
                                                 </td>
 
                                                 <td scope="col">
-                                                    Stato                
+                                                    {t('stato')}                
                                                 </td>
 
                                                 <td scope="col">
-                                                    Data creazione                
+                                                    {t('datacre')}                
                                                 </td>
                                             </tr>
                                         </thead>
@@ -224,7 +224,7 @@ function Voucher (props){
                                             <tbody>
                                                 <tr>
                                                     <td colspan="4">
-                                                        Nessun voucher visualizzabile...                    
+                                                        {t('novoucher')}                    
                                                     </td>
                                                 </tr>
                                             </tbody>

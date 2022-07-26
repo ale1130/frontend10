@@ -121,9 +121,9 @@ function Promo (props){
                                                             ?
 
                                                                 <div className="friends">
-                                                                    <h4>Affiliation link:</h4>
+                                                                    <h4>{t('linkaffreg')}:</h4>
                                                                     <input type="text" name="link" id="affiliation_link" className="form-control" value={SKIN["url"]+"/signup-promo/?source=promotions&promocode="+promo.code+"&affiliate_id="+USER["id"]} />
-                                                                    <a className="login" onClick={()=>copy()}>Copia link</a>
+                                                                    <a className="login" onClick={()=>copy()}>{t('copylink')}</a>
                                                                 </div>   
                                                             :
 
@@ -134,7 +134,7 @@ function Promo (props){
                                                     :
 
                                                         <>
-                                                            <a onClick={props.login} className="login">Accedi</a>
+                                                            <a onClick={props.login} className="login">{t('accedi')}</a>
                                                         </>
                                                     }
 
@@ -150,7 +150,7 @@ function Promo (props){
                 
                 : 
                 
-                    <div>Non è stato possibile individuare la promozione </div>
+                    <div>{t('nopromo')}</div>
                 }
             </>
 
