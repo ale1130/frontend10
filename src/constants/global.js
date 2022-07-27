@@ -11,6 +11,8 @@ export const SHOP_LEVEL = 20;
 
 export const CURR_DEVICE = isMobile ? "MOBILE" : "DESKTOP";
 
+export const SkinName = "BetPlay360";
+
 export const ConvertObjectToArray = (object) =>{
 
     var objectArray = Object.entries(object);
