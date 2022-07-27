@@ -5,22 +5,6 @@ import { ConvertObjectToArraySlideshow, MEDIA_SLIDESHOWS_WEB_PATH } from '../con
 
 import { useTranslation } from 'react-i18next';
 
-
-    {/*<script>
-
-        <link
-            rel="stylesheet"
-            type="text/css"
-            charset="UTF-8"
-            href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-        />
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-        />
-    </script>*/}
-
 export const SlickSlider = (props) => {
 
     const { t } = useTranslation();

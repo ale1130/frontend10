@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 
 import Dropdown from 'react-bootstrap/Dropdown';
 
-import TawkTo from "tawkto-react";
+//import TawkTo from "tawkto-react";
 
 import { useTranslation } from "react-i18next";
 import { LanguagesButton, SelectLanguagesFooter } from "./languagesselector";
@@ -20,7 +20,7 @@ export function FooterBar (props){
         setChat(true);
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
 
         if (chat) {
             var tawk = new TawkTo('62065c2fb9e4e21181be9eff', '1frkdg6qe')
@@ -29,7 +29,7 @@ export function FooterBar (props){
                 console.log(status)
             })
         }
-    }, [chat])
+    }, [chat])*/
 
     return (
         <>
