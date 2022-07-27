@@ -560,6 +560,13 @@ function App() {
 
   //useEffect(()=>{console.log(loader)},[loader])
 
+  api
+  .get('rest/userprova/')
+  .then(response => {
+
+    console.log(response)
+  })
+
   return (
     <>
 

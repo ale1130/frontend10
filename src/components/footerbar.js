@@ -6,7 +6,7 @@ import TawkTo from "tawkto-react";
 
 import { useTranslation } from "react-i18next";
 import { LanguagesButton, SelectLanguagesFooter } from "./languagesselector";
-import { ChatIcon, PhoneIcon, WhatsAppIcon } from "./icons";
+import { ChatIcon, HomeIcon, PhoneIcon, StarIcon, WhatsAppIcon } from "./icons";
 
 export function FooterBar (props){
 
@@ -38,11 +38,11 @@ export function FooterBar (props){
 
                     <div className="b-footer-left">
                         <a className="b-b-footer" href="/">
-                            Home
+                            {<HomeIcon />}
                         </a>
 
                         <a className="b-b-footer" href="/promotions/">
-                            {t('promozioni')}
+                            <StarIcon /> {t('promozioni')}
                         </a>
                     </div>
 

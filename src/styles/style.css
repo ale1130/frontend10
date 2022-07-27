@@ -1841,6 +1841,20 @@ button.btn-search>svg {
 /*svg whatsapp*/
 
 .svgwhatsapp > svg{
-  width: 22px;
+  width: 20px;
+  fill: white;
+}
+
+/*Svg home*/
+
+.homestyle {
+  width: 20px;
+  fill: white;
+}
+
+/*Svg start*/
+
+.startstyle {
+  width: 20px;
   fill: white;
 }
