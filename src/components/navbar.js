@@ -162,7 +162,7 @@ const GameSection = (props) => {
                 {USER["username"] == "ale1" && logged ?
 
                     <>
-                        <li className={currentPage == "/languages" ? "active" : ""} key={7}>
+                        <li className={currentPage == "/languages" ? "active" : ""} key={8}>
                             <a href={"/languages" + ""}>
                                 <span>LANGUAGES</span>
                             </a>

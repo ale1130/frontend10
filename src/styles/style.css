@@ -1745,7 +1745,7 @@ div.container-casino:hover>div.middle-button {
   outline: none;
   transition: all .5s ease-in-out;
   background-color: var(--color1);
-  padding-right: 40px;
+  padding-right: 42px;
   color: #fff;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;

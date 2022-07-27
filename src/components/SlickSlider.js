@@ -52,10 +52,10 @@ export const SlickSlider = (props) => {
             <Slider {...settings}>
                 {fadeImages.map((fadeImage, index) => (
 
-                    <>
+                    <div key={fadeImage.url}>
                         <img src={MEDIA_SLIDESHOWS_WEB_PATH(SKIN) + fadeImage.url} />
                         {!logged && <><a href="#" onClick={props.login} className="botton-adv-1">{t('accedi')}</a></>}
-                    </>
+                    </div>
                 ))}
             </Slider>
         </>
