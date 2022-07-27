@@ -618,7 +618,7 @@ function App() {
                 <RegistrationModalPix />
             }
             <Routes>
-              <Route path="/" element={<Home setShowC={() => setShow(true)} statoLogin={isLogged} immagini={slideShowImages} skin={SKIN} />} />
+              <Route path="/i" element={<Home setShowC={() => setShow(true)} statoLogin={isLogged} immagini={slideShowImages} skin={SKIN} />} />
               {checkSkinSett(skinSettings, 'show_sport') ? <Route path="/sport" element={<Sport user={USER} />} /> : ''}
               <Route path="/sport-live" element={<Sport user={USER} />} />
               {checkSkinSett(skinSettings, 'show_casino') ? <Route path="/casino" element={<Casino isLogged={isLogged} skin={SKIN} childModalButton={() => setShow(true)} user={USER} />} /> : ''}
