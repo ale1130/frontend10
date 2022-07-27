@@ -22,7 +22,6 @@
     "react-datepicker": "^4.8.0",
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.1.0",
-    "react-dropdown": "^1.10.0",
     "react-full-screen": "^1.1.1",
     "react-i18next": "^11.17.2",
     "react-loader-spinner": "^5.1.5",
@@ -36,7 +35,6 @@
     "styled-components": "^5.3.5",
     "tawkto-react": "^3.0.1",
     "universal-cookie": "^4.0.4",
-    "use-search-params": "^1.0.4",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
