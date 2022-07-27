@@ -4,17 +4,17 @@ import React from "react";
 function ComponentCrypto (props){
     return (
         <>
-            <table width="100%" class="table table-bordered">
+            <table width="100%" className="table table-bordered">
                 <tbody>
                     <tr>
                         <td>
                     
-                            <h2 class="virtual-title">{t('versamentocon')} Crypto</h2>
-                            <hr class="border-hr" />
+                            <h2 className="virtual-title">{t('versamentocon')} Crypto</h2>
+                            <hr className="border-hr" />
 
-                            <div class="col-md-12">
-                                <div class="alert alert-warning">
-                                    <div class="alert-text">
+                            <div className="col-md-12">
+                                <div className="alert alert-warning">
+                                    <div className="alert-text">
                                         {t('metodosospeso')}
                                     </div>
                                 </div>

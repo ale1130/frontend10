@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import Dropdown from 'react-bootstrap/Dropdown';
 
@@ -32,58 +32,60 @@ export function FooterBar (props){
     }, [chat])
 
     return (
-        <div className="bottom-bar">
-            <div className="row">
-                <div className="col-12 botton-bar-option">
+        <>
+            <div className="bottom-bar">
+                <div className="row">
+                    <div className="col-12 botton-bar-option">
 
-                    <div className="b-footer-left">
-                        <a className="b-b-footer" href="/">
-                            {<HomeIcon />}
-                        </a>
+                        <div className="b-footer-left">
+                            <a className="b-b-footer" href="/">
+                                {<HomeIcon />}
+                            </a>
 
-                        <a className="b-b-footer" href="/promotions/">
-                            <StarIcon /> {t('promozioni')}
-                        </a>
-                    </div>
+                            <a className="b-b-footer" href="/promotions/">
+                                <StarIcon /> {t('promozioni')}
+                            </a>
+                        </div>
 
-                    <div className="b-footer-left">
+                        <div className="b-footer-left">
 
-                        <a href="https://wa.me/message/U5NZBWTRYSVHF1" target="_blank">
-                            <button className="b-b-footer svgwhatsapp" type="button" id="whatsappButton">
-                                <WhatsAppIcon />
-                            </button>
-                        </a>
-
-                        <Dropdown>
-                            <Dropdown.Toggle>
-                                <ChatIcon />
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <div className="dropdown-menu d-d-footer show" aria-labelledby="dropdownMenuButton1" x-placement="top-start">
-                                    <p><a onClick={() => openChat()}>Chat {t('dalvivo')}</a></p>
-                                    <p><a href="mailto:info@gamesolutions.org">{t('invia')} Email</a></p>
-                                    <p><a href="mailto:documents@gamesolutions.org">{t('invia')} {t('documenti')}</a></p>
-                                </div>
-                            </Dropdown.Menu>
-                        </Dropdown>
-
-                        <div className="dropdown show">
+                            <a href="https://wa.me/message/U5NZBWTRYSVHF1" target="_blank">
+                                <button className="b-b-footer svgwhatsapp" type="button" id="whatsappButton">
+                                    <WhatsAppIcon />
+                                </button>
+                            </a>
 
                             <Dropdown>
                                 <Dropdown.Toggle>
-                                    <LanguagesButton />
+                                    <ChatIcon />
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <SelectLanguagesFooter skin={SKIN}/>
+                                    <div className="dropdown-menu d-d-footer show" aria-labelledby="dropdownMenuButton1" x-placement="top-start">
+                                        <p><a onClick={() => openChat()}>Chat {t('dalvivo')}</a></p>
+                                        <p><a href="mailto:info@gamesolutions.org">{t('invia')} Email</a></p>
+                                        <p><a href="mailto:documents@gamesolutions.org">{t('invia')} {t('documenti')}</a></p>
+                                    </div>
                                 </Dropdown.Menu>
                             </Dropdown>
-                            
+
+                            <div className="dropdown show">
+
+                                <Dropdown>
+                                    <Dropdown.Toggle>
+                                        <LanguagesButton />
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                        <SelectLanguagesFooter skin={SKIN}/>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

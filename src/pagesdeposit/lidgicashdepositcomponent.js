@@ -140,7 +140,7 @@ function ComponentLidgicash (props){
                                 <div className="row">
                                     <div className="col-sm-6">
                                         <label for="intouch_region" className="color-top"><strong>Pays</strong></label>
-                                        <select name="lidgi_region" id="lidgi_region" class="form-control margin-bottom-5" value={inputs.lidgi_region || ""} onChange={handleChange}>
+                                        <select name="lidgi_region" id="lidgi_region" className="form-control margin-bottom-5" value={inputs.lidgi_region || ""} onChange={handleChange}>
                                             <option value="">-Sélectionner-</option>
                                             <option value="1">Burkina Faso</option>
                                             <option value="2">Côte d’Ivoire</option>
