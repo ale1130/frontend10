@@ -190,7 +190,7 @@ export const LanguagesButton = () =>{
             langImage="/static-media/flags/Portugal.png";
         break;
 
-        case "pt-br":
+        case "ptbr":
             langImage="/static-media/flags/Brasil.png";
         break;
 
