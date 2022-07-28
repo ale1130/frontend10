@@ -69,19 +69,16 @@ export function FooterBar (props){
                                 </Dropdown.Menu>
                             </Dropdown>
 
-                            <div className="dropdown show">
+                            <Dropdown>
+                                <Dropdown.Toggle>
+                                    <LanguagesButton />
+                                </Dropdown.Toggle>
 
-                                <Dropdown>
-                                    <Dropdown.Toggle>
-                                        <LanguagesButton />
-                                    </Dropdown.Toggle>
-
-                                    <Dropdown.Menu>
-                                        <SelectLanguagesFooter skin={SKIN}/>
-                                    </Dropdown.Menu>
-                                </Dropdown>
+                                <Dropdown.Menu>
+                                    <SelectLanguagesFooter skin={SKIN}/>
+                                </Dropdown.Menu>
+                            </Dropdown>
                                 
-                            </div>
                         </div>
                     </div>
                 </div>
