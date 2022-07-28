@@ -3,7 +3,6 @@ import { api, MEDIA_PROMO_WEB_PATH} from "../constants/global";
 
 import { useTranslation } from "react-i18next";
 import { Loader } from "../components/spinner";
-import { contextType } from "react-modal";
 
 function Promo (props){
 

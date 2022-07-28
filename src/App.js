@@ -629,7 +629,7 @@ function App() {
               <Route path="/aviator" element={<Aviator skin={SKIN} user={USER} islogged={isLogged} login={() => setShow(true)} />} />
 
               <Route path="/promotions" element={<Promotions skin={SKIN} user={USER} islogged={isLogged} />} />
-              <Route path="/promo" element={<Promo skin={SKIN} user={USER} islogged={isLogged} login={() => setShow(true)} />} />
+              <Route path="/promotions/promo" element={<Promo skin={SKIN} user={USER} islogged={isLogged} login={() => setShow(true)} />} />
 
               <Route path="/signup-promo" element={
                 <RegistrationModalAffiliate
