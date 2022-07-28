@@ -408,3 +408,7 @@ div.box-balance>div {
     border-bottom: 0px dotted #ffffff6b;
     padding-bottom: 0px;
 }
+
+.bottom-bar .show {
+    bottom: 45px;
+}
