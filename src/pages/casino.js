@@ -651,7 +651,7 @@ function Casino(props) {
                 <>
                     <div className="container-fluid body-content slider-height">
 
-                        {jackpots != "norecords" && logged && SKIN["jackpot"] == 1 ?
+                        {jackpots != "norecords" && logged && SKIN["jackpot"] == 1 && SKIN["header_version"] != "default" ?
 
 
                             <Jackpots jackpots={jackpots} skin={SKIN} />

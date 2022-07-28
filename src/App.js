@@ -72,6 +72,7 @@ import { Aviator } from "./pages/aviator";
 import { Promo } from "./components/promo";
 import RegistrationModalAffiliate from "./components/registrationAffiliate";
 import { FooterBar } from "./components/footerbar";
+import { Navbar2 } from "./componentsv2/navbarv2";
 
 function App() {
 
