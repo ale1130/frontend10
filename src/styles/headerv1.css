@@ -413,6 +413,28 @@ div.box-balance>div {
     bottom: 45px;
 }
 
+
+.bottom-bar .dropdown>button {
+    padding: 10px 15px;
+    background: transparent;
+    border: 0px;
+    border-right: 0.25px solid rgb(255 255 255 / 20%);
+    border-left: 0.25px solid rgb(255 255 255 / 20%);
+    color: #fff;
+    font-weight: 600;
+    margin: 0px;
+    border-radius: 0px;
+}
+
+.bottom-bar .dropdown>button>svg {
+    width: 20px;
+    fill: white;
+}
+
+.bottom-bar .dropdown>button>img {
+    width: 25px;
+}
+
 .fa-spin {
     -webkit-animation: fa-spin 2s infinite linear;
     animation: fa-spin 2s infinite linear;
