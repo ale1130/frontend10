@@ -412,3 +412,23 @@ div.box-balance>div {
 .bottom-bar .dropdown-menu .show {
     bottom: 45px;
 }
+
+.fa-spin {
+    -webkit-animation: fa-spin 2s infinite linear;
+    animation: fa-spin 2s infinite linear;
+    margin-right: 10px;
+}
+
+
+@keyframes fa-spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+
+}
