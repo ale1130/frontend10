@@ -409,6 +409,6 @@ div.box-balance>div {
     padding-bottom: 0px;
 }
 
-.bottom-bar .show {
+.bottom-bar .dropdown-menu .show {
     bottom: 45px;
 }
