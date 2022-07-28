@@ -1,11 +1,12 @@
 import React from "react";
-import { BoxUtente } from "./boxUtente";
-import { PhoneIcon } from './icons';
-import { GiftIcon } from './icons';
-import { CoinIcon } from "./icons";
-import { SettingsIcon } from './icons';
-import { PersonIcon } from "./icons";
-import { SelectLanguages } from './languagesselector';
+
+import { BoxUtente } from "../components/boxUtente";
+import { PhoneIcon } from "../components/icons";
+import { GiftIcon } from '../components/icons';
+import { CoinIcon } from "../components/icons";
+import { SettingsIcon } from '../components/icons';
+import { PersonIcon } from "../components/icons";
+import { SelectLanguages } from '../components/languagesselector';
 
 import { useTranslation } from 'react-i18next';
 
@@ -13,8 +14,9 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 import '../styles/headerv1.css';
 import { checkSkinSett, SKIN_LOGO_WEB_PATH } from "../constants/global";
+import { JackpotsHeader } from "../components/jackpots";
 
-function Navbar(props) {
+function Navbar2(props) {
 
     const { t } = useTranslation();
 
@@ -43,7 +45,7 @@ function Navbar(props) {
                         </h1>
                         <nav className="nav-menu">
                             
-                            {<GameSection currentPage={props.currentPage} user={USER} logged={props.statoLogin} skinSettings={skinSettings} />}
+                            {<GameSection2 currentPage={props.currentPage} user={USER} logged={props.statoLogin} skinSettings={skinSettings} />}
                             
                         </nav>
                     </div>
@@ -106,12 +108,13 @@ function Navbar(props) {
                 </div>
 
             </header>
+            <JackpotsHeader skin={SKIN} />
         </>
     );
 
 }
 
-const GameSection = (props) => {
+const GameSection2 = (props) => {
 
     const { t } = useTranslation();
 
@@ -175,6 +178,6 @@ const GameSection = (props) => {
     );
 }
 
-export { Navbar };
+export { Navbar2 };
 
-export { GameSection };
+export { GameSection2 };
