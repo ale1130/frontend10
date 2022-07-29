@@ -2,6 +2,7 @@ import React from "react";
 
 import { useTranslation } from 'react-i18next';
 import { CorrectMethodsArray, PROVIDERS_LOGO_WEB_PATH, skinUrl, SKIN_FOOTER_IMG_WEB_PATH, SKIN_LOGO_WEB_PATH, TEMPLATE_WEBDIR } from "../constants/global";
+import { FooterBar } from "./footerbar";
 
 function Footer(props) {
 
@@ -93,6 +94,7 @@ function Footer(props) {
                     </div>
                 </div>
             </footer>
+
             <div className="footer-bottom-bar">
                 <div className="container">
                     <div className="row align-items-center">
@@ -126,6 +128,8 @@ function Footer(props) {
                     </div>
                 </div>
             </div>
+
+            <FooterBar />
         </>
     );
 

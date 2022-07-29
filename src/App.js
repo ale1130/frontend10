@@ -73,6 +73,7 @@ import { Promo } from "./components/promo";
 import RegistrationModalAffiliate from "./components/registrationAffiliate";
 import { FooterBar } from "./components/footerbar";
 import { Navbar2 } from "./componentsv2/navbarv2";
+import Footerv2 from "./componentsv2/footerv2";
 
 function App() {
 
@@ -191,12 +192,14 @@ function App() {
         }
 
         * {
-        --g-main-color-a-normal: ${SKIN["colore10"]};
-        --g-main-color-a-dark: #272b34;
-        --g-main-color-b-normal: #ddd;
-        --g-main-color-b-dark: #bbb;
-        --g-gradient-normal: radial-gradient(circle, #333743, #272b34)
-    }
+          --g-main-color-a-normal: ${SKIN["colore10"]};
+          --g-main-color-a-dark: #272b34;
+          --g-main-color-b-normal: #ddd;
+          --g-main-color-b-dark: #bbb;
+          --g-gradient-normal: radial-gradient(circle, #333743, #272b34);
+        }
+
+        ${SKIN["custom_css"]}
       `);
 
       setLoader(loader + 1);
@@ -574,7 +577,7 @@ function App() {
       {loader >= 9 ?
 
         <>
-
+        
           <Stile />
 
           <Router>
@@ -707,7 +710,6 @@ function App() {
             methods={countMethods}
           />
 
-          {<FooterBar skin={SKIN} />}
         </>
 
         :
