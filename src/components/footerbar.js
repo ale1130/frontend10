@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react"
+import React, { useRef, useState } from "react"
 
 import Dropdown from 'react-bootstrap/Dropdown';
 
-//import TawkTo from "tawkto-react";
+import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 
 import { useTranslation } from "react-i18next";
 import { LanguagesButton, SelectLanguagesFooter } from "./languagesselector";
@@ -20,19 +20,17 @@ export function FooterBar(props) {
         setChat(true);
     }
 
-    /*useEffect(() => {
+    const tawkMessengerRef = useRef();
 
-        if (chat) {
-            var tawk = new TawkTo('62065c2fb9e4e21181be9eff', '1frkdg6qe')
-
-            tawk.onStatusChange((status) => {
-                console.log(status)
-            })
-        }
-    }, [chat])*/
+    const handleMinimize = () => {
+        tawkMessengerRef.current.minimize();
+    };
 
     return (
         <>
+
+            {chat ? <><TawkMessengerReact propertyId="62065c2fb9e4e21181be9eff" widgetId="1frkdg6qe" ref={tawkMessengerRef}/> <button onClick={()=>handleMinimize}>close chat</button></> : <></>}
+
             <div className="bottom-bar">
                 <div className="row">
                     <div className="col-12 botton-bar-option">
