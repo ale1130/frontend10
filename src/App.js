@@ -16,7 +16,7 @@ import { NoLogged } from "./components/schermatanolog";
 
 //global
 
-import { api, checkSkinSett, convertObjectStringToNumbers, ConvertObjectToArraySlideshow, MINUTE_MS } from "./constants/global";
+import { api, checkSkinSett, convertObjectStringToNumbers, ConvertObjectToArraySlideshow, MINUTE_MS, SKIN_FAVICON_WEB_PATH } from "./constants/global";
 
 //Rotte
 
@@ -167,6 +167,7 @@ function App() {
 
     if (SKIN != "empty" && loader == 0) {
       setLoader(loader + 1);
+      document.title = SKIN["meta_title"];
     }
   }, [SKIN]);
 
@@ -635,6 +636,17 @@ function App() {
   }
 
   const RealFooter = getFooter();
+
+
+  function setFavicons(favImg){
+    let headTitle = document.querySelector('head');
+    let setFavicon = document.createElement('link');
+    setFavicon.setAttribute('rel','shortcut icon');
+    setFavicon.setAttribute('href',favImg);
+    headTitle.appendChild(setFavicon);
+  }
+
+  setFavicons(SKIN_FAVICON_WEB_PATH(SKIN)+SKIN["favicon_img"]);
 
   return (
     <>

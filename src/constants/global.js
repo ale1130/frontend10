@@ -265,6 +265,10 @@ export const LOBBIES_LOGO_WEB_PATH = (SKIN) =>{
     return SKIN["cdn_url"]+"/lobbies/img/";
 }
 
+export const SKIN_FAVICON_WEB_PATH = (SKIN) =>{
+    return SKIN["cdn_url"]+"/skins/favicon/";
+}
+
 export const TEMPLATE_WEBDIR = (SKIN) =>{
 
     var CURRENT_THEME = "";
