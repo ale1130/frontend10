@@ -7,7 +7,7 @@ import SuccessBox from "../components/successBox";
 
 import { api } from "../constants/global";
 import { useTranslation } from "react-i18next";
-import { LoaderFetch } from "../components/spinner";
+import { Loader } from "../components/spinner";
 
 function Password(props) {
 
@@ -157,7 +157,7 @@ function Password(props) {
 
                                             {modalError ? <ErrorBox message={errorMessage} /> : ""} {modalSuccess ? <SuccessBox message={successMessage} /> : ""}
 
-                                            {loader ? <LoaderFetch /> : ""}
+                                            {loader ? <Loader /> : ""}
 
                                             <table width="100%" className="table table-bordered profile-table">
                                                 <tbody>
