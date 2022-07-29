@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { LanguagesButton, SelectLanguagesFooter } from "./languagesselector";
 import { ChatIcon, HomeIcon, PhoneIcon, StarIcon, WhatsAppIcon } from "./icons";
 
-export function FooterBar (props){
+export function FooterBar(props) {
 
     const SKIN = props.skin;
 
@@ -61,7 +61,7 @@ export function FooterBar (props){
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <div className="dropdown-menu d-d-footer show" aria-labelledby="dropdownMenuButton1" x-placement="top-start">
+                                    <div className="d-d-footer" aria-labelledby="dropdownMenuButton1" x-placement="top-start">
                                         <p><a onClick={() => openChat()}>Chat {t('dalvivo')}</a></p>
                                         <p><a href="mailto:info@gamesolutions.org">{t('invia')} Email</a></p>
                                         <p><a href="mailto:documents@gamesolutions.org">{t('invia')} {t('documenti')}</a></p>
@@ -75,10 +75,10 @@ export function FooterBar (props){
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <SelectLanguagesFooter skin={SKIN}/>
+                                    <SelectLanguagesFooter skin={SKIN} />
                                 </Dropdown.Menu>
                             </Dropdown>
-                                
+
                         </div>
                     </div>
                 </div>

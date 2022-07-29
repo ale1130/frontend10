@@ -410,7 +410,12 @@ div.box-balance>div {
 }
 
 .bottom-bar .dropdown-menu .show {
-    bottom: 45px;
+    bottom: 0px;
+}
+
+.show>.btn-primary.dropdown-toggle {
+
+    border: 0px;
 }
 
 
