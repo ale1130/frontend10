@@ -16,7 +16,7 @@ import '../styles/headerv1.css';
 import { checkSkinSett, SKIN_LOGO_WEB_PATH } from "../constants/global";
 import { JackpotsHeader } from "../components/jackpots";
 
-function Navbar2(props) {
+function Navbar3(props) {
 
     const { t } = useTranslation();
 
@@ -45,7 +45,7 @@ function Navbar2(props) {
                         </h1>
                         <nav className="nav-menu">
                             
-                            {<GameSection2 currentPage={props.currentPage} user={USER} logged={props.statoLogin} skinSettings={skinSettings} />}
+                            {<GameSection3 currentPage={props.currentPage} user={USER} logged={props.statoLogin} skinSettings={skinSettings} />}
                             
                         </nav>
                     </div>
@@ -114,7 +114,7 @@ function Navbar2(props) {
 
 }
 
-const GameSection2 = (props) => {
+const GameSection3 = (props) => {
 
     const { t } = useTranslation();
 
@@ -178,6 +178,6 @@ const GameSection2 = (props) => {
     );
 }
 
-export { Navbar2 };
+export { Navbar3 };
 
-export { GameSection2 };
+export { GameSection3 };

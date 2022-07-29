@@ -3,7 +3,7 @@ import React from "react";
 import { useTranslation } from 'react-i18next';
 import { CorrectMethodsArray, PROVIDERS_LOGO_WEB_PATH, skinUrl, SKIN_FOOTER_IMG_WEB_PATH, SKIN_LOGO_WEB_PATH, TEMPLATE_WEBDIR } from "../constants/global";
 
-function Footerv2(props) {
+function Footer2(props) {
 
     const SKIN = props.skin;
     const providers = props.providers;
@@ -131,4 +131,4 @@ function Footerv2(props) {
 
 }
 
-export default Footerv2;
+export default Footer2;

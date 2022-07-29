@@ -16,7 +16,7 @@ import { NoLogged } from "./components/schermatanolog";
 
 //global
 
-import { api, checkSkinSett, convertObjectStringToNumbers, ConvertObjectToArraySlideshow, IsLogged, logoDirectory, MINUTE_MS } from "./constants/global";
+import { api, checkSkinSett, convertObjectStringToNumbers, ConvertObjectToArraySlideshow, MINUTE_MS } from "./constants/global";
 
 //Rotte
 
@@ -40,8 +40,6 @@ import Page404 from "./pages/page404";
 import LoginModal from "./components/loginmodal";
 import RegistrationModal from "./components/registration";
 import RegistrationModalPix from "./components/registrationpix";
-import { Navbar } from './components/navbar';
-import Footer from './components/footer';
 
 //Components per stile globale dopo caricamento informazioni skin
 
@@ -71,12 +69,23 @@ import WithdrawMethod from "./components/withdrawmethod";
 import { Aviator } from "./pages/aviator";
 import { Promo } from "./components/promo";
 import RegistrationModalAffiliate from "./components/registrationAffiliate";
-import { FooterBar } from "./components/footerbar";
+
+/* Navbars */
+
+import { Navbar } from './components/navbar';
 import { Navbar2 } from "./componentsv2/navbarv2";
-import Footerv2 from "./componentsv2/footerv2";
+import { Navbar3 } from "./componentsv3/navbarv3";
+import { Navbar4 } from "./componentsv4/navbarv4";
+
+/* Footers */
+
+import Footer from './components/footer';
+import Footer2 from "./componentsv2/footerv2";
+import Footer3 from "./componentsv3/footerv3";
+import Footer4 from "./componentsv4/footerv4";
 
 function App() {
-
+  
   //Cookies
 
   const cookies = new Cookies();
@@ -571,6 +580,62 @@ function App() {
     console.log(response)
   })*/
 
+  const getNavbar = () =>{
+    
+    switch(SKIN["header_version"]){
+      
+      case "default":
+        return(Navbar)
+      break;
+
+      case "v2":
+        return(Navbar2)
+      break;
+
+      case "v3":
+        return(Navbar3)
+      break;
+
+      case "v4":
+        return(Navbar4)
+      break;
+
+      default:
+        return(Navbar)
+      break;
+    }
+  }
+
+  const RealNavbar = getNavbar();
+
+  const getFooter = () =>{
+    
+    switch(SKIN["footer_version"]){
+      
+      case "default":
+        return(Footer)
+      break;
+
+      case "v2":
+        return(Footer2)
+      break;
+
+      case "v3":
+        return(Footer3)
+      break;
+
+      case "v4":
+        return(Footer4)
+      break;
+
+      default:
+        return(Footer)
+      break;
+    }
+  }
+
+  const RealFooter = getFooter();
+
   return (
     <>
 
@@ -582,7 +647,7 @@ function App() {
 
           <Router>
 
-            <Navbar
+            <RealNavbar
               currentPage={currentPage}
               childModalButton={() => setShow(true)}
               statoLogin={isLogged}
@@ -704,7 +769,7 @@ function App() {
 
           </Router>
 
-          <Footer
+          <RealFooter
             skin={SKIN}
             providers={providers}
             methods={countMethods}
